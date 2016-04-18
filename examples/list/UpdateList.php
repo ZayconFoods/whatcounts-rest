@@ -24,15 +24,7 @@ try
 		var_dump($list);
 	}
 }
-catch (GuzzleHttp\Exception\ServerException $e)
-{
-	if (class_exists('Kint')) {
-		Kint::dump($e);
-	} else {
-		var_dump($e);
-	}
-
-}	catch ( GuzzleHttp\Exception\RequestException $e )
+catch (Exception $e)
 {
 	if (class_exists('Kint')) {
 		Kint::dump($e);
@@ -40,3 +32,4 @@ catch (GuzzleHttp\Exception\ServerException $e)
 		var_dump($e);
 	}
 }
+

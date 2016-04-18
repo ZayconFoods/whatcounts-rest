@@ -31,7 +31,7 @@ class Subscriber
     private $updated_date;
     private $md5_encryption;
     private $sha1_encryption;
-    private $lists = array();
+    private $subscriptions = array();
 
 
     /**
@@ -391,19 +391,19 @@ class Subscriber
     /**
      * @return array
      */
-    public function getLists()
+    public function getSubscriptions()
     {
-        return $this->lists;
+        return $this->subscriptions;
     }
 
     /**
-     * @param array $lists
+     * @param array $subscriptions
      *
      * @return Subscriber
      */
-    public function setLists($lists)
+    public function setSubscriptions($subscriptions)
     {
-        $this->lists = $lists;
+        $this->subscriptions = (array)$subscriptions;
 
         return $this;
     }
