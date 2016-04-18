@@ -6,26 +6,19 @@
  * Time: 4:13 PM
  */
 
-require_once('../config.php');
+	require_once('../config.php');
 
-try
-{
-    /* initialize whatcounts */
-    $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
+	try
+	{
+		/* initialize whatcounts */
+		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-	$list_id = 1;
-	$list = $whatcounts->getListById($list_id);
-	if (class_exists('Kint')) {
-		Kint::dump($list);
-	} else {
-		var_dump($list);
+		$list_id = 1;
+		$list = $whatcounts->getListById($list_id);
+
+		$whatcounts->handleDump($list);
 	}
-}
-catch (Exception $e)
-{
-	if (class_exists('Kint')) {
-		Kint::dump($e);
-	} else {
-		var_dump($e);
+	catch (Exception $e)
+	{
+		$whatcounts->handleException($e);
 	}
-}

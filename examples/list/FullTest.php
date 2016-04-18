@@ -49,22 +49,16 @@
 		$whatcounts->createList($list);
 
 		$list_id = $list->getId();
-		if (class_exists('Kint')) {
-			Kint::dump($list);
-		} else {
-			var_dump($list);
-		}
+
+		$whatcounts->handleDump($list);
 
 		sleep(10);
 
 		$updated_list = $whatcounts->getListById($list_id);
 		$updated_list->setName('Test List that will be deleted soon (updated).');
 		$whatcounts->updateList($updated_list);
-		if (class_exists('Kint')) {
-			Kint::dump($updated_list);
-		} else {
-			var_dump($updated_list);
-		}
+
+		$whatcounts->handleDump($updated_list);
 
 		$deleted_list = $whatcounts->getListById($list_id);
 		if ($whatcounts->deleteList($deleted_list))
@@ -81,10 +75,6 @@
 	}
 	catch (Exception $e)
 	{
-		if (class_exists('Kint')) {
-			Kint::dump($e);
-		} else {
-			var_dump($e);
-		}
+		$whatcounts->handleException($e);
 	}
 

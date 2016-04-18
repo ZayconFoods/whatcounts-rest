@@ -33,6 +33,50 @@ class Subscriber
     private $sha1_encryption;
     private $subscriptions = array();
 
+    public function __construct($subscriber_response = NULL)
+    {
+        if (isset($subscriber_response))
+        {
+            $this
+                ->setSubscriberId($subscriber_response->subscriberId)
+                ->setRealmId($subscriber_response->realmId)
+                ->setEmail($subscriber_response->email)
+                ->setFirstName($subscriber_response->firstName)
+                ->setLastName($subscriber_response->lastName)
+                ->setCompany($subscriber_response->company)
+                ->setAddress1($subscriber_response->address1)
+                ->setAddress2($subscriber_response->address2)
+                ->setCity($subscriber_response->city)
+                ->setState($subscriber_response->state)
+                ->setZip($subscriber_response->zip)
+                ->setCountry($subscriber_response->country)
+                ->setPhone($subscriber_response->phone)
+                ->setFax($subscriber_response->fax)
+                ->setCreatedDate($subscriber_response->createdDate)
+                ->setUpdatedDate($subscriber_response->updatedDate)
+                ->setMd5Encryption($subscriber_response->md5Encryption)
+                ->setSha1Encryption($subscriber_response->sha1Encryption);
+        }
+    }
+
+    public function getRequestArray()
+    {
+        $request_array = array(
+            'email' => $this->getEmail(),
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName(),
+            'company' => $this->getCompany(),
+            'address1' => $this->getAddress1(),
+            'address2' => $this->getAddress2(),
+            'city' => $this->getCity(),
+            'state' => $this->getState(),
+            'zip' => $this->getZip(),
+            'country' => $this->getCountry(),
+            'phone' => $this->getPhone(),
+            'fax' => $this->getFax()
+        );
+        return $request_array;
+    }
 
     /**
      * @return mixed

@@ -2,8 +2,8 @@
 	/**
 	 * Created by PhpStorm.
 	 * User: Mark Simonds
-	 * Date: 4/15/16
-	 * Time: 10:55 AM
+	 * Date: 4/18/16
+	 * Time: 11:40 AM
 	 */
 
 	require_once('../config.php');
@@ -13,21 +13,11 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$list_id = 2;
-		$list = $whatcounts->getListById($list_id);
+		$templates = $whatcounts->getTemplates();
 
-		if ($whatcounts->deleteList($list))
-		{
-			echo "List deleted";
-		}
-		else
-		{
-			echo "List not deleted.";
-		}
-
+		$whatcounts->handleDump($templates);
 	}
 	catch (Exception $e)
 	{
 		$whatcounts->handleException($e);
 	}
-

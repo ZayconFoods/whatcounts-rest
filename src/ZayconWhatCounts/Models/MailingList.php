@@ -51,6 +51,91 @@ class MailingList
     private $subscriber_count_rss;
     private $subscriber_count_mime;
 
+    public function __construct($list_response = NULL)
+    {
+        if (isset($list_response))
+        {
+            $this
+                ->setId($list_response->listId)
+                ->setRealmId($list_response->listRealmId)
+                ->setTemplateId($list_response->listTemplateId)
+                //->setTemplateName($list_response->templateName)
+                ->setName($list_response->listName)
+                ->setFolderId($list_response->listFolderId)
+                ->setType($list_response->type)
+                ->setFromAddress($list_response->listFromAddress)
+                ->setReplyToAddress($list_response->listReplyToAddress)
+                ->setMailFromAddress($list_response->listMailFromAddress)
+                ->setDescription($list_response->listDescription)
+                ->setCreatedDate($list_response->listCreatedDate)
+                ->setUpdatedDate($list_response->listUpdatedDate)
+                ->setSubscribeEmailTemplateId($list_response->listSubscribeEmailTemplateId)
+                ->setUnsubscribeEmailTemplateId($list_response->listUnsubscribeEmailTemplateId)
+                ->setConfirmSubs($list_response->listConfirmSubs)
+                ->setSendCourtesySubsEmail($list_response->listSendCourtesySubsEmail)
+                ->setSendCourtesyUnsubsEmail($list_response->listSendCourtesyUnsubsEmail)
+                ->setAdminEmail($list_response->listAdminEmail)
+                ->setConfirmationSubGoto($list_response->listConfirmationSubGoto)
+                ->setConfirmationUnsubGoto($list_response->listConfirmationUnsubGoto)
+                ->setTrackingReadEnabled($list_response->listTrackingReadEnabled)
+                ->setTrackingClickthroughEnabled($list_response->listTrackingClickthroughEnabled)
+                ->setUseStickyCampaign($list_response->listUseStickyCampaign)
+                //->setDataXml($list_response->listDataXml)
+                ->setFtafUseListFromAddress($list_response->ftafUseListFromAddress)
+                ->setVmtaId($list_response->vmtaId)
+                ->setBaseUrlId($list_response->baseUrlId)
+                ->setUnsubscribeHeaderEnabled($list_response->unsubscribeHeaderEnabled)
+                ->setParentTemplateId($list_response->parentTemplateId)
+                ->setIsTemplate($list_response->isTemplate)
+                ->setDefaultLifecycleCampaignId($list_response->defaultLifecycleCampaignId)
+                ->setDefaultLifecycle($list_response->defaultLifecycle)
+                ->setUnsubHeaderHttpValue($list_response->unsubHeaderHttpValue)
+                ->setUnsubHeaderEmailValue($list_response->unsubHeaderEmailValue)
+                ->setSubscriberCountTotal($list_response->subscriberCountTotal)
+                ->setSubscriberCountPlain($list_response->subscriberCountPlain)
+                ->setSubscriberCountHtml($list_response->subscriberCountHtml)
+                ->setSubscriberCountRss($list_response->subscriberCountRss)
+                ->setSubscriberCountMime($list_response->subscriberCountMime);
+        }
+    }
+
+    public function getRequestArray()
+    {
+        $request_array = array(
+            'listRealmId' => $this->getRealmId(),
+            'listTemplateId' => $this->getTemplateId(),
+            //'templateName' => $this->getTemplateName(),
+            'listName' => $this->getName(),
+            'listFolderId' => $this->getFolderId(),
+            'listFromAddress' => $this->getFromAddress(),
+            'listReplyToAddress' => $this->getReplyToAddress(),
+            'listMailFromAddress' => $this->getMailFromAddress(),
+            'listDescription' => $this->getDescription(),
+            'listSubscribeEmailTemplateId' => $this->getSubscribeEmailTemplateId(),
+            'listUnsubscribeEmailTemplateId' => $this->getUnsubscribeEmailTemplateId(),
+            'listConfirmSubs' => $this->getConfirmSubs(),
+            'listSendCourtesySubsEmail' => $this->getSendCourtesySubsEmail(),
+            'listSendCourtesyUnsubsEmail' => $this->getSendCourtesyUnsubsEmail(),
+            'listAdminEmail' => $this->getAdminEmail(),
+            'listConfirmationSubGoto' => $this->getConfirmationSubGoto(),
+            'listConfirmationUnsubGoto' => $this->getConfirmationUnsubGoto(),
+            'listTrackingReadEnabled' => $this->getTrackingReadEnabled(),
+            'listTrackingClickthroughEnabled' => $this->getTrackingClickthroughEnabled(),
+            'listUseStickyCampaign' => $this->getUseStickyCampaign(),
+            'ftafUseListFromAddress' => $this->getFtafUseListFromAddress(),
+            'vmtaId' => $this->getVmtaId(),
+            'baseUrlId' => $this->getBaseUrlId(),
+            'unsubscribeHeaderEnabled' => $this->getUnsubscribeHeaderEnabled(),
+            'parentTemplateId' => $this->getParentTemplateId(),
+            'isTemplate' => $this->getIsTemplate(),
+            'defaultLifecycleCampaignId' => $this->getDefaultLifecycleCampaignId(),
+            'defaultLifecycle' => $this->getDefaultLifecycle(),
+            'unsubHeaderHttpValue' => $this->getUnsubHeaderHttpValue(),
+            'unsubHeaderEmailValue' => $this->getUnsubHeaderEmailValue()
+        );
+        return $request_array;
+    }
+
     /**
      * @return mixed
      */

@@ -28,26 +28,11 @@
             ->setFax("5095551213")
             ->setCompany("Zaycon");
 
-        $whatcounts->subscribe($subscriber);
-        if (class_exists('Kint')) {
-            Kint::dump($subscriber);
-        } else {
-            var_dump($subscriber);
-        }
-    }
-    catch (GuzzleHttp\Exception\ServerException $e)
-    {
-        if (class_exists('Kint')) {
-            Kint::dump($e);
-        } else {
-            var_dump($e);
-        }
+        $whatcounts->addSubscriber($subscriber);
 
-    }	catch ( GuzzleHttp\Exception\RequestException $e )
+        $whatcounts->handleDump($subscriber);
+    }
+    catch (Exception $e)
     {
-        if (class_exists('Kint')) {
-            Kint::dump($e);
-        } else {
-            var_dump($e);
-        }
+        $whatcounts->handleException($e);
     }

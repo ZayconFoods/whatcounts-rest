@@ -17,18 +17,11 @@
 	    $subscriber
 		    ->setEmail("joe@example.com");
 
-	    $subscribers = $whatcounts->findSubscribers($subscriber);
-		if (class_exists('Kint')) {
-			Kint::dump($subscribers);
-		} else {
-			var_dump($subscribers);
-		}
+	    $subscribers = $whatcounts->getSubscribers($subscriber);
+
+		$whatcounts->handleDump($subscribers);
 	}
-	catch ( ZayconWhatCounts\Exception $e )
+	catch (Exception $e)
 	{
-	    if (class_exists('Kint')) {
-				Kint::dump($e);
-			} else {
-				var_dump($e);
-			}
+		$whatcounts->handleException($e);
 	}

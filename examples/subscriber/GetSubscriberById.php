@@ -3,7 +3,7 @@
 	 * Created by PhpStorm.
 	 * User: Mark Simonds
 	 * Date: 4/15/16
-	 * Time: 10:55 AM
+	 * Time: 2:43 PM
 	 */
 
 	require_once('../config.php');
@@ -13,21 +13,13 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$list_id = 2;
-		$list = $whatcounts->getListById($list_id);
+		$subscriber_id = 1;
 
-		if ($whatcounts->deleteList($list))
-		{
-			echo "List deleted";
-		}
-		else
-		{
-			echo "List not deleted.";
-		}
+		$subscriber = $whatcounts->getSubscriberById($subscriber_id);
 
+		$whatcounts->handleDump($subscriber);
 	}
 	catch (Exception $e)
 	{
 		$whatcounts->handleException($e);
 	}
-

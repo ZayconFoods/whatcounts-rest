@@ -37,6 +37,81 @@ class Template
     private $library_id;
     private $layout_id;
 
+    public function __construct($template_response = NULL)
+    {
+        if (isset($template_response))
+        {
+            $this
+                ->setId($template_response->listId)
+                ->setRealmId($template_response->listRealmId)
+                ->setTemplateId($template_response->listTemplateId)
+                //->setTemplateName($template_response->templateName)
+                ->setName($template_response->listName)
+                ->setFolderId($template_response->listFolderId)
+                ->setType($template_response->type)
+                ->setFromAddress($template_response->listFromAddress)
+                ->setReplyToAddress($template_response->listReplyToAddress)
+                ->setMailFromAddress($template_response->listMailFromAddress)
+                ->setDescription($template_response->listDescription)
+                ->setCreatedDate($template_response->listCreatedDate)
+                ->setUpdatedDate($template_response->listUpdatedDate)
+                ->setSubscribeEmailTemplateId($template_response->listSubscribeEmailTemplateId)
+                ->setUnsubscribeEmailTemplateId($template_response->listUnsubscribeEmailTemplateId)
+                ->setConfirmSubs($template_response->listConfirmSubs)
+                ->setSendCourtesySubsEmail($template_response->listSendCourtesySubsEmail)
+                ->setSendCourtesyUnsubsEmail($template_response->listSendCourtesyUnsubsEmail)
+                ->setAdminEmail($template_response->listAdminEmail)
+                ->setConfirmationSubGoto($template_response->listConfirmationSubGoto)
+                ->setConfirmationUnsubGoto($template_response->listConfirmationUnsubGoto)
+                ->setTrackingReadEnabled($template_response->listTrackingReadEnabled)
+                ->setTrackingClickthroughEnabled($template_response->listTrackingClickthroughEnabled)
+                ->setUseStickyCampaign($template_response->listUseStickyCampaign)
+                //->setDataXml($template_response->listDataXml)
+                ->setFtafUseListFromAddress($template_response->ftafUseListFromAddress)
+                ->setVmtaId($template_response->vmtaId)
+                ->setBaseUrlId($template_response->baseUrlId)
+                ->setUnsubscribeHeaderEnabled($template_response->unsubscribeHeaderEnabled)
+                ->setParentTemplateId($template_response->parentTemplateId)
+                ->setIsTemplate($template_response->isTemplate)
+                ->setDefaultLifecycleCampaignId($template_response->defaultLifecycleCampaignId)
+                ->setDefaultLifecycle($template_response->defaultLifecycle)
+                ->setUnsubHeaderHttpValue($template_response->unsubHeaderHttpValue)
+                ->setUnsubHeaderEmailValue($template_response->unsubHeaderEmailValue)
+                ->setSubscriberCountTotal($template_response->subscriberCountTotal)
+                ->setSubscriberCountPlain($template_response->subscriberCountPlain)
+                ->setSubscriberCountHtml($template_response->subscriberCountHtml)
+                ->setSubscriberCountRss($template_response->subscriberCountRss)
+                ->setSubscriberCountMime($template_response->subscriberCountMime);
+        }
+    }
+
+    public function getRequestArray()
+    {
+        $request_array = array(
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'subject' => $this->getSubject(),
+            'deletedFlag' => $this->getDeletedFlag(),
+            'templateFolderId' => $this->getFolderId(),
+            'hasVideo' => $this->getHasVideo(),
+            'permissionMask' => $this->getPermissionMask(),
+            'templateInherited' => $this->getInherited(),
+            'templateDataPlaintext' => $this->getDataPlaintext(),
+            'templateDataHtml' => $this->getDataHtml(),
+            'templateDataMobile' => $this->getDataMobile(),
+            'templateDataWap' => $this->getDataWap(),
+            'templateDataAvantgo' => $this->getDataAvantgo(),
+            'templateDataAol' => $this->getDataAol(),
+            'templateDataXml' => $this->getDataXml(),
+            'templateReplaceFields' => $this->getReplaceFields(),
+            'plainHasRelational' => $this->getPlainHasRelational(),
+            'htmlHasRelational' => $this->getHtmlHasRelational(),
+            'templateLibraryId' => $this->getLibraryId(),
+            'templateLayoutId)' => $this->getLayoutId()
+        );
+        return $request_array;
+    }
+
     /**
      * @return mixed
      */

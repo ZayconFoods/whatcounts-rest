@@ -1,9 +1,9 @@
 <?php
 	/**
 	 * Created by PhpStorm.
-	 * User: Mark Simonds
-	 * Date: 4/15/16
-	 * Time: 10:55 AM
+	 * User: marksimonds
+	 * Date: 2/3/16
+	 * Time: 2:27 PM
 	 */
 
 	require_once('../config.php');
@@ -13,21 +13,11 @@
 		/* initialize whatcounts */
 		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 
-		$list_id = 2;
-		$list = $whatcounts->getListById($list_id);
+		$template = $whatcounts->getTemplateByName('Test Template');
 
-		if ($whatcounts->deleteList($list))
-		{
-			echo "List deleted";
-		}
-		else
-		{
-			echo "List not deleted.";
-		}
-
+		$whatcounts->handleDump($template);
 	}
 	catch (Exception $e)
 	{
 		$whatcounts->handleException($e);
 	}
-

@@ -1,8 +1,8 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Mark Simonds
- * Date: 4/15/16
+ * User: marksimonds
+ * Date: 1/25/16
  * Time: 4:13 PM
  */
 
@@ -13,10 +13,9 @@
 	    /* initialize whatcounts */
 	    $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
 	
-		$list_name = "Test List";
-		$list = $whatcounts->getListByName($list_name);
+	    $lists = $whatcounts->getLists();
 
-		$whatcounts->handleDump($list);
+		$whatcounts->handleDump($lists);
 	}
 	catch (Exception $e)
 	{

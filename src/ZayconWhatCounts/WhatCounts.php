@@ -17,11 +17,13 @@
 
 	class WhatCounts
 	{
-		
+
 		use ListTraits;
 		use SubscriberTraits;
 		use SegmentationTraits;
 		use TemplateTraits;
+		use ArticleTraits;
+		use CampaignTraits;
 
 		const VERSION = 'v1';
 		const DEFAULT_URL = 'http://wcqa.us/rest';
@@ -240,5 +242,26 @@
 			return FALSE;
 		}
 		
+		public function handleException($e)
+		{
+			if (class_exists('Kint')) {
+				\Kint::dump($e);
+			} else {
+				var_dump($e);
+			}
+			if (class_exists('Rollbar')) {
+				\Rollbar::report_exception($e);
+			}
+		}
+		
+		public function handleDump($object)
+		{
+			if (class_exists('Kint')) {
+				\Kint::dump($object);
+			} else {
+				var_dump($object);
+			}
+
+		}
 	}
 
