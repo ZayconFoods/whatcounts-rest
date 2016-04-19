@@ -93,7 +93,7 @@
 		public function updateSubscriber(Subscriber &$subscriber)
 		{
 			$request_data = $subscriber->getRequestArray();
-			$response_data = $this->call('subscribers/' . $subscriber->getSubscriberId() . '', 'PUT', $request_data);
+			$response_data = $this->call('subscribers/' . $subscriber->getSubscriberId(), 'PUT', $request_data);
 
 			$subscriber
 				->setUpdatedDate($response_data->updatedDate);
@@ -110,38 +110,10 @@
 		 */
 		public function deleteSubscriber(Subscriber $subscriber)
 		{
-			$request_data = array(
-				'data' => 'email^' . $subscriber->getEmail()
-			);
-			$xml = $this->call('delete', 'DELETE', $request_data);
+			$request_data = $subscriber->getRequestArray();
+			$this->call('subscribers/' . $subscriber->getSubscriberId(), 'DELETE', $request_data);
 
-			return trim($xml[1]);
-		}
-
-		/**
-		 * @param Subscriber $subscriber
-		 * @param $list_id
-		 * @param bool $force_optout
-		 *
-		 * @return string
-		 * @throws WhatCountsException
-		 *
-		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969639
-		 *
-		 */
-		public function unsubscribe(Subscriber $subscriber, $list_id, $force_optout = FALSE)
-		{
-			$request_data = array(
-				'list_id'      => $list_id,
-				'force_optout' => $force_optout,
-				'data'         => 'email,first,last^'
-					. $subscriber->getEmail() . ','
-					. $subscriber->getFirstName() . ','
-					. $subscriber->getLastName()
-			);
-			$xml = $this->call('unsub', 'POST', $request_data);
-
-			return trim($xml[1]);
+			return TRUE;
 		}
 
 	}

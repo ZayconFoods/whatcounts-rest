@@ -18,10 +18,7 @@
 			$segmentation_rules = array();
 
 			foreach ($response_data as $segmentationRuleItem) {
-				$segmentation_rule = new Template();
-				$segmentation_rule
-					->setId($segmentationRuleItem->id);
-
+				$segmentation_rule = new SegmentationRule($segmentationRuleItem);
 				$segmentation_rules[] = $segmentation_rule;
 			}
 
@@ -32,10 +29,7 @@
 		public function getSegmentationById($segmentation_id)
 		{
 			$response_data = $this->call('segmentation/' . $segmentation_id, 'GET');
-
-			$segmentation_rule = new SegmentationRule();
-			$segmentation_rule
-				->setId($response_data->id);
+			$segmentation_rule = new SegmentationRule($response_data);
 
 			return $segmentation_rule;
 		}

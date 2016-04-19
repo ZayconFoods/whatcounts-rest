@@ -51,7 +51,7 @@
 			$response_data = $this->call('articles', 'POST', $request_data);
 
 			$article
-				->setId($response_data->id)
+				->setId($response_data->articleId)
 				->setRealmId($response_data->realmId)
 				->setCreatedDate($response_data->createdDate);
 		}
@@ -68,7 +68,9 @@
 		public function deleteArticle(Article $article)
 		{
 			$id = $article->getId();
-			$this->call('articles/' . $id, 'DELETE');
+			$request_data = $article->getRequestArray();
+
+			$this->call('articles/' . $id, 'DELETE', $request_data);
 
 			return TRUE;
 		}

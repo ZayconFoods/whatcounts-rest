@@ -38,32 +38,7 @@
 			$response_data = $this->call('templates?name=' . $template_name, 'GET');
 			$response_data = $response_data[0];
 
-			$template = new Template();
-			$template
-				->setId($response_data->id)
-				->setRealmId($response_data->realmId)
-				->setName($response_data->name)
-				->setDescription($response_data->description)
-				->setSubject($response_data->subject)
-				->setCreatedDate($response_data->createdDate)
-				->setUpdatedDate($response_data->updatedDate)
-				->setDeletedFlag($response_data->deletedFlag)
-				->setFolderId($response_data->templateFolderId)
-				->setHasVideo($response_data->hasVideo)
-				->setPermissionMask($response_data->permissionMask)
-				->setInherited($response_data->templateInherited)
-				->setDataPlaintext($response_data->templateDataPlaintext)
-				->setDataHtml($response_data->templateDataHtml)
-				->setDataMobile($response_data->templateDataMobile)
-				->setDataWap($response_data->templateDataWap)
-				->setDataAvantgo($response_data->templateDataAvantgo)
-				->setDataAol($response_data->templateDataAol)
-				->setDataXml($response_data->templateDataXml)
-				->setReplaceFields($response_data->templateReplaceFields)
-				->setPlainHasRelational($response_data->plainHasRelational)
-				->setHtmlHasRelational($response_data->htmlHasRelational)
-				->setLibraryId($response_data->templateLibraryId)
-				->setLayoutId($response_data->templateLayoutId);
+			$template = new Template($response_data);
 
 			return $template;
 

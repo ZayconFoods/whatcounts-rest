@@ -17,7 +17,6 @@
 		$article = $whatcounts->getArticleById($article_id);
 		Kint::dump($article);
 
-		$article = new ZayconWhatCounts\Article;
 		$article
 			->setName("Another Test Article")
 			->setDescription("This is the description (updated)");

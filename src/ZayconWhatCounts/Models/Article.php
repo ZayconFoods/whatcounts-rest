@@ -61,13 +61,11 @@
 				'authorName' => $this->getAuthorName(),
 				'authorBio' => $this->getAuthorBio(),
 				'title' => $this->getTitle(),
-				'createdDate' => $this->getCreatedDate(),
-				'updatedDate' => $this->getUpdatedDate(),
 				'folderId' => $this->getFolderId(),
 				'dek' => $this->getDeck(),
 				'callout' => $this->getCallout(),
 				'body' => $this->getBody(),
-				'parentArticleId)' => $this->getParentArticleId()
+				'parentArticleId' => $this->getParentArticleId()
 			);
 			return $request_array;
 		}

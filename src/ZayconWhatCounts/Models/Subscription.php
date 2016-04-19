@@ -11,7 +11,7 @@
 
     class Subscription
     {
-        private $subscription_id;
+        private $id;
         private $subscriber_id;
         private $list_id;
         private $format_id;
@@ -24,33 +24,43 @@
             if (isset($subscription_response))
             {
                 $this
-                    ->setSubscriptionId($subscription_response->subscriptionId)
+                    ->setId($subscription_response->subscriptionId)
                     ->setSubscriberId($subscription_response->subscriberId)
                     ->setListId($subscription_response->listId)
                     ->setCreatedDate($subscription_response->createdDate)
                     ->setFormatId($subscription_response->formatId)
                     ->setSentFlag($subscription_response->sentFlag)
-                    ->setCreatedDate($subscription_response->createdDate)
                     ->setListName($subscription_response->listName);
             }
+        }
+
+        public function getRequestArray()
+        {
+            $request_array = array(
+                'subscriberId' => $this->getSubscriberId(),
+                'listId' => $this->getListId(),
+                'formatId' => $this->getFormatId(),
+                'sentFlag' => $this->isSentFlag()
+            );
+            return $request_array;
         }
 
         /**
          * @return mixed
          */
-        public function getSubscriptionId()
+        public function getId()
         {
-            return $this->subscription_id;
+            return $this->id;
         }
 
         /**
-         * @param mixed $subscription_id
+         * @param mixed $id
          *
          * @return Subscription
          */
-        public function setSubscriptionId($subscription_id)
+        public function setId($id)
         {
-            $this->subscription_id = (int)$subscription_id;
+            $this->id = (int)$id;
 
             return $this;
         }
