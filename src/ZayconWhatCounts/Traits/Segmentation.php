@@ -13,6 +13,7 @@
 	{
 		public function getSegmentations()
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('lists', 'GET');
 
 			$segmentation_rules = array();
@@ -28,6 +29,7 @@
 
 		public function getSegmentationById($segmentation_id)
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('segmentation/' . $segmentation_id, 'GET');
 			$segmentation_rule = new SegmentationRule($response_data);
 

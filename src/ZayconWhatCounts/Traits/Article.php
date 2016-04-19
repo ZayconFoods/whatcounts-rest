@@ -13,6 +13,7 @@
 	{
 		public function getArticles()
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('articles/', 'GET');
 
 			$articles = array();
@@ -27,6 +28,7 @@
 
 		public function getArticleById($article_id)
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('articles/' . $article_id, 'GET');
 			$article = new Article($response_data);
 
@@ -36,6 +38,7 @@
 
 		public function getArticleByName($article_name)
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('articles?name=' . $article_name, 'GET');
 			$response_data = $response_data[0];
 
@@ -48,6 +51,7 @@
 		public function createArticle(Article &$article)
 		{
 			$request_data = $article->getRequestArray();
+			/** @var WhatCounts $this */
 			$response_data = $this->call('articles', 'POST', $request_data);
 
 			$article
@@ -59,6 +63,7 @@
 		public function updateArticle(Article &$article)
 		{
 			$request_data = $article->getRequestArray();
+			/** @var WhatCounts $this */
 			$response_data = $this->call('articles/' . $article->getId(), 'PUT', $request_data);
 
 			$article
@@ -70,6 +75,7 @@
 			$id = $article->getId();
 			$request_data = $article->getRequestArray();
 
+			/** @var WhatCounts $this */
 			$this->call('articles/' . $id, 'DELETE', $request_data);
 
 			return TRUE;

@@ -17,6 +17,7 @@
 		 */
 		public function getLists()
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('lists', 'GET');
 
 			$lists = array();
@@ -38,6 +39,7 @@
 		 */
 		public function getListById($list_id)
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('lists/' . $list_id, 'GET');
 
 			$list = new MailingList($response_data);
@@ -54,6 +56,7 @@
 		 */
 		public function getListByName($list_name)
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('lists?name=' . $list_name, 'GET');
 
 			$lists = array();
@@ -77,6 +80,7 @@
 		public function createList(MailingList &$list)
 		{
 			$request_data = $list->getRequestArray();
+			/** @var WhatCounts $this */
 			$response_data = $this->call('lists', 'POST', $request_data);
 
 			$list
@@ -95,6 +99,7 @@
 		public function updateList(MailingList &$list)
 		{
 			$request_data = $list->getRequestArray();
+			/** @var WhatCounts $this */
 			$response_data = $this->call('lists/' . $list->getId(), 'PUT', $request_data);
 
 			$list
@@ -105,6 +110,7 @@
 		public function deleteList(MailingList $list)
 		{
 			$id = $list->getId();
+			/** @var WhatCounts $this */
 			$this->call('lists/' . $id, 'DELETE');
 
 			return TRUE;

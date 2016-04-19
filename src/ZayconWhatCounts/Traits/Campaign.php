@@ -13,6 +13,7 @@
 	{
 		public function getCampaigns()
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('campaigns/', 'GET');
 
 			$campaigns = array();

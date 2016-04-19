@@ -12,6 +12,7 @@
 	{
 		public function getTemplates()
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('templates/', 'GET');
 
 			$templates = array();
@@ -26,6 +27,7 @@
 		
 		public function getTemplateById($template_id)
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('templates/' . $template_id, 'GET');
 			$template = new Template($response_data);
 
@@ -35,6 +37,7 @@
 
 		public function getTemplateByName($template_name)
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('templates?name=' . $template_name, 'GET');
 			$response_data = $response_data[0];
 
@@ -47,6 +50,7 @@
 		public function createTemplate(Template &$template)
 		{
 			$request_data = $template->getRequestArray();
+			/** @var WhatCounts $this */
 			$response_data = $this->call('templates', 'POST', $request_data);
 
 			$template
@@ -58,6 +62,7 @@
 		public function updateTemplate(Template &$template)
 		{
 			$request_data = $template->getRequestArray();
+			/** @var WhatCounts $this */
 			$response_data = $this->call('templates/' . $template->getId(), 'PUT', $request_data);
 
 			$template
@@ -67,6 +72,7 @@
 		public function deleteTemplate(Template $template)
 		{
 			$id = $template->getId();
+			/** @var WhatCounts $this */
 			$this->call('templates/' . $id, 'DELETE');
 
 			return TRUE;

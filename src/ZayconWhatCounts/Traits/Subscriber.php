@@ -25,6 +25,7 @@
 				'lastName'  => $subscriber->getLastName()
 			);
 
+			/** @var WhatCounts $this */
 			$response_data = $this->call('subscribers', 'GET', $request_data);
 
 			$subscribers = array();
@@ -46,6 +47,7 @@
 		 */
 		public function getSubscriberById($subscriber_id)
 		{
+			/** @var WhatCounts $this */
 			$response_data = $this->call('subscribers/' . $subscriber_id . '/subscriptions', 'GET');
 			$subscriber = new Subscriber($response_data);
 
@@ -70,6 +72,7 @@
 		public function addSubscriber(Subscriber &$subscriber)
 		{
 			$request_data = $subscriber->getRequestArray();
+			/** @var WhatCounts $this */
 			$response_data = $this->call('subscribers', 'POST', $request_data);
 
 			$subscriber
@@ -93,6 +96,7 @@
 		public function updateSubscriber(Subscriber &$subscriber)
 		{
 			$request_data = $subscriber->getRequestArray();
+			/** @var WhatCounts $this */
 			$response_data = $this->call('subscribers/' . $subscriber->getSubscriberId(), 'PUT', $request_data);
 
 			$subscriber
@@ -111,6 +115,7 @@
 		public function deleteSubscriber(Subscriber $subscriber)
 		{
 			$request_data = $subscriber->getRequestArray();
+			/** @var WhatCounts $this */
 			$this->call('subscribers/' . $subscriber->getSubscriberId(), 'DELETE', $request_data);
 
 			return TRUE;
