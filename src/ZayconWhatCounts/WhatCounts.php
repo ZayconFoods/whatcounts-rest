@@ -18,8 +18,10 @@
 	class WhatCounts
 	{
 
+		use ActionsTraits;
 		use ListTraits;
 		use SubscriberTraits;
+		use SubscriptionTraits;
 		use SegmentationTraits;
 		use TemplateTraits;
 		use ArticleTraits;

@@ -19,7 +19,7 @@
         private $created_date;
         private $list_name;
 
-        public function __construct($subscription_response = NULL)
+        public function __construct(\stdClass $subscription_response = NULL)
         {
             if (isset($subscription_response))
             {

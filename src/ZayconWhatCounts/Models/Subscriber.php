@@ -33,7 +33,7 @@ class Subscriber
     private $sha1_encryption;
     private $subscriptions = array();
 
-    public function __construct($subscriber_response = NULL)
+    public function __construct(\stdClass $subscriber_response = NULL)
     {
         if (isset($subscriber_response))
         {

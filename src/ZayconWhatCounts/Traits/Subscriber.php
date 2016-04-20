@@ -8,32 +8,22 @@
 
 	namespace ZayconWhatCounts;
 
+
 	trait SubscriberTraits
 	{
+		private $subscriber_stub = 'subscribers';
+		private $subscriber_class_name = '\ZayconWhatCounts\Subscriber';
+
 		/**
-		 * @param Subscriber $subscriber
-		 *
 		 * @return array
+		 * 
 		 * @throws WhatCountsException
-		 *
 		 */
-		public function getSubscribers(Subscriber $subscriber)
+		public function getSubscribers()
 		{
-			$request_data = array(
-				'email' => $subscriber->getEmail(),
-				'firstName' => $subscriber->getFirstName(),
-				'lastName'  => $subscriber->getLastName()
-			);
-
-			/** @var WhatCounts $this */
-			$response_data = $this->call('subscribers', 'GET', $request_data);
-
-			$subscribers = array();
-
-			foreach ($response_data as $subscriberItem) {
-				$subscriber = new Subscriber($subscriberItem);
-				$subscribers[] = $subscriber;
-			}
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$subscribers = $whatcounts->getAll($this->subscriber_stub, $this->subscriber_class_name);
 
 			return $subscribers;
 		}
@@ -47,17 +37,9 @@
 		 */
 		public function getSubscriberById($subscriber_id)
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('subscribers/' . $subscriber_id . '/subscriptions', 'GET');
-			$subscriber = new Subscriber($response_data);
-
-			$subscriber_lists = array();
-			foreach ($response_data->subscriptions as $subscription) {
-				$new_subscription = New Subscription($subscription);
-				$subscriber_lists[] = $new_subscription;
-			}
-
-			$subscriber->setSubscriptions($subscriber_lists);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$subscriber = $whatcounts->getById($this->subscriber_stub, $this->subscriber_class_name, $subscriber_id);
 
 			return $subscriber;
 		}
@@ -69,11 +51,11 @@
 		 * @throws WhatCountsException
 		 *
 		 */
-		public function addSubscriber(Subscriber &$subscriber)
+		public function createSubscriber(Subscriber &$subscriber)
 		{
-			$request_data = $subscriber->getRequestArray();
-			/** @var WhatCounts $this */
-			$response_data = $this->call('subscribers', 'POST', $request_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$response_data = $whatcounts->create($this->subscriber_stub, $subscriber);
 
 			$subscriber
 				->setSubscriberId($response_data->subscriberId)
@@ -95,9 +77,9 @@
 		 */
 		public function updateSubscriber(Subscriber &$subscriber)
 		{
-			$request_data = $subscriber->getRequestArray();
-			/** @var WhatCounts $this */
-			$response_data = $this->call('subscribers/' . $subscriber->getSubscriberId(), 'PUT', $request_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$response_data = $whatcounts->update($this->subscriber_stub, $subscriber);
 
 			$subscriber
 				->setUpdatedDate($response_data->updatedDate);
@@ -114,11 +96,9 @@
 		 */
 		public function deleteSubscriber(Subscriber $subscriber)
 		{
-			$request_data = $subscriber->getRequestArray();
-			/** @var WhatCounts $this */
-			$this->call('subscribers/' . $subscriber->getSubscriberId(), 'DELETE', $request_data);
-
-			return TRUE;
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			return $whatcounts->deleteById($this->subscriber_stub, $subscriber);
 		}
 
 	}

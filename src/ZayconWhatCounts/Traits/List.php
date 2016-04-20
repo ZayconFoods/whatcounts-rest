@@ -8,8 +8,12 @@
 
 	namespace ZayconWhatCounts;
 
+
 	trait ListTraits
 	{
+		private $list_stub = 'lists';
+		private $list_class_name = '\ZayconWhatCounts\List';
+
 		/**
 		 * @return array
 		 * @throws WhatCountsException
@@ -17,15 +21,9 @@
 		 */
 		public function getLists()
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('lists', 'GET');
-
-			$lists = array();
-
-			foreach ($response_data as $listItem) {
-				$list = new MailingList($listItem);
-				$lists[] = $list;
-			}
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$lists = $whatcounts->getAll($this->list_stub, $this->list_class_name);
 
 			return $lists;
 		}
@@ -39,10 +37,10 @@
 		 */
 		public function getListById($list_id)
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('lists/' . $list_id, 'GET');
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$list = $whatcounts->getById($this->list_stub, $this->list_class_name, $list_id);
 
-			$list = new MailingList($response_data);
 			return $list;
 		}
 
@@ -56,17 +54,11 @@
 		 */
 		public function getListByName($list_name)
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('lists?name=' . $list_name, 'GET');
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$list = $whatcounts->getByName($this->list_stub, $this->list_class_name, $list_name);
 
-			$lists = array();
-
-			foreach ($response_data as $listItem) {
-				$list = new MailingList($listItem);
-				$lists[] = $list;
-			}
-
-			return $lists;
+			return $list;
 		}
 
 		/**
@@ -79,9 +71,9 @@
 		 */
 		public function createList(MailingList &$list)
 		{
-			$request_data = $list->getRequestArray();
-			/** @var WhatCounts $this */
-			$response_data = $this->call('lists', 'POST', $request_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$response_data = $whatcounts->create($this->list_stub, $list);
 
 			$list
 				->setId($response_data->listId)
@@ -98,22 +90,19 @@
 		 */
 		public function updateList(MailingList &$list)
 		{
-			$request_data = $list->getRequestArray();
-			/** @var WhatCounts $this */
-			$response_data = $this->call('lists/' . $list->getId(), 'PUT', $request_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$response_data = $whatcounts->update($this->list_stub, $list);
 
 			$list
 				->setUpdatedDate($response_data->listUpdatedDate);
-
 		}
 
 		public function deleteList(MailingList $list)
 		{
-			$id = $list->getId();
-			/** @var WhatCounts $this */
-			$this->call('lists/' . $id, 'DELETE');
-
-			return TRUE;
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			return $whatcounts->deleteById($this->list_stub, $list);
 		}
 
 	}

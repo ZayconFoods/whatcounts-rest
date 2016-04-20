@@ -51,7 +51,7 @@ class MailingList
     private $subscriber_count_rss;
     private $subscriber_count_mime;
 
-    public function __construct($list_response = NULL)
+    public function __construct(\stdClass $list_response = NULL)
     {
         if (isset($list_response))
         {
@@ -59,7 +59,7 @@ class MailingList
                 ->setId($list_response->listId)
                 ->setRealmId($list_response->listRealmId)
                 ->setTemplateId($list_response->listTemplateId)
-                //->setTemplateName($list_response->templateName)
+                ->setTemplateName($list_response->templateName)
                 ->setName($list_response->listName)
                 ->setFolderId($list_response->listFolderId)
                 ->setType($list_response->type)
@@ -80,7 +80,7 @@ class MailingList
                 ->setTrackingReadEnabled($list_response->listTrackingReadEnabled)
                 ->setTrackingClickthroughEnabled($list_response->listTrackingClickthroughEnabled)
                 ->setUseStickyCampaign($list_response->listUseStickyCampaign)
-                //->setDataXml($list_response->listDataXml)
+                ->setDataXml($list_response->listDataXml)
                 ->setFtafUseListFromAddress($list_response->ftafUseListFromAddress)
                 ->setVmtaId($list_response->vmtaId)
                 ->setBaseUrlId($list_response->baseUrlId)

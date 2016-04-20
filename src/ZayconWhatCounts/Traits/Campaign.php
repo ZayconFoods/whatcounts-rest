@@ -11,19 +11,15 @@
 
 	trait CampaignTraits
 	{
+		private $campaign_stub = 'campaigns';
+		private $campaign_class_name = 'ZayconWhatCounts\Campaign';
+
 		public function getCampaigns()
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('campaigns/', 'GET');
-
-			$campaigns = array();
-
-			foreach ($response_data as $campaign_response) {
-				$campaign = new Campaign($campaign_response);
-				$campaigns[] = $campaign;
-			}
-
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$campaigns = $whatcounts->getAll($this->campaign_stub, $this->campaign_class_name);
+			
 			return $campaigns;
-
 		}
 	}

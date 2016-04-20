@@ -7,51 +7,45 @@
 	 */
 
 	namespace ZayconWhatCounts;
-	
+
+
 	trait TemplateTraits
 	{
+		private $template_stub = 'templates';
+		private $template_class_name = 'ZayconWhatCounts\Template';
+
 		public function getTemplates()
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('templates/', 'GET');
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$templates = $whatcounts->getAll($this->template_stub, $this->template_class_name);
 
-			$templates = array();
-
-			foreach ($response_data as $templateItem) {
-				$template = new Template($templateItem);
-				$templates[] = $template;
-			}
-			
 			return $templates;
 		}
 		
 		public function getTemplateById($template_id)
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('templates/' . $template_id, 'GET');
-			$template = new Template($response_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$template = $whatcounts->getById($this->template_stub, $this->template_class_name, $template_id);
 
 			return $template;
-
 		}
 
 		public function getTemplateByName($template_name)
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('templates?name=' . $template_name, 'GET');
-			$response_data = $response_data[0];
-
-			$template = new Template($response_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$template = $whatcounts->getByName($this->template_stub, $this->template_class_name, $template_name);
 
 			return $template;
-
 		}
 
 		public function createTemplate(Template &$template)
 		{
-			$request_data = $template->getRequestArray();
-			/** @var WhatCounts $this */
-			$response_data = $this->call('templates', 'POST', $request_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$response_data = $whatcounts->create($this->template_stub, $template);
 
 			$template
 				->setId($response_data->id)
@@ -61,9 +55,9 @@
 
 		public function updateTemplate(Template &$template)
 		{
-			$request_data = $template->getRequestArray();
-			/** @var WhatCounts $this */
-			$response_data = $this->call('templates/' . $template->getId(), 'PUT', $request_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$response_data = $whatcounts->update($this->template_stub, $template);
 
 			$template
 				->setUpdatedDate($response_data->updatedDate);
@@ -71,10 +65,8 @@
 
 		public function deleteTemplate(Template $template)
 		{
-			$id = $template->getId();
-			/** @var WhatCounts $this */
-			$this->call('templates/' . $id, 'DELETE');
-
-			return TRUE;
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			return $whatcounts->deleteById($this->template_stub, $template);
 		}
 	}

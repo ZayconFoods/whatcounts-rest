@@ -11,48 +11,41 @@
 
 	trait ArticleTraits
 	{
+		private $article_stub = 'articles';
+		private $article_class_name = 'ZayconWhatCounts\Article';
+
 		public function getArticles()
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('articles/', 'GET');
-
-			$articles = array();
-
-			foreach ($response_data as $articleItem) {
-				$article = new Article($articleItem);
-				$articles[] = $article;
-			}
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$articles = $whatcounts->getAll($this->article_stub, $this->article_class_name);
 
 			return $articles;
 		}
 
 		public function getArticleById($article_id)
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('articles/' . $article_id, 'GET');
-			$article = new Article($response_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$article = $whatcounts->getById($this->article_stub, $this->article_class_name, $article_id);
 
 			return $article;
-
 		}
 
 		public function getArticleByName($article_name)
 		{
-			/** @var WhatCounts $this */
-			$response_data = $this->call('articles?name=' . $article_name, 'GET');
-			$response_data = $response_data[0];
-
-			$article = new Article($response_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$article = $whatcounts->getByName($this->article_stub, $this->article_class_name, $article_name);
 
 			return $article;
-
 		}
 
 		public function createArticle(Article &$article)
 		{
-			$request_data = $article->getRequestArray();
-			/** @var WhatCounts $this */
-			$response_data = $this->call('articles', 'POST', $request_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$response_data = $whatcounts->create($this->article_stub, $article);
 
 			$article
 				->setId($response_data->articleId)
@@ -62,9 +55,9 @@
 
 		public function updateArticle(Article &$article)
 		{
-			$request_data = $article->getRequestArray();
-			/** @var WhatCounts $this */
-			$response_data = $this->call('articles/' . $article->getId(), 'PUT', $request_data);
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$response_data = $whatcounts->update($this->article_stub, $article);
 
 			$article
 				->setUpdatedDate($response_data->updatedDate);
@@ -72,12 +65,8 @@
 
 		public function deleteArticle(Article $article)
 		{
-			$id = $article->getId();
-			$request_data = $article->getRequestArray();
-
-			/** @var WhatCounts $this */
-			$this->call('articles/' . $id, 'DELETE', $request_data);
-
-			return TRUE;
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			return $whatcounts->deleteById($this->article_stub, $article);
 		}
 	}

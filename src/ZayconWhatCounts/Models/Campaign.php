@@ -34,7 +34,7 @@
 		private $suppression_list;
 		private $template_name;
 
-		public function __construct($campaign_response = NULL)
+		public function __construct(\stdClass $campaign_response = NULL)
 		{
 			if (isset($campaign_response))
 			{
