@@ -34,7 +34,6 @@ class MailingList
     private $tracking_read_enabled;
     private $tracking_clickthrough_enabled;
     private $use_sticky_campaign;
-    private $data_xml;
     private $ftaf_use_list_from_address;
     private $vmta_id;
     private $base_url_id;
@@ -80,7 +79,6 @@ class MailingList
                 ->setTrackingReadEnabled($list_response->listTrackingReadEnabled)
                 ->setTrackingClickthroughEnabled($list_response->listTrackingClickthroughEnabled)
                 ->setUseStickyCampaign($list_response->listUseStickyCampaign)
-                ->setDataXml($list_response->listDataXml)
                 ->setFtafUseListFromAddress($list_response->ftafUseListFromAddress)
                 ->setVmtaId($list_response->vmtaId)
                 ->setBaseUrlId($list_response->baseUrlId)
@@ -104,7 +102,7 @@ class MailingList
         $request_array = array(
             'listRealmId' => $this->getRealmId(),
             'listTemplateId' => $this->getTemplateId(),
-            //'templateName' => $this->getTemplateName(),
+            'templateName' => $this->getTemplateName(),
             'listName' => $this->getName(),
             'listFolderId' => $this->getFolderId(),
             'listFromAddress' => $this->getFromAddress(),
@@ -613,34 +611,6 @@ class MailingList
     public function setUseStickyCampaign($use_sticky_campaign)
     {
         $this->use_sticky_campaign = (bool)$use_sticky_campaign;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDataXml()
-    {
-        return $this->data_xml;
-    }
-
-    /**
-     * @param mixed $data_xml
-     *
-     * @return MailingList
-     */
-    public function setDataXml($data_xml)
-    {
-        try
-        {
-            $this->data_xml = new \SimpleXMLElement('<data_xml>' . $data_xml . '</data_xml>');
-        }
-        catch (\Exception $e)
-        {
-
-        }
-        //$this->data_xml = (string)$data_xml;
 
         return $this;
     }
