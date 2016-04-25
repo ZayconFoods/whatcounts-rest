@@ -12,7 +12,7 @@ namespace ZayconWhatCounts;
 class Subscriber
 {
 
-    private $subscriber_id;
+    private $id;
     private $realm_id;
     private $email;
     private $domain_id;
@@ -38,7 +38,7 @@ class Subscriber
         if (isset($subscriber_response))
         {
             $this
-                ->setSubscriberId($subscriber_response->subscriberId)
+                ->setId($subscriber_response->subscriberId)
                 ->setRealmId($subscriber_response->realmId)
                 ->setEmail($subscriber_response->email)
                 ->setFirstName($subscriber_response->firstName)
@@ -81,18 +81,18 @@ class Subscriber
     /**
      * @return mixed
      */
-    public function getSubscriberId()
+    public function getId()
     {
-        return $this->subscriber_id;
+        return $this->id;
     }
 
     /**
-     * @param mixed $subscriber_id
+     * @param mixed $id
      * @return Subscriber
      */
-    public function setSubscriberId($subscriber_id)
+    public function setId($id)
     {
-        $this->subscriber_id = (int)$subscriber_id;
+        $this->id = (int)$id;
         return $this;
     }
 

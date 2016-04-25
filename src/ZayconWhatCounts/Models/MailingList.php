@@ -13,7 +13,6 @@ class MailingList
     private $id;
     private $realm_id;
     private $template_id;
-    private $template_name;
     private $name;
     private $folder_id;
     private $type;
@@ -58,7 +57,6 @@ class MailingList
                 ->setId($list_response->listId)
                 ->setRealmId($list_response->listRealmId)
                 ->setTemplateId($list_response->listTemplateId)
-                //->setTemplateName($list_response->templateName)
                 ->setName($list_response->listName)
                 ->setFolderId($list_response->listFolderId)
                 ->setType($list_response->type)
@@ -102,7 +100,6 @@ class MailingList
         $request_array = array(
             'listRealmId' => $this->getRealmId(),
             'listTemplateId' => $this->getTemplateId(),
-            //'templateName' => $this->getTemplateName(),
             'listName' => $this->getName(),
             'listFolderId' => $this->getFolderId(),
             'listFromAddress' => $this->getFromAddress(),
@@ -190,26 +187,6 @@ class MailingList
     public function setTemplateId($template_id)
     {
         $this->template_id = (int)$template_id;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTemplateName()
-    {
-        return $this->template_name;
-    }
-
-    /**
-     * @param mixed $template_name
-     *
-     * @return MailingList
-     */
-    public function setTemplateName($template_name)
-    {
-        $this->template_name = (string)$template_name;
 
         return $this;
     }

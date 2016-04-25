@@ -168,6 +168,6 @@
 
 			$this->assertTrue($is_deleted);
 
-			unset($list);
+			unset($this->list);
 		}
 	}

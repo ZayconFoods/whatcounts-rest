@@ -142,7 +142,7 @@
 
 			$this->assertTrue($is_deleted);
 
-			unset($article);
+			unset($this->article);
 		}
 
 	}

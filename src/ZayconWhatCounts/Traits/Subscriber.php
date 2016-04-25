@@ -63,7 +63,7 @@
 			$response_data = $whatcounts->create($this->subscriber_stub, $subscriber);
 
 			$subscriber
-				->setSubscriberId($response_data->subscriberId)
+				->setId($response_data->subscriberId)
 				->setRealmId($response_data->realmId)
 				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()))
 				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()))
