@@ -10,8 +10,8 @@
     </testsuites>
 
     <!--<php>-->
-        <!--<env name="realm" value="[your realm]" />-->
-        <!--<eng name="password" value="[your realm password]" />-->
+        <!--<server name="realm" value="[your realm]" />-->
+        <!--<server name="password" value="[your realm password]" />-->
     <!--</php>-->
 
     <filter>
