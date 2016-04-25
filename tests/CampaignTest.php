@@ -6,46 +6,50 @@
 	 * Date: 4/25/16
 	 * Time: 10:27 AM
 	 */
-	class CampaignTest extends PHPUnit_Framework_TestCase
+	
+	namespace ZayconWhatCounts;
+	
+	class CampaignTest extends WhatCountsTest
 	{
-		const ENV = 'development';
-
-		private $whatcounts;
 		private $campaign;
 		private $campaigns;
-		private $time_zone;
 
 		public function setUp()
 		{
-			$this->whatcounts = new ZayconWhatCounts\WhatCounts(self::ENV);
-			PHPUnit_Framework_Error_Notice::$enabled = FALSE;
+			
+			parent::setUp();
 
-//			$this->campaign = new ZayconWhatCounts\Campaign;
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+			
+//			$this->campaign = new Campaign;
 //			$this->campaign
-//				->setName("Unit Test Article")
-//				->setTitle("Unit Test from WhatCounts")
+//				->setName("Test Campaign")
+//				->setTitle("Test from API")
 //				->setDescription("This is the description");
 //
-//			$this->whatcounts->createCampaign($this->campaign);
-
-			$this->time_zone = new DateTimeZone($this->whatcounts->getTimeZone());
+//			$whatcounts->createCampaign($this->campaign);
 		}
 
 		public function tearDown()
 		{
+			parent::tearDown();
+
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+
 			unset($this->campaigns);
 
-			$this->whatcounts = new ZayconWhatCounts\WhatCounts(self::ENV);
 			if (isset($this->campaign))
 			{
-				//$this->whatcounts->deleteCampaign($this->campaign);
+				//$whatcounts->deleteCampaign($this->campaign);
 				unset($this->campaign);
 			}
 		}
 
 		public function testGetCampaigns()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 
 			$this->campaigns = $whatcounts->getCampaigns();
@@ -54,7 +58,7 @@
 
 			foreach ($this->campaigns as $campaign)
 			{
-				/** @var ZayconWhatCounts\Campaign $campaign */
+				/** @var Campaign $campaign */
 				$this->assertInstanceOf('ZayconWhatCounts\Campaign', $campaign);
 			}
 		}

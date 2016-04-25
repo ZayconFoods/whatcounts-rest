@@ -6,45 +6,48 @@
 	 * Date: 4/25/16
 	 * Time: 11:39 AM
 	 */
-	class SubscriberTest extends PHPUnit_Framework_TestCase
+	
+	namespace ZayconWhatCounts;
+	
+	class SubscriberTest extends WhatCountsTest
 	{
-		const ENV = 'development';
-
-		private $whatcounts;
 		private $subscriber;
 		private $subscribers;
-		private $time_zone;
 
 		public function setUp()
 		{
-			$this->whatcounts = new ZayconWhatCounts\WhatCounts(self::ENV);
-			PHPUnit_Framework_Error_Notice::$enabled = FALSE;
+			parent::setUp();
 
-			$this->subscriber = new \ZayconWhatCounts\Subscriber();
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+
+			$this->subscriber = new Subscriber();
 			$this->subscriber
 				->setEmail(uniqid() . '@example.com')
 				->setFirstName('Test');
 
-			$this->whatcounts->createSubscriber($this->subscriber);
-
-			$this->time_zone = new DateTimeZone('America/Los_Angeles');
+			$whatcounts->createSubscriber($this->subscriber);
 		}
 
 		public function tearDown()
 		{
+			parent::tearDown();
+
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+
 			unset($this->subscribers);
 
-			$this->whatcounts = new ZayconWhatCounts\WhatCounts(self::ENV);
 			if (isset($this->subscriber))
 			{
-				$this->whatcounts->deleteSubscriber($this->subscriber);
+				$whatcounts->deleteSubscriber($this->subscriber);
 				unset($this->subscriber);
 			}
 		}
 
 		public function testGetSubscribers()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 
 			$this->subscribers = $whatcounts->getSubscribers();
@@ -53,16 +56,16 @@
 
 			foreach ($this->subscribers as $subscriber)
 			{
-				/** @var ZayconWhatCounts\Subscriber $subscriber */
+				/** @var Subscriber $subscriber */
 				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
 			}
 		}
 
 		public function testGetSubscriberById()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var ZayconWhatCounts\Subscriber $subscriber */
+			/** @var Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 
 			$subscriber = $whatcounts->getSubscriberById($subscriber->getId());
@@ -72,7 +75,7 @@
 
 		public function testCreateSubscriber()
 		{
-			/** @var ZayconWhatCounts\Subscriber $subscriber */
+			/** @var Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 
 			$this->assertObjectHasAttribute('id', $subscriber);
@@ -80,7 +83,7 @@
 
 			$this->assertObjectHasAttribute('created_date', $subscriber);
 
-			$now = new DateTime();
+			$now = new \DateTime();
 			$now->setTimezone($this->time_zone);
 
 			$created_date = $subscriber->getCreatedDate();
@@ -90,9 +93,9 @@
 
 		public function testUpdateSubscriber()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var ZayconWhatCounts\Subscriber $subscriber */
+			/** @var Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 
 			$subscriber = $whatcounts->getSubscriberById($subscriber->getId());
@@ -103,7 +106,7 @@
 
 			$this->assertObjectHasAttribute('updated_date', $subscriber);
 
-			$now = new DateTime();
+			$now = new \DateTime();
 			$now->setTimezone($this->time_zone);
 
 			$updated_date = $subscriber->getUpdatedDate();
@@ -113,9 +116,9 @@
 
 		public function testDeleteSubscriber()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var ZayconWhatCounts\Subscriber $subscriber */
+			/** @var Subscriber $subscriber */
 			$subscriber = &$this->subscriber;
 
 			$subscriber = $whatcounts->getSubscriberById($subscriber->getId());

@@ -6,21 +6,21 @@
 	 * Time: 4:22 PM
 	 */
 
-	class ListTest extends \PHPUnit_Framework_TestCase
+	namespace ZayconWhatCounts;
+	
+	class ListTest extends WhatCountsTest
 	{
-		const ENV = 'development';
-		
-		private $whatcounts;
 		private $list;
 		private $lists;
-		private $time_zone;
 
 		public function setUp()
 		{
-			$this->whatcounts = new ZayconWhatCounts\WhatCounts(self::ENV);
-			PHPUnit_Framework_Error_Notice::$enabled = FALSE;
-
-			$this->list = new \ZayconWhatCounts\MailingList();
+			parent::setUp();
+			
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+			
+			$this->list = new MailingList();
 			$this->list
 				->setName('Unit Test List')
 				->setFromAddress('test-from@example.com')
@@ -52,26 +52,28 @@
 				->setUnsubHeaderHttpValue('https://www.example.com/unsubscribe/')
 				->setUnsubHeaderEmailValue('test-unsubscribe@example.com');
 
-			$this->whatcounts->createList($this->list);
-
-			$this->time_zone = new DateTimeZone('America/Los_Angeles');
+			$whatcounts->createList($this->list);
 		}
 
 		public function tearDown()
 		{
+			parent::tearDown();
+
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+
 			unset($this->lists);
 
-			$this->whatcounts = new ZayconWhatCounts\WhatCounts(self::ENV);
 			if (isset($this->list))
 			{
-				$this->whatcounts->deleteList($this->list);
+				$whatcounts->deleteList($this->list);
 				unset($this->list);
 			}
 		}
 
 		public function testGetLists()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 
 			$this->lists = $whatcounts->getLists();
@@ -80,16 +82,16 @@
 
 			foreach ($this->lists as $list)
 			{
-				/** @var ZayconWhatCounts\MailingList $list */
+				/** @var MailingList $list */
 				$this->assertInstanceOf('ZayconWhatCounts\MailingList', $list);
 			}
 		}
 
 		public function testGetListById()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var ZayconWhatCounts\MailingList $list */
+			/** @var MailingList $list */
 			$list = $this->list;
 
 			$list = $whatcounts->getListById($list->getId());
@@ -99,9 +101,9 @@
 
 		public function testGetListByName()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var ZayconWhatCounts\MailingList $list */
+			/** @var MailingList $list */
 			$list = $this->list;
 
 			$this->lists = $whatcounts->getListByName($list->getName());
@@ -116,7 +118,7 @@
 
 		public function testCreateList()
 		{
-			/** @var ZayconWhatCounts\MailingList $list */
+			/** @var MailingList $list */
 			$list = $this->list;
 
 			$this->assertObjectHasAttribute('id', $list);
@@ -124,7 +126,7 @@
 
 			$this->assertObjectHasAttribute('created_date', $list);
 
-			$now = new DateTime();
+			$now = new \DateTime();
 			$now->setTimezone($this->time_zone);
 
 			$created_date = $list->getCreatedDate();
@@ -134,9 +136,9 @@
 
 		public function testUpdateList()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var ZayconWhatCounts\MailingList $list */
+			/** @var MailingList $list */
 			$list = $this->list;
 
 			$list = $whatcounts->getListById($list->getId());
@@ -147,7 +149,7 @@
 
 			$this->assertObjectHasAttribute('updated_date', $list);
 
-			$now = new DateTime();
+			$now = new \DateTime();
 			$now->setTimezone($this->time_zone);
 
 			$updated_date = $list->getUpdatedDate();
@@ -157,9 +159,9 @@
 
 		public function testDeleteList()
 		{
-			/** @var ZayconWhatCounts\WhatCounts $whatcounts */
+			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var ZayconWhatCounts\MailingList $list */
+			/** @var MailingList $list */
 			$list = $this->list;
 
 			$list = $whatcounts->getListById($list->getId());

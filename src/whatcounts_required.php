@@ -26,4 +26,8 @@ spl_autoload_register(function($class)
 		require_once(__DIR__.'/ZayconWhatCounts/Traits/'.$trait.'.php');
 	}
 
+	if (file_exists(__DIR__.'/../tests/'.$class.'.php'))
+	{
+		require_once(__DIR__.'/../tests/'.$class.'.php');
+	}
 });

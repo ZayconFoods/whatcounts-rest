@@ -9,6 +9,11 @@
         </testsuite>
     </testsuites>
 
+    <!--<php>-->
+        <!--<env name="realm" value="[your realm]" />-->
+        <!--<eng name="password" value="[your realm password]" />-->
+    <!--</php>-->
+
     <filter>
         <whitelist>
             <directory suffix=".php">src</directory>

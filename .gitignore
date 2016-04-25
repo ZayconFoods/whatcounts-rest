@@ -1,3 +1,4 @@
 .idea
-config.php
+examples/config.php
 vendor
+phpunit.xml
