@@ -27,7 +27,7 @@
 		private $body;
 		private $parent_article_id;
 
-		public function __construct(\stdClass $article_response = NULL)
+		public function __construct(\stdClass $article_response = NULL, $time_zone = NULL)
 		{
 			if (isset($article_response))
 			{
@@ -40,8 +40,8 @@
 					->setAuthorName($article_response->authorName)
 					->setAuthorBio($article_response->authorBio)
 					->setTitle($article_response->title)
-					->setCreatedDate($article_response->createdDate)
-					->setUpdatedDate($article_response->updatedDate)
+					->setCreatedDate($article_response->createdDate, $time_zone)
+					->setUpdatedDate($article_response->updatedDate, $time_zone)
 					->setFolderId($article_response->folderId)
 					->setDeck($article_response->dek)
 					->setCallout($article_response->callout)
@@ -61,8 +61,6 @@
 				'authorName' => $this->getAuthorName(),
 				'authorBio' => $this->getAuthorBio(),
 				'title' => $this->getTitle(),
-				'createdDate' => $this->getCreatedDate(),
-				'updatedDate' => $this->getUpdatedDate(),
 				'folderId' => $this->getFolderId(),
 				'dek' => $this->getDeck(),
 				'callout' => $this->getCallout(),
@@ -242,12 +240,13 @@
 
 		/**
 		 * @param mixed $created_date
+		 * @param \DateTimeZone $time_zone
 		 *
 		 * @return Article
 		 */
-		public function setCreatedDate($created_date)
+		public function setCreatedDate($created_date, $time_zone)
 		{
-			$this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date);
+			$this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
 
 			return $this;
 		}
@@ -262,12 +261,13 @@
 
 		/**
 		 * @param mixed $updated_date
+		 * @param \DateTimeZone $time_zone
 		 *
 		 * @return Article
 		 */
-		public function setUpdatedDate($updated_date)
+		public function setUpdatedDate($updated_date, $time_zone)
 		{
-			$this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date);
+			$this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
 
 			return $this;
 		}

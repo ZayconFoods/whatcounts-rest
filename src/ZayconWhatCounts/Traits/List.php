@@ -12,12 +12,13 @@
 	trait ListTraits
 	{
 		private $list_stub = 'lists';
-		private $list_class_name = '\ZayconWhatCounts\List';
+		private $list_class_name = '\ZayconWhatCounts\MailingList';
 
 		/**
 		 * @return array
-		 * @throws WhatCountsException
-		 *
+		 * 
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
 		public function getLists()
 		{
@@ -33,7 +34,8 @@
 		 *
 		 * @return MailingList
 		 *
-		 * @throws WhatCountsException
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
 		public function getListById($list_id)
 		{
@@ -49,7 +51,8 @@
 		 *
 		 * @return MailingList
 		 *
-		 * @throws WhatCountsException
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 *
 		 */
 		public function getListByName($list_name)
@@ -64,9 +67,8 @@
 		/**
 		 * @param MailingList $list
 		 *
-		 * @return bool
-		 *
-		 * @throws WhatCountsException
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 *
 		 */
 		public function createList(MailingList &$list)
@@ -77,15 +79,14 @@
 
 			$list
 				->setId($response_data->listId)
-				->setCreatedDate($response_data->listCreatedDate);
+				->setCreatedDate($response_data->listCreatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
 		/**
 		 * @param MailingList $list
 		 *
-		 * @return bool
-		 *
-		 * @throws WhatCountsException
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 *
 		 */
 		public function updateList(MailingList &$list)
@@ -95,9 +96,18 @@
 			$response_data = $whatcounts->update($this->list_stub, $list);
 
 			$list
-				->setUpdatedDate($response_data->listUpdatedDate);
+				->setUpdatedDate($response_data->listUpdatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
+		/**
+		 * @param MailingList $list
+		 *
+		 * @return bool
+		 * 
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 *
+		 */
 		public function deleteList(MailingList $list)
 		{
 			$whatcounts = $this;

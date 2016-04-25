@@ -37,7 +37,7 @@ class Template
     private $library_id;
     private $layout_id;
 
-    public function __construct(\stdClass $template_response = NULL)
+    public function __construct(\stdClass $template_response = NULL, $time_zone = NULL)
     {
         if (isset($template_response))
         {
@@ -47,8 +47,8 @@ class Template
                 ->setName($template_response->name)
                 ->setDescription($template_response->description)
                 ->setSubject($template_response->subject)
-                ->setCreatedDate($template_response->createdDate)
-                ->setUpdatedDate($template_response->updatedDate)
+                ->setCreatedDate($template_response->createdDate, $time_zone)
+                ->setUpdatedDate($template_response->updatedDate, $time_zone)
                 ->setDeletedFlag($template_response->deletedFlag)
                 ->setFolderId($template_response->templateFolderId)
                 ->setHasVideo($template_response->hasVideo)
@@ -208,10 +208,11 @@ class Template
      * @param $created_date
      *
      * @return Template
+     * @param \DateTimeZone $time_zone
      */
-    public function setCreatedDate($created_date)
+    public function setCreatedDate($created_date, $time_zone)
     {
-        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date);
+        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
 
         return $this;
     }
@@ -226,12 +227,13 @@ class Template
 
     /**
      * @param mixed $updated_date
+     * @param \DateTimeZone $time_zone
      *
      * @return Template
      */
-    public function setUpdatedDate($updated_date)
+    public function setUpdatedDate($updated_date, $time_zone)
     {
-        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date);
+        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
 
         return $this;
     }

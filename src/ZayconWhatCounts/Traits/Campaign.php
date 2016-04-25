@@ -14,6 +14,12 @@
 		private $campaign_stub = 'campaigns';
 		private $campaign_class_name = 'ZayconWhatCounts\Campaign';
 
+		/**
+		 * @return array
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getCampaigns()
 		{
 			$whatcounts = $this;

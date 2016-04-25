@@ -14,6 +14,12 @@
 		private $template_stub = 'templates';
 		private $template_class_name = 'ZayconWhatCounts\Template';
 
+		/**
+		 * @return array
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getTemplates()
 		{
 			$whatcounts = $this;
@@ -22,7 +28,15 @@
 
 			return $templates;
 		}
-		
+
+		/**
+		 * @param $template_id
+		 *
+		 * @return Template
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getTemplateById($template_id)
 		{
 			$whatcounts = $this;
@@ -32,15 +46,29 @@
 			return $template;
 		}
 
+		/**
+		 * @param $template_name
+		 *
+		 * @return array
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getTemplateByName($template_name)
 		{
 			$whatcounts = $this;
 			/** @var WhatCounts $whatcounts */
-			$template = $whatcounts->getByName($this->template_stub, $this->template_class_name, $template_name);
+			$templates = $whatcounts->getByName($this->template_stub, $this->template_class_name, $template_name);
 
-			return $template;
+			return $templates;
 		}
 
+		/**
+		 * @param Template $template
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function createTemplate(Template &$template)
 		{
 			$whatcounts = $this;
@@ -50,9 +78,15 @@
 			$template
 				->setId($response_data->id)
 				->setRealmId($response_data->realmId)
-				->setCreatedDate($response_data->createdDate);
+				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
+		/**
+		 * @param Template $template
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function updateTemplate(Template &$template)
 		{
 			$whatcounts = $this;
@@ -60,9 +94,17 @@
 			$response_data = $whatcounts->update($this->template_stub, $template);
 
 			$template
-				->setUpdatedDate($response_data->updatedDate);
+				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
+		/**
+		 * @param Template $template
+		 *
+		 * @return bool
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function deleteTemplate(Template $template)
 		{
 			$whatcounts = $this;

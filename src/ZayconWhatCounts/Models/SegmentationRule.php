@@ -20,7 +20,7 @@ class SegmentationRule
     private $created_date;
     private $updated_date;
 
-    public function __construct(\stdClass $article_response = NULL)
+    public function __construct(\stdClass $article_response = NULL, $time_zone = NULL)
     {
         if (isset($article_response))
         {
@@ -29,8 +29,8 @@ class SegmentationRule
                 ->setRealmId($article_response->realmId)
                 ->setName($article_response->name)
                 ->setDescription($article_response->description)
-                ->setCreatedDate($article_response->createdDate)
-                ->setUpdatedDate($article_response->updatedDate)
+                ->setCreatedDate($article_response->createdDate, $time_zone)
+                ->setUpdatedDate($article_response->updatedDate, $time_zone)
                 ->setListId($article_response->listId)
                 ->setRules($article_response->rules);
         }
@@ -44,9 +44,7 @@ class SegmentationRule
             'name' => $this->getName(),
             'listId' => $this->getListId(),
             'rules' => $this->getRules(),
-            'description' => $this->getDescription(),
-            'createdDate' => $this->getCreatedDate(),
-            'updatedDate' => $this->getUpdatedDate()
+            'description' => $this->getDescription()
         );
         return $request_array;
     }
@@ -181,12 +179,13 @@ class SegmentationRule
 
     /**
      * @param mixed $created_date
+     * @param \DateTimeZone $time_zone
      *
      * @return SegmentationRule
      */
-    public function setCreatedDate($created_date)
+    public function setCreatedDate($created_date, $time_zone)
     {
-        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date);
+        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
 
         return $this;
     }
@@ -201,12 +200,13 @@ class SegmentationRule
 
     /**
      * @param mixed $updated_date
+     * @param \DateTimeZone $time_zone
      *
      * @return SegmentationRule
      */
-    public function setUpdatedDate($updated_date)
+    public function setUpdatedDate($updated_date, $time_zone)
     {
-        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date);
+        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
 
         return $this;
     }

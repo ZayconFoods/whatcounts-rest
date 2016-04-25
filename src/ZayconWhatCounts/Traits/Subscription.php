@@ -14,6 +14,12 @@
 		private $subscription_stub = 'subscriptions';
 		private $subscription_class_name = 'ZayconWhatCounts\Subscription';
 
+		/**
+		 * @param Subscription $subscription
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function createSubscription(Subscription $subscription)
 		{
 			$whatcounts = $this;
@@ -22,9 +28,17 @@
 			
 			$subscription
 				->setId($response_data->subscriptionId)
-				->setCreatedDate($response_data->createdDate);
+				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
+		/**
+		 * @param Subscription $subscription
+		 *
+		 * @return mixed
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function deleteSubscription(Subscription $subscription)
 		{
 			$whatcounts = $this;
@@ -32,6 +46,14 @@
 			return $whatcounts->delete($this->subscription_stub, $subscription);
 		}
 
+		/**
+		 * @param Subscription $subscription
+		 *
+		 * @return mixed
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function deleteSubscriptionById(Subscription $subscription)
 		{
 			$whatcounts = $this;

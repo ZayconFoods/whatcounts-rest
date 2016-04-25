@@ -14,6 +14,12 @@
 		private $article_stub = 'articles';
 		private $article_class_name = 'ZayconWhatCounts\Article';
 
+		/**
+		 * @return array
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getArticles()
 		{
 			$whatcounts = $this;
@@ -23,6 +29,14 @@
 			return $articles;
 		}
 
+		/**
+		 * @param $article_id
+		 *
+		 * @return Article
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getArticleById($article_id)
 		{
 			$whatcounts = $this;
@@ -32,6 +46,14 @@
 			return $article;
 		}
 
+		/**
+		 * @param $article_name
+		 *
+		 * @return array
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getArticleByName($article_name)
 		{
 			$whatcounts = $this;
@@ -41,6 +63,12 @@
 			return $article;
 		}
 
+		/**
+		 * @param Article $article
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function createArticle(Article &$article)
 		{
 			$whatcounts = $this;
@@ -50,9 +78,15 @@
 			$article
 				->setId($response_data->articleId)
 				->setRealmId($response_data->realmId)
-				->setCreatedDate($response_data->createdDate);
+				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
+		/**
+		 * @param Article $article
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function updateArticle(Article &$article)
 		{
 			$whatcounts = $this;
@@ -60,9 +94,17 @@
 			$response_data = $whatcounts->update($this->article_stub, $article);
 
 			$article
-				->setUpdatedDate($response_data->updatedDate);
+				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
+		/**
+		 * @param Article $article
+		 *
+		 * @return bool
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function deleteArticle(Article $article)
 		{
 			$whatcounts = $this;

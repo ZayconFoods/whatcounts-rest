@@ -19,7 +19,7 @@
         private $created_date;
         private $list_name;
 
-        public function __construct(\stdClass $subscription_response = NULL)
+        public function __construct(\stdClass $subscription_response = NULL, $time_zone = NULL)
         {
             if (isset($subscription_response))
             {
@@ -27,7 +27,7 @@
                     ->setId($subscription_response->subscriptionId)
                     ->setSubscriberId($subscription_response->subscriberId)
                     ->setListId($subscription_response->listId)
-                    ->setCreatedDate($subscription_response->createdDate)
+                    ->setCreatedDate($subscription_response->createdDate, $time_zone)
                     ->setFormatId($subscription_response->formatId)
                     ->setSentFlag($subscription_response->sentFlag)
                     ->setListName($subscription_response->listName);
@@ -155,12 +155,13 @@
 
         /**
          * @param mixed $created_date
+         * @param \DateTimeZone $time_zone
          *
          * @return Subscription
          */
-        public function setCreatedDate($created_date)
+        public function setCreatedDate($created_date, $time_zone)
         {
-            $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date);
+            $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
 
             return $this;
         }

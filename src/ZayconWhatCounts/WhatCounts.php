@@ -27,9 +27,7 @@
 		use ArticleTraits;
 		use CampaignTraits;
 
-		const VERSION = 'v1';
-		const DEFAULT_URL = 'http://wcqa.us/rest';
-
+		private $time_zone;
 		private $url;
 		private $realm;
 		private $password;
@@ -38,18 +36,23 @@
 		/**
 		 * WhatCounts constructor.
 		 *
+		 * @param null $environment
 		 * @param null $realm
 		 * @param null $password
 		 * @param null $url
 		 * @param null $version
+		 * @param null $time_zone
 		 */
-		public function __construct($realm = NULL, $password = NULL, $url = NULL, $version = NULL)
+		public function __construct($environment = NULL, $realm = NULL, $password = NULL, $url = NULL, $version = NULL, $time_zone = NULL)
 		{
 			$this
-				->setRealm($realm)
-				->setPassword($password)
-				->setUrl(($url === NULL) ? self::DEFAULT_URL : $url)
-				->setVersion(($version === NULL) ? self::VERSION : $version);
+				->setRealm(($realm === NULL) ? Config::get($environment . '.realm') : $realm)
+				->setPassword(($password === NULL) ? Config::get($environment . '.password') : $password)
+				->setUrl(($url === NULL) ? Config::get($environment . '.url') : $url)
+				->setVersion(($version === NULL) ? Config::get($environment . '.version') : $version)
+				->setTimeZone(($time_zone === NULL) ? Config::get($environment . '.time_zone') : $time_zone);
+			
+			if (class_exists('Rollbar')) \Rollbar::init(array('access_token' => '44b1331cfa4c41f5b8045a4326a8b0bb'));
 		}
 
 		/**
@@ -91,25 +94,7 @@
 
 			return $this;
 		}
-
-		/**
-		 * @return Realm
-		 *
-		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969879
-		 */
-		public function getRealmSettings()
-		{
-			$xml = $this->call('getrealmsettings', 'GET');
-
-			$realm = new Realm;
-			$realm
-				->setRealmId((int)$xml->Data->realm_id)
-				->setUseCustomerKey((string)$xml->Data->use_customer_key)
-				->setEnableRelationalDatabase((string)$xml->Data->enable_relational_database);
-
-			return $realm;
-		}
-
+		
 		/**
 		 * @return mixed
 		 */
@@ -151,8 +136,29 @@
 		}
 
 		/**
+		 * @return mixed
+		 */
+		public function getTimeZone()
+		{
+			return $this->time_zone;
+		}
+
+		/**
+		 * @param mixed $time_zone
+		 *
+		 * @return WhatCounts
+		 */
+		public function setTimeZone($time_zone)
+		{
+			$this->time_zone =$time_zone;
+			return $this;
+		}
+
+		
+		
+		/**
 		 * @return bool
-		 * @throws WhatCountsException
+		 * @throws \InvalidArgumentException
 		 */
 		public function checkStatus()
 		{
@@ -171,7 +177,9 @@
 		 * @param null $request_data
 		 *
 		 * @return bool|object
-		 * @throws WhatCountsException
+		 * 
+		 * @throws GuzzleHttp\Exception\ServerException
+		 * @throws GuzzleHttp\Exception\RequestException
 		 */
 		public function call($command, $method, $request_data = NULL)
 		{

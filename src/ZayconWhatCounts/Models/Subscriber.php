@@ -33,7 +33,7 @@ class Subscriber
     private $sha1_encryption;
     private $subscriptions = array();
 
-    public function __construct(\stdClass $subscriber_response = NULL)
+    public function __construct(\stdClass $subscriber_response = NULL, $time_zone = NULL)
     {
         if (isset($subscriber_response))
         {
@@ -52,8 +52,8 @@ class Subscriber
                 ->setCountry($subscriber_response->country)
                 ->setPhone($subscriber_response->phone)
                 ->setFax($subscriber_response->fax)
-                ->setCreatedDate($subscriber_response->createdDate)
-                ->setUpdatedDate($subscriber_response->updatedDate)
+                ->setCreatedDate($subscriber_response->createdDate, $time_zone)
+                ->setUpdatedDate($subscriber_response->updatedDate, $time_zone)
                 ->setMd5Encryption($subscriber_response->md5Encryption)
                 ->setSha1Encryption($subscriber_response->sha1Encryption);
         }
@@ -362,12 +362,13 @@ class Subscriber
 
     /**
      * @param mixed $created_date
+     * @param \DateTimeZone $time_zone
      *
      * @return Subscriber
      */
-    public function setCreatedDate($created_date)
+    public function setCreatedDate($created_date, $time_zone)
     {
-        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date);
+        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
 
         return $this;
     }
@@ -382,12 +383,13 @@ class Subscriber
 
     /**
      * @param mixed $updated_date
+     * @param \DateTimeZone $time_zone
      *
      * @return Subscriber
      */
-    public function setUpdatedDate($updated_date)
+    public function setUpdatedDate($updated_date, $time_zone)
     {
-        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date);
+        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
 
         return $this;
     }

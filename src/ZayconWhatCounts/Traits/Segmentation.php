@@ -14,6 +14,12 @@
 		private $segmentation_stub = 'segmentation';
 		private $segmentation_class_name = '\ZayconWhatCounts\SegmentationRule';
 
+		/**
+		 * @return array
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getSegmentations()
 		{
 			$whatcounts = $this;
@@ -23,6 +29,14 @@
 			return $segmentation_rules;
 		}
 
+		/**
+		 * @param $segmentation_id
+		 *
+		 * @return mixed
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getSegmentationById($segmentation_id)
 		{
 			$whatcounts = $this;
@@ -32,6 +46,14 @@
 			return $segmentation_rule;
 		}
 
+		/**
+		 * @param $segmentation_name
+		 *
+		 * @return array
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function getSegmentationByName($segmentation_name)
 		{
 			$whatcounts = $this;
@@ -41,6 +63,12 @@
 			return $segmentation_rule;
 		}
 
+		/**
+		 * @param SegmentationRule $segmentation_rule
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function createSegmentation(SegmentationRule &$segmentation_rule)
 		{
 			$whatcounts = $this;
@@ -49,9 +77,15 @@
 
 			$segmentation_rule
 				->setId($response_data->segmentationId)
-				->setCreatedDate($response_data->createdDate);
+				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
+		/**
+		 * @param SegmentationRule $segmentation_rule
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function updateSegmentation(SegmentationRule &$segmentation_rule)
 		{
 			$whatcounts = $this;
@@ -59,9 +93,17 @@
 			$response_data = $whatcounts->update($this->segmentation_stub, $segmentation_rule);
 
 			$segmentation_rule
-				->setUpdatedDate($response_data->updatedDate);
+				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
+		/**
+		 * @param SegmentationRule $segmentation_rule
+		 *
+		 * @return bool
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
 		public function deleteSegmentation(SegmentationRule $segmentation_rule)
 		{
 			$whatcounts = $this;

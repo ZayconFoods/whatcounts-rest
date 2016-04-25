@@ -50,7 +50,7 @@ class MailingList
     private $subscriber_count_rss;
     private $subscriber_count_mime;
 
-    public function __construct(\stdClass $list_response = NULL)
+    public function __construct(\stdClass $list_response = NULL, $time_zone = NULL)
     {
         if (isset($list_response))
         {
@@ -58,7 +58,7 @@ class MailingList
                 ->setId($list_response->listId)
                 ->setRealmId($list_response->listRealmId)
                 ->setTemplateId($list_response->listTemplateId)
-                ->setTemplateName($list_response->templateName)
+                //->setTemplateName($list_response->templateName)
                 ->setName($list_response->listName)
                 ->setFolderId($list_response->listFolderId)
                 ->setType($list_response->type)
@@ -66,8 +66,8 @@ class MailingList
                 ->setReplyToAddress($list_response->listReplyToAddress)
                 ->setMailFromAddress($list_response->listMailFromAddress)
                 ->setDescription($list_response->listDescription)
-                ->setCreatedDate($list_response->listCreatedDate)
-                ->setUpdatedDate($list_response->listUpdatedDate)
+                ->setCreatedDate($list_response->listCreatedDate, $time_zone)
+                ->setUpdatedDate($list_response->listUpdatedDate, $time_zone)
                 ->setSubscribeEmailTemplateId($list_response->listSubscribeEmailTemplateId)
                 ->setUnsubscribeEmailTemplateId($list_response->listUnsubscribeEmailTemplateId)
                 ->setConfirmSubs($list_response->listConfirmSubs)
@@ -102,7 +102,7 @@ class MailingList
         $request_array = array(
             'listRealmId' => $this->getRealmId(),
             'listTemplateId' => $this->getTemplateId(),
-            'templateName' => $this->getTemplateName(),
+            //'templateName' => $this->getTemplateName(),
             'listName' => $this->getName(),
             'listFolderId' => $this->getFolderId(),
             'listFromAddress' => $this->getFromAddress(),
@@ -364,12 +364,13 @@ class MailingList
 
     /**
      * @param mixed $created_date
+     * @param \DateTimeZone $time_zone
      *
      * @return MailingList
      */
-    public function setCreatedDate($created_date)
+    public function setCreatedDate($created_date, $time_zone)
     {
-        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date);
+        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
 
         return $this;
     }
@@ -384,12 +385,13 @@ class MailingList
 
     /**
      * @param mixed $updated_date
+     * @param \DateTimeZone $time_zone
      *
      * @return MailingList
      */
-    public function setUpdatedDate($updated_date)
+    public function setUpdatedDate($updated_date, $time_zone)
     {
-        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date);
+        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
 
         return $this;
     }

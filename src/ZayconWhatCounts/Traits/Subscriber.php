@@ -16,8 +16,9 @@
 
 		/**
 		 * @return array
-		 * 
-		 * @throws WhatCountsException
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
 		public function getSubscribers()
 		{
@@ -32,7 +33,9 @@
 		 * @param $subscriber_id
 		 *
 		 * @return Subscriber
-		 * @throws WhatCountsException
+		 * 
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 *
 		 */
 		public function getSubscriberById($subscriber_id)
@@ -48,7 +51,9 @@
 		 * @param Subscriber $subscriber
 		 *
 		 * @return Subscriber
-		 * @throws WhatCountsException
+		 * 
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 *
 		 */
 		public function createSubscriber(Subscriber &$subscriber)
@@ -60,8 +65,8 @@
 			$subscriber
 				->setSubscriberId($response_data->subscriberId)
 				->setRealmId($response_data->realmId)
-				->setCreatedDate($response_data->createdDate)
-				->setUpdatedDate($response_data->updatedDate)
+				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()))
+				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()))
 				->setMd5Encryption($response_data->md5Encryption)
 				->setSha1Encryption($response_data->sha1Encryption);
 		}
@@ -70,9 +75,9 @@
 		 * @param Subscriber $subscriber
 		 *
 		 * @return string
-		 * @throws WhatCountsException
-		 *
-		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/203969619
+		 * 
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 *
 		 */
 		public function updateSubscriber(Subscriber &$subscriber)
@@ -82,16 +87,16 @@
 			$response_data = $whatcounts->update($this->subscriber_stub, $subscriber);
 
 			$subscriber
-				->setUpdatedDate($response_data->updatedDate);
+				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
 		/**
 		 * @param Subscriber $subscriber
 		 *
 		 * @return string
-		 * @throws WhatCountsException
-		 *
-		 * API documentation: https://whatcounts.zendesk.com/hc/en-us/articles/204669915
+		 * 
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
 		 *
 		 */
 		public function deleteSubscriber(Subscriber $subscriber)

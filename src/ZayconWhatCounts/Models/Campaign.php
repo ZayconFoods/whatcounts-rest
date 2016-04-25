@@ -34,7 +34,7 @@
 		private $suppression_list;
 		private $template_name;
 
-		public function __construct(\stdClass $campaign_response = NULL)
+		public function __construct(\stdClass $campaign_response = NULL, $time_zone = NULL)
 		{
 			if (isset($campaign_response))
 			{
@@ -44,7 +44,7 @@
 					->setRealmId($campaign_response->campaignRealmId)
 					->setListId($campaign_response->campaignListId)
 					->setTemplateId($campaign_response->campaignTemplateId)
-					->setStartDate($campaign_response->campaignStartDate)
+					->setStartDate($campaign_response->campaignStartDate, $time_zone)
 					->setSubject($campaign_response->campaignSubject)
 					->setAlias($campaign_response->campaignAlias)
 					->setDeliverability($campaign_response->campaignDeliverability)
@@ -348,12 +348,13 @@
 
 		/**
 		 * @param mixed $start_date
+		 * @param \DateTimeZone $time_zone
 		 *
 		 * @return Campaign
 		 */
-		public function setStartDate($start_date)
+		public function setStartDate($start_date, $time_zone)
 		{
-			$this->start_date = date_create_from_format('M j, Y g:i:s A', $start_date);
+			$this->start_date = date_create_from_format('M j, Y g:i:s A', $start_date, $time_zone);
 
 			return $this;
 		}
