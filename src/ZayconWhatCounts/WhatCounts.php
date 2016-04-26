@@ -22,7 +22,7 @@
 		use ListTraits;
 		use SubscriberTraits;
 		use SubscriptionTraits;
-		use SegmentationTraits;
+		//use SegmentationTraits;
 		use TemplateTraits;
 		use ArticleTraits;
 		use CampaignTraits;
