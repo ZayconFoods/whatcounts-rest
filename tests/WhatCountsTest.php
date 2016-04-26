@@ -9,7 +9,7 @@
 
 	namespace ZayconWhatCounts;
 	
-	class WhatCountsTest extends \PHPUnit_Framework_TestCase
+	abstract class WhatCountsTest extends \PHPUnit_Framework_TestCase
 	{
 		const ENV = 'development';
 		public $whatcounts;
@@ -33,9 +33,9 @@
 		
 		public function tearDown()
 		{
-			if (isset($_ENV['realm']) && isset($_ENV['password']))
+			if (isset($_SERVER['realm']) && isset($_SERVER['password']))
 			{
-				$this->whatcounts = new WhatCounts(self::ENV, $_ENV['realm'], $_ENV['password']);
+				$this->whatcounts = new WhatCounts(self::ENV, $_SERVER['realm'], $_SERVER['password']);
 			}
 			else
 			{

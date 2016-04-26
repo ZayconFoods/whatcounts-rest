@@ -86,6 +86,7 @@ class Template
             'templateDataWap' => $this->getDataWap(),
             'templateDataAvantgo' => $this->getDataAvantgo(),
             'templateDataAol' => $this->getDataAol(),
+            //'templateDataXml' => $this->getDataXml()->asXML(),
             'templateDataXml' => $this->getDataXml(),
             'templateReplaceFields' => $this->getReplaceFields(),
             'plainHasRelational' => $this->getPlainHasRelational(),
@@ -475,7 +476,8 @@ class Template
     {
         try
         {
-            $this->data_xml = new \SimpleXMLElement('<data_xml>' . $data_xml . '</data_xml>');
+            //$this->data_xml = new \SimpleXMLElement('<data_xml>' . $data_xml . '</data_xml>');
+            $this->data_xml = $data_xml;
         }
         catch (\Exception $e)
         {

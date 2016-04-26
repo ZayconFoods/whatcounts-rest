@@ -23,8 +23,18 @@
 
 			$this->subscriber = new Subscriber();
 			$this->subscriber
-				->setEmail(uniqid() . '@example.com')
-				->setFirstName('Test');
+				->setEmail(uniqid() . "@example.com")
+				->setFirstName("Test")
+				->setLastName("User")
+				->setCompany("Test Company")
+				->setAddress1("1234 Main St.")
+				->setAddress2("#1")
+				->setCity("Anytown")
+				->setState("WA")
+				->setZip("00000")
+				->setCountry("United States")
+				->setPhone("800-555-1212")
+				->setFax("800-555-1313");
 
 			$whatcounts->createSubscriber($this->subscriber);
 		}

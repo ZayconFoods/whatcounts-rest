@@ -15,9 +15,9 @@
         private $subscriber_id;
         private $list_id;
         private $format_id;
-        private $sent_flag;
         private $created_date;
         private $list_name;
+        private $subscriber;
 
         public function __construct(\stdClass $subscription_response = NULL, $time_zone = NULL)
         {
@@ -29,18 +29,19 @@
                     ->setListId($subscription_response->listId)
                     ->setCreatedDate($subscription_response->createdDate, $time_zone)
                     ->setFormatId($subscription_response->formatId)
-                    ->setSentFlag($subscription_response->sentFlag)
-                    ->setListName($subscription_response->listName);
+                    ->setListName($subscription_response->listName)
+                    ->setSubscriber($subscription_response->subscriber);
             }
         }
 
         public function getRequestArray()
         {
             $request_array = array(
+                'subscriptionId' => $this->getId(),
                 'subscriberId' => $this->getSubscriberId(),
                 'listId' => $this->getListId(),
                 'formatId' => $this->getFormatId(),
-                'sentFlag' => $this->isSentFlag()
+                'subscriber' => $this->getSubscriber(),
             );
             return $request_array;
         }
@@ -126,26 +127,6 @@
         }
 
         /**
-         * @return boolean
-         */
-        public function isSentFlag()
-        {
-            return $this->sent_flag;
-        }
-
-        /**
-         * @param boolean $sent_flag
-         *
-         * @return Subscription
-         */
-        public function setSentFlag($sent_flag)
-        {
-            $this->sent_flag = (bool)$sent_flag;
-
-            return $this;
-        }
-
-        /**
          * @return mixed
          */
         public function getCreatedDate()
@@ -182,6 +163,26 @@
         public function setListName($list_name)
         {
             $this->list_name = (string)$list_name;
+
+            return $this;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getSubscriber()
+        {
+            return $this->subscriber;
+        }
+
+        /**
+         * @param Subscriber $subscriber
+         *
+         * @return Subscriber
+         */
+        public function setSubscriber($subscriber)
+        {
+            $this->subscriber = new Subscriber($subscriber);
 
             return $this;
         }

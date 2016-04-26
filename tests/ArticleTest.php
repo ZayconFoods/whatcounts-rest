@@ -25,7 +25,13 @@
 			$this->article
 				->setName("Unit Test Article")
 				->setTitle("Unit Test from WhatCounts")
-				->setDescription("This is the description");
+				->setDescription("This is the description")
+				->setAuthorName("Test Author")
+				->setAuthorEmail("test@example.com")
+				->setAuthorBio("This is the bio for the author")
+				->setDeck("")
+				->setCallout("")
+				->setBody("<p>This is the body of the article</p>");
 
 			$whatcounts->createArticle($this->article);
 		}
@@ -42,7 +48,7 @@
 			if (isset($this->article))
 			{
 				$whatcounts->deleteArticle($this->article);
-				unset($this->list);
+				unset($this->article);
 			}
 		}
 

@@ -32,7 +32,6 @@
 		private $list_name;
 		private $segmentation_id;
 		private $suppression_list;
-		private $template_name;
 
 		public function __construct(\stdClass $campaign_response = NULL, $time_zone = NULL)
 		{
@@ -51,7 +50,6 @@
 					->setForcedFormat($campaign_response->campaignForcedFormat)
 					->setSegmentationId($campaign_response->campaignSegmentationId)
 					->setSuppressionList($campaign_response->campaignSuppressionList)
-					->setTemplateName($campaign_response->campaignTemplateName)
 					->setSegmentType($campaign_response->segmentType)
 					->setIsSaas($campaign_response->isSAAS)
 					->setSnaEnabled($campaign_response->snaEnabled)
@@ -515,26 +513,6 @@
 		public function setSuppressionList($suppression_list)
 		{
 			$this->suppression_list = (string)$suppression_list;
-
-			return $this;
-		}
-
-		/**
-		 * @return mixed
-		 */
-		public function getTemplateName()
-		{
-			return $this->template_name;
-		}
-
-		/**
-		 * @param mixed $template_name
-		 *
-		 * @return Campaign
-		 */
-		public function setTemplateName($template_name)
-		{
-			$this->template_name = (string)$template_name;
 
 			return $this;
 		}
