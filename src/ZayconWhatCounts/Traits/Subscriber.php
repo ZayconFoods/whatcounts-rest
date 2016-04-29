@@ -30,13 +30,29 @@
 		}
 
 		/**
+		 * @param MailingList $list
+		 *
+		 * @return array
+		 * 
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
+		public function getSubscribersForList(MailingList $list)
+		{
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub, $this->subscriber_class_name);
+			
+			return $subscribers;
+		}
+
+		/**
 		 * @param $subscriber_id
 		 *
 		 * @return Subscriber
 		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
-		 *
 		 */
 		public function getSubscriberById($subscriber_id)
 		{
@@ -50,11 +66,8 @@
 		/**
 		 * @param Subscriber $subscriber
 		 *
-		 * @return Subscriber
-		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
-		 *
 		 */
 		public function createSubscriber(Subscriber &$subscriber)
 		{
@@ -74,11 +87,8 @@
 		/**
 		 * @param Subscriber $subscriber
 		 *
-		 * @return string
-		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
-		 *
 		 */
 		public function updateSubscriber(Subscriber &$subscriber)
 		{
@@ -93,11 +103,10 @@
 		/**
 		 * @param Subscriber $subscriber
 		 *
-		 * @return string
+		 * @return boolean
 		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
-		 *
 		 */
 		public function deleteSubscriber(Subscriber $subscriber)
 		{

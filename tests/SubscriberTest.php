@@ -70,7 +70,7 @@
 				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
 			}
 		}
-
+		
 		public function testGetSubscriberById()
 		{
 			/** @var WhatCounts $whatcounts */

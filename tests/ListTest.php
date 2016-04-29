@@ -70,7 +70,7 @@
 				unset($this->list);
 			}
 		}
-
+		
 		public function testGetLists()
 		{
 			/** @var WhatCounts $whatcounts */

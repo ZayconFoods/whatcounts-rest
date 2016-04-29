@@ -142,4 +142,23 @@
 			unset($this->subscription);
 		}
 
+		public function testGetSubscribersForList()
+		{
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+			
+			$list = $this->list;
+
+			$subscribers = $whatcounts->getSubscribersForList($list);
+			$this->assertInternalType('array',$subscribers);
+
+			foreach ($subscribers as $subscriber)
+			{
+				/** @var MailingList $list */
+				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
+			}
+
+		}
+
+
 	}

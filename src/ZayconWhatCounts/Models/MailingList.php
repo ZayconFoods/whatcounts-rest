@@ -8,6 +8,7 @@
 
 namespace ZayconWhatCounts;
 
+
 class MailingList
 {
     private $id;

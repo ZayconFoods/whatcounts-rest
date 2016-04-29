@@ -95,7 +95,7 @@
 		public function create($stub, $object)
 		{
 			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|SegmentationRule|Subscriber|Subscription|Template $object */
+			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
 			$request_data = $object->getRequestArray();
 			$response_data = $this->call($stub . '/', 'POST', $request_data);
 
@@ -114,7 +114,7 @@
 		public function update($stub, $object)
 		{
 			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|SegmentationRule|Subscriber|Subscription|Template $object */
+			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
 			$request_data = $object->getRequestArray();
 			$response_data = $this->call($stub . '/' . $object->getId(), 'PUT', $request_data);
 			
@@ -133,7 +133,7 @@
 		public function delete($stub, $object)
 		{
 			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|SegmentationRule|Subscriber|Subscription|Template $object */
+			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
 			$id = $object->getId();
 			$request_data = $object->getRequestArray();
 			$this->call($stub . '/' . $id, 'DELETE', $request_data);
@@ -153,7 +153,7 @@
 		public function deleteById($stub, $object)
 		{
 			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|SegmentationRule|Subscriber|Subscription|Template $object */
+			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
 			$id = $object->getId();
 			$this->call($stub . '/' . $id, 'DELETE');
 			
