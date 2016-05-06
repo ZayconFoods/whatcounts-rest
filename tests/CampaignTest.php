@@ -63,4 +63,15 @@
 			}
 		}
 
+		public function testGetCampaignById()
+		{
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+			/** @var Campaign $campaign */
+			$campaign = $this->campaign;
+
+			//$campaign = $whatcounts->getCampaignById($campaign->getId());
+
+			//$this->assertInstanceOf('ZayconWhatCounts\Campaign', $campaign);
+		}
 	}

@@ -22,7 +22,7 @@
 			
 			$this->list = new MailingList();
 			$this->list
-				->setName('Unit Test List')
+				->setName('Unit Test List ' . uniqid())
 				->setFromAddress('test-from@example.com')
 				->setTemplateId(0)
 				->setFolderId(0)

@@ -4,9 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e8735c0c42c62092ae17c60273e50774",
-    "content-hash": "2747a6372c09f82ef3f430da2c70fd48",
+    "hash": "65b4ed30e29e859d50ab735fdbc10940",
+    "content-hash": "62553522e909258007b89c6cf69889ee",
     "packages": [
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "120198f907231348a29cbcb362ec4d41ea22c1dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/120198f907231348a29cbcb362ec4d41ea22c1dc",
+                "reference": "120198f907231348a29cbcb362ec4d41ea22c1dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3|^7.0"
+            },
+            "require-dev": {
+                "ext-intl": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2016-05-02 21:13:20"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "6.2.0",
@@ -1657,6 +1707,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "fzaninotto/faker": 20,
         "satooshi/php-coveralls": 20
     },
     "prefer-stable": false,

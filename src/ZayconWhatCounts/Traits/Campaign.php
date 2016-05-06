@@ -28,4 +28,21 @@
 			
 			return $campaigns;
 		}
+
+		/**
+		 * @param $campaign_id
+		 *
+		 * @return Campaign
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
+		public function getCampaignById($campaign_id)
+		{
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$campaign = $whatcounts->getById($this->campaign_stub, $this->campaign_class_name, $campaign_id);
+
+			return $campaign;
+		}
 	}

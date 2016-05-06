@@ -24,7 +24,7 @@
 
 			$this->list = new MailingList();
 			$this->list
-				->setName('Unit Test List')
+				->setName('Unit Test List ' . uniqid())
 				->setFromAddress('test-from@example.com')
 				->setTemplateId(0)
 				->setFolderId(0)
@@ -97,7 +97,7 @@
 
 			if (isset($this->subscriber))
 			{
-				$whatcounts->deleteSubscriber($this->subscriber);
+				$whatcounts->deleteSubscriberById($this->subscriber);
 				unset($this->subscriber);
 			}
 
@@ -159,6 +159,51 @@
 			}
 
 		}
+		
+		public function testFindSubscribersInList()
+		{
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
 
+			/** @var MailingList $list */
+			$list = $this->list;
+			/** @var Subscriber $subscriber */
+			$subscriber = $this->subscriber;
+			
+			$email = $subscriber->getEmail();
+			$first_name = $subscriber->getFirstName();
+			$last_name = $subscriber->getLastName();
+
+			$subscribers = $whatcounts->findSubscribersInList($list, NULL, $email, $first_name, $last_name);
+			$this->assertInternalType('array',$subscribers);
+
+			foreach ($subscribers as $subscriber)
+			{
+				/** @var MailingList $list */
+				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
+			}	
+		}
+
+		public function testFindSubscribers()
+		{
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this->whatcounts;
+
+			/** @var Subscriber $subscriber */
+			$subscriber = $this->subscriber;
+
+			$email = $subscriber->getEmail();
+			$first_name = $subscriber->getFirstName();
+			$last_name = $subscriber->getLastName();
+
+			$subscribers = $whatcounts->findSubscribers(NULL, $email, $first_name, $last_name);
+			$this->assertInternalType('array',$subscribers);
+
+			foreach ($subscribers as $subscriber)
+			{
+				/** @var MailingList $list */
+				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
+			}
+		}
 
 	}

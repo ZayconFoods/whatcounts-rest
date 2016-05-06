@@ -159,4 +159,24 @@
 			
 			return TRUE;
 		}
+
+		/**
+		 * @param $stub
+		 * @param $object
+		 *
+		 * @return bool
+		 *
+		 * @throws \GuzzleHttp\Exception\ServerException
+		 * @throws \GuzzleHttp\Exception\RequestException
+		 */
+		public function deleteByCustomerKey($stub, $object)
+		{
+			/** @var WhatCounts $this */
+			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
+			$id = $object->getCustomerKey();
+			$this->call($stub . '/' . $id, 'DELETE');
+
+			return TRUE;
+		}
+
 	}

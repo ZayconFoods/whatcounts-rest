@@ -46,6 +46,52 @@
 			return $subscribers;
 		}
 
+		public function findSubscribersInList(MailingList $list, $customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL)
+		{
+			$query = array();
+			if (isset($customer_key)) {
+				$query['customerKey'] = $customer_key;
+			}
+			if (isset($email)) {
+				$query['email'] = $email;
+			}
+			if (isset($first_name)) {
+				$query['firstName'] = $first_name;
+			}
+			if (isset($last_name)) {
+				$query['lastName'] = $last_name;
+			}
+
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub . '?' . http_build_query($query), $this->subscriber_class_name);
+
+			return $subscribers;
+		}
+
+		public function findSubscribers($customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL)
+		{
+			$query = array();
+			if (isset($customer_key)) {
+				$query['customerKey'] = $customer_key;
+			}
+			if (isset($email)) {
+				$query['email'] = $email;
+			}
+			if (isset($first_name)) {
+				$query['firstName'] = $first_name;
+			}
+			if (isset($last_name)) {
+				$query['lastName'] = $last_name;
+			}
+
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$subscribers = $whatcounts->getAll($whatcounts->subscriber_stub . '?' . http_build_query($query), $this->subscriber_class_name);
+
+			return $subscribers;
+		}
+
 		/**
 		 * @param $subscriber_id
 		 *
@@ -61,6 +107,21 @@
 			$subscriber = $whatcounts->getById($this->subscriber_stub, $this->subscriber_class_name, $subscriber_id);
 
 			return $subscriber;
+		}
+
+		public function getSubscriberSubscriptions($subscriber)
+		{
+
+		}
+
+		public function getSubscribersEventsByCustomerKey($subscriber, $start_date = NULL, $end_date = NULL)
+		{
+
+		}
+
+		public function getSubscribersEventsBySubscriberId($subscriber, $start_date = NULL, $end_date = NULL)
+		{
+
 		}
 
 		/**
@@ -108,11 +169,18 @@
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteSubscriber(Subscriber $subscriber)
+		public function deleteSubscriberById(Subscriber $subscriber)
 		{
 			$whatcounts = $this;
 			/** @var WhatCounts $whatcounts */
 			return $whatcounts->deleteById($this->subscriber_stub, $subscriber);
+		}
+
+		public function deleteSubscriberByCustomerKey(Subscriber $subscriber)
+		{
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			return $whatcounts->deleteByCustomerKey($this->subscriber_stub, $subscriber);
 		}
 
 	}

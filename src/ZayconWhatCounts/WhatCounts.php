@@ -26,6 +26,8 @@
 		use TemplateTraits;
 		use ArticleTraits;
 		use CampaignTraits;
+		use RelationalTableTraits;
+		use RelationalColumnTraits;
 
 		private $time_zone;
 		private $url;
@@ -185,7 +187,6 @@
 		{
 			if ($this->checkStatus()) {
 
-				$command = strtolower($command);
 				$params = '';
 
 				$request = array(
@@ -211,7 +212,7 @@
 					$guzzle = new GuzzleHttp\Client;
 					$response = $guzzle->request(
 						$method,
-						$this->url . '/' . strtolower($command) . $params,
+						$this->url . '/' . $command . $params,
 						$request
 					);
 

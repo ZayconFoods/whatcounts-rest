@@ -1,4 +1,3 @@
-
 {
   "name": "zaycon/whatcounts-rest",
   "description": "PHP API Wrapper for the WhatCounts REST API",
@@ -14,7 +13,8 @@
     "phpunit/phpunit": "4.8.*",
     "satooshi/php-coveralls": "dev-master",
     "raveren/kint": "^1.0",
-    "rollbar/rollbar": "~0.15.0"
+    "rollbar/rollbar": "~0.15.0",
+    "fzaninotto/faker": "1.6.x-dev"
   },
   "type": "library",
   "authors": [

@@ -9,11 +9,14 @@
 
 	namespace ZayconWhatCounts;
 	
+	use Faker;
+	
 	abstract class WhatCountsTest extends \PHPUnit_Framework_TestCase
 	{
 		const ENV = 'development';
 		public $whatcounts;
 		public $time_zone;
+		public $faker;
 
 		public function setUp()
 		{
@@ -29,6 +32,8 @@
 			\PHPUnit_Framework_Error_Notice::$enabled = FALSE;
 
 			$this->time_zone = new \DateTimeZone($this->whatcounts->getTimeZone());
+
+			$this->faker = Faker\Factory::create();
 		}
 		
 		public function tearDown()
