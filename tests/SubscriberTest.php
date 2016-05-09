@@ -116,8 +116,6 @@
 
 		public function testUpdateSubscriber()
 		{
-			$this->markTestSkipped('API returns a 405 Method Not Allowed.');
-
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 			/** @var Subscriber $subscriber */
