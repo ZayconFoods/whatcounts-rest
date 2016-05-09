@@ -14,6 +14,7 @@
 		private $relational_column;
 		private $relational_columns;
 		private $relational_table_name;
+		private $relational_data;
 
 		public function setUp()
 		{
@@ -23,6 +24,8 @@
 			$whatcounts = $this->whatcounts;
 
 			$relational_tables = $whatcounts->getRelationalTables();
+
+			/** @var RelationalTable $relational_table */
 			$relational_table = $relational_tables[0];
 			$this->relational_table_name = $relational_table->getName();
 
@@ -36,6 +39,10 @@
 			if (isset($this->relational_column))
 			{
 				unset($this->relational_column);
+			}
+			if (isset($this->relational_data))
+			{
+				unset($this->relational_data);
 			}
 		}
 
@@ -54,5 +61,4 @@
 				$this->assertInstanceOf('ZayconWhatCounts\RelationalColumns', $relational_column);
 			}
 		}
-
 	}

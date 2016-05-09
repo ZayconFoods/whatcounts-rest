@@ -95,8 +95,13 @@
 		public function create($stub, $object)
 		{
 			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
-			$request_data = $object->getRequestArray();
+			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template|RelationalData $object */
+			if (is_a($object, 'stdClass')) {
+				$request_data = $object;
+			} else {
+				$request_data = $object->getRequestArray();
+			}
+
 			$response_data = $this->call($stub . '/', 'POST', $request_data);
 
 			return $response_data;
@@ -114,9 +119,15 @@
 		public function update($stub, $object)
 		{
 			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
-			$request_data = $object->getRequestArray();
-			$response_data = $this->call($stub . '/' . $object->getId(), 'PUT', $request_data);
+			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template|RelationalData $object */
+			if (is_a($object, 'stdClass')) {
+				$request_data = $object;
+				$id = '';
+			} else {
+				$request_data = $object->getRequestArray();
+				$id = $object->getId();
+			}
+			$response_data = $this->call($stub . '/' . $id, 'PUT', $request_data);
 			
 			return $response_data;
 		}
@@ -133,9 +144,16 @@
 		public function delete($stub, $object)
 		{
 			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
-			$id = $object->getId();
-			$request_data = $object->getRequestArray();
+			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template|RelationalData $object */
+
+			if (is_a($object, 'stdClass')) {
+				$request_data = $object;
+				$id = '';
+			} else {
+				$request_data = $object->getRequestArray();
+				$id = $object->getId();
+			}
+
 			$this->call($stub . '/' . $id, 'DELETE', $request_data);
 
 			return TRUE;
@@ -154,7 +172,12 @@
 		{
 			/** @var WhatCounts $this */
 			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
-			$id = $object->getId();
+			if (is_int($object)) {
+				$id = $object;
+			} else {
+				$id = $object->getId();
+			}
+
 			$this->call($stub . '/' . $id, 'DELETE');
 			
 			return TRUE;

@@ -28,6 +28,7 @@
 		use CampaignTraits;
 		use RelationalTableTraits;
 		use RelationalColumnTraits;
+		use RelationalDataTraits;
 
 		private $time_zone;
 		private $url;
