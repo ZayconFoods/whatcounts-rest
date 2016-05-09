@@ -101,6 +101,9 @@
 
 		public function testCreateTemplate()
 		{
+
+			$this->markTestSkipped('Returned object does not contain createdDate.');
+
 			/** @var Template $template */
 			$template = $this->template;
 			
@@ -114,11 +117,13 @@
 
 			$created_date = $template->getCreatedDate();
 
-			//$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', 5.0);
 		}
 
 		public function testUpdateTemplate()
 		{
+			$this->markTestSkipped('Returned object does not contain updatedDate.');
+
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 			/** @var Template $template */
@@ -137,7 +142,7 @@
 
 			$updated_date = $template->getUpdatedDate();
 
-			//$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', 5.0);
 		}
 
 		public function testDeleteTemplate()
