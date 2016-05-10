@@ -101,9 +101,6 @@
 
 		public function testCreateTemplate()
 		{
-
-			$this->markTestSkipped('Returned object does not contain createdDate.');
-
 			/** @var Template $template */
 			$template = $this->template;
 			
@@ -122,8 +119,6 @@
 
 		public function testUpdateTemplate()
 		{
-			$this->markTestSkipped('Returned object does not contain updatedDate.');
-
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 			/** @var Template $template */

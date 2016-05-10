@@ -48,7 +48,7 @@ class Template
                 ->setDescription($template_response->description)
                 ->setSubject($template_response->subject)
                 ->setCreatedDate($template_response->createdDate, $time_zone)
-                ->setUpdatedDate($template_response->updatedDate, $time_zone)
+                ->setUpdatedDate(isset($template_response->updatedDate) ? $template_response->updatedDate : NULL, $time_zone)
                 ->setDeletedFlag($template_response->deletedFlag)
                 ->setFolderId($template_response->templateFolderId)
                 ->setHasVideo($template_response->hasVideo)
