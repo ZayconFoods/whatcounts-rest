@@ -17,12 +17,10 @@
 
 	class WhatCounts
 	{
-
 		use ActionsTraits;
 		use ListTraits;
 		use SubscriberTraits;
 		use SubscriptionTraits;
-		//use SegmentationTraits;
 		use TemplateTraits;
 		use ArticleTraits;
 		use CampaignTraits;
@@ -39,14 +37,14 @@
 		/**
 		 * WhatCounts constructor.
 		 *
-		 * @param null $environment
+		 * @param string $environment
 		 * @param null $realm
 		 * @param null $password
 		 * @param null $url
 		 * @param null $version
 		 * @param null $time_zone
 		 */
-		public function __construct($environment = NULL, $realm = NULL, $password = NULL, $url = NULL, $version = NULL, $time_zone = NULL)
+		public function __construct($environment = 'production', $realm = NULL, $password = NULL, $url = NULL, $version = NULL, $time_zone = NULL)
 		{
 			$this
 				->setRealm(($realm === NULL) ? Config::get($environment . '.realm') : $realm)

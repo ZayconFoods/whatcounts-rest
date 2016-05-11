@@ -9,44 +9,47 @@
 	namespace ZayconWhatCounts;
 
 
-	class Config {
+	class Config
+	{
 
-		public $config;
+		private static $config;
 
-		function __construct()
+		public static function getInstance()
 		{
-			$this->config = [
-				'production' => [
-					'version' => 'v1',
-					'url' => 'http://wcqa.us/rest',
-					'time_zone' => 'America/Los_Angeles',
-					'realm' => 'your_production_realm',
-					'password' => 'your_password'
-				],
-				'development' => [
-					'version' => 'v1',
-					'url' => 'http://wcqa.us/rest',
-					'time_zone' => 'America/Los_Angeles',
-					'realm' => 'your_test_realm',
-					'password' => 'your_password'
-				]
-			];
-		}
+			if (NULL === self::$config) {
+				self::$config = [
+					'production'  => [
+						'version'   => 'v1',
+						'url'       => 'http://wcqa.us/rest',
+						'time_zone' => 'America/Los_Angeles',
+						'realm'     => 'your_production_realm',
+						'password'  => 'your_password'
+					],
+					'development' => [
+						'version'   => 'v1',
+						'url'       => 'http://wcqa.us/rest',
+						'time_zone' => 'America/Los_Angeles',
+						'realm'     => 'your_development_realm',
+						'password'  => 'your_password'
+					]
+				];
+			}
 
-		/* access config values like this: Config::get('db.username'); */
+			return self::$config;
+		}
 
 		public static function get($value)
 		{
-			$cfg = new Config;
+			$cfg = self::getInstance();
 			$value = explode('.', $value);
 
 			if (count($value) == 2)
 			{
-				if (array_key_exists($value[0], $cfg->config))
+				if (array_key_exists($value[0], $cfg))
 				{
-					if (array_key_exists($value[1], $cfg->config[$value[0]]))
+					if (array_key_exists($value[1], $cfg[$value[0]]))
 					{
-						return $cfg->config[$value[0]][$value[1]];
+						return $cfg[$value[0]][$value[1]];
 					}
 				}
 			}
@@ -54,4 +57,24 @@
 			return '';
 		}
 
+		public static function append($value)
+		{
+			$cfg = self::getInstance();
+			self::$config = array_merge($cfg, $value);
+		}
+
+		public static function realm($env, $value)
+		{
+			self::getInstance();
+			self::$config[$env]['realm'] = $value;
+		}
+
+		public static function password($env, $value)
+		{
+			self::$config[$env]['password'] = $value;
+		}
+
+		protected function __construct() {}
+		protected function __clone() {}
+		protected function __wakeup() {}
 	}
