@@ -26,6 +26,8 @@
 		private $callout;
 		private $body;
 		private $parent_article_id;
+		private $skip;
+		private $max;
 
 		public function __construct(\stdClass $article_response = NULL, $time_zone = NULL)
 		{
@@ -46,7 +48,9 @@
 					->setDeck($article_response->dek)
 					->setCallout($article_response->callout)
 					->setBody($article_response->body)
-					->setParentArticleId($article_response->parentArticleId);
+					->setParentArticleId($article_response->parentArticleId)
+					->setSkip($article_response->skip)
+					->setMax($article_response->max);
 			}
 		}
 
@@ -372,5 +376,44 @@
 			return $this;
 		}
 
+		/**
+		 * @return mixed
+		 */
+		public function getSkip()
+		{
+			return $this->skip;
+		}
 
+		/**
+		 * @param mixed $skip
+		 *
+		 * @return Article
+		 */
+		public function setSkip($skip)
+		{
+			$this->skip = $skip;
+
+			return $this;
+		}
+
+		/**
+		 * @return mixed
+		 */
+		public function getMax()
+		{
+			return $this->max;
+		}
+
+		/**
+		 * @param mixed $max
+		 *
+		 * @return Article
+		 */
+		public function setMax($max)
+		{
+			$this->max = $max;
+
+			return $this;
+		}
+		
 	}

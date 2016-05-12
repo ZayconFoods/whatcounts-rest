@@ -15,16 +15,19 @@
 		private $subscriber_class_name = '\ZayconWhatCounts\Subscriber';
 
 		/**
+		 * @param null $skip
+		 *
 		 * @return array
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getSubscribers()
+
+		public function getSubscribers($skip = NULL)
 		{
 			$whatcounts = $this;
 			/** @var WhatCounts $whatcounts */
-			$subscribers = $whatcounts->getAll($this->subscriber_stub, $this->subscriber_class_name);
+			$subscribers = $whatcounts->getAll($this->subscriber_stub, $this->subscriber_class_name, $skip);
 
 			return $subscribers;
 		}
@@ -37,12 +40,21 @@
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getSubscribersForList(MailingList $list)
+		public function getSubscribersForList(MailingList $list, $skip = NULL)
 		{
 			$whatcounts = $this;
 			/** @var WhatCounts $whatcounts */
-			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub, $this->subscriber_class_name);
+			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub, $this->subscriber_class_name, $skip);
 			
+			return $subscribers;
+		}
+
+		public function getUnsubscribersForList(MailingList $list)
+		{
+			$whatcounts = $this;
+			/** @var WhatCounts $whatcounts */
+			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/unsubscribes', $this->subscriber_class_name);
+
 			return $subscribers;
 		}
 

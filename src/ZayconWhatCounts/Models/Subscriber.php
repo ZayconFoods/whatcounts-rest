@@ -32,6 +32,8 @@ class Subscriber
     private $md5_encryption;
     private $sha1_encryption;
     private $subscriptions = array();
+    private $skip;
+    private $max;
 
     public function __construct(\stdClass $subscriber_response = NULL, $time_zone = NULL)
     {
@@ -55,7 +57,9 @@ class Subscriber
                 ->setCreatedDate($subscriber_response->createdDate, $time_zone)
                 ->setUpdatedDate($subscriber_response->updatedDate, $time_zone)
                 ->setMd5Encryption($subscriber_response->md5Encryption)
-                ->setSha1Encryption($subscriber_response->sha1Encryption);
+                ->setSha1Encryption($subscriber_response->sha1Encryption)
+                ->setSkip($subscriber_response->skip)
+                ->setMax($subscriber_response->max);
         }
     }
 
@@ -450,6 +454,46 @@ class Subscriber
     public function setSubscriptions($subscriptions)
     {
         $this->subscriptions = (array)$subscriptions;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkip()
+    {
+        return $this->skip;
+    }
+
+    /**
+     * @param mixed $skip
+     *
+     * @return Subscriber
+     */
+    public function setSkip($skip)
+    {
+        $this->skip = (int)$skip;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMax()
+    {
+        return $this->max;
+    }
+
+    /**
+     * @param mixed $max
+     *
+     * @return Subscriber
+     */
+    public function setMax($max)
+    {
+        $this->max = (int)$max;
 
         return $this;
     }

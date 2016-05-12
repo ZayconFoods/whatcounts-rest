@@ -32,6 +32,8 @@
 		private $list_name;
 		private $segmentation_id;
 		private $suppression_list;
+		private $skip;
+		private $max;
 
 		public function __construct(\stdClass $campaign_response = NULL, $time_zone = NULL)
 		{
@@ -56,7 +58,9 @@
 					->setContentHtml($campaign_response->campaignContentHtml)
 					->setContentMobile($campaign_response->campaignContentMobile)
 					->setContentText($campaign_response->campaignContentText)
-					->setDataXml($campaign_response->campaignDataXml);
+					->setDataXml($campaign_response->campaignDataXml)
+					->setSkip($campaign_response->skip)
+					->setMax($campaign_response->max);
 
 				$campaignSummaryItem = $campaign_response->campaignSummary;
 				$campaign_summary = new CampaignSummary();
@@ -513,6 +517,46 @@
 		public function setSuppressionList($suppression_list)
 		{
 			$this->suppression_list = (string)$suppression_list;
+
+			return $this;
+		}
+
+		/**
+		 * @return mixed
+		 */
+		public function getSkip()
+		{
+			return $this->skip;
+		}
+
+		/**
+		 * @param mixed $skip
+		 *
+		 * @return Campaign
+		 */
+		public function setSkip($skip)
+		{
+			$this->skip = $skip;
+
+			return $this;
+		}
+
+		/**
+		 * @return mixed
+		 */
+		public function getMax()
+		{
+			return $this->max;
+		}
+
+		/**
+		 * @param mixed $max
+		 *
+		 * @return Campaign
+		 */
+		public function setMax($max)
+		{
+			$this->max = $max;
 
 			return $this;
 		}

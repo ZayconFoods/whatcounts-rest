@@ -36,6 +36,8 @@ class Template
     private $html_has_relational;
     private $library_id;
     private $layout_id;
+    private $skip;
+    private $max;
 
     public function __construct(\stdClass $template_response = NULL, $time_zone = NULL)
     {
@@ -65,7 +67,9 @@ class Template
                 ->setPlainHasRelational($template_response->plainHasRelational)
                 ->setHtmlHasRelational($template_response->htmlHasRelational)
                 ->setLibraryId($template_response->templateLibraryId)
-                ->setLayoutId($template_response->templateLayoutId);
+                ->setLayoutId($template_response->templateLayoutId)
+                ->setSkip($template_response->skip)
+                ->setMax($template_response->max);
         }
     }
 
@@ -607,4 +611,44 @@ class Template
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSkip()
+    {
+        return $this->skip;
+    }
+
+    /**
+     * @param mixed $skip
+     *
+     * @return Template
+     */
+    public function setSkip($skip)
+    {
+        $this->skip = $skip;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMax()
+    {
+        return $this->max;
+    }
+
+    /**
+     * @param mixed $max
+     *
+     * @return Template
+     */
+    public function setMax($max)
+    {
+        $this->max = $max;
+
+        return $this;
+    }
+    
 }

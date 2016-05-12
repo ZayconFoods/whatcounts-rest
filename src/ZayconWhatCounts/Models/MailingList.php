@@ -49,6 +49,8 @@ class MailingList
     private $subscriber_count_html;
     private $subscriber_count_rss;
     private $subscriber_count_mime;
+    private $skip;
+    private $max;
 
     public function __construct(\stdClass $list_response = NULL, $time_zone = NULL)
     {
@@ -92,7 +94,9 @@ class MailingList
                 ->setSubscriberCountPlain($list_response->subscriberCountPlain)
                 ->setSubscriberCountHtml($list_response->subscriberCountHtml)
                 ->setSubscriberCountRss($list_response->subscriberCountRss)
-                ->setSubscriberCountMime($list_response->subscriberCountMime);
+                ->setSubscriberCountMime($list_response->subscriberCountMime)
+                ->setSkip($list_response->skip)
+                ->setMax($list_response->max);
         }
     }
 
@@ -891,6 +895,46 @@ class MailingList
     public function setSubscriberCountMime($subscriber_count_mime)
     {
         $this->subscriber_count_mime = (int)$subscriber_count_mime;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkip()
+    {
+        return $this->skip;
+    }
+
+    /**
+     * @param mixed $skip
+     *
+     * @return MailingList
+     */
+    public function setSkip($skip)
+    {
+        $this->skip = $skip;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMax()
+    {
+        return $this->max;
+    }
+
+    /**
+     * @param mixed $max
+     *
+     * @return MailingList
+     */
+    public function setMax($max)
+    {
+        $this->max = $max;
 
         return $this;
     }

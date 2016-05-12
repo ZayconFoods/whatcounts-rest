@@ -132,13 +132,26 @@
 			$whatcounts = $this->whatcounts;
 			/** @var Subscription $subscription */
 			$subscription = $this->subscription;
-
-			//$article = $whatcounts->getArticleById($article->getId());
+			/** @var Subscriber $subscriber */
+			$subscriber = $this->subscriber;
 
 			$is_deleted = $whatcounts->deleteSubscription($subscription);
 
 			$this->assertTrue($is_deleted);
 
+			$unsubscribers = $whatcounts->getUnsubscribersForList($this->list);
+			$this->assertInternalType('array',$unsubscribers);
+
+			foreach ($unsubscribers as $unsubscriber)
+			{
+				/** @var Subscriber $unsubscriber $list */
+				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $unsubscriber);
+				if ($unsubscriber->getId() == $subscriber->getId())
+				{
+					$this->assertEquals($unsubscriber, $subscriber);
+				}
+			}
+			
 			unset($this->subscription);
 		}
 

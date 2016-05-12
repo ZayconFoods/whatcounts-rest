@@ -18,6 +18,8 @@
         private $created_date;
         private $list_name;
         private $subscriber;
+        private $skip;
+        private $max;
 
         public function __construct(\stdClass $subscription_response = NULL, $time_zone = NULL)
         {
@@ -30,7 +32,9 @@
                     ->setCreatedDate($subscription_response->createdDate, $time_zone)
                     ->setFormatId($subscription_response->formatId)
                     ->setListName($subscription_response->listName)
-                    ->setSubscriber($subscription_response->subscriber);
+                    ->setSubscriber($subscription_response->subscriber)
+                    ->setSkip($subscription_response->skip)
+                    ->setMax($subscription_response->max);
             }
         }
 
@@ -183,6 +187,46 @@
         public function setSubscriber($subscriber)
         {
             $this->subscriber = new Subscriber($subscriber);
+
+            return $this;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getSkip()
+        {
+            return $this->skip;
+        }
+
+        /**
+         * @param mixed $skip
+         *
+         * @return Subscription
+         */
+        public function setSkip($skip)
+        {
+            $this->skip = $skip;
+
+            return $this;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getMax()
+        {
+            return $this->max;
+        }
+
+        /**
+         * @param mixed $max
+         *
+         * @return Subscription
+         */
+        public function setMax($max)
+        {
+            $this->max = $max;
 
             return $this;
         }

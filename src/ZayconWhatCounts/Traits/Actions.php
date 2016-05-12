@@ -14,22 +14,43 @@
 		/**
 		 * @param $stub
 		 * @param $class_name
+		 * @param null $skip
 		 *
 		 * @return array
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getAll($stub, $class_name)
+		public function getAll($stub, $class_name, $skip = NULL)
 		{
+			$skipParameter = (!is_null($skip) ? '?skip=' . $skip : '');
 			/** @var WhatCounts $this */
-			$response_data = $this->call($stub . '/', 'GET');
+			$response_data = $this->call($stub . '/' . $skipParameter, 'GET');
 
 			$objects = array();
 
 			foreach ($response_data as $item) {
-				$object = new $class_name($item, new \DateTimeZone($this->getTimeZone()));
-				$objects[] = $object;
+				if (is_array($item))
+				{
+					foreach ($item as $arrayItem)
+					{
+						$object = new $class_name($arrayItem, new \DateTimeZone($this->getTimeZone()));
+						$objects[] = $object;
+					}
+				}
+				else
+				{
+					if (is_object($item))
+					{
+						$object = new $class_name($item, new \DateTimeZone($this->getTimeZone()));
+						$objects[] = $object;
+					}
+					else
+					{
+						//var_dump($item);
+							
+					}
+				}
 			}
 
 			return $objects;

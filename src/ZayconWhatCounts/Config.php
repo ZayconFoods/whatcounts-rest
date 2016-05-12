@@ -63,13 +63,13 @@
 			self::$config = array_merge($cfg, $value);
 		}
 
-		public static function realm($env, $value)
+		public static function realm($value, $env = 'production')
 		{
 			self::getInstance();
 			self::$config[$env]['realm'] = $value;
 		}
 
-		public static function password($env, $value)
+		public static function password($value, $env = 'production')
 		{
 			self::$config[$env]['password'] = $value;
 		}

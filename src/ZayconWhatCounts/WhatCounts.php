@@ -17,6 +17,7 @@
 
 	class WhatCounts
 	{
+
 		use ActionsTraits;
 		use ListTraits;
 		use SubscriberTraits;
