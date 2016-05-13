@@ -79,7 +79,9 @@
 
 			$list
 				->setId($response_data->listId)
-				->setCreatedDate($response_data->listCreatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
+				->setCreatedDate($response_data->listCreatedDate, new \DateTimeZone($whatcounts->getTimeZone()))
+				->setSkip($response_data->skip)
+				->setMax($response_data->max);
 		}
 
 		/**

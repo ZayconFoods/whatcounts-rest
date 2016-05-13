@@ -148,7 +148,7 @@
 				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $unsubscriber);
 				if ($unsubscriber->getId() == $subscriber->getId())
 				{
-					$this->assertEquals($unsubscriber, $subscriber);
+					$this->assertEquals($unsubscriber->getId(), $subscriber->getId());
 				}
 			}
 			

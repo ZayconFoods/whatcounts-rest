@@ -154,7 +154,9 @@
 				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()))
 				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()))
 				->setMd5Encryption($response_data->md5Encryption)
-				->setSha1Encryption($response_data->sha1Encryption);
+				->setSha1Encryption($response_data->sha1Encryption)
+				->setSkip($response_data->skip)
+				->setMax($response_data->max);
 		}
 
 		/**

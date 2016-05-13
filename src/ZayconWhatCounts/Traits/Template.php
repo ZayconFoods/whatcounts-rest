@@ -78,7 +78,9 @@
 			$template
 				->setId($response_data->id)
 				->setRealmId($response_data->realmId)
-				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()));
+				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()))
+				->setSkip($response_data->skip)
+				->setMax($response_data->max);
 		}
 
 		/**
