@@ -79,7 +79,7 @@
 
 			$list
 				->setId($response_data->listId)
-				->setCreatedDate($response_data->listCreatedDate, new \DateTimeZone($whatcounts->getTimeZone()))
+				->setCreatedDate($response_data->listCreatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
 				->setSkip($response_data->skip)
 				->setMax($response_data->max);
 		}
@@ -98,7 +98,7 @@
 			$response_data = $whatcounts->update($this->list_stub, $list);
 
 			$list
-				->setUpdatedDate($response_data->listUpdatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
+				->setUpdatedDate($response_data->listUpdatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
 		/**

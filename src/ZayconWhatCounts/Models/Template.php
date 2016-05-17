@@ -9,36 +9,153 @@
 namespace ZayconWhatCounts;
 
 
+/**
+ * Class Template
+ * @package ZayconWhatCounts
+ */
 class Template
 {
+	/**
+     * @var integer $id
+     */
     private $id;
+
+	/**
+     * @var integer $realm_id
+     */
     private $realm_id;
+
+	/**
+     * @var string $name
+     */
     private $name;
+
+	/**
+     * @var string $description
+     */
     private $description;
+
+	/**
+     * @var string $subject
+     */
     private $subject;
+
+	/**
+     * @var \DateTime $created_date
+     */
     private $created_date;
+
+	/**
+     * @var \DateTime $updated_date
+     */
     private $updated_date;
+
+	/**
+     * @var bool $deleted_flag
+     */
     private $deleted_flag;
+
+	/**
+     * @var integer $folder_id
+     */
     private $folder_id;
+
+	/**
+     * @var bool $has_video
+     */
     private $has_video;
+
+	/**
+     * @var integer $permission_mask
+     */
     private $permission_mask;
+
+	/**
+     * @var bool $inherited
+     */
     private $inherited;
+
+	/**
+     * @var string $data_plaintext
+     */
     private $data_plaintext;
+
+	/**
+     * @var string $data_html
+     */
     private $data_html;
+
+	/**
+     * @var string $data_mobile
+     */
     private $data_mobile;
+
+	/**
+     * @var string $data_wap
+     */
     private $data_wap;
+
+	/**
+     * @var string $data_avantgo
+     */
     private $data_avantgo;
+
+	/**
+     * @var string $data_aol
+     */
     private $data_aol;
+
+	/**
+     * @var $data_xml
+     */
     private $data_xml;
+
+	/**
+     * @var string $replace_fields
+     */
     private $replace_fields;
+
+	/**
+     * @var string $notes
+     */
     private $notes;
+
+	/**
+     * @var bool $plain_has_relational
+     */
     private $plain_has_relational;
+
+	/**
+     * @var bool $html_has_relational
+     */
     private $html_has_relational;
+
+	/**
+     * @var integer $library_id
+     */
     private $library_id;
+
+	/**
+     * @var integer $layout_id
+     */
     private $layout_id;
+
+	/**
+     * @var integer $skip
+     */
     private $skip;
+
+	/**
+     * @var integer $max
+     */
     private $max;
 
+	/**
+     * Template constructor.
+     *
+     * @param \stdClass|NULL $template_response
+     * @param null           $time_zone
+     */
     public function __construct(\stdClass $template_response = NULL, $time_zone = NULL)
     {
         if (isset($template_response))
@@ -49,8 +166,8 @@ class Template
                 ->setName($template_response->name)
                 ->setDescription($template_response->description)
                 ->setSubject($template_response->subject)
-                ->setCreatedDate($template_response->createdDate, $time_zone)
-                ->setUpdatedDate(isset($template_response->updatedDate) ? $template_response->updatedDate : NULL, $time_zone)
+                ->setCreatedDate($template_response->createdDate, 'M j, Y g:i:s A', $time_zone)
+                ->setUpdatedDate(isset($template_response->updatedDate) ? $template_response->updatedDate : NULL, 'M j, Y g:i:s A', $time_zone)
                 ->setDeletedFlag($template_response->deletedFlag)
                 ->setFolderId($template_response->templateFolderId)
                 ->setHasVideo($template_response->hasVideo)
@@ -73,17 +190,22 @@ class Template
         }
     }
 
+	/**
+     * Generates array for API request.
+     *
+     * @return array
+     */
     public function getRequestArray()
     {
         $request_array = array(
             'name' => $this->getName(),
             'description' => $this->getDescription(),
             'subject' => $this->getSubject(),
-            'deletedFlag' => $this->getDeletedFlag(),
+            'deletedFlag' => $this->isDeletedFlag(),
             'templateFolderId' => $this->getFolderId(),
-            'hasVideo' => $this->getHasVideo(),
+            'hasVideo' => $this->isHasVideo(),
             'permissionMask' => $this->getPermissionMask(),
-            'templateInherited' => $this->getInherited(),
+            'templateInherited' => $this->isInherited(),
             'templateDataPlaintext' => $this->getDataPlaintext(),
             'templateDataHtml' => $this->getDataHtml(),
             'templateDataMobile' => $this->getDataMobile(),
@@ -93,16 +215,19 @@ class Template
             //'templateDataXml' => $this->getDataXml()->asXML(),
             'templateDataXml' => $this->getDataXml(),
             'templateReplaceFields' => $this->getReplaceFields(),
-            'plainHasRelational' => $this->getPlainHasRelational(),
-            'htmlHasRelational' => $this->getHtmlHasRelational(),
+            'plainHasRelational' => $this->isPlainHasRelational(),
+            'htmlHasRelational' => $this->isHtmlHasRelational(),
             'templateLibraryId' => $this->getLibraryId(),
             'templateLayoutId)' => $this->getLayoutId()
         );
         return $request_array;
     }
 
+
     /**
-     * @return mixed
+     * Sets the private variable id
+     *
+     * @return int
      */
     public function getId()
     {
@@ -110,7 +235,9 @@ class Template
     }
 
     /**
-     * @param mixed $id
+     * Gets the private variable id
+     *
+     * @param int $id
      *
      * @return Template
      */
@@ -122,7 +249,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable realm_id
+     *
+     * @return int
      */
     public function getRealmId()
     {
@@ -130,7 +259,9 @@ class Template
     }
 
     /**
-     * @param $realm_id
+     * Gets the private variable realm_id
+     *
+     * @param int $realm_id
      *
      * @return Template
      */
@@ -142,7 +273,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -150,7 +283,9 @@ class Template
     }
 
     /**
-     * @param mixed $name
+     * Gets the private variable name
+     *
+     * @param string $name
      *
      * @return Template
      */
@@ -162,7 +297,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable description
+     *
+     * @return string
      */
     public function getDescription()
     {
@@ -170,7 +307,9 @@ class Template
     }
 
     /**
-     * @param mixed $description
+     * Gets the private variable description
+     *
+     * @param string $description
      *
      * @return Template
      */
@@ -182,7 +321,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable subject
+     *
+     * @return string
      */
     public function getSubject()
     {
@@ -190,7 +331,9 @@ class Template
     }
 
     /**
-     * @param mixed $subject
+     * Gets the private variable subject
+     *
+     * @param string $subject
      *
      * @return Template
      */
@@ -202,7 +345,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable created_date
+     *
+     * @return \DateTime
      */
     public function getCreatedDate()
     {
@@ -210,20 +355,25 @@ class Template
     }
 
     /**
-     * @param $created_date
+     * Gets the private variable created_date
+     *
+     * @param \DateTime $created_date
+     * @param string $format
+     * @param string $time_zone
      *
      * @return Template
-     * @param \DateTimeZone $time_zone
      */
-    public function setCreatedDate($created_date, $time_zone)
+    public function setCreatedDate($created_date, $format, $time_zone)
     {
-        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
+        $this->created_date = date_create_from_format($format, $created_date, $time_zone);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable updated_date
+     *
+     * @return \DateTime
      */
     public function getUpdatedDate()
     {
@@ -231,40 +381,49 @@ class Template
     }
 
     /**
-     * @param mixed $updated_date
-     * @param \DateTimeZone $time_zone
+     * Gets the private variable updated_date
+     *
+     * @param \DateTime $updated_date
+     * @param string $format
+     * @param string $time_zone
      *
      * @return Template
      */
-    public function setUpdatedDate($updated_date, $time_zone)
+    public function setUpdatedDate($updated_date, $format, $time_zone)
     {
-        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
+        $this->updated_date = date_create_from_format($format, $updated_date, $time_zone);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable deleted_flag
+     *
+     * @return boolean
      */
-    public function getDeletedFlag()
+    public function isDeletedFlag()
     {
         return $this->deleted_flag;
     }
 
     /**
-     * @param mixed $deleted_flag
+     * Gets the private variable deleted_flag
+     *
+     * @param boolean $deleted_flag
      *
      * @return Template
      */
     public function setDeletedFlag($deleted_flag)
     {
-        $this->deleted_flag = (bool)$deleted_flag;
+        $this->deleted_flag = (boolean)($deleted_flag === TRUE);
 
         return $this;
     }
-
+    
     /**
-     * @return mixed
+     * Sets the private variable folder_id
+     *
+     * @return int
      */
     public function getFolderId()
     {
@@ -272,7 +431,9 @@ class Template
     }
 
     /**
-     * @param mixed $folder_id
+     * Gets the private variable folder_id
+     *
+     * @param int $folder_id
      *
      * @return Template
      */
@@ -284,27 +445,33 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable has_video
+     *
+     * @return boolean
      */
-    public function getHasVideo()
+    public function isHasVideo()
     {
         return $this->has_video;
     }
 
     /**
-     * @param mixed $has_video
+     * Gets the private variable has_video
+     *
+     * @param boolean $has_video
      *
      * @return Template
      */
     public function setHasVideo($has_video)
     {
-        $this->has_video = (bool)$has_video;
+        $this->has_video = (boolean)$has_video;
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable permission_mask
+     *
+     * @return int
      */
     public function getPermissionMask()
     {
@@ -312,7 +479,9 @@ class Template
     }
 
     /**
-     * @param mixed $permission_mask
+     * Gets the private variable permission_mask
+     *
+     * @param int $permission_mask
      *
      * @return Template
      */
@@ -324,27 +493,33 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable inherited
+     *
+     * @return boolean
      */
-    public function getInherited()
+    public function isInherited()
     {
         return $this->inherited;
     }
 
     /**
-     * @param mixed $inherited
+     * Gets the private variable inherited
+     *
+     * @param boolean $inherited
      *
      * @return Template
      */
     public function setInherited($inherited)
     {
-        $this->inherited = (bool)$inherited;
+        $this->inherited = (boolean)$inherited;
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable data_plaintext
+     *
+     * @return string
      */
     public function getDataPlaintext()
     {
@@ -352,7 +527,9 @@ class Template
     }
 
     /**
-     * @param mixed $data_plaintext
+     * Gets the private variable data_plaintext
+     *
+     * @param string $data_plaintext
      *
      * @return Template
      */
@@ -364,7 +541,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable data_html
+     *
+     * @return string
      */
     public function getDataHtml()
     {
@@ -372,7 +551,9 @@ class Template
     }
 
     /**
-     * @param mixed $data_html
+     * Gets the private variable data_html
+     *
+     * @param string $data_html
      *
      * @return Template
      */
@@ -384,7 +565,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable data_mobile
+     *
+     * @return string
      */
     public function getDataMobile()
     {
@@ -392,7 +575,9 @@ class Template
     }
 
     /**
-     * @param mixed $data_mobile
+     * Gets the private variable data_mobile
+     *
+     * @param string $data_mobile
      *
      * @return Template
      */
@@ -404,7 +589,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable data_wap
+     *
+     * @return string
      */
     public function getDataWap()
     {
@@ -412,7 +599,9 @@ class Template
     }
 
     /**
-     * @param mixed $data_wap
+     * Gets the private variable data_wap
+     *
+     * @param string $data_wap
      *
      * @return Template
      */
@@ -424,7 +613,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable data_avantgo
+     *
+     * @return string
      */
     public function getDataAvantgo()
     {
@@ -432,7 +623,9 @@ class Template
     }
 
     /**
-     * @param mixed $data_avantgo
+     * Gets the private variable data_avantgo
+     *
+     * @param string $data_avantgo
      *
      * @return Template
      */
@@ -444,7 +637,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable data_aol
+     *
+     * @return string
      */
     public function getDataAol()
     {
@@ -452,7 +647,9 @@ class Template
     }
 
     /**
-     * @param mixed $data_aol
+     * Gets the private variable data_aol
+     *
+     * @param string $data_aol
      *
      * @return Template
      */
@@ -464,6 +661,8 @@ class Template
     }
 
     /**
+     * Sets the private variable data_xml
+     *
      * @return mixed
      */
     public function getDataXml()
@@ -472,6 +671,8 @@ class Template
     }
 
     /**
+     * Gets the private variable data_xml
+     *
      * @param mixed $data_xml
      *
      * @return Template
@@ -492,7 +693,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable replace_fields
+     *
+     * @return string
      */
     public function getReplaceFields()
     {
@@ -500,7 +703,9 @@ class Template
     }
 
     /**
-     * @param mixed $replace_fields
+     * Gets the private variable replace_fields
+     *
+     * @param string $replace_fields
      *
      * @return Template
      */
@@ -512,7 +717,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable notes
+     *
+     * @return string
      */
     public function getNotes()
     {
@@ -520,7 +727,9 @@ class Template
     }
 
     /**
-     * @param mixed $notes
+     * Gets the private variable notes
+     *
+     * @param string $notes
      *
      * @return Template
      */
@@ -532,47 +741,57 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable plain_has_relational
+     *
+     * @return boolean
      */
-    public function getPlainHasRelational()
+    public function isPlainHasRelational()
     {
         return $this->plain_has_relational;
     }
 
     /**
-     * @param mixed $plain_has_relational
+     * Gets the private variable plain_has_relational
+     *
+     * @param boolean $plain_has_relational
      *
      * @return Template
      */
     public function setPlainHasRelational($plain_has_relational)
     {
-        $this->plain_has_relational = (bool)$plain_has_relational;
+        $this->plain_has_relational = (boolean)$plain_has_relational;
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable html_has_relational
+     *
+     * @return boolean
      */
-    public function getHtmlHasRelational()
+    public function isHtmlHasRelational()
     {
         return $this->html_has_relational;
     }
 
     /**
-     * @param mixed $html_has_relational
+     * Gets the private variable html_has_relational
+     *
+     * @param boolean $html_has_relational
      *
      * @return Template
      */
     public function setHtmlHasRelational($html_has_relational)
     {
-        $this->html_has_relational = (bool)$html_has_relational;
+        $this->html_has_relational = (boolean)$html_has_relational;
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable library_id
+     *
+     * @return int
      */
     public function getLibraryId()
     {
@@ -580,7 +799,9 @@ class Template
     }
 
     /**
-     * @param mixed $library_id
+     * Gets the private variable library_id
+     *
+     * @param int $library_id
      *
      * @return Template
      */
@@ -592,7 +813,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable layout_id
+     *
+     * @return int
      */
     public function getLayoutId()
     {
@@ -600,7 +823,9 @@ class Template
     }
 
     /**
-     * @param mixed $layout_id
+     * Gets the private variable layout_id
+     *
+     * @param int $layout_id
      *
      * @return Template
      */
@@ -612,7 +837,9 @@ class Template
     }
 
     /**
-     * @return mixed
+     * Sets the private variable skip
+     *
+     * @return int
      */
     public function getSkip()
     {
@@ -620,19 +847,23 @@ class Template
     }
 
     /**
-     * @param mixed $skip
+     * Gets the private variable skip
+     *
+     * @param int $skip
      *
      * @return Template
      */
     public function setSkip($skip)
     {
-        $this->skip = $skip;
+        $this->skip = (int)$skip;
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable max
+     *
+     * @return int
      */
     public function getMax()
     {
@@ -640,15 +871,18 @@ class Template
     }
 
     /**
-     * @param mixed $max
+     * Gets the private variable max
+     *
+     * @param int $max
      *
      * @return Template
      */
     public function setMax($max)
     {
-        $this->max = $max;
+        $this->max = (int)$max;
 
         return $this;
     }
-    
+
+
 }

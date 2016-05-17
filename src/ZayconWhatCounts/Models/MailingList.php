@@ -9,49 +9,218 @@
 namespace ZayconWhatCounts;
 
 
+/**
+ * Class MailingList
+ * @package ZayconWhatCounts
+ */
 class MailingList
 {
+	/**
+     * @var integer $id
+     */
     private $id;
+
+	/**
+     * @var integer $realm_id
+     */
     private $realm_id;
+
+	/**
+     * @var integer $template_id
+     */
     private $template_id;
+
+	/**
+     * @var string $name
+     */
     private $name;
+
+	/**
+     * @var integer $folder_id
+     */
     private $folder_id;
+
+	/**
+     * @var integer $type
+     */
     private $type;
+
+	/**
+     * @var string $from_address
+     */
     private $from_address;
+
+	/**
+     * @var string $reply_to_address
+     */
     private $reply_to_address;
+
+	/**
+     * @var string $mail_from_address
+     */
     private $mail_from_address;
+
+	/**
+     * @var string $description
+     */
     private $description;
+
+	/**
+     * @var \DateTime $created_date
+     */
     private $created_date;
+
+	/**
+     * @var \DateTime $updated_date
+     */
     private $updated_date;
+
+	/**
+     * @var integer $subscribe_email_template_id
+     */
     private $subscribe_email_template_id;
+
+	/**
+     * @var integer $unsubscribe_email_template_id
+     */
     private $unsubscribe_email_template_id;
+
+	/**
+     * @var boolean $confirm_subs
+     */
     private $confirm_subs;
+
+	/**
+     * @var boolean $send_courtesy_subs_email
+     */
     private $send_courtesy_subs_email;
+
+	/**
+     * @var boolean $send_courtesy_unsubs_email
+     */
     private $send_courtesy_unsubs_email;
+
+	/**
+     * @var string $admin_email
+     */
     private $admin_email;
+
+	/**
+     * @var string $confirmation_sub_goto
+     */
     private $confirmation_sub_goto;
+
+	/**
+     * @var string $confirmation_unsub_goto
+     */
     private $confirmation_unsub_goto;
+
+	/**
+     * @var boolean $tracking_read_enabled
+     */
     private $tracking_read_enabled;
+
+	/**
+     * @var boolean $tracking_clickthrough_enabled
+     */
     private $tracking_clickthrough_enabled;
+
+	/**
+     * @var boolean $use_sticky_campaign
+     */
     private $use_sticky_campaign;
+
+	/**
+     * @var boolean $ftaf_use_list_from_address
+     */
     private $ftaf_use_list_from_address;
+
+	/**
+     * @var integer $vmta_id
+     */
     private $vmta_id;
+
+	/**
+     * @var integer $base_url_id
+     */
     private $base_url_id;
+
+	/**
+     * @var boolean $unsubscribe_header_enabled
+     */
     private $unsubscribe_header_enabled;
+
+	/**
+     * @var integer $parent_template_id
+     */
     private $parent_template_id;
+
+	/**
+     * @var boolean $is_template
+     */
     private $is_template;
+
+	/**
+     * @var integer $default_lifecycle_campaign_id
+     */
     private $default_lifecycle_campaign_id;
+
+	/**
+     * @var boolean $default_lifecycle
+     */
     private $default_lifecycle;
+
+	/**
+     * @var string $unsub_header_http_value
+     */
     private $unsub_header_http_value;
+
+	/**
+     * @var string $unsub_header_email_value
+     */
     private $unsub_header_email_value;
+
+	/**
+     * @var integer $subscriber_count_total 
+     */
     private $subscriber_count_total;
+
+	/**
+     * @var integer $subscriber_count_plain
+     */
     private $subscriber_count_plain;
+
+	/**
+     * @var integer $subscriber_count_html
+     */
     private $subscriber_count_html;
+
+	/**
+     * @var integer $subscriber_count_rss
+     */
     private $subscriber_count_rss;
+
+	/**
+     * @var integer $subscriber_count_mime
+     */
     private $subscriber_count_mime;
+
+	/**
+     * @var integer $skip
+     */
     private $skip;
+
+	/**
+     * @var integer $max
+     */
     private $max;
 
+	/**
+     * MailingList constructor.
+     *
+     * @param \stdClass|NULL $list_response
+     * @param null           $time_zone
+     */
     public function __construct(\stdClass $list_response = NULL, $time_zone = NULL)
     {
         if (isset($list_response))
@@ -67,8 +236,8 @@ class MailingList
                 ->setReplyToAddress($list_response->listReplyToAddress)
                 ->setMailFromAddress($list_response->listMailFromAddress)
                 ->setDescription($list_response->listDescription)
-                ->setCreatedDate($list_response->listCreatedDate, $time_zone)
-                ->setUpdatedDate($list_response->listUpdatedDate, $time_zone)
+                ->setCreatedDate($list_response->listCreatedDate, 'M j, Y g:i:s A', $time_zone)
+                ->setUpdatedDate($list_response->listUpdatedDate, 'M j, Y g:i:s A', $time_zone)
                 ->setSubscribeEmailTemplateId($list_response->listSubscribeEmailTemplateId)
                 ->setUnsubscribeEmailTemplateId($list_response->listUnsubscribeEmailTemplateId)
                 ->setConfirmSubs($list_response->listConfirmSubs)
@@ -100,6 +269,9 @@ class MailingList
         }
     }
 
+	/**
+     * @return array
+     */
     public function getRequestArray()
     {
         $request_array = array(
@@ -113,23 +285,23 @@ class MailingList
             'listDescription' => $this->getDescription(),
             'listSubscribeEmailTemplateId' => $this->getSubscribeEmailTemplateId(),
             'listUnsubscribeEmailTemplateId' => $this->getUnsubscribeEmailTemplateId(),
-            'listConfirmSubs' => $this->getConfirmSubs(),
-            'listSendCourtesySubsEmail' => $this->getSendCourtesySubsEmail(),
-            'listSendCourtesyUnsubsEmail' => $this->getSendCourtesyUnsubsEmail(),
+            'listConfirmSubs' => $this->isConfirmSubs(),
+            'listSendCourtesySubsEmail' => $this->isSendCourtesySubsEmail(),
+            'listSendCourtesyUnsubsEmail' => $this->isSendCourtesyUnsubsEmail(),
             'listAdminEmail' => $this->getAdminEmail(),
             'listConfirmationSubGoto' => $this->getConfirmationSubGoto(),
             'listConfirmationUnsubGoto' => $this->getConfirmationUnsubGoto(),
-            'listTrackingReadEnabled' => $this->getTrackingReadEnabled(),
-            'listTrackingClickthroughEnabled' => $this->getTrackingClickthroughEnabled(),
-            'listUseStickyCampaign' => $this->getUseStickyCampaign(),
-            'ftafUseListFromAddress' => $this->getFtafUseListFromAddress(),
+            'listTrackingReadEnabled' => $this->isTrackingReadEnabled(),
+            'listTrackingClickthroughEnabled' => $this->isTrackingClickthroughEnabled(),
+            'listUseStickyCampaign' => $this->isUseStickyCampaign(),
+            'ftafUseListFromAddress' => $this->isFtafUseListFromAddress(),
             'vmtaId' => $this->getVmtaId(),
             'baseUrlId' => $this->getBaseUrlId(),
-            'unsubscribeHeaderEnabled' => $this->getUnsubscribeHeaderEnabled(),
+            'unsubscribeHeaderEnabled' => $this->isUnsubscribeHeaderEnabled(),
             'parentTemplateId' => $this->getParentTemplateId(),
-            'isTemplate' => $this->getIsTemplate(),
+            'isTemplate' => $this->isIsTemplate(),
             'defaultLifecycleCampaignId' => $this->getDefaultLifecycleCampaignId(),
-            'defaultLifecycle' => $this->getDefaultLifecycle(),
+            'defaultLifecycle' => $this->isDefaultLifecycle(),
             'unsubHeaderHttpValue' => $this->getUnsubHeaderHttpValue(),
             'unsubHeaderEmailValue' => $this->getUnsubHeaderEmailValue()
         );
@@ -137,7 +309,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable id
+     *
+     * @return int
      */
     public function getId()
     {
@@ -145,7 +319,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $id
+     * Gets the private variable id
+     *
+     * @param int $id
      *
      * @return MailingList
      */
@@ -157,7 +333,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable realm_id
+     *
+     * @return int
      */
     public function getRealmId()
     {
@@ -165,7 +343,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $realm_id
+     * Gets the private variable realm_id
+     *
+     * @param int $realm_id
      *
      * @return MailingList
      */
@@ -177,7 +357,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable template_id
+     *
+     * @return int
      */
     public function getTemplateId()
     {
@@ -185,7 +367,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $template_id
+     * Gets the private variable template_id
+     *
+     * @param int $template_id
      *
      * @return MailingList
      */
@@ -197,7 +381,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -205,7 +391,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $name
+     * Gets the private variable name
+     *
+     * @param string $name
      *
      * @return MailingList
      */
@@ -217,7 +405,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable folder_id
+     *
+     * @return int
      */
     public function getFolderId()
     {
@@ -225,7 +415,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $folder_id
+     * Gets the private variable folder_id
+     *
+     * @param int $folder_id
      *
      * @return MailingList
      */
@@ -237,7 +429,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable type
+     *
+     * @return int
      */
     public function getType()
     {
@@ -245,7 +439,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $type
+     * Gets the private variable type
+     *
+     * @param int $type
      *
      * @return MailingList
      */
@@ -257,7 +453,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable from_address
+     *
+     * @return string
      */
     public function getFromAddress()
     {
@@ -265,7 +463,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $from_address
+     * Gets the private variable from_address
+     *
+     * @param string $from_address
      *
      * @return MailingList
      */
@@ -277,7 +477,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable reply_to_address
+     *
+     * @return string
      */
     public function getReplyToAddress()
     {
@@ -285,7 +487,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $reply_to_address
+     * Gets the private variable reply_to_address
+     *
+     * @param string $reply_to_address
      *
      * @return MailingList
      */
@@ -297,7 +501,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable mail_from_address
+     *
+     * @return string
      */
     public function getMailFromAddress()
     {
@@ -305,7 +511,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $mail_from_address
+     * Gets the private variable mail_from_address
+     *
+     * @param string $mail_from_address
      *
      * @return MailingList
      */
@@ -317,7 +525,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable description
+     *
+     * @return string
      */
     public function getDescription()
     {
@@ -325,7 +535,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $description
+     * Gets the private variable description
+     *
+     * @param string $description
      *
      * @return MailingList
      */
@@ -337,7 +549,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable created_date
+     *
+     * @return \DateTime
      */
     public function getCreatedDate()
     {
@@ -345,20 +559,25 @@ class MailingList
     }
 
     /**
-     * @param mixed $created_date
-     * @param \DateTimeZone $time_zone
+     * Gets the private variable created_date
+     *
+     * @param \DateTime $created_date
+     * @param string $format
+     * @param string $time_zone
      *
      * @return MailingList
      */
-    public function setCreatedDate($created_date, $time_zone)
+    public function setCreatedDate($created_date, $format, $time_zone)
     {
-        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
+        $this->created_date = date_create_from_format($format, $created_date, $time_zone);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable updated_date
+     *
+     * @return \DateTime
      */
     public function getUpdatedDate()
     {
@@ -366,20 +585,25 @@ class MailingList
     }
 
     /**
-     * @param mixed $updated_date
-     * @param \DateTimeZone $time_zone
+     * Gets the private variable updated_date
+     *
+     * @param \DateTime $updated_date
+     * @param string $format
+     * @param string $time_zone
      *
      * @return MailingList
      */
-    public function setUpdatedDate($updated_date, $time_zone)
+    public function setUpdatedDate($updated_date, $format, $time_zone)
     {
-        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
+        $this->updated_date = date_create_from_format($format, $updated_date, $time_zone);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable subscribe_email_template_id
+     *
+     * @return int
      */
     public function getSubscribeEmailTemplateId()
     {
@@ -387,7 +611,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $subscribe_email_template_id
+     * Gets the private variable subscribe_email_template_id
+     *
+     * @param int $subscribe_email_template_id
      *
      * @return MailingList
      */
@@ -399,7 +625,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable unsubscribe_email_template_id
+     *
+     * @return int
      */
     public function getUnsubscribeEmailTemplateId()
     {
@@ -407,7 +635,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $unsubscribe_email_template_id
+     * Gets the private variable unsubscribe_email_template_id
+     *
+     * @param int $unsubscribe_email_template_id
      *
      * @return MailingList
      */
@@ -419,68 +649,81 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable confirm_subs
+     *
+     * @return boolean
      */
-    public function getConfirmSubs()
+    public function isConfirmSubs()
     {
         return $this->confirm_subs;
     }
 
     /**
-     * @param mixed $confirm_subs
+     * Gets the private variable confirm_subs
+     *
+     * @param boolean $confirm_subs
      *
      * @return MailingList
      */
     public function setConfirmSubs($confirm_subs)
     {
-        $this->confirm_subs = (bool)$confirm_subs;
-        //$this->confirm_subs = (bool)($confirm_subs == 1 || $confirm_subs == 'Y' || $confirm_subs === TRUE) ? TRUE : FALSE;
+        $this->confirm_subs = (boolean)($confirm_subs === TRUE || $confirm_subs == 1);
 
         return $this;
     }
-    
+
     /**
-     * @return mixed
+     * Sets the private variable send_courtesy_subs_email
+     *
+     * @return boolean
      */
-    public function getSendCourtesySubsEmail()
+    public function isSendCourtesySubsEmail()
     {
         return $this->send_courtesy_subs_email;
     }
 
     /**
-     * @param mixed $send_courtesy_subs_email
+     * Gets the private variable send_courtesy_subs_email
+     *
+     * @param boolean $send_courtesy_subs_email
      *
      * @return MailingList
      */
     public function setSendCourtesySubsEmail($send_courtesy_subs_email)
     {
-        $this->send_courtesy_subs_email = (bool)$send_courtesy_subs_email;
+        $this->send_courtesy_subs_email = (boolean)($send_courtesy_subs_email === TRUE || $send_courtesy_subs_email == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable send_courtesy_unsubs_email
+     *
+     * @return boolean
      */
-    public function getSendCourtesyUnsubsEmail()
+    public function isSendCourtesyUnsubsEmail()
     {
         return $this->send_courtesy_unsubs_email;
     }
 
     /**
-     * @param mixed $send_courtesy_unsubs_email
+     * Gets the private variable send_courtesy_unsubs_email
+     *
+     * @param boolean $send_courtesy_unsubs_email
      *
      * @return MailingList
      */
     public function setSendCourtesyUnsubsEmail($send_courtesy_unsubs_email)
     {
-        $this->send_courtesy_unsubs_email = (bool)$send_courtesy_unsubs_email;
+        $this->send_courtesy_unsubs_email = (boolean)($send_courtesy_unsubs_email === TRUE || $send_courtesy_unsubs_email == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable admin_email
+     *
+     * @return string
      */
     public function getAdminEmail()
     {
@@ -488,7 +731,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $admin_email
+     * Gets the private variable admin_email
+     *
+     * @param string $admin_email
      *
      * @return MailingList
      */
@@ -500,7 +745,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable confirmation_sub_goto
+     *
+     * @return string
      */
     public function getConfirmationSubGoto()
     {
@@ -508,7 +755,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $confirmation_sub_goto
+     * Gets the private variable confirmation_sub_goto
+     *
+     * @param string $confirmation_sub_goto
      *
      * @return MailingList
      */
@@ -520,7 +769,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable confirmation_unsub_goto
+     *
+     * @return string
      */
     public function getConfirmationUnsubGoto()
     {
@@ -528,7 +779,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $confirmation_unsub_goto
+     * Gets the private variable confirmation_unsub_goto
+     *
+     * @param string $confirmation_unsub_goto
      *
      * @return MailingList
      */
@@ -540,87 +793,105 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable tracking_read_enabled
+     *
+     * @return boolean
      */
-    public function getTrackingReadEnabled()
+    public function isTrackingReadEnabled()
     {
         return $this->tracking_read_enabled;
     }
 
     /**
-     * @param mixed $tracking_read_enabled
+     * Gets the private variable tracking_read_enabled
+     *
+     * @param boolean $tracking_read_enabled
      *
      * @return MailingList
      */
     public function setTrackingReadEnabled($tracking_read_enabled)
     {
-        $this->tracking_read_enabled = (bool)$tracking_read_enabled;
+        $this->tracking_read_enabled = (boolean)($tracking_read_enabled === TRUE || $tracking_read_enabled == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable tracking_clickthrough_enabled
+     *
+     * @return boolean
      */
-    public function getTrackingClickthroughEnabled()
+    public function isTrackingClickthroughEnabled()
     {
         return $this->tracking_clickthrough_enabled;
     }
 
     /**
-     * @param mixed $tracking_clickthrough_enabled
+     * Gets the private variable tracking_clickthrough_enabled
+     *
+     * @param boolean $tracking_clickthrough_enabled
      *
      * @return MailingList
      */
     public function setTrackingClickthroughEnabled($tracking_clickthrough_enabled)
     {
-        $this->tracking_clickthrough_enabled = (bool)$tracking_clickthrough_enabled;
+        $this->tracking_clickthrough_enabled = (boolean)($tracking_clickthrough_enabled === TRUE || $tracking_clickthrough_enabled == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable use_sticky_campaign
+     *
+     * @return boolean
      */
-    public function getUseStickyCampaign()
+    public function isUseStickyCampaign()
     {
         return $this->use_sticky_campaign;
     }
 
     /**
-     * @param mixed $use_sticky_campaign
+     * Gets the private variable use_sticky_campaign
+     *
+     * @param boolean $use_sticky_campaign
      *
      * @return MailingList
      */
     public function setUseStickyCampaign($use_sticky_campaign)
     {
-        $this->use_sticky_campaign = (bool)$use_sticky_campaign;
+        $this->use_sticky_campaign = (boolean)($use_sticky_campaign === TRUE || $use_sticky_campaign == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable ftaf_use_list_from_address
+     *
+     * @return boolean
      */
-    public function getFtafUseListFromAddress()
+    public function isFtafUseListFromAddress()
     {
         return $this->ftaf_use_list_from_address;
     }
 
     /**
-     * @param mixed $ftaf_use_list_from_address
+     * Gets the private variable ftaf_use_list_from_address
+     *
+     * @param boolean $ftaf_use_list_from_address
      *
      * @return MailingList
      */
     public function setFtafUseListFromAddress($ftaf_use_list_from_address)
     {
-        $this->ftaf_use_list_from_address = (bool)$ftaf_use_list_from_address;
+        $this->ftaf_use_list_from_address = (boolean)($ftaf_use_list_from_address === TRUE || $ftaf_use_list_from_address == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable vmta_id
+     *
+     * @return int
      */
     public function getVmtaId()
     {
@@ -628,7 +899,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $vmta_id
+     * Gets the private variable vmta_id
+     *
+     * @param int $vmta_id
      *
      * @return MailingList
      */
@@ -640,7 +913,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable base_url_id
+     *
+     * @return int
      */
     public function getBaseUrlId()
     {
@@ -648,7 +923,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $base_url_id
+     * Gets the private variable base_url_id
+     *
+     * @param int $base_url_id
      *
      * @return MailingList
      */
@@ -660,27 +937,33 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable unsubscribe_header_enabled
+     *
+     * @return boolean
      */
-    public function getUnsubscribeHeaderEnabled()
+    public function isUnsubscribeHeaderEnabled()
     {
         return $this->unsubscribe_header_enabled;
     }
 
     /**
-     * @param mixed $unsubscribe_header_enabled
+     * Gets the private variable unsubscribe_header_enabled
+     *
+     * @param boolean $unsubscribe_header_enabled
      *
      * @return MailingList
      */
     public function setUnsubscribeHeaderEnabled($unsubscribe_header_enabled)
     {
-        $this->unsubscribe_header_enabled = (bool)$unsubscribe_header_enabled;
+        $this->unsubscribe_header_enabled = (boolean)($unsubscribe_header_enabled === TRUE || $unsubscribe_header_enabled == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable parent_template_id
+     *
+     * @return int
      */
     public function getParentTemplateId()
     {
@@ -688,7 +971,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $parent_template_id
+     * Gets the private variable parent_template_id
+     *
+     * @param int $parent_template_id
      *
      * @return MailingList
      */
@@ -700,27 +985,33 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable is_template
+     *
+     * @return boolean
      */
-    public function getIsTemplate()
+    public function isIsTemplate()
     {
         return $this->is_template;
     }
 
     /**
-     * @param mixed $is_template
+     * Gets the private variable is_template
+     *
+     * @param boolean $is_template
      *
      * @return MailingList
      */
     public function setIsTemplate($is_template)
     {
-        $this->is_template = (bool)$is_template;
+        $this->is_template = (boolean)($is_template === TRUE || $is_template == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable default_lifecycle_campaign_id
+     *
+     * @return int
      */
     public function getDefaultLifecycleCampaignId()
     {
@@ -728,7 +1019,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $default_lifecycle_campaign_id
+     * Gets the private variable default_lifecycle_campaign_id
+     *
+     * @param int $default_lifecycle_campaign_id
      *
      * @return MailingList
      */
@@ -740,27 +1033,33 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable default_lifecycle
+     *
+     * @return boolean
      */
-    public function getDefaultLifecycle()
+    public function isDefaultLifecycle()
     {
         return $this->default_lifecycle;
     }
 
     /**
-     * @param mixed $default_lifecycle
+     * Gets the private variable default_lifecycle
+     *
+     * @param boolean $default_lifecycle
      *
      * @return MailingList
      */
     public function setDefaultLifecycle($default_lifecycle)
     {
-        $this->default_lifecycle = (bool)$default_lifecycle;
+        $this->default_lifecycle = (boolean)($default_lifecycle === TRUE || $default_lifecycle == 1);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable unsub_header_http_value
+     *
+     * @return string
      */
     public function getUnsubHeaderHttpValue()
     {
@@ -768,7 +1067,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $unsub_header_http_value
+     * Gets the private variable unsub_header_http_value
+     *
+     * @param string $unsub_header_http_value
      *
      * @return MailingList
      */
@@ -780,7 +1081,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable unsub_header_email_value
+     *
+     * @return string
      */
     public function getUnsubHeaderEmailValue()
     {
@@ -788,7 +1091,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $unsub_header_email_value
+     * Gets the private variable unsub_header_email_value
+     *
+     * @param string $unsub_header_email_value
      *
      * @return MailingList
      */
@@ -800,7 +1105,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable subscriber_count_total
+     *
+     * @return int
      */
     public function getSubscriberCountTotal()
     {
@@ -808,7 +1115,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $subscriber_count_total
+     * Gets the private variable subscriber_count_total
+     *
+     * @param int $subscriber_count_total
      *
      * @return MailingList
      */
@@ -820,7 +1129,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable subscriber_count_plain
+     *
+     * @return int
      */
     public function getSubscriberCountPlain()
     {
@@ -828,7 +1139,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $subscriber_count_plain
+     * Gets the private variable subscriber_count_plain
+     *
+     * @param int $subscriber_count_plain
      *
      * @return MailingList
      */
@@ -840,7 +1153,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable subscriber_count_html
+     *
+     * @return int
      */
     public function getSubscriberCountHtml()
     {
@@ -848,7 +1163,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $subscriber_count_html
+     * Gets the private variable subscriber_count_html
+     *
+     * @param int $subscriber_count_html
      *
      * @return MailingList
      */
@@ -860,7 +1177,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable subscriber_count_rss
+     *
+     * @return int
      */
     public function getSubscriberCountRss()
     {
@@ -868,7 +1187,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $subscriber_count_rss
+     * Gets the private variable subscriber_count_rss
+     *
+     * @param int $subscriber_count_rss
      *
      * @return MailingList
      */
@@ -880,7 +1201,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable subscriber_count_mime
+     *
+     * @return int
      */
     public function getSubscriberCountMime()
     {
@@ -888,7 +1211,9 @@ class MailingList
     }
 
     /**
-     * @param mixed $subscriber_count_mime
+     * Gets the private variable subscriber_count_mime
+     *
+     * @param int $subscriber_count_mime
      *
      * @return MailingList
      */
@@ -900,7 +1225,9 @@ class MailingList
     }
 
     /**
-     * @return mixed
+     * Sets the private variable skip
+     *
+     * @return int
      */
     public function getSkip()
     {
@@ -908,19 +1235,23 @@ class MailingList
     }
 
     /**
-     * @param mixed $skip
+     * Gets the private variable skip
+     *
+     * @param int $skip
      *
      * @return MailingList
      */
     public function setSkip($skip)
     {
-        $this->skip = $skip;
+        $this->skip = (int)$skip;
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable max
+     *
+     * @return int
      */
     public function getMax()
     {
@@ -928,13 +1259,15 @@ class MailingList
     }
 
     /**
-     * @param mixed $max
+     * Gets the private variable max
+     *
+     * @param int $max
      *
      * @return MailingList
      */
     public function setMax($max)
     {
-        $this->max = $max;
+        $this->max = (int)$max;
 
         return $this;
     }

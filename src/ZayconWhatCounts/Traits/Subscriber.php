@@ -151,8 +151,8 @@
 			$subscriber
 				->setId($response_data->subscriberId)
 				->setRealmId($response_data->realmId)
-				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()))
-				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()))
+				->setCreatedDate($response_data->createdDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
+				->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
 				->setMd5Encryption($response_data->md5Encryption)
 				->setSha1Encryption($response_data->sha1Encryption)
 				->setSkip($response_data->skip)
@@ -172,7 +172,7 @@
 			$response_data = $whatcounts->update($this->subscriber_stub, $subscriber);
 
 			$subscriber
-				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
+				->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
 		/**

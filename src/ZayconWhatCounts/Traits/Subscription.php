@@ -28,7 +28,7 @@
 			
 			$subscription
 				->setId($response_data->subscriptionId)
-				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()))
+				->setCreatedDate($response_data->createdDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
 				->setSkip($response_data->skip)
 				->setMax($response_data->max);
 		}

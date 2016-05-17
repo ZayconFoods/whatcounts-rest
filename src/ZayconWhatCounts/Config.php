@@ -8,12 +8,18 @@
 
 	namespace ZayconWhatCounts;
 
-
+	/**
+	 * Class Config
+	 * @package ZayconWhatCounts
+	 */
 	class Config
 	{
-
+		
 		private static $config;
 
+		/**
+		 * @return array
+		 */
 		public static function getInstance()
 		{
 			if (NULL === self::$config) {
@@ -38,6 +44,11 @@
 			return self::$config;
 		}
 
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
 		public static function get($value)
 		{
 			$cfg = self::getInstance();
@@ -57,24 +68,46 @@
 			return '';
 		}
 
+		/**
+		 * @param $value
+		 */
 		public static function append($value)
 		{
 			$cfg = self::getInstance();
 			self::$config = array_merge($cfg, $value);
 		}
 
+		/**
+		 * @param $value
+		 * @param string $env
+		 */
 		public static function realm($value, $env = 'production')
 		{
 			self::getInstance();
 			self::$config[$env]['realm'] = $value;
 		}
 
+		/**
+		 * @param $value
+		 * @param string $env
+		 */
 		public static function password($value, $env = 'production')
 		{
 			self::$config[$env]['password'] = $value;
 		}
 
+		/**
+		 * Config constructor.
+		 */
 		protected function __construct() {}
+
+		/**
+		 *
+		 */
 		protected function __clone() {}
+
+		/**
+		 *
+		 */
 		protected function __wakeup() {}
 	}

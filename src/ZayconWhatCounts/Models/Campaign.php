@@ -9,32 +9,133 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class Campaign
+	 * @package ZayconWhatCounts
+	 */
 	class Campaign
 	{
+		/**
+		 * @var object $campaign_summary
+		 */
 		private $campaign_summary;
+
+		/**
+		 * @var integer $segment_type
+		 */
 		private $segment_type;
+
+		/**
+		 * @var boolean $is_saas
+		 */
 		private $is_saas;
+
+		/**
+		 * @var boolean $sna_enabled
+		 */
 		private $sna_enabled;
+
+		/**
+		 * @var string $content_html
+		 */
 		private $content_html;
+
+		/**
+		 * @var string $content_mobile
+		 */
 		private $content_mobile;
+
+		/**
+		 * @var \SimpleXMLElement $data_xml
+		 */
 		private $data_xml;
+
+		/**
+		 * @var string $content_text
+		 */
 		private $content_text;
+
+		/**
+		 * @var integer $id
+		 */
 		private $id;
+
+		/**
+		 * @var integer $realm_id
+		 */
 		private $realm_id;
+
+		/**
+		 * @var integer $list_id
+		 */
 		private $list_id;
+
+		/**
+		 * @var integer $template_id
+		 */
 		private $template_id;
+
+		/**
+		 * @var \DateTime $start_date
+		 */
 		private $start_date;
+
+		/**
+		 * @var string $subject
+		 */
 		private $subject;
+
+		/**
+		 * @var string $name
+		 */
 		private $name;
+
+		/**
+		 * @var string $alias
+		 */
 		private $alias;
+
+		/**
+		 * @var boolean $deliverability
+		 */
 		private $deliverability;
+
+		/**
+		 * @var integer $forced_format
+		 */
 		private $forced_format;
+
+		/**
+		 * @var string $list_name
+		 */
 		private $list_name;
+
+		/**
+		 * @var integer $segmentation_id
+		 */
 		private $segmentation_id;
+
+		/**
+		 * @var string $suppression_list
+		 */
 		private $suppression_list;
+
+		/**
+		 * @var integer $skip
+		 */
 		private $skip;
+
+		/**
+		 * @var integer $max
+		 */
 		private $max;
 
+		/**
+		 * Campaign constructor.
+		 *
+		 * @param \stdClass|NULL $campaign_response
+		 * @param null           $time_zone
+		 */
 		public function __construct(\stdClass $campaign_response = NULL, $time_zone = NULL)
 		{
 			if (isset($campaign_response))
@@ -45,7 +146,7 @@
 					->setRealmId($campaign_response->campaignRealmId)
 					->setListId($campaign_response->campaignListId)
 					->setTemplateId($campaign_response->campaignTemplateId)
-					->setStartDate($campaign_response->campaignStartDate, $time_zone)
+					->setStartDate($campaign_response->campaignStartDate, 'M j, Y g:i:s A', $time_zone)
 					->setSubject($campaign_response->campaignSubject)
 					->setAlias($campaign_response->campaignAlias)
 					->setDeliverability($campaign_response->campaignDeliverability)
@@ -101,7 +202,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable campaign_summary
+		 *
+		 * @return object
 		 */
 		public function getCampaignSummary()
 		{
@@ -109,7 +212,9 @@
 		}
 
 		/**
-		 * @param mixed $campaign_summary
+		 * Gets the private variable campaign_summary
+		 *
+		 * @param object $campaign_summary
 		 *
 		 * @return Campaign
 		 */
@@ -121,7 +226,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable segment_type
+		 *
+		 * @return int
 		 */
 		public function getSegmentType()
 		{
@@ -129,7 +236,9 @@
 		}
 
 		/**
-		 * @param mixed $segment_type
+		 * Gets the private variable segment_type
+		 *
+		 * @param int $segment_type
 		 *
 		 * @return Campaign
 		 */
@@ -141,47 +250,57 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable is_saas
+		 *
+		 * @return boolean
 		 */
-		public function getIsSaas()
+		public function isIsSaas()
 		{
 			return $this->is_saas;
 		}
 
 		/**
-		 * @param mixed $is_saas
+		 * Gets the private variable is_saas
+		 *
+		 * @param boolean $is_saas
 		 *
 		 * @return Campaign
 		 */
 		public function setIsSaas($is_saas)
 		{
-			$this->is_saas = (bool)$is_saas;
+			$this->is_saas = (boolean)($is_saas === TRUE || $is_saas == 1);
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable sna_enabled
+		 *
+		 * @return boolean
 		 */
-		public function getSnaEnabled()
+		public function isSnaEnabled()
 		{
 			return $this->sna_enabled;
 		}
 
 		/**
-		 * @param mixed $sna_enabled
+		 * Gets the private variable sna_enabled
+		 *
+		 * @param boolean $sna_enabled
 		 *
 		 * @return Campaign
 		 */
 		public function setSnaEnabled($sna_enabled)
 		{
-			$this->sna_enabled = (bool)$sna_enabled;
+			$this->sna_enabled = (boolean)($sna_enabled === TRUE || $sna_enabled == 1);
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable content_html
+		 *
+		 * @return string
 		 */
 		public function getContentHtml()
 		{
@@ -189,7 +308,9 @@
 		}
 
 		/**
-		 * @param mixed $content_html
+		 * Gets the private variable content_html
+		 *
+		 * @param string $content_html
 		 *
 		 * @return Campaign
 		 */
@@ -201,7 +322,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable content_mobile
+		 *
+		 * @return string
 		 */
 		public function getContentMobile()
 		{
@@ -209,7 +332,9 @@
 		}
 
 		/**
-		 * @param mixed $content_mobile
+		 * Gets the private variable content_mobile
+		 *
+		 * @param string $content_mobile
 		 *
 		 * @return Campaign
 		 */
@@ -221,7 +346,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable data_xml
+		 *
+		 * @return \SimpleXMLElement
 		 */
 		public function getDataXml()
 		{
@@ -229,19 +356,22 @@
 		}
 
 		/**
-		 * @param mixed $data_xml
+		 * Gets the private variable data_xml
+		 *
+		 * @param \SimpleXMLElement $data_xml
 		 *
 		 * @return Campaign
 		 */
 		public function setDataXml($data_xml)
 		{
 			$this->data_xml = new \SimpleXMLElement('<data_xml>' . $data_xml . '</data_xml>');
-
-			return $this;
+            return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable content_text
+		 *
+		 * @return string
 		 */
 		public function getContentText()
 		{
@@ -249,7 +379,9 @@
 		}
 
 		/**
-		 * @param mixed $content_text
+		 * Gets the private variable content_text
+		 *
+		 * @param string $content_text
 		 *
 		 * @return Campaign
 		 */
@@ -261,7 +393,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable id
+		 *
+		 * @return int
 		 */
 		public function getId()
 		{
@@ -269,7 +403,9 @@
 		}
 
 		/**
-		 * @param mixed $id
+		 * Gets the private variable id
+		 *
+		 * @param int $id
 		 *
 		 * @return Campaign
 		 */
@@ -281,7 +417,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable realm_id
+		 *
+		 * @return int
 		 */
 		public function getRealmId()
 		{
@@ -289,7 +427,9 @@
 		}
 
 		/**
-		 * @param mixed $realm_id
+		 * Gets the private variable realm_id
+		 *
+		 * @param int $realm_id
 		 *
 		 * @return Campaign
 		 */
@@ -301,7 +441,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable list_id
+		 *
+		 * @return int
 		 */
 		public function getListId()
 		{
@@ -309,7 +451,9 @@
 		}
 
 		/**
-		 * @param mixed $list_id
+		 * Gets the private variable list_id
+		 *
+		 * @param int $list_id
 		 *
 		 * @return Campaign
 		 */
@@ -321,7 +465,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable template_id
+		 *
+		 * @return int
 		 */
 		public function getTemplateId()
 		{
@@ -329,7 +475,9 @@
 		}
 
 		/**
-		 * @param mixed $template_id
+		 * Gets the private variable template_id
+		 *
+		 * @param int $template_id
 		 *
 		 * @return Campaign
 		 */
@@ -341,7 +489,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable start_date
+		 *
+		 * @return \DateTime
 		 */
 		public function getStartDate()
 		{
@@ -349,20 +499,25 @@
 		}
 
 		/**
-		 * @param mixed $start_date
-		 * @param \DateTimeZone $time_zone
+		 * Gets the private variable start_date
 		 *
+		 * @param \DateTime $start_date
+		 * @param string $format
+		 * @param string $time_zone
+		 * 
 		 * @return Campaign
 		 */
-		public function setStartDate($start_date, $time_zone)
+		public function setStartDate($start_date, $format, $time_zone)
 		{
-			$this->start_date = date_create_from_format('M j, Y g:i:s A', $start_date, $time_zone);
+			$this->start_date = date_create_from_format($format, $start_date, $time_zone);
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable subject
+		 *
+		 * @return string
 		 */
 		public function getSubject()
 		{
@@ -370,7 +525,9 @@
 		}
 
 		/**
-		 * @param mixed $subject
+		 * Gets the private variable subject
+		 *
+		 * @param string $subject
 		 *
 		 * @return Campaign
 		 */
@@ -382,7 +539,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable name
+		 *
+		 * @return string
 		 */
 		public function getName()
 		{
@@ -390,7 +549,9 @@
 		}
 
 		/**
-		 * @param mixed $name
+		 * Gets the private variable name
+		 *
+		 * @param string $name
 		 *
 		 * @return Campaign
 		 */
@@ -402,7 +563,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable alias
+		 *
+		 * @return string
 		 */
 		public function getAlias()
 		{
@@ -410,7 +573,9 @@
 		}
 
 		/**
-		 * @param mixed $alias
+		 * Gets the private variable alias
+		 *
+		 * @param string $alias
 		 *
 		 * @return Campaign
 		 */
@@ -422,27 +587,33 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable deliverability
+		 *
+		 * @return boolean
 		 */
-		public function getDeliverability()
+		public function isDeliverability()
 		{
 			return $this->deliverability;
 		}
 
 		/**
-		 * @param mixed $deliverability
+		 * Gets the private variable deliverability
+		 *
+		 * @param boolean $deliverability
 		 *
 		 * @return Campaign
 		 */
 		public function setDeliverability($deliverability)
 		{
-			$this->deliverability = (bool)$deliverability;
+			$this->deliverability = (boolean)($deliverability === TRUE || $deliverability == 1);
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable forced_format
+		 *
+		 * @return int
 		 */
 		public function getForcedFormat()
 		{
@@ -450,7 +621,9 @@
 		}
 
 		/**
-		 * @param mixed $forced_format
+		 * Gets the private variable forced_format
+		 *
+		 * @param int $forced_format
 		 *
 		 * @return Campaign
 		 */
@@ -462,7 +635,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable list_name
+		 *
+		 * @return string
 		 */
 		public function getListName()
 		{
@@ -470,7 +645,9 @@
 		}
 
 		/**
-		 * @param mixed $list_name
+		 * Gets the private variable list_name
+		 *
+		 * @param string $list_name
 		 *
 		 * @return Campaign
 		 */
@@ -482,7 +659,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable segmentation_id
+		 *
+		 * @return int
 		 */
 		public function getSegmentationId()
 		{
@@ -490,7 +669,9 @@
 		}
 
 		/**
-		 * @param mixed $segmentation_id
+		 * Gets the private variable segmentation_id
+		 *
+		 * @param int $segmentation_id
 		 *
 		 * @return Campaign
 		 */
@@ -502,7 +683,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable suppression_list
+		 *
+		 * @return string
 		 */
 		public function getSuppressionList()
 		{
@@ -510,7 +693,9 @@
 		}
 
 		/**
-		 * @param mixed $suppression_list
+		 * Gets the private variable suppression_list
+		 *
+		 * @param string $suppression_list
 		 *
 		 * @return Campaign
 		 */
@@ -522,7 +707,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable skip
+		 *
+		 * @return int
 		 */
 		public function getSkip()
 		{
@@ -530,19 +717,23 @@
 		}
 
 		/**
-		 * @param mixed $skip
+		 * Gets the private variable skip
+		 *
+		 * @param int $skip
 		 *
 		 * @return Campaign
 		 */
 		public function setSkip($skip)
 		{
-			$this->skip = $skip;
+			$this->skip = (int)$skip;
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable max
+		 *
+		 * @return int
 		 */
 		public function getMax()
 		{
@@ -550,53 +741,177 @@
 		}
 
 		/**
-		 * @param mixed $max
+		 * Gets the private variable max
+		 *
+		 * @param int $max
 		 *
 		 * @return Campaign
 		 */
 		public function setMax($max)
 		{
-			$this->max = $max;
+			$this->max = (int)$max;
 
 			return $this;
 		}
 
+
 	}
 
+	/**
+	 * Class CampaignSummary
+	 * @package ZayconWhatCounts
+	 */
 	class CampaignSummary
 	{
+		/**
+		 * @var integer $total_sent
+		 */
 		private $total_sent;
+
+		/**
+		 * @var integer $total_delivered
+		 */
 		private $total_delivered;
+
+		/**
+		 * @var integer $total_open
+		 */
 		private $total_open;
+
+		/**
+		 * @var integer $total_clickthroughs
+		 */
 		private $total_clickthroughs;
+
+		/**
+		 * @var integer $total_bounced
+		 */
 		private $total_bounced;
+
+		/**
+		 * @var integer $total_hard_bounces
+		 */
 		private $total_hard_bounces;
+
+		/**
+		 * @var integer $total_soft_bounces
+		 */
 		private $total_soft_bounces;
+
+		/**
+		 * @var integer $total_blocked
+		 */
 		private $total_blocked;
+
+		/**
+		 * @var integer $total_complaints
+		 */
 		private $total_complaints;
+
+		/**
+		 * @var integer $total_unsubscribes
+		 */
 		private $total_unsubscribes;
+
+		/**
+		 * @var integer $total_responders
+		 */
 		private $total_responders;
+
+		/**
+		 * @var integer $unique_open
+		 */
 		private $unique_open;
+
+		/**
+		 * @var integer $unique_clickthroughs
+		 */
 		private $unique_clickthroughs;
+
+		/**
+		 * @var integer $unique_unsubscribes
+		 */
 		private $unique_unsubscribes;
+
+		/**
+		 * @var integer $unique_complaints
+		 */
 		private $unique_complaints;
+
+		/**
+		 * @var integer $unique_bounced
+		 */
 		private $unique_bounced;
+
+		/**
+		 * @var integer $unique_soft_bounces
+		 */
 		private $unique_soft_bounces;
+
+		/**
+		 * @var integer $unique_hard_bounces
+		 */
 		private $unique_hard_bounces;
+
+		/**
+		 * @var integer $unique_blocked
+		 */
 		private $unique_blocked;
+
+		/**
+		 * @var float $click_to_open_rate
+		 */
 		private $click_to_open_rate;
+
+		/**
+		 * @var float $total_open_rate
+		 */
 		private $total_open_rate;
+
+		/**
+		 * @var float $unique_open_rates
+		 */
 		private $unique_open_rates;
+
+		/**
+		 * @var float $responder_rates
+		 */
 		private $responder_rates;
+
+		/**
+		 * @var float $unique_unsubscribe_rates
+		 */
 		private $unique_unsubscribe_rates;
+
+		/**
+		 * @var float $click_rates
+		 */
 		private $click_rates;
+
+		/**
+		 * @var float $unique_complaint_rates
+		 */
 		private $unique_complaint_rates;
+
+		/**
+		 * @var float $unique_click_rates
+		 */
 		private $unique_click_rates;
+
+		/**
+		 * @var float $bounce_rates
+		 */
 		private $bounce_rates;
+
+		/**
+		 * @var float $delivered_rates
+		 */
 		private $delivered_rates;
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_sent
+		 *
+		 * @return int
 		 */
 		public function getTotalSent()
 		{
@@ -604,7 +919,9 @@
 		}
 
 		/**
-		 * @param mixed $total_sent
+		 * Gets the private variable total_sent
+		 *
+		 * @param int $total_sent
 		 *
 		 * @return CampaignSummary
 		 */
@@ -616,7 +933,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_delivered
+		 *
+		 * @return int
 		 */
 		public function getTotalDelivered()
 		{
@@ -624,7 +943,9 @@
 		}
 
 		/**
-		 * @param mixed $total_delivered
+		 * Gets the private variable total_delivered
+		 *
+		 * @param int $total_delivered
 		 *
 		 * @return CampaignSummary
 		 */
@@ -636,7 +957,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_open
+		 *
+		 * @return int
 		 */
 		public function getTotalOpen()
 		{
@@ -644,7 +967,9 @@
 		}
 
 		/**
-		 * @param mixed $total_open
+		 * Gets the private variable total_open
+		 *
+		 * @param int $total_open
 		 *
 		 * @return CampaignSummary
 		 */
@@ -656,7 +981,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_clickthroughs
+		 *
+		 * @return int
 		 */
 		public function getTotalClickthroughs()
 		{
@@ -664,7 +991,9 @@
 		}
 
 		/**
-		 * @param mixed $total_clickthroughs
+		 * Gets the private variable total_clickthroughs
+		 *
+		 * @param int $total_clickthroughs
 		 *
 		 * @return CampaignSummary
 		 */
@@ -676,7 +1005,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_bounced
+		 *
+		 * @return int
 		 */
 		public function getTotalBounced()
 		{
@@ -684,7 +1015,9 @@
 		}
 
 		/**
-		 * @param mixed $total_bounced
+		 * Gets the private variable total_bounced
+		 *
+		 * @param int $total_bounced
 		 *
 		 * @return CampaignSummary
 		 */
@@ -696,7 +1029,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_hard_bounces
+		 *
+		 * @return int
 		 */
 		public function getTotalHardBounces()
 		{
@@ -704,7 +1039,9 @@
 		}
 
 		/**
-		 * @param mixed $total_hard_bounces
+		 * Gets the private variable total_hard_bounces
+		 *
+		 * @param int $total_hard_bounces
 		 *
 		 * @return CampaignSummary
 		 */
@@ -716,7 +1053,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_soft_bounces
+		 *
+		 * @return int
 		 */
 		public function getTotalSoftBounces()
 		{
@@ -724,7 +1063,9 @@
 		}
 
 		/**
-		 * @param mixed $total_soft_bounces
+		 * Gets the private variable total_soft_bounces
+		 *
+		 * @param int $total_soft_bounces
 		 *
 		 * @return CampaignSummary
 		 */
@@ -736,7 +1077,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_blocked
+		 *
+		 * @return int
 		 */
 		public function getTotalBlocked()
 		{
@@ -744,7 +1087,9 @@
 		}
 
 		/**
-		 * @param mixed $total_blocked
+		 * Gets the private variable total_blocked
+		 *
+		 * @param int $total_blocked
 		 *
 		 * @return CampaignSummary
 		 */
@@ -756,7 +1101,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_complaints
+		 *
+		 * @return int
 		 */
 		public function getTotalComplaints()
 		{
@@ -764,7 +1111,9 @@
 		}
 
 		/**
-		 * @param mixed $total_complaints
+		 * Gets the private variable total_complaints
+		 *
+		 * @param int $total_complaints
 		 *
 		 * @return CampaignSummary
 		 */
@@ -776,7 +1125,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_unsubscribes
+		 *
+		 * @return int
 		 */
 		public function getTotalUnsubscribes()
 		{
@@ -784,7 +1135,9 @@
 		}
 
 		/**
-		 * @param mixed $total_unsubscribes
+		 * Gets the private variable total_unsubscribes
+		 *
+		 * @param int $total_unsubscribes
 		 *
 		 * @return CampaignSummary
 		 */
@@ -796,7 +1149,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_responders
+		 *
+		 * @return int
 		 */
 		public function getTotalResponders()
 		{
@@ -804,7 +1159,9 @@
 		}
 
 		/**
-		 * @param mixed $total_responders
+		 * Gets the private variable total_responders
+		 *
+		 * @param int $total_responders
 		 *
 		 * @return CampaignSummary
 		 */
@@ -816,7 +1173,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_open
+		 *
+		 * @return int
 		 */
 		public function getUniqueOpen()
 		{
@@ -824,7 +1183,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_open
+		 * Gets the private variable unique_open
+		 *
+		 * @param int $unique_open
 		 *
 		 * @return CampaignSummary
 		 */
@@ -836,7 +1197,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_clickthroughs
+		 *
+		 * @return int
 		 */
 		public function getUniqueClickthroughs()
 		{
@@ -844,7 +1207,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_clickthroughs
+		 * Gets the private variable unique_clickthroughs
+		 *
+		 * @param int $unique_clickthroughs
 		 *
 		 * @return CampaignSummary
 		 */
@@ -856,7 +1221,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_unsubscribes
+		 *
+		 * @return int
 		 */
 		public function getUniqueUnsubscribes()
 		{
@@ -864,7 +1231,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_unsubscribes
+		 * Gets the private variable unique_unsubscribes
+		 *
+		 * @param int $unique_unsubscribes
 		 *
 		 * @return CampaignSummary
 		 */
@@ -876,7 +1245,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_complaints
+		 *
+		 * @return int
 		 */
 		public function getUniqueComplaints()
 		{
@@ -884,7 +1255,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_complaints
+		 * Gets the private variable unique_complaints
+		 *
+		 * @param int $unique_complaints
 		 *
 		 * @return CampaignSummary
 		 */
@@ -896,7 +1269,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_bounced
+		 *
+		 * @return int
 		 */
 		public function getUniqueBounced()
 		{
@@ -904,7 +1279,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_bounced
+		 * Gets the private variable unique_bounced
+		 *
+		 * @param int $unique_bounced
 		 *
 		 * @return CampaignSummary
 		 */
@@ -916,7 +1293,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_soft_bounces
+		 *
+		 * @return int
 		 */
 		public function getUniqueSoftBounces()
 		{
@@ -924,7 +1303,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_soft_bounces
+		 * Gets the private variable unique_soft_bounces
+		 *
+		 * @param int $unique_soft_bounces
 		 *
 		 * @return CampaignSummary
 		 */
@@ -936,7 +1317,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_hard_bounces
+		 *
+		 * @return int
 		 */
 		public function getUniqueHardBounces()
 		{
@@ -944,7 +1327,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_hard_bounces
+		 * Gets the private variable unique_hard_bounces
+		 *
+		 * @param int $unique_hard_bounces
 		 *
 		 * @return CampaignSummary
 		 */
@@ -956,7 +1341,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_blocked
+		 *
+		 * @return int
 		 */
 		public function getUniqueBlocked()
 		{
@@ -964,7 +1351,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_blocked
+		 * Gets the private variable unique_blocked
+		 *
+		 * @param int $unique_blocked
 		 *
 		 * @return CampaignSummary
 		 */
@@ -976,6 +1365,8 @@
 		}
 
 		/**
+		 * Sets the private variable click_to_open_rate
+		 *
 		 * @return mixed
 		 */
 		public function getClickToOpenRate()
@@ -984,19 +1375,22 @@
 		}
 
 		/**
-		 * @param mixed $click_to_open_rate
+		 * Gets the private variable click_to_open_rate
+		 *
+		 * @param float $click_to_open_rate
 		 *
 		 * @return CampaignSummary
 		 */
 		public function setClickToOpenRate($click_to_open_rate)
 		{
 			$this->click_to_open_rate = (float)$click_to_open_rate;
-
-			return $this;
+            return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable total_open_rate
+		 *
+		 * @return float
 		 */
 		public function getTotalOpenRate()
 		{
@@ -1004,7 +1398,9 @@
 		}
 
 		/**
-		 * @param mixed $total_open_rate
+		 * Gets the private variable total_open_rate
+		 *
+		 * @param float $total_open_rate
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1016,7 +1412,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_open_rates
+		 *
+		 * @return float
 		 */
 		public function getUniqueOpenRates()
 		{
@@ -1024,7 +1422,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_open_rates
+		 * Gets the private variable unique_open_rates
+		 *
+		 * @param float $unique_open_rates
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1036,7 +1436,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable responder_rates
+		 *
+		 * @return float
 		 */
 		public function getResponderRates()
 		{
@@ -1044,7 +1446,9 @@
 		}
 
 		/**
-		 * @param mixed $responder_rates
+		 * Gets the private variable responder_rates
+		 *
+		 * @param float $responder_rates
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1056,7 +1460,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_unsubscribe_rates
+		 *
+		 * @return float
 		 */
 		public function getUniqueUnsubscribeRates()
 		{
@@ -1064,7 +1470,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_unsubscribe_rates
+		 * Gets the private variable unique_unsubscribe_rates
+		 *
+		 * @param float $unique_unsubscribe_rates
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1076,7 +1484,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable click_rates
+		 *
+		 * @return float
 		 */
 		public function getClickRates()
 		{
@@ -1084,7 +1494,9 @@
 		}
 
 		/**
-		 * @param mixed $click_rates
+		 * Gets the private variable click_rates
+		 *
+		 * @param float $click_rates
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1096,7 +1508,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_complaint_rates
+		 *
+		 * @return float
 		 */
 		public function getUniqueComplaintRates()
 		{
@@ -1104,7 +1518,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_complaint_rates
+		 * Gets the private variable unique_complaint_rates
+		 *
+		 * @param float $unique_complaint_rates
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1116,7 +1532,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable unique_click_rates
+		 *
+		 * @return float
 		 */
 		public function getUniqueClickRates()
 		{
@@ -1124,7 +1542,9 @@
 		}
 
 		/**
-		 * @param mixed $unique_click_rates
+		 * Gets the private variable unique_click_rates
+		 *
+		 * @param float $unique_click_rates
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1136,7 +1556,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable bounce_rates
+		 *
+		 * @return float
 		 */
 		public function getBounceRates()
 		{
@@ -1144,7 +1566,9 @@
 		}
 
 		/**
-		 * @param mixed $bounce_rates
+		 * Gets the private variable bounce_rates
+		 *
+		 * @param float $bounce_rates
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1156,7 +1580,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable delivered_rates
+		 *
+		 * @return float
 		 */
 		public function getDeliveredRates()
 		{
@@ -1164,7 +1590,9 @@
 		}
 
 		/**
-		 * @param mixed $delivered_rates
+		 * Gets the private variable delivered_rates
+		 *
+		 * @param float $delivered_rates
 		 *
 		 * @return CampaignSummary
 		 */
@@ -1174,6 +1602,5 @@
 
 			return $this;
 		}
-
 
 	}

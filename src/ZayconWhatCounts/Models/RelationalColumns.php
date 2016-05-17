@@ -9,19 +9,70 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class RelationalColumns
+	 * @package ZayconWhatCounts
+	 */
 	class RelationalColumns
 	{
+		/**
+		 * @var integer $id
+		 */
 		private $id;
+
+		/**
+		 * @var integer $realm_id
+		 */
 		private $realm_id;
+
+		/**
+		 * @var integer $parent_table_id
+		 */
 		private $parent_table_id;
+
+		/**
+		 * @var bool $foreign_key
+		 */
 		private $foreign_key;
+
+		/**
+		 * @var bool $unique_field
+		 */
 		private $unique_field;
+
+		/**
+		 * @var integer $column_length
+		 */
 		private $column_length;
+
+		/**
+		 * @var string $name
+		 */
 		private $name;
+
+		/**
+		 * @var string $status
+		 */
 		private $status;
+
+		/**
+		 * @var string $storage_type
+		 */
 		private $storage_type;
+
+		/**
+		 * @var string $type
+		 */
 		private $type;
+
+		/**
+		 * @var \DateTime $created_date
+		 */
 		private $created_date;
+
+		/**
+		 * @var \DateTime $updated_date
+		 */
 		private $updated_date;
 
 		/**
@@ -45,12 +96,14 @@
 					->setStatus($relational_columns_response->status)
 					->setStorageType($relational_columns_response->storageType)
 					->setType($relational_columns_response->type)
-					->setCreatedDate($relational_columns_response->createdDate, $time_zone)
-					->setUpdatedDate($relational_columns_response->updatedDate, $time_zone);
+					->setCreatedDate($relational_columns_response->createdDate, 'M j, Y g:i:s A', $time_zone)
+					->setUpdatedDate($relational_columns_response->updatedDate, 'M j, Y g:i:s A', $time_zone);
 			}
 		}
 
 		/**
+		 * Generates array for API request.
+		 *
 		 * @return array
 		 */
 		public function getRequestArray()
@@ -69,6 +122,8 @@
 		}
 
 		/**
+		 * Gets the private variable $id value.
+		 * 
 		 * @return mixed
 		 */
 		public function getId()
@@ -77,6 +132,8 @@
 		}
 
 		/**
+		 * Sets the private variable $id value.
+		 * 
 		 * @param mixed $id
 		 *
 		 * @return RelationalColumns
@@ -89,6 +146,8 @@
 		}
 
 		/**
+		 * Gets the private variable $realm_id value.
+		 * 
 		 * @return mixed
 		 */
 		public function getRealmId()
@@ -97,6 +156,7 @@
 		}
 
 		/**
+		 * Sets the private variable $realm_id value.
 		 * @param mixed $realm_id
 		 *
 		 * @return RelationalColumns
@@ -109,6 +169,8 @@
 		}
 
 		/**
+		 * Gets the private variable $parent_table_id value.
+		 * 
 		 * @return mixed
 		 */
 		public function getParentTableId()
@@ -117,6 +179,8 @@
 		}
 
 		/**
+		 * Sets the private variable $parent_table_id value.
+		 * 
 		 * @param mixed $parent_table_id
 		 *
 		 * @return RelationalColumns
@@ -129,6 +193,8 @@
 		}
 
 		/**
+		 * Gets the private variable $foreign_key value.
+		 * 
 		 * @return mixed
 		 */
 		public function getForeignKey()
@@ -137,6 +203,8 @@
 		}
 
 		/**
+		 * Sets the private variable $foreign_key value.
+		 * 
 		 * @param mixed $foreign_key
 		 *
 		 * @return RelationalColumns
@@ -149,6 +217,8 @@
 		}
 
 		/**
+		 * Gets the private variable $unique_field value.
+		 * 
 		 * @return mixed
 		 */
 		public function getUniqueField()
@@ -157,6 +227,8 @@
 		}
 
 		/**
+		 * Sets the private variable $unique_field value.
+		 * 
 		 * @param mixed $unique_field
 		 *
 		 * @return RelationalColumns
@@ -169,6 +241,8 @@
 		}
 
 		/**
+		 * Gets the private variable $column_length value.
+		 * 
 		 * @return mixed
 		 */
 		public function getColumnLength()
@@ -177,6 +251,8 @@
 		}
 
 		/**
+		 * Sets the private variable $column_length value.
+		 * 
 		 * @param mixed $column_length
 		 *
 		 * @return RelationalColumns
@@ -189,6 +265,8 @@
 		}
 
 		/**
+		 * Gets the private variable $name value.
+		 * 
 		 * @return mixed
 		 */
 		public function getName()
@@ -197,6 +275,8 @@
 		}
 
 		/**
+		 * Sets the private variable $name value.
+		 * 
 		 * @param mixed $name
 		 *
 		 * @return RelationalColumns
@@ -209,6 +289,8 @@
 		}
 
 		/**
+		 * Gets the private variable $status value.
+		 * 
 		 * @return mixed
 		 */
 		public function getStatus()
@@ -217,6 +299,8 @@
 		}
 
 		/**
+		 * Sets the private variable $status value.
+		 * 
 		 * @param mixed $status
 		 *
 		 * @return RelationalColumns
@@ -229,6 +313,8 @@
 		}
 
 		/**
+		 * Gets the private variable $storage_type value.
+		 * 
 		 * @return mixed
 		 */
 		public function getStorageType()
@@ -237,6 +323,8 @@
 		}
 
 		/**
+		 * Sets the private variable $storage_type value.
+		 * 
 		 * @param mixed $storage_type
 		 *
 		 * @return RelationalColumns
@@ -249,6 +337,8 @@
 		}
 
 		/**
+		 * Gets the private variable $type value.
+		 * 
 		 * @return mixed
 		 */
 		public function getType()
@@ -257,6 +347,8 @@
 		}
 
 		/**
+		 * Sets the private variable $type value.
+		 * 
 		 * @param mixed $type
 		 *
 		 * @return RelationalColumns
@@ -269,6 +361,8 @@
 		}
 
 		/**
+		 * Gets the private variable $created_date value.
+		 * 
 		 * @return mixed
 		 */
 		public function getCreatedDate()
@@ -277,19 +371,24 @@
 		}
 
 		/**
+		 * Sets the private variable $created_date value.
+		 * 
 		 * @param mixed $created_date
+		 * @param string $format
 		 * @param \DateTimeZone $time_zone
 		 *
 		 * @return RelationalColumns
 		 */
-		public function setCreatedDate($created_date, $time_zone)
+		public function setCreatedDate($created_date, $format, $time_zone)
 		{
-			$this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
+			$this->created_date = date_create_from_format($format, $created_date, $time_zone);
 
 			return $this;
 		}
 
 		/**
+		 * Gets the private variable $updated_date value.
+		 * 
 		 * @return mixed
 		 */
 		public function getUpdatedDate()
@@ -298,17 +397,20 @@
 		}
 
 		/**
+		 * Sets the private variable $updated_date value.
+		 * 
 		 * @param mixed $updated_date
+		 * @param string $format
 		 * @param \DateTimeZone $time_zone
 		 *
 		 * @return RelationalColumns
 		 */
-		public function setUpdatedDate($updated_date, $time_zone)
+		public function setUpdatedDate($updated_date, $format, $time_zone)
 		{
-			$this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
+			$this->$updated_date = date_create_from_format($format, $updated_date, $time_zone);
 
 			return $this;
 		}
-		
-		
+
+
 	}

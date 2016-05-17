@@ -14,7 +14,6 @@
 	 * Class WhatCounts
 	 * @package ZayconWhatCounts
 	 */
-
 	class WhatCounts
 	{
 

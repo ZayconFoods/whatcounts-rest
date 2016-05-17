@@ -78,7 +78,7 @@
 			$template
 				->setId($response_data->id)
 				->setRealmId($response_data->realmId)
-				->setCreatedDate($response_data->createdDate, new \DateTimeZone($whatcounts->getTimeZone()))
+				->setCreatedDate($response_data->createdDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
 				->setSkip($response_data->skip)
 				->setMax($response_data->max);
 		}
@@ -96,7 +96,7 @@
 			$response_data = $whatcounts->update($this->template_stub, $template);
 
 			$template
-				->setUpdatedDate($response_data->updatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
+				->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
 		/**

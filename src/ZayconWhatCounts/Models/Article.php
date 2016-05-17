@@ -9,26 +9,103 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class Article
+	 * @package ZayconWhatCounts
+	 */
 	class Article
 	{
+		/**
+		 * @var integer $id
+		 */
 		private $id;
+
+		/**
+		 * @var integer $realm_id
+		 */
 		private $realm_id;
+
+		/**
+		 * @var string $name
+		 */
 		private $name;
+
+		/**
+		 * @var string $description
+		 */
 		private $description;
+
+		/**
+		 * @var string $author_email
+		 */
 		private $author_email;
+
+		/**
+		 * @var string $author_name
+		 */
 		private $author_name;
+
+		/**
+		 * @var string $author_bio
+		 */
 		private $author_bio;
+
+		/**
+		 * @var string $title
+		 */
 		private $title;
+
+		/**
+		 * @var \DateTime $created_date
+		 */
 		private $created_date;
+
+		/**
+		 * @var \DateTime $updated_date
+		 */
 		private $updated_date;
+
+		/**
+		 * @var integer $folder_id
+		 */
 		private $folder_id;
+
+		/**
+		 * @var string $deck
+		 */
 		private $deck;
+
+		/**
+		 * @var string $callout
+		 */
 		private $callout;
+
+		/**
+		 * @var string $body
+		 */
 		private $body;
+
+		/**
+		 * @var integer $parent_article_id
+		 */
 		private $parent_article_id;
+
+		/**
+		 * @var integer $skip
+		 */
 		private $skip;
+
+		/**
+		 * @var integer $max
+		 */
 		private $max;
 
+		/**
+		 * Article constructor.
+		 *
+		 * @param \stdClass|NULL $article_response
+		 * @param null           $time_zone
+		 */
 		public function __construct(\stdClass $article_response = NULL, $time_zone = NULL)
 		{
 			if (isset($article_response))
@@ -42,8 +119,8 @@
 					->setAuthorName($article_response->authorName)
 					->setAuthorBio($article_response->authorBio)
 					->setTitle($article_response->title)
-					->setCreatedDate($article_response->createdDate, $time_zone)
-					->setUpdatedDate($article_response->updatedDate, $time_zone)
+					->setCreatedDate($article_response->createdDate, 'M j, Y g:i:s A', $time_zone)
+					->setUpdatedDate($article_response->updatedDate, 'M j, Y g:i:s A', $time_zone)
 					->setFolderId($article_response->folderId)
 					->setDeck($article_response->dek)
 					->setCallout($article_response->callout)
@@ -54,6 +131,11 @@
 			}
 		}
 
+		/**
+		 * Generates array for API request.
+		 * 
+		 * @return array
+		 */
 		public function getRequestArray()
 		{
 			$request_array = array(
@@ -75,7 +157,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable id
+		 *
+		 * @return int
 		 */
 		public function getId()
 		{
@@ -83,7 +167,9 @@
 		}
 
 		/**
-		 * @param mixed $id
+		 * Gets the private variable id
+		 *
+		 * @param int $id
 		 *
 		 * @return Article
 		 */
@@ -95,7 +181,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable realm_id
+		 *
+		 * @return int
 		 */
 		public function getRealmId()
 		{
@@ -103,7 +191,9 @@
 		}
 
 		/**
-		 * @param mixed $realm_id
+		 * Gets the private variable realm_id
+		 *
+		 * @param int $realm_id
 		 *
 		 * @return Article
 		 */
@@ -115,7 +205,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable name
+		 *
+		 * @return string
 		 */
 		public function getName()
 		{
@@ -123,7 +215,9 @@
 		}
 
 		/**
-		 * @param mixed $name
+		 * Gets the private variable name
+		 *
+		 * @param string $name
 		 *
 		 * @return Article
 		 */
@@ -135,7 +229,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable description
+		 *
+		 * @return string
 		 */
 		public function getDescription()
 		{
@@ -143,7 +239,9 @@
 		}
 
 		/**
-		 * @param mixed $description
+		 * Gets the private variable description
+		 *
+		 * @param string $description
 		 *
 		 * @return Article
 		 */
@@ -155,7 +253,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable author_email
+		 *
+		 * @return string
 		 */
 		public function getAuthorEmail()
 		{
@@ -163,7 +263,9 @@
 		}
 
 		/**
-		 * @param mixed $author_email
+		 * Gets the private variable author_email
+		 *
+		 * @param string $author_email
 		 *
 		 * @return Article
 		 */
@@ -175,7 +277,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable author_name
+		 *
+		 * @return string
 		 */
 		public function getAuthorName()
 		{
@@ -183,7 +287,9 @@
 		}
 
 		/**
-		 * @param mixed $author_name
+		 * Gets the private variable author_name
+		 *
+		 * @param string $author_name
 		 *
 		 * @return Article
 		 */
@@ -195,7 +301,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable author_bio
+		 *
+		 * @return string
 		 */
 		public function getAuthorBio()
 		{
@@ -203,7 +311,9 @@
 		}
 
 		/**
-		 * @param mixed $author_bio
+		 * Gets the private variable author_bio
+		 *
+		 * @param string $author_bio
 		 *
 		 * @return Article
 		 */
@@ -215,7 +325,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable title
+		 *
+		 * @return string
 		 */
 		public function getTitle()
 		{
@@ -223,7 +335,9 @@
 		}
 
 		/**
-		 * @param mixed $title
+		 * Gets the private variable title
+		 *
+		 * @param string $title
 		 *
 		 * @return Article
 		 */
@@ -235,7 +349,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable created_date
+		 *
+		 * @return \DateTime
 		 */
 		public function getCreatedDate()
 		{
@@ -243,20 +359,25 @@
 		}
 
 		/**
-		 * @param mixed $created_date
-		 * @param \DateTimeZone $time_zone
+		 * Gets the private variable created_date
+		 *
+		 * @param \DateTime $created_date
+		 * @param string $format
+		 * @param string $time_zone
 		 *
 		 * @return Article
 		 */
-		public function setCreatedDate($created_date, $time_zone)
+		public function setCreatedDate($created_date, $format, $time_zone)
 		{
-			$this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
+			$this->created_date = date_create_from_format($format, $created_date, $time_zone);
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable updated_date
+		 *
+		 * @return \DateTime
 		 */
 		public function getUpdatedDate()
 		{
@@ -264,20 +385,25 @@
 		}
 
 		/**
-		 * @param mixed $updated_date
-		 * @param \DateTimeZone $time_zone
+		 * Gets the private variable updated_date
+		 *
+		 * @param \DateTime $updated_date
+		 * @param string $format
+		 * @param string $time_zone
 		 *
 		 * @return Article
 		 */
-		public function setUpdatedDate($updated_date, $time_zone)
+		public function setUpdatedDate($updated_date, $format, $time_zone)
 		{
-			$this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
+			$this->updated_date = date_create_from_format($format, $updated_date, $time_zone);
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable folder_id
+		 *
+		 * @return int
 		 */
 		public function getFolderId()
 		{
@@ -285,19 +411,23 @@
 		}
 
 		/**
-		 * @param mixed $folder_id
+		 * Gets the private variable folder_id
+		 *
+		 * @param int $folder_id
 		 *
 		 * @return Article
 		 */
 		public function setFolderId($folder_id)
 		{
-			$this->folder_id = (string)$folder_id;
+			$this->folder_id = (int)$folder_id;
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable deck
+		 *
+		 * @return string
 		 */
 		public function getDeck()
 		{
@@ -305,7 +435,9 @@
 		}
 
 		/**
-		 * @param mixed $deck
+		 * Gets the private variable deck
+		 *
+		 * @param string $deck
 		 *
 		 * @return Article
 		 */
@@ -317,7 +449,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable callout
+		 *
+		 * @return string
 		 */
 		public function getCallout()
 		{
@@ -325,7 +459,9 @@
 		}
 
 		/**
-		 * @param mixed $callout
+		 * Gets the private variable callout
+		 *
+		 * @param string $callout
 		 *
 		 * @return Article
 		 */
@@ -337,7 +473,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable body
+		 *
+		 * @return string
 		 */
 		public function getBody()
 		{
@@ -345,7 +483,9 @@
 		}
 
 		/**
-		 * @param mixed $body
+		 * Gets the private variable body
+		 *
+		 * @param string $body
 		 *
 		 * @return Article
 		 */
@@ -357,7 +497,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable parent_article_id
+		 *
+		 * @return int
 		 */
 		public function getParentArticleId()
 		{
@@ -365,7 +507,9 @@
 		}
 
 		/**
-		 * @param mixed $parent_article_id
+		 * Gets the private variable parent_article_id
+		 *
+		 * @param int $parent_article_id
 		 *
 		 * @return Article
 		 */
@@ -377,7 +521,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable skip
+		 *
+		 * @return int
 		 */
 		public function getSkip()
 		{
@@ -385,19 +531,23 @@
 		}
 
 		/**
-		 * @param mixed $skip
+		 * Gets the private variable skip
+		 *
+		 * @param int $skip
 		 *
 		 * @return Article
 		 */
 		public function setSkip($skip)
 		{
-			$this->skip = $skip;
+			$this->skip = (int)$skip;
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable max
+		 *
+		 * @return int
 		 */
 		public function getMax()
 		{
@@ -405,13 +555,15 @@
 		}
 
 		/**
-		 * @param mixed $max
+		 * Gets the private variable max
+		 *
+		 * @param int $max
 		 *
 		 * @return Article
 		 */
 		public function setMax($max)
 		{
-			$this->max = $max;
+			$this->max = (int)$max;
 
 			return $this;
 		}

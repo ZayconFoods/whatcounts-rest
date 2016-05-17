@@ -9,32 +9,129 @@
 namespace ZayconWhatCounts;
 
 
+/**
+ * Class Subscriber
+ * @package ZayconWhatCounts
+ */
 class Subscriber
 {
 
+	/**
+     * @var integer $id
+     */
     private $id;
+
+	/**
+     * @var integer $realm_id
+     */
     private $realm_id;
+
+	/**
+     * @var string $email
+     */
     private $email;
+
+	/**
+     * @var integer $domain_id
+     */
     private $domain_id;
+
+	/**
+     * @var string $first_name
+     */
     private $first_name;
+
+	/**
+     * @var string $last_name
+     */
     private $last_name;
+
+	/**
+     * @var string $company
+     */
     private $company;
+
+	/**
+     * @var string $address_1
+     */
     private $address_1;
+
+	/**
+     * @var string $address_2
+     */
     private $address_2;
+
+	/**
+     * @var string $city
+     */
     private $city;
+
+	/**
+     * @var string $state
+     */
     private $state;
+
+	/**
+     * @var string $zip
+     */
     private $zip;
+
+	/**
+     * @var string $country
+     */
     private $country;
+
+	/**
+     * @var string $phone
+     */
     private $phone;
+
+	/**
+     * @var string $fax
+     */
     private $fax;
+
+	/**
+     * @var \DateTime $created_date
+     */
     private $created_date;
+
+	/**
+     * @var \DateTime $updated_date
+     */
     private $updated_date;
+
+	/**
+     * @var string $md5_encryption
+     */
     private $md5_encryption;
+
+	/**
+     * @var string $sha1_encryption
+     */
     private $sha1_encryption;
+
+	/**
+     * @var array $subscriptions
+     */
     private $subscriptions = array();
+
+	/**
+     * @var integer $skip
+     */
     private $skip;
+
+	/**
+     * @var integer $max
+     */
     private $max;
 
+	/**
+     * Subscriber constructor.
+     *
+     * @param \stdClass|NULL $subscriber_response
+     * @param null           $time_zone
+     */
     public function __construct(\stdClass $subscriber_response = NULL, $time_zone = NULL)
     {
         if (isset($subscriber_response))
@@ -54,8 +151,8 @@ class Subscriber
                 ->setCountry($subscriber_response->country)
                 ->setPhone($subscriber_response->phone)
                 ->setFax($subscriber_response->fax)
-                ->setCreatedDate($subscriber_response->createdDate, $time_zone)
-                ->setUpdatedDate($subscriber_response->updatedDate, $time_zone)
+                ->setCreatedDate($subscriber_response->createdDate, 'M j, Y g:i:s A', $time_zone)
+                ->setUpdatedDate($subscriber_response->updatedDate, 'M j, Y g:i:s A', $time_zone)
                 ->setMd5Encryption($subscriber_response->md5Encryption)
                 ->setSha1Encryption($subscriber_response->sha1Encryption)
                 ->setSkip($subscriber_response->skip)
@@ -63,6 +160,11 @@ class Subscriber
         }
     }
 
+    /**
+     * Generates array for API request.
+     *
+     * @return array
+     */
     public function getRequestArray()
     {
         $request_array = array(
@@ -83,7 +185,9 @@ class Subscriber
     }
 
     /**
-     * @return mixed
+     * Sets the private variable id
+     *
+     * @return int
      */
     public function getId()
     {
@@ -91,17 +195,23 @@ class Subscriber
     }
 
     /**
-     * @param mixed $id
+     * Gets the private variable id
+     *
+     * @param int $id
+     *
      * @return Subscriber
      */
     public function setId($id)
     {
         $this->id = (int)$id;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable realm_id
+     *
+     * @return int
      */
     public function getRealmId()
     {
@@ -109,7 +219,9 @@ class Subscriber
     }
 
     /**
-     * @param mixed $realm_id
+     * Gets the private variable realm_id
+     *
+     * @param int $realm_id
      *
      * @return Subscriber
      */
@@ -121,7 +233,9 @@ class Subscriber
     }
 
     /**
-     * @return mixed
+     * Sets the private variable email
+     *
+     * @return string
      */
     public function getEmail()
     {
@@ -129,17 +243,23 @@ class Subscriber
     }
 
     /**
-     * @param mixed $email
+     * Gets the private variable email
+     *
+     * @param string $email
+     *
      * @return Subscriber
      */
     public function setEmail($email)
     {
         $this->email = (string)$email;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable domain_id
+     *
+     * @return int
      */
     public function getDomainId()
     {
@@ -147,7 +267,9 @@ class Subscriber
     }
 
     /**
-     * @param mixed $domain_id
+     * Gets the private variable domain_id
+     *
+     * @param int $domain_id
      *
      * @return Subscriber
      */
@@ -159,7 +281,9 @@ class Subscriber
     }
 
     /**
-     * @return mixed
+     * Sets the private variable first_name
+     *
+     * @return string
      */
     public function getFirstName()
     {
@@ -167,17 +291,23 @@ class Subscriber
     }
 
     /**
-     * @param mixed $first_name
+     * Gets the private variable first_name
+     *
+     * @param string $first_name
+     *
      * @return Subscriber
      */
     public function setFirstName($first_name)
     {
         $this->first_name = (string)$first_name;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable last_name
+     *
+     * @return string
      */
     public function getLastName()
     {
@@ -185,161 +315,23 @@ class Subscriber
     }
 
     /**
-     * @param mixed $last_name
+     * Gets the private variable last_name
+     *
+     * @param string $last_name
+     *
      * @return Subscriber
      */
     public function setLastName($last_name)
     {
         $this->last_name = (string)$last_name;
+
         return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getAddress1()
-    {
-        return $this->address_1;
-    }
-
-    /**
-     * @param mixed $address_1
-     * @return Subscriber
-     */
-    public function setAddress1($address_1)
-    {
-        $this->address_1 = (string)$address_1;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAddress2()
-    {
-        return $this->address_2;
-    }
-
-    /**
-     * @param mixed $address_2
-     * @return Subscriber
-     */
-    public function setAddress2($address_2)
-    {
-        $this->address_2 = (string)$address_2;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param mixed $city
-     * @return Subscriber
-     */
-    public function setCity($city)
-    {
-        $this->city = (string)$city;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * @param mixed $state
-     * @return Subscriber
-     */
-    public function setState($state)
-    {
-        $this->state = (string)$state;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getZip()
-    {
-        return $this->zip;
-    }
-
-    /**
-     * @param mixed $zip
-     * @return Subscriber
-     */
-    public function setZip($zip)
-    {
-        $this->zip = (string)$zip;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * @param mixed $country
-     * @return Subscriber
-     */
-    public function setCountry($country)
-    {
-        $this->country = (string)$country;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @param mixed $phone
-     * @return Subscriber
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = (string)$phone;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFax()
-    {
-        return $this->fax;
-    }
-
-    /**
-     * @param mixed $fax
-     * @return Subscriber
-     */
-    public function setFax($fax)
-    {
-        $this->fax = (string)$fax;
-        return $this;
-    }
-
-    /**
-     * @return mixed
+     * Sets the private variable company
+     *
+     * @return string
      */
     public function getCompany()
     {
@@ -347,17 +339,215 @@ class Subscriber
     }
 
     /**
-     * @param mixed $company
+     * Gets the private variable company
+     *
+     * @param string $company
+     *
      * @return Subscriber
      */
     public function setCompany($company)
     {
         $this->company = (string)$company;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable address_1
+     *
+     * @return string
+     */
+    public function getAddress1()
+    {
+        return $this->address_1;
+    }
+
+    /**
+     * Gets the private variable address_1
+     *
+     * @param string $address_1
+     *
+     * @return Subscriber
+     */
+    public function setAddress1($address_1)
+    {
+        $this->address_1 = (string)$address_1;
+
+        return $this;
+    }
+
+    /**
+     * Sets the private variable address_2
+     *
+     * @return string
+     */
+    public function getAddress2()
+    {
+        return $this->address_2;
+    }
+
+    /**
+     * Gets the private variable address_2
+     *
+     * @param string $address_2
+     *
+     * @return Subscriber
+     */
+    public function setAddress2($address_2)
+    {
+        $this->address_2 = (string)$address_2;
+
+        return $this;
+    }
+
+    /**
+     * Sets the private variable city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Gets the private variable city
+     *
+     * @param string $city
+     *
+     * @return Subscriber
+     */
+    public function setCity($city)
+    {
+        $this->city = (string)$city;
+
+        return $this;
+    }
+
+    /**
+     * Sets the private variable state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Gets the private variable state
+     *
+     * @param string $state
+     *
+     * @return Subscriber
+     */
+    public function setState($state)
+    {
+        $this->state = (string)$state;
+
+        return $this;
+    }
+
+    /**
+     * Sets the private variable zip
+     *
+     * @return string
+     */
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * Gets the private variable zip
+     *
+     * @param string $zip
+     *
+     * @return Subscriber
+     */
+    public function setZip($zip)
+    {
+        $this->zip = (string)$zip;
+
+        return $this;
+    }
+
+    /**
+     * Sets the private variable country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Gets the private variable country
+     *
+     * @param string $country
+     *
+     * @return Subscriber
+     */
+    public function setCountry($country)
+    {
+        $this->country = (string)$country;
+
+        return $this;
+    }
+
+    /**
+     * Sets the private variable phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Gets the private variable phone
+     *
+     * @param string $phone
+     *
+     * @return Subscriber
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = (string)$phone;
+
+        return $this;
+    }
+
+    /**
+     * Sets the private variable fax
+     *
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * Gets the private variable fax
+     *
+     * @param string $fax
+     *
+     * @return Subscriber
+     */
+    public function setFax($fax)
+    {
+        $this->fax = (string)$fax;
+
+        return $this;
+    }
+
+    /**
+     * Sets the private variable created_date
+     *
+     * @return \DateTime
      */
     public function getCreatedDate()
     {
@@ -365,20 +555,25 @@ class Subscriber
     }
 
     /**
-     * @param mixed $created_date
-     * @param \DateTimeZone $time_zone
+     * Gets the private variable created_date
+     *
+     * @param \DateTime $created_date
+     * @param string $format
+     * @param string $time_zone
      *
      * @return Subscriber
      */
-    public function setCreatedDate($created_date, $time_zone)
+    public function setCreatedDate($created_date, $format, $time_zone)
     {
-        $this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
+        $this->created_date = date_create_from_format($format, $created_date, $time_zone);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable updated_date
+     *
+     * @return \DateTime
      */
     public function getUpdatedDate()
     {
@@ -386,20 +581,25 @@ class Subscriber
     }
 
     /**
-     * @param mixed $updated_date
-     * @param \DateTimeZone $time_zone
+     * Gets the private variable updated_date
+     *
+     * @param \DateTime $updated_date
+     * @param string $format
+     * @param string $time_zone
      *
      * @return Subscriber
      */
-    public function setUpdatedDate($updated_date, $time_zone)
+    public function setUpdatedDate($updated_date, $format, $time_zone)
     {
-        $this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
+        $this->updated_date = date_create_from_format($format, $updated_date, $time_zone);
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * Sets the private variable md5_encryption
+     *
+     * @return string
      */
     public function getMd5Encryption()
     {
@@ -407,7 +607,9 @@ class Subscriber
     }
 
     /**
-     * @param mixed $md5_encryption
+     * Gets the private variable md5_encryption
+     *
+     * @param string $md5_encryption
      *
      * @return Subscriber
      */
@@ -419,7 +621,9 @@ class Subscriber
     }
 
     /**
-     * @return mixed
+     * Sets the private variable sha1_encryption
+     *
+     * @return string
      */
     public function getSha1Encryption()
     {
@@ -427,7 +631,9 @@ class Subscriber
     }
 
     /**
-     * @param mixed $sha1_encryption
+     * Gets the private variable sha1_encryption
+     *
+     * @param string $sha1_encryption
      *
      * @return Subscriber
      */
@@ -439,6 +645,8 @@ class Subscriber
     }
 
     /**
+     * Sets the private variable subscriptions
+     *
      * @return array
      */
     public function getSubscriptions()
@@ -447,6 +655,8 @@ class Subscriber
     }
 
     /**
+     * Gets the private variable subscriptions
+     *
      * @param array $subscriptions
      *
      * @return Subscriber
@@ -459,7 +669,9 @@ class Subscriber
     }
 
     /**
-     * @return mixed
+     * Sets the private variable skip
+     *
+     * @return int
      */
     public function getSkip()
     {
@@ -467,7 +679,9 @@ class Subscriber
     }
 
     /**
-     * @param mixed $skip
+     * Gets the private variable skip
+     *
+     * @param int $skip
      *
      * @return Subscriber
      */
@@ -479,7 +693,9 @@ class Subscriber
     }
 
     /**
-     * @return mixed
+     * Sets the private variable max
+     *
+     * @return int
      */
     public function getMax()
     {
@@ -487,7 +703,9 @@ class Subscriber
     }
 
     /**
-     * @param mixed $max
+     * Gets the private variable max
+     *
+     * @param int $max
      *
      * @return Subscriber
      */

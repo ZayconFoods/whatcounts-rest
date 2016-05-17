@@ -9,18 +9,57 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class RelationalTable
+	 * @package ZayconWhatCounts
+	 */
 	class RelationalTable
 	{
+		/**
+		 * @var integer $id
+		 */
 		private $id;
-		private $row_count;
-		private $realm_id;
-		private $name;
-		private $status;
-		private $storage_type;
-		private $type;
-		private $created_date;
-		private $updated_date;
 
+		/**
+		 * @var integer $row_count
+		 */
+		private $row_count;
+
+		/**
+		 * @var integer $realm_id
+		 */
+		private $realm_id;
+
+		/**
+		 * @var string $name
+		 */
+		private $name;
+
+		/**
+		 * @var string $status
+		 */
+		private $status;
+
+		/**
+		 * @var string $storage_type
+		 */
+		private $storage_type;
+
+		/**
+		 * @var string $type
+		 */
+		private $type;
+
+		/**
+		 * @var \DateTime $created_date
+		 */
+		private $created_date;
+
+		/**
+		 * @var \DateTime $updated_date
+		 */
+		private $updated_date;
+		
 		/**
 		 * RelationalTable constructor.
 		 *
@@ -39,8 +78,8 @@
 					->setStatus($relational_table_response->status)
 					->setStorageType($relational_table_response->storageType)
 					->setType($relational_table_response->type)
-					->setCreatedDate($relational_table_response->createdDate, $time_zone)
-					->setUpdatedDate($relational_table_response->updatedDate, $time_zone);
+					->setCreatedDate($relational_table_response->createdDate, 'M j, Y g:i:s A', $time_zone)
+					->setUpdatedDate($relational_table_response->updatedDate, 'M j, Y g:i:s A', $time_zone);
 			}
 		}
 
@@ -62,7 +101,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable id
+		 *
+		 * @return int
 		 */
 		public function getId()
 		{
@@ -70,7 +111,9 @@
 		}
 
 		/**
-		 * @param mixed $id
+		 * Gets the private variable id
+		 *
+		 * @param int $id
 		 *
 		 * @return RelationalTable
 		 */
@@ -82,7 +125,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable row_count
+		 *
+		 * @return int
 		 */
 		public function getRowCount()
 		{
@@ -90,7 +135,9 @@
 		}
 
 		/**
-		 * @param mixed $row_count
+		 * Gets the private variable row_count
+		 *
+		 * @param int $row_count
 		 *
 		 * @return RelationalTable
 		 */
@@ -102,7 +149,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable realm_id
+		 *
+		 * @return int
 		 */
 		public function getRealmId()
 		{
@@ -110,7 +159,9 @@
 		}
 
 		/**
-		 * @param mixed $realm_id
+		 * Gets the private variable realm_id
+		 *
+		 * @param int $realm_id
 		 *
 		 * @return RelationalTable
 		 */
@@ -122,7 +173,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable name
+		 *
+		 * @return string
 		 */
 		public function getName()
 		{
@@ -130,7 +183,9 @@
 		}
 
 		/**
-		 * @param mixed $name
+		 * Gets the private variable name
+		 *
+		 * @param string $name
 		 *
 		 * @return RelationalTable
 		 */
@@ -142,7 +197,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable status
+		 *
+		 * @return string
 		 */
 		public function getStatus()
 		{
@@ -150,7 +207,9 @@
 		}
 
 		/**
-		 * @param mixed $status
+		 * Gets the private variable status
+		 *
+		 * @param string $status
 		 *
 		 * @return RelationalTable
 		 */
@@ -162,7 +221,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable storage_type
+		 *
+		 * @return string
 		 */
 		public function getStorageType()
 		{
@@ -170,7 +231,9 @@
 		}
 
 		/**
-		 * @param mixed $storage_type
+		 * Gets the private variable storage_type
+		 *
+		 * @param string $storage_type
 		 *
 		 * @return RelationalTable
 		 */
@@ -182,7 +245,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable type
+		 *
+		 * @return string
 		 */
 		public function getType()
 		{
@@ -190,7 +255,9 @@
 		}
 
 		/**
-		 * @param mixed $type
+		 * Gets the private variable type
+		 *
+		 * @param string $type
 		 *
 		 * @return RelationalTable
 		 */
@@ -202,7 +269,9 @@
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable created_date
+		 *
+		 * @return \DateTime
 		 */
 		public function getCreatedDate()
 		{
@@ -210,20 +279,25 @@
 		}
 
 		/**
-		 * @param mixed $created_date
-		 * @param \DateTimeZone $time_zone
+		 * Gets the private variable created_date
 		 *
-		 * @return RelationalTable
+		 * @param \DateTime $created_date
+		 * @param string $format
+		 * @param string $time_zone
+		 *
+		 * @return Article
 		 */
-		public function setCreatedDate($created_date, $time_zone)
+		public function setCreatedDate($created_date, $format, $time_zone)
 		{
-			$this->created_date = date_create_from_format('M j, Y g:i:s A', $created_date, $time_zone);
+			$this->created_date = date_create_from_format($format, $created_date, $time_zone);
 
 			return $this;
 		}
 
 		/**
-		 * @return mixed
+		 * Sets the private variable updated_date
+		 *
+		 * @return \DateTime
 		 */
 		public function getUpdatedDate()
 		{
@@ -231,16 +305,20 @@
 		}
 
 		/**
-		 * @param mixed $updated_date
-		 * @param \DateTimeZone $time_zone
+		 * Gets the private variable updated_date
 		 *
-		 * @return RelationalTable
+		 * @param \DateTime $updated_date
+		 * @param string $format
+		 * @param string $time_zone
+		 *
+		 * @return Article
 		 */
-		public function setUpdatedDate($updated_date, $time_zone)
+		public function setUpdatedDate($updated_date, $format, $time_zone)
 		{
-			$this->updated_date = date_create_from_format('M j, Y g:i:s A', $updated_date, $time_zone);
+			$this->updated_date = date_create_from_format($format, $updated_date, $time_zone);
 
 			return $this;
 		}
+
 
 	}
