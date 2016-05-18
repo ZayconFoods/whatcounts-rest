@@ -1,0 +1,324 @@
+<?php
+	/**
+	 * Created by PhpStorm.
+	 * User: Mark Simonds
+	 * Date: 4/28/16
+	 * Time: 8:27 AM
+	 */
+
+	namespace ZayconWhatCounts;
+
+
+	/**
+	 * Class RelationalTable
+	 * @package ZayconWhatCounts
+	 */
+	class RelationalTable
+	{
+		/**
+		 * @var integer $id
+		 */
+		private $id;
+
+		/**
+		 * @var integer $row_count
+		 */
+		private $row_count;
+
+		/**
+		 * @var integer $realm_id
+		 */
+		private $realm_id;
+
+		/**
+		 * @var string $name
+		 */
+		private $name;
+
+		/**
+		 * @var string $status
+		 */
+		private $status;
+
+		/**
+		 * @var string $storage_type
+		 */
+		private $storage_type;
+
+		/**
+		 * @var string $type
+		 */
+		private $type;
+
+		/**
+		 * @var \DateTime $created_date
+		 */
+		private $created_date;
+
+		/**
+		 * @var \DateTime $updated_date
+		 */
+		private $updated_date;
+		
+		/**
+		 * RelationalTable constructor.
+		 *
+		 * @param \stdClass|NULL $relational_table_response
+		 * @param null $time_zone
+		 */
+		public function __construct(\stdClass $relational_table_response = NULL, $time_zone = NULL)
+		{
+			if (isset($relational_table_response))
+			{
+				$this
+					->setId($relational_table_response->id)
+					->setRowCount($relational_table_response->rowCount)
+					->setRealmId($relational_table_response->realmId)
+					->setName($relational_table_response->name)
+					->setStatus($relational_table_response->status)
+					->setStorageType($relational_table_response->storageType)
+					->setType($relational_table_response->type)
+					->setCreatedDate($relational_table_response->createdDate, 'M j, Y g:i:s A', $time_zone)
+					->setUpdatedDate($relational_table_response->updatedDate, 'M j, Y g:i:s A', $time_zone);
+			}
+		}
+
+		/**
+		 * @return array
+		 */
+		public function getRequestArray()
+		{
+			$request_array = array(
+				'id' => $this->getId(),
+				'rowCount' => $this->getRowCount(),
+				'realmId' => $this->getRealmId(),
+				'name' => $this->getName(),
+				'status' => $this->getStatus(),
+				'storage_type' => $this->getStorageType(),
+				'type' => $this->getType()
+			);
+			return $request_array;
+		}
+
+		/**
+		 * Sets the private variable id
+		 *
+		 * @return int
+		 */
+		public function getId()
+		{
+			return $this->id;
+		}
+
+		/**
+		 * Gets the private variable id
+		 *
+		 * @param int $id
+		 *
+		 * @return RelationalTable
+		 */
+		public function setId($id)
+		{
+			$this->id = (int)$id;
+
+			return $this;
+		}
+
+		/**
+		 * Sets the private variable row_count
+		 *
+		 * @return int
+		 */
+		public function getRowCount()
+		{
+			return $this->row_count;
+		}
+
+		/**
+		 * Gets the private variable row_count
+		 *
+		 * @param int $row_count
+		 *
+		 * @return RelationalTable
+		 */
+		public function setRowCount($row_count)
+		{
+			$this->row_count = (int)$row_count;
+
+			return $this;
+		}
+
+		/**
+		 * Sets the private variable realm_id
+		 *
+		 * @return int
+		 */
+		public function getRealmId()
+		{
+			return $this->realm_id;
+		}
+
+		/**
+		 * Gets the private variable realm_id
+		 *
+		 * @param int $realm_id
+		 *
+		 * @return RelationalTable
+		 */
+		public function setRealmId($realm_id)
+		{
+			$this->realm_id = (int)$realm_id;
+
+			return $this;
+		}
+
+		/**
+		 * Sets the private variable name
+		 *
+		 * @return string
+		 */
+		public function getName()
+		{
+			return $this->name;
+		}
+
+		/**
+		 * Gets the private variable name
+		 *
+		 * @param string $name
+		 *
+		 * @return RelationalTable
+		 */
+		public function setName($name)
+		{
+			$this->name = (string)$name;
+
+			return $this;
+		}
+
+		/**
+		 * Sets the private variable status
+		 *
+		 * @return string
+		 */
+		public function getStatus()
+		{
+			return $this->status;
+		}
+
+		/**
+		 * Gets the private variable status
+		 *
+		 * @param string $status
+		 *
+		 * @return RelationalTable
+		 */
+		public function setStatus($status)
+		{
+			$this->status = (string)$status;
+
+			return $this;
+		}
+
+		/**
+		 * Sets the private variable storage_type
+		 *
+		 * @return string
+		 */
+		public function getStorageType()
+		{
+			return $this->storage_type;
+		}
+
+		/**
+		 * Gets the private variable storage_type
+		 *
+		 * @param string $storage_type
+		 *
+		 * @return RelationalTable
+		 */
+		public function setStorageType($storage_type)
+		{
+			$this->storage_type = (string)$storage_type;
+
+			return $this;
+		}
+
+		/**
+		 * Sets the private variable type
+		 *
+		 * @return string
+		 */
+		public function getType()
+		{
+			return $this->type;
+		}
+
+		/**
+		 * Gets the private variable type
+		 *
+		 * @param string $type
+		 *
+		 * @return RelationalTable
+		 */
+		public function setType($type)
+		{
+			$this->type = (string)$type;
+
+			return $this;
+		}
+
+		/**
+		 * Sets the private variable created_date
+		 *
+		 * @return \DateTime
+		 */
+		public function getCreatedDate()
+		{
+			return $this->created_date;
+		}
+
+		/**
+		 * Gets the private variable created_date
+		 *
+		 * @param \DateTime $created_date
+		 * @param string $format
+		 * @param string $time_zone
+		 *
+		 * @return Article
+		 */
+		public function setCreatedDate($created_date, $format, $time_zone)
+		{
+			$this->created_date = date_create_from_format($format, $created_date, $time_zone);
+
+			return $this;
+		}
+
+		/**
+		 * Sets the private variable updated_date
+		 *
+		 * @return \DateTime
+		 */
+		public function getUpdatedDate()
+		{
+			return $this->updated_date;
+		}
+
+		/**
+		 * Gets the private variable updated_date
+		 *
+		 * @param \DateTime $updated_date
+		 * @param string $format
+		 * @param string $time_zone
+		 *
+		 * @return Article
+		 */
+		public function setUpdatedDate($updated_date, $format, $time_zone)
+		{
+			$this->updated_date = date_create_from_format($format, $updated_date, $time_zone);
+
+			return $this;
+		}
+
+
+	}
