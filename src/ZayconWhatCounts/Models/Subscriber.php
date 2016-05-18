@@ -17,111 +17,155 @@ class Subscriber
 {
 
 	/**
+     * id field from API
+     *
      * @var integer $id
      */
     private $id;
 
 	/**
+     * realmId field from API
+     *
      * @var integer $realm_id
      */
     private $realm_id;
 
 	/**
+     * email field from API
+     *
      * @var string $email
      */
     private $email;
 
 	/**
+     * domainId field from API
+     *
      * @var integer $domain_id
      */
     private $domain_id;
 
 	/**
+     * firstName field from API
+     *
      * @var string $first_name
      */
     private $first_name;
 
 	/**
+     * lastName field from API
+     *
      * @var string $last_name
      */
     private $last_name;
 
 	/**
+     * company field from API
+     *
      * @var string $company
      */
     private $company;
 
 	/**
+     * address1 field from API
+     *
      * @var string $address_1
      */
     private $address_1;
 
 	/**
+     * address2 field from API
+     *
      * @var string $address_2
      */
     private $address_2;
 
 	/**
+     * city field from API
+     *
      * @var string $city
      */
     private $city;
 
 	/**
+     * state field from API
+     *
      * @var string $state
      */
     private $state;
 
 	/**
+     * zip field from API
+     *
      * @var string $zip
      */
     private $zip;
 
 	/**
+     * country field from API
+     *
      * @var string $country
      */
     private $country;
 
 	/**
+     * phone field from API
+     *
      * @var string $phone
      */
     private $phone;
 
 	/**
+     * fax field from API
+     *
      * @var string $fax
      */
     private $fax;
 
 	/**
+     * createdDate field from API
+     *
      * @var \DateTime $created_date
      */
     private $created_date;
 
 	/**
+     * updatedDate field from API
+     *
      * @var \DateTime $updated_date
      */
     private $updated_date;
 
 	/**
+     * md5Encryption field from API
+     *
      * @var string $md5_encryption
      */
     private $md5_encryption;
 
 	/**
+     * sha1Encryption field from API
+     *
      * @var string $sha1_encryption
      */
     private $sha1_encryption;
 
 	/**
+     * subscriptions object from API
+     *
      * @var array $subscriptions
      */
     private $subscriptions = array();
 
 	/**
+     * skip field from API
+     *
      * @var integer $skip
      */
     private $skip;
 
 	/**
+     * max field from API
+     * 
      * @var integer $max
      */
     private $max;
@@ -185,7 +229,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable id
+     * Gets the private variable id
      *
      * @return int
      */
@@ -195,7 +239,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable id
+     * Sets the private variable id
      *
      * @param int $id
      *
@@ -209,7 +253,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable realm_id
+     * Gets the private variable realm_id
      *
      * @return int
      */
@@ -219,7 +263,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable realm_id
+     * Sets the private variable realm_id
      *
      * @param int $realm_id
      *
@@ -233,7 +277,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable email
+     * Gets the private variable email
      *
      * @return string
      */
@@ -243,7 +287,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable email
+     * Sets the private variable email
      *
      * @param string $email
      *
@@ -257,7 +301,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable domain_id
+     * Gets the private variable domain_id
      *
      * @return int
      */
@@ -267,7 +311,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable domain_id
+     * Sets the private variable domain_id
      *
      * @param int $domain_id
      *
@@ -281,7 +325,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable first_name
+     * Gets the private variable first_name
      *
      * @return string
      */
@@ -291,7 +335,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable first_name
+     * Sets the private variable first_name
      *
      * @param string $first_name
      *
@@ -305,7 +349,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable last_name
+     * Gets the private variable last_name
      *
      * @return string
      */
@@ -315,7 +359,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable last_name
+     * Sets the private variable last_name
      *
      * @param string $last_name
      *
@@ -329,7 +373,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable company
+     * Gets the private variable company
      *
      * @return string
      */
@@ -339,7 +383,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable company
+     * Sets the private variable company
      *
      * @param string $company
      *
@@ -353,7 +397,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable address_1
+     * Gets the private variable address_1
      *
      * @return string
      */
@@ -363,7 +407,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable address_1
+     * Sets the private variable address_1
      *
      * @param string $address_1
      *
@@ -377,7 +421,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable address_2
+     * Gets the private variable address_2
      *
      * @return string
      */
@@ -387,7 +431,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable address_2
+     * Sets the private variable address_2
      *
      * @param string $address_2
      *
@@ -401,7 +445,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable city
+     * Gets the private variable city
      *
      * @return string
      */
@@ -411,7 +455,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable city
+     * Sets the private variable city
      *
      * @param string $city
      *
@@ -425,7 +469,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable state
+     * Gets the private variable state
      *
      * @return string
      */
@@ -435,7 +479,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable state
+     * Sets the private variable state
      *
      * @param string $state
      *
@@ -449,7 +493,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable zip
+     * Gets the private variable zip
      *
      * @return string
      */
@@ -459,7 +503,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable zip
+     * Sets the private variable zip
      *
      * @param string $zip
      *
@@ -473,7 +517,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable country
+     * Gets the private variable country
      *
      * @return string
      */
@@ -483,7 +527,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable country
+     * Sets the private variable country
      *
      * @param string $country
      *
@@ -497,7 +541,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable phone
+     * Gets the private variable phone
      *
      * @return string
      */
@@ -507,7 +551,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable phone
+     * Sets the private variable phone
      *
      * @param string $phone
      *
@@ -521,7 +565,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable fax
+     * Gets the private variable fax
      *
      * @return string
      */
@@ -531,7 +575,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable fax
+     * Sets the private variable fax
      *
      * @param string $fax
      *
@@ -545,7 +589,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable created_date
+     * Gets the private variable created_date
      *
      * @return \DateTime
      */
@@ -555,7 +599,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable created_date
+     * Sets the private variable created_date
      *
      * @param \DateTime $created_date
      * @param string $format
@@ -571,7 +615,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable updated_date
+     * Gets the private variable updated_date
      *
      * @return \DateTime
      */
@@ -581,7 +625,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable updated_date
+     * Sets the private variable updated_date
      *
      * @param \DateTime $updated_date
      * @param string $format
@@ -597,7 +641,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable md5_encryption
+     * Gets the private variable md5_encryption
      *
      * @return string
      */
@@ -607,7 +651,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable md5_encryption
+     * Sets the private variable md5_encryption
      *
      * @param string $md5_encryption
      *
@@ -621,7 +665,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable sha1_encryption
+     * Gets the private variable sha1_encryption
      *
      * @return string
      */
@@ -631,7 +675,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable sha1_encryption
+     * Sets the private variable sha1_encryption
      *
      * @param string $sha1_encryption
      *
@@ -645,7 +689,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable subscriptions
+     * Gets the private variable subscriptions
      *
      * @return array
      */
@@ -655,7 +699,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable subscriptions
+     * Sets the private variable subscriptions
      *
      * @param array $subscriptions
      *
@@ -669,7 +713,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable skip
+     * Gets the private variable skip
      *
      * @return int
      */
@@ -679,7 +723,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable skip
+     * Sets the private variable skip
      *
      * @param int $skip
      *
@@ -693,7 +737,7 @@ class Subscriber
     }
 
     /**
-     * Sets the private variable max
+     * Gets the private variable max
      *
      * @return int
      */
@@ -703,7 +747,7 @@ class Subscriber
     }
 
     /**
-     * Gets the private variable max
+     * Sets the private variable max
      *
      * @param int $max
      *

@@ -9,12 +9,31 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class SubscriptionTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait SubscriptionTraits
 	{
+		/**
+		 * URL Stub
+		 * 
+		 * @var string $subscription_stub
+		 */
 		private $subscription_stub = 'subscriptions';
+
+		/**
+		 * Subscription Class Name
+		 * 
+		 * @var string $subscription_class_name
+		 */
 		private $subscription_class_name = 'ZayconWhatCounts\Subscription';
 
 		/**
+		 * Create a Subscription in API.
+		 * Must pass a Subscription object to method.
+		 * Passes Subscription object to API.
+		 *
 		 * @param Subscription $subscription
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
@@ -34,6 +53,10 @@
 		}
 
 		/**
+		 * Delete a Subscription in API.
+		 * Must pass a Subscription object to method.
+		 * Passes Subscription object to API.
+		 *
 		 * @param Subscription $subscription
 		 *
 		 * @return mixed
@@ -49,6 +72,10 @@
 		}
 
 		/**
+		 * Delete a Subscription in API.
+		 * Must pass a Subscription object to method.
+		 * Passes Subscription id to API.
+		 *
 		 * @param Subscription $subscription
 		 *
 		 * @return mixed

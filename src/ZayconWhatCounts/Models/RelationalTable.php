@@ -16,46 +16,64 @@
 	class RelationalTable
 	{
 		/**
+		 * id field from API
+		 *
 		 * @var integer $id
 		 */
 		private $id;
 
 		/**
+		 * rowCount field from API
+		 *
 		 * @var integer $row_count
 		 */
 		private $row_count;
 
 		/**
+		 * realmId field from API
+		 *
 		 * @var integer $realm_id
 		 */
 		private $realm_id;
 
 		/**
+		 * name field from API
+		 *
 		 * @var string $name
 		 */
 		private $name;
 
 		/**
+		 * status field from API
+		 *
 		 * @var string $status
 		 */
 		private $status;
 
 		/**
+		 * storageType field from API
+		 *
 		 * @var string $storage_type
 		 */
 		private $storage_type;
 
 		/**
+		 * type field from API
+		 *
 		 * @var string $type
 		 */
 		private $type;
 
 		/**
+		 * createdDate field from API
+		 *
 		 * @var \DateTime $created_date
 		 */
 		private $created_date;
 
 		/**
+		 * updatedDate field from API
+		 * 
 		 * @var \DateTime $updated_date
 		 */
 		private $updated_date;
@@ -84,6 +102,8 @@
 		}
 
 		/**
+		 * Generates array for API request.
+		 *
 		 * @return array
 		 */
 		public function getRequestArray()
@@ -101,7 +121,7 @@
 		}
 
 		/**
-		 * Sets the private variable id
+		 * Gets the private variable id
 		 *
 		 * @return int
 		 */
@@ -111,7 +131,7 @@
 		}
 
 		/**
-		 * Gets the private variable id
+		 * Sets the private variable id
 		 *
 		 * @param int $id
 		 *
@@ -125,7 +145,7 @@
 		}
 
 		/**
-		 * Sets the private variable row_count
+		 * Gets the private variable row_count
 		 *
 		 * @return int
 		 */
@@ -135,7 +155,7 @@
 		}
 
 		/**
-		 * Gets the private variable row_count
+		 * Sets the private variable row_count
 		 *
 		 * @param int $row_count
 		 *
@@ -149,7 +169,7 @@
 		}
 
 		/**
-		 * Sets the private variable realm_id
+		 * Gets the private variable realm_id
 		 *
 		 * @return int
 		 */
@@ -159,7 +179,7 @@
 		}
 
 		/**
-		 * Gets the private variable realm_id
+		 * Sets the private variable realm_id
 		 *
 		 * @param int $realm_id
 		 *
@@ -173,7 +193,7 @@
 		}
 
 		/**
-		 * Sets the private variable name
+		 * Gets the private variable name
 		 *
 		 * @return string
 		 */
@@ -183,7 +203,7 @@
 		}
 
 		/**
-		 * Gets the private variable name
+		 * Sets the private variable name
 		 *
 		 * @param string $name
 		 *
@@ -197,7 +217,7 @@
 		}
 
 		/**
-		 * Sets the private variable status
+		 * Gets the private variable status
 		 *
 		 * @return string
 		 */
@@ -207,7 +227,7 @@
 		}
 
 		/**
-		 * Gets the private variable status
+		 * Sets the private variable status
 		 *
 		 * @param string $status
 		 *
@@ -221,7 +241,7 @@
 		}
 
 		/**
-		 * Sets the private variable storage_type
+		 * Gets the private variable storage_type
 		 *
 		 * @return string
 		 */
@@ -231,7 +251,7 @@
 		}
 
 		/**
-		 * Gets the private variable storage_type
+		 * Sets the private variable storage_type
 		 *
 		 * @param string $storage_type
 		 *
@@ -245,7 +265,7 @@
 		}
 
 		/**
-		 * Sets the private variable type
+		 * Gets the private variable type
 		 *
 		 * @return string
 		 */
@@ -255,7 +275,7 @@
 		}
 
 		/**
-		 * Gets the private variable type
+		 * Sets the private variable type
 		 *
 		 * @param string $type
 		 *
@@ -269,7 +289,7 @@
 		}
 
 		/**
-		 * Sets the private variable created_date
+		 * Gets the private variable created_date
 		 *
 		 * @return \DateTime
 		 */
@@ -279,7 +299,7 @@
 		}
 
 		/**
-		 * Gets the private variable created_date
+		 * Sets the private variable created_date
 		 *
 		 * @param \DateTime $created_date
 		 * @param string $format
@@ -295,7 +315,7 @@
 		}
 
 		/**
-		 * Sets the private variable updated_date
+		 * Gets the private variable updated_date
 		 *
 		 * @return \DateTime
 		 */
@@ -305,7 +325,7 @@
 		}
 
 		/**
-		 * Gets the private variable updated_date
+		 * Sets the private variable updated_date
 		 *
 		 * @param \DateTime $updated_date
 		 * @param string $format

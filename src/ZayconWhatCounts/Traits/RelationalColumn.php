@@ -9,10 +9,24 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class RelationalColumnTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait RelationalColumnTraits
 	{
+		/**
+		 * RelationalColumns Class Name
+		 * 
+		 * @var string $relational_column_class_name
+		 */
 		private $relational_column_class_name = '\ZayconWhatCounts\RelationalColumns';
 
+		/**
+		 * @param $relational_table_name
+		 *
+		 * @return array
+		 */
 		public function getRelationalColumns($relational_table_name)
 		{
 			/** @var WhatCounts $whatcounts */

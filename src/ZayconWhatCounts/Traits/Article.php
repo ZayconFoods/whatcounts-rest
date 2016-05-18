@@ -9,9 +9,24 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class ArticleTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait ArticleTraits
 	{
+		/**
+		 * URL Stub
+		 *
+		 * @var string $article_stub
+		 */
 		private $article_stub = 'articles';
+
+		/**
+		 * Article Class Name
+		 *
+		 * @var string $article_class_name
+		 */
 		private $article_class_name = 'ZayconWhatCounts\Article';
 
 		/**

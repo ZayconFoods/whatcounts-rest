@@ -9,9 +9,24 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class CampaignTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait CampaignTraits
 	{
+		/**
+		 * URL Stub
+		 * 
+		 * @var string $campaign_stub
+		 */
 		private $campaign_stub = 'campaigns';
+
+		/**
+		 * Campaign Class Name
+		 * 
+		 * @var string $campaign_class_name
+		 */
 		private $campaign_class_name = 'ZayconWhatCounts\Campaign';
 
 		/**

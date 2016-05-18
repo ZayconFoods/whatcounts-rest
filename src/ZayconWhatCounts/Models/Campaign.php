@@ -16,116 +16,162 @@
 	class Campaign
 	{
 		/**
+		 * campaignSummary object from API
+		 *
 		 * @var object $campaign_summary
 		 */
 		private $campaign_summary;
 
 		/**
+		 * segmentType field from API
+		 *
 		 * @var integer $segment_type
 		 */
 		private $segment_type;
 
 		/**
+		 * isSass field from API
+		 *
 		 * @var boolean $is_saas
 		 */
 		private $is_saas;
 
 		/**
+		 * snaEnabled field from API
+		 *
 		 * @var boolean $sna_enabled
 		 */
 		private $sna_enabled;
 
 		/**
+		 * campaignContentHtml field from API
+		 *
 		 * @var string $content_html
 		 */
 		private $content_html;
 
 		/**
+		 * campaignContentMobile field from API
+		 *
 		 * @var string $content_mobile
 		 */
 		private $content_mobile;
 
 		/**
+		 * campaignDataXml field from API
+		 *
 		 * @var \SimpleXMLElement $data_xml
 		 */
 		private $data_xml;
 
 		/**
+		 * campaignContentText field from API
+		 *
 		 * @var string $content_text
 		 */
 		private $content_text;
 
 		/**
+		 * campaignId field from API
+		 *
 		 * @var integer $id
 		 */
 		private $id;
 
 		/**
+		 * campaignRealmId field from API
+		 *
 		 * @var integer $realm_id
 		 */
 		private $realm_id;
 
 		/**
+		 * campaignListId field from API
+		 *
 		 * @var integer $list_id
 		 */
 		private $list_id;
 
 		/**
+		 * campaignTemplateId field from API
+		 *
 		 * @var integer $template_id
 		 */
 		private $template_id;
 
 		/**
+		 * campaignStartDate field from API
+		 *
 		 * @var \DateTime $start_date
 		 */
 		private $start_date;
 
 		/**
+		 * campaignSubject field from API
+		 *
 		 * @var string $subject
 		 */
 		private $subject;
 
 		/**
+		 * campaignName field from API
+		 *
 		 * @var string $name
 		 */
 		private $name;
 
 		/**
+		 * campaignAlias field from API
+		 *
 		 * @var string $alias
 		 */
 		private $alias;
 
 		/**
+		 * campaignDeliverability field from API
+		 *
 		 * @var boolean $deliverability
 		 */
 		private $deliverability;
 
 		/**
+		 * campaignForcedFormat field from API
+		 *
 		 * @var integer $forced_format
 		 */
 		private $forced_format;
 
 		/**
+		 * campaignListName field from API
+		 *
 		 * @var string $list_name
 		 */
 		private $list_name;
 
 		/**
+		 * campaignSegmentationId field from API
+		 *
 		 * @var integer $segmentation_id
 		 */
 		private $segmentation_id;
 
 		/**
+		 * campaignSupressionList field from API
+		 *
 		 * @var string $suppression_list
 		 */
 		private $suppression_list;
 
 		/**
+		 * skip field from API
+		 *
 		 * @var integer $skip
 		 */
 		private $skip;
 
 		/**
+		 * max field from API
+		 * 
 		 * @var integer $max
 		 */
 		private $max;
@@ -202,7 +248,7 @@
 		}
 
 		/**
-		 * Sets the private variable campaign_summary
+		 * Gets the private variable campaign_summary
 		 *
 		 * @return object
 		 */
@@ -212,7 +258,7 @@
 		}
 
 		/**
-		 * Gets the private variable campaign_summary
+		 * Sets the private variable campaign_summary
 		 *
 		 * @param object $campaign_summary
 		 *
@@ -226,7 +272,7 @@
 		}
 
 		/**
-		 * Sets the private variable segment_type
+		 * Gets the private variable segment_type
 		 *
 		 * @return int
 		 */
@@ -236,7 +282,7 @@
 		}
 
 		/**
-		 * Gets the private variable segment_type
+		 * Sets the private variable segment_type
 		 *
 		 * @param int $segment_type
 		 *
@@ -260,7 +306,7 @@
 		}
 
 		/**
-		 * Gets the private variable is_saas
+		 * Sets the private variable is_saas
 		 *
 		 * @param boolean $is_saas
 		 *
@@ -284,7 +330,7 @@
 		}
 
 		/**
-		 * Gets the private variable sna_enabled
+		 * Sets the private variable sna_enabled
 		 *
 		 * @param boolean $sna_enabled
 		 *
@@ -298,7 +344,7 @@
 		}
 
 		/**
-		 * Sets the private variable content_html
+		 * Gets the private variable content_html
 		 *
 		 * @return string
 		 */
@@ -308,7 +354,7 @@
 		}
 
 		/**
-		 * Gets the private variable content_html
+		 * Sets the private variable content_html
 		 *
 		 * @param string $content_html
 		 *
@@ -322,7 +368,7 @@
 		}
 
 		/**
-		 * Sets the private variable content_mobile
+		 * Gets the private variable content_mobile
 		 *
 		 * @return string
 		 */
@@ -332,7 +378,7 @@
 		}
 
 		/**
-		 * Gets the private variable content_mobile
+		 * Sets the private variable content_mobile
 		 *
 		 * @param string $content_mobile
 		 *
@@ -346,7 +392,7 @@
 		}
 
 		/**
-		 * Sets the private variable data_xml
+		 * Gets the private variable data_xml
 		 *
 		 * @return \SimpleXMLElement
 		 */
@@ -356,7 +402,7 @@
 		}
 
 		/**
-		 * Gets the private variable data_xml
+		 * Sets the private variable data_xml
 		 *
 		 * @param \SimpleXMLElement $data_xml
 		 *
@@ -369,7 +415,7 @@
 		}
 
 		/**
-		 * Sets the private variable content_text
+		 * Gets the private variable content_text
 		 *
 		 * @return string
 		 */
@@ -379,7 +425,7 @@
 		}
 
 		/**
-		 * Gets the private variable content_text
+		 * Sets the private variable content_text
 		 *
 		 * @param string $content_text
 		 *
@@ -393,7 +439,7 @@
 		}
 
 		/**
-		 * Sets the private variable id
+		 * Gets the private variable id
 		 *
 		 * @return int
 		 */
@@ -403,7 +449,7 @@
 		}
 
 		/**
-		 * Gets the private variable id
+		 * Sets the private variable id
 		 *
 		 * @param int $id
 		 *
@@ -417,7 +463,7 @@
 		}
 
 		/**
-		 * Sets the private variable realm_id
+		 * Gets the private variable realm_id
 		 *
 		 * @return int
 		 */
@@ -427,7 +473,7 @@
 		}
 
 		/**
-		 * Gets the private variable realm_id
+		 * Sets the private variable realm_id
 		 *
 		 * @param int $realm_id
 		 *
@@ -441,7 +487,7 @@
 		}
 
 		/**
-		 * Sets the private variable list_id
+		 * Gets the private variable list_id
 		 *
 		 * @return int
 		 */
@@ -451,7 +497,7 @@
 		}
 
 		/**
-		 * Gets the private variable list_id
+		 * Sets the private variable list_id
 		 *
 		 * @param int $list_id
 		 *
@@ -465,7 +511,7 @@
 		}
 
 		/**
-		 * Sets the private variable template_id
+		 * Gets the private variable template_id
 		 *
 		 * @return int
 		 */
@@ -475,7 +521,7 @@
 		}
 
 		/**
-		 * Gets the private variable template_id
+		 * Sets the private variable template_id
 		 *
 		 * @param int $template_id
 		 *
@@ -489,7 +535,7 @@
 		}
 
 		/**
-		 * Sets the private variable start_date
+		 * Gets the private variable start_date
 		 *
 		 * @return \DateTime
 		 */
@@ -499,7 +545,7 @@
 		}
 
 		/**
-		 * Gets the private variable start_date
+		 * Sets the private variable start_date
 		 *
 		 * @param \DateTime $start_date
 		 * @param string $format
@@ -515,7 +561,7 @@
 		}
 
 		/**
-		 * Sets the private variable subject
+		 * Gets the private variable subject
 		 *
 		 * @return string
 		 */
@@ -525,7 +571,7 @@
 		}
 
 		/**
-		 * Gets the private variable subject
+		 * Sets the private variable subject
 		 *
 		 * @param string $subject
 		 *
@@ -539,7 +585,7 @@
 		}
 
 		/**
-		 * Sets the private variable name
+		 * Gets the private variable name
 		 *
 		 * @return string
 		 */
@@ -549,7 +595,7 @@
 		}
 
 		/**
-		 * Gets the private variable name
+		 * Sets the private variable name
 		 *
 		 * @param string $name
 		 *
@@ -563,7 +609,7 @@
 		}
 
 		/**
-		 * Sets the private variable alias
+		 * Gets the private variable alias
 		 *
 		 * @return string
 		 */
@@ -573,7 +619,7 @@
 		}
 
 		/**
-		 * Gets the private variable alias
+		 * Sets the private variable alias
 		 *
 		 * @param string $alias
 		 *
@@ -597,7 +643,7 @@
 		}
 
 		/**
-		 * Gets the private variable deliverability
+		 * Sets the private variable deliverability
 		 *
 		 * @param boolean $deliverability
 		 *
@@ -611,7 +657,7 @@
 		}
 
 		/**
-		 * Sets the private variable forced_format
+		 * Gets the private variable forced_format
 		 *
 		 * @return int
 		 */
@@ -621,7 +667,7 @@
 		}
 
 		/**
-		 * Gets the private variable forced_format
+		 * Sets the private variable forced_format
 		 *
 		 * @param int $forced_format
 		 *
@@ -635,7 +681,7 @@
 		}
 
 		/**
-		 * Sets the private variable list_name
+		 * Gets the private variable list_name
 		 *
 		 * @return string
 		 */
@@ -645,7 +691,7 @@
 		}
 
 		/**
-		 * Gets the private variable list_name
+		 * Sets the private variable list_name
 		 *
 		 * @param string $list_name
 		 *
@@ -659,7 +705,7 @@
 		}
 
 		/**
-		 * Sets the private variable segmentation_id
+		 * Gets the private variable segmentation_id
 		 *
 		 * @return int
 		 */
@@ -669,7 +715,7 @@
 		}
 
 		/**
-		 * Gets the private variable segmentation_id
+		 * Sets the private variable segmentation_id
 		 *
 		 * @param int $segmentation_id
 		 *
@@ -683,7 +729,7 @@
 		}
 
 		/**
-		 * Sets the private variable suppression_list
+		 * Gets the private variable suppression_list
 		 *
 		 * @return string
 		 */
@@ -693,7 +739,7 @@
 		}
 
 		/**
-		 * Gets the private variable suppression_list
+		 * Sets the private variable suppression_list
 		 *
 		 * @param string $suppression_list
 		 *
@@ -707,7 +753,7 @@
 		}
 
 		/**
-		 * Sets the private variable skip
+		 * Gets the private variable skip
 		 *
 		 * @return int
 		 */
@@ -717,7 +763,7 @@
 		}
 
 		/**
-		 * Gets the private variable skip
+		 * Sets the private variable skip
 		 *
 		 * @param int $skip
 		 *
@@ -731,7 +777,7 @@
 		}
 
 		/**
-		 * Sets the private variable max
+		 * Gets the private variable max
 		 *
 		 * @return int
 		 */
@@ -741,7 +787,7 @@
 		}
 
 		/**
-		 * Gets the private variable max
+		 * Sets the private variable max
 		 *
 		 * @param int $max
 		 *
@@ -764,152 +810,210 @@
 	class CampaignSummary
 	{
 		/**
+		 * totalSent field from API
+		 * 
 		 * @var integer $total_sent
 		 */
 		private $total_sent;
 
 		/**
+		 * totalDelivered field from API
+		 * 
 		 * @var integer $total_delivered
 		 */
 		private $total_delivered;
 
 		/**
+		 * totalOpen field from API
+		 * 
 		 * @var integer $total_open
 		 */
 		private $total_open;
 
 		/**
+		 * totalClickthroughs field from API
+		 * 
 		 * @var integer $total_clickthroughs
 		 */
 		private $total_clickthroughs;
 
 		/**
+		 * totalBounced field from API
+		 * 
 		 * @var integer $total_bounced
 		 */
 		private $total_bounced;
 
 		/**
+		 * totalHardBounces field from API
+		 * 
 		 * @var integer $total_hard_bounces
 		 */
 		private $total_hard_bounces;
 
 		/**
+		 * totalSoftBounces field from API
+		 * 
 		 * @var integer $total_soft_bounces
 		 */
 		private $total_soft_bounces;
 
 		/**
+		 * totalBlocked field from API
+		 * 
 		 * @var integer $total_blocked
 		 */
 		private $total_blocked;
 
 		/**
+		 * totalComplaints field from API
+		 * 
 		 * @var integer $total_complaints
 		 */
 		private $total_complaints;
 
 		/**
+		 * totalUnsubscribes field from API
+		 * 
 		 * @var integer $total_unsubscribes
 		 */
 		private $total_unsubscribes;
 
 		/**
+		 * totalResponders field from API
+		 * 
 		 * @var integer $total_responders
 		 */
 		private $total_responders;
 
 		/**
+		 * uniqueOpen field from API
+		 * 
 		 * @var integer $unique_open
 		 */
 		private $unique_open;
 
 		/**
+		 * uniqueClickthroughs field from API
+		 * 
 		 * @var integer $unique_clickthroughs
 		 */
 		private $unique_clickthroughs;
 
 		/**
+		 * uniqueUnsubscribes field from API
+		 * 
 		 * @var integer $unique_unsubscribes
 		 */
 		private $unique_unsubscribes;
 
 		/**
+		 * uniqueComplaints field from API
+		 * 
 		 * @var integer $unique_complaints
 		 */
 		private $unique_complaints;
 
 		/**
+		 * uniqueBounced field from API
+		 * 
 		 * @var integer $unique_bounced
 		 */
 		private $unique_bounced;
 
 		/**
+		 * uniqueSoftBounces field from API
+		 * 
 		 * @var integer $unique_soft_bounces
 		 */
 		private $unique_soft_bounces;
 
 		/**
+		 * uniqueHardBounces field from API
+		 * 
 		 * @var integer $unique_hard_bounces
 		 */
 		private $unique_hard_bounces;
 
 		/**
+		 * uniqueBlocked field from API
+		 * 
 		 * @var integer $unique_blocked
 		 */
 		private $unique_blocked;
 
 		/**
+		 * clickToOpenRate field from API
+		 * 
 		 * @var float $click_to_open_rate
 		 */
 		private $click_to_open_rate;
 
 		/**
+		 * totalOpenRate field from API
+		 * 
 		 * @var float $total_open_rate
 		 */
 		private $total_open_rate;
 
 		/**
+		 * uniqueOpenRates field from API
+		 * 
 		 * @var float $unique_open_rates
 		 */
 		private $unique_open_rates;
 
 		/**
+		 * responderRates field from API
+		 * 
 		 * @var float $responder_rates
 		 */
 		private $responder_rates;
 
 		/**
+		 * uniqueUnsubscribeRates field from API
+		 * 
 		 * @var float $unique_unsubscribe_rates
 		 */
 		private $unique_unsubscribe_rates;
 
 		/**
+		 * clickRates field from API
+		 * 
 		 * @var float $click_rates
 		 */
 		private $click_rates;
 
 		/**
+		 * uniqueComplaintRates field from API
+		 * 
 		 * @var float $unique_complaint_rates
 		 */
 		private $unique_complaint_rates;
 
 		/**
+		 * uniqueClickRates field from API
+		 * 
 		 * @var float $unique_click_rates
 		 */
 		private $unique_click_rates;
 
 		/**
+		 * bounceRates field from API
+		 * 
 		 * @var float $bounce_rates
 		 */
 		private $bounce_rates;
 
 		/**
+		 * deliveredRates field from API
+		 * 
 		 * @var float $delivered_rates
 		 */
 		private $delivered_rates;
 
 		/**
-		 * Sets the private variable total_sent
+		 * Gets the private variable total_sent
 		 *
 		 * @return int
 		 */
@@ -919,7 +1023,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_sent
+		 * Sets the private variable total_sent
 		 *
 		 * @param int $total_sent
 		 *
@@ -933,7 +1037,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_delivered
+		 * Gets the private variable total_delivered
 		 *
 		 * @return int
 		 */
@@ -943,7 +1047,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_delivered
+		 * Sets the private variable total_delivered
 		 *
 		 * @param int $total_delivered
 		 *
@@ -957,7 +1061,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_open
+		 * Gets the private variable total_open
 		 *
 		 * @return int
 		 */
@@ -967,7 +1071,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_open
+		 * Sets the private variable total_open
 		 *
 		 * @param int $total_open
 		 *
@@ -981,7 +1085,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_clickthroughs
+		 * Gets the private variable total_clickthroughs
 		 *
 		 * @return int
 		 */
@@ -991,7 +1095,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_clickthroughs
+		 * Sets the private variable total_clickthroughs
 		 *
 		 * @param int $total_clickthroughs
 		 *
@@ -1005,7 +1109,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_bounced
+		 * Gets the private variable total_bounced
 		 *
 		 * @return int
 		 */
@@ -1015,7 +1119,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_bounced
+		 * Sets the private variable total_bounced
 		 *
 		 * @param int $total_bounced
 		 *
@@ -1029,7 +1133,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_hard_bounces
+		 * Gets the private variable total_hard_bounces
 		 *
 		 * @return int
 		 */
@@ -1039,7 +1143,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_hard_bounces
+		 * Sets the private variable total_hard_bounces
 		 *
 		 * @param int $total_hard_bounces
 		 *
@@ -1053,7 +1157,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_soft_bounces
+		 * Gets the private variable total_soft_bounces
 		 *
 		 * @return int
 		 */
@@ -1063,7 +1167,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_soft_bounces
+		 * Sets the private variable total_soft_bounces
 		 *
 		 * @param int $total_soft_bounces
 		 *
@@ -1077,7 +1181,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_blocked
+		 * Gets the private variable total_blocked
 		 *
 		 * @return int
 		 */
@@ -1087,7 +1191,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_blocked
+		 * Sets the private variable total_blocked
 		 *
 		 * @param int $total_blocked
 		 *
@@ -1101,7 +1205,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_complaints
+		 * Gets the private variable total_complaints
 		 *
 		 * @return int
 		 */
@@ -1111,7 +1215,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_complaints
+		 * Sets the private variable total_complaints
 		 *
 		 * @param int $total_complaints
 		 *
@@ -1125,7 +1229,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_unsubscribes
+		 * Gets the private variable total_unsubscribes
 		 *
 		 * @return int
 		 */
@@ -1135,7 +1239,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_unsubscribes
+		 * Sets the private variable total_unsubscribes
 		 *
 		 * @param int $total_unsubscribes
 		 *
@@ -1149,7 +1253,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_responders
+		 * Gets the private variable total_responders
 		 *
 		 * @return int
 		 */
@@ -1159,7 +1263,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_responders
+		 * Sets the private variable total_responders
 		 *
 		 * @param int $total_responders
 		 *
@@ -1173,7 +1277,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_open
+		 * Gets the private variable unique_open
 		 *
 		 * @return int
 		 */
@@ -1183,7 +1287,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_open
+		 * Sets the private variable unique_open
 		 *
 		 * @param int $unique_open
 		 *
@@ -1197,7 +1301,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_clickthroughs
+		 * Gets the private variable unique_clickthroughs
 		 *
 		 * @return int
 		 */
@@ -1207,7 +1311,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_clickthroughs
+		 * Sets the private variable unique_clickthroughs
 		 *
 		 * @param int $unique_clickthroughs
 		 *
@@ -1221,7 +1325,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_unsubscribes
+		 * Gets the private variable unique_unsubscribes
 		 *
 		 * @return int
 		 */
@@ -1231,7 +1335,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_unsubscribes
+		 * Sets the private variable unique_unsubscribes
 		 *
 		 * @param int $unique_unsubscribes
 		 *
@@ -1245,7 +1349,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_complaints
+		 * Gets the private variable unique_complaints
 		 *
 		 * @return int
 		 */
@@ -1255,7 +1359,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_complaints
+		 * Sets the private variable unique_complaints
 		 *
 		 * @param int $unique_complaints
 		 *
@@ -1269,7 +1373,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_bounced
+		 * Gets the private variable unique_bounced
 		 *
 		 * @return int
 		 */
@@ -1279,7 +1383,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_bounced
+		 * Sets the private variable unique_bounced
 		 *
 		 * @param int $unique_bounced
 		 *
@@ -1293,7 +1397,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_soft_bounces
+		 * Gets the private variable unique_soft_bounces
 		 *
 		 * @return int
 		 */
@@ -1303,7 +1407,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_soft_bounces
+		 * Sets the private variable unique_soft_bounces
 		 *
 		 * @param int $unique_soft_bounces
 		 *
@@ -1317,7 +1421,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_hard_bounces
+		 * Gets the private variable unique_hard_bounces
 		 *
 		 * @return int
 		 */
@@ -1327,7 +1431,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_hard_bounces
+		 * Sets the private variable unique_hard_bounces
 		 *
 		 * @param int $unique_hard_bounces
 		 *
@@ -1341,7 +1445,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_blocked
+		 * Gets the private variable unique_blocked
 		 *
 		 * @return int
 		 */
@@ -1351,7 +1455,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_blocked
+		 * Sets the private variable unique_blocked
 		 *
 		 * @param int $unique_blocked
 		 *
@@ -1365,7 +1469,7 @@
 		}
 
 		/**
-		 * Sets the private variable click_to_open_rate
+		 * Gets the private variable click_to_open_rate
 		 *
 		 * @return mixed
 		 */
@@ -1375,7 +1479,7 @@
 		}
 
 		/**
-		 * Gets the private variable click_to_open_rate
+		 * Sets the private variable click_to_open_rate
 		 *
 		 * @param float $click_to_open_rate
 		 *
@@ -1388,7 +1492,7 @@
 		}
 
 		/**
-		 * Sets the private variable total_open_rate
+		 * Gets the private variable total_open_rate
 		 *
 		 * @return float
 		 */
@@ -1398,7 +1502,7 @@
 		}
 
 		/**
-		 * Gets the private variable total_open_rate
+		 * Sets the private variable total_open_rate
 		 *
 		 * @param float $total_open_rate
 		 *
@@ -1412,7 +1516,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_open_rates
+		 * Gets the private variable unique_open_rates
 		 *
 		 * @return float
 		 */
@@ -1422,7 +1526,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_open_rates
+		 * Sets the private variable unique_open_rates
 		 *
 		 * @param float $unique_open_rates
 		 *
@@ -1436,7 +1540,7 @@
 		}
 
 		/**
-		 * Sets the private variable responder_rates
+		 * Gets the private variable responder_rates
 		 *
 		 * @return float
 		 */
@@ -1446,7 +1550,7 @@
 		}
 
 		/**
-		 * Gets the private variable responder_rates
+		 * Sets the private variable responder_rates
 		 *
 		 * @param float $responder_rates
 		 *
@@ -1460,7 +1564,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_unsubscribe_rates
+		 * Gets the private variable unique_unsubscribe_rates
 		 *
 		 * @return float
 		 */
@@ -1470,7 +1574,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_unsubscribe_rates
+		 * Sets the private variable unique_unsubscribe_rates
 		 *
 		 * @param float $unique_unsubscribe_rates
 		 *
@@ -1484,7 +1588,7 @@
 		}
 
 		/**
-		 * Sets the private variable click_rates
+		 * Gets the private variable click_rates
 		 *
 		 * @return float
 		 */
@@ -1494,7 +1598,7 @@
 		}
 
 		/**
-		 * Gets the private variable click_rates
+		 * Sets the private variable click_rates
 		 *
 		 * @param float $click_rates
 		 *
@@ -1508,7 +1612,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_complaint_rates
+		 * Gets the private variable unique_complaint_rates
 		 *
 		 * @return float
 		 */
@@ -1518,7 +1622,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_complaint_rates
+		 * Sets the private variable unique_complaint_rates
 		 *
 		 * @param float $unique_complaint_rates
 		 *
@@ -1532,7 +1636,7 @@
 		}
 
 		/**
-		 * Sets the private variable unique_click_rates
+		 * Gets the private variable unique_click_rates
 		 *
 		 * @return float
 		 */
@@ -1542,7 +1646,7 @@
 		}
 
 		/**
-		 * Gets the private variable unique_click_rates
+		 * Sets the private variable unique_click_rates
 		 *
 		 * @param float $unique_click_rates
 		 *
@@ -1556,7 +1660,7 @@
 		}
 
 		/**
-		 * Sets the private variable bounce_rates
+		 * Gets the private variable bounce_rates
 		 *
 		 * @return float
 		 */
@@ -1566,7 +1670,7 @@
 		}
 
 		/**
-		 * Gets the private variable bounce_rates
+		 * Sets the private variable bounce_rates
 		 *
 		 * @param float $bounce_rates
 		 *
@@ -1580,7 +1684,7 @@
 		}
 
 		/**
-		 * Sets the private variable delivered_rates
+		 * Gets the private variable delivered_rates
 		 *
 		 * @return float
 		 */
@@ -1590,7 +1694,7 @@
 		}
 
 		/**
-		 * Gets the private variable delivered_rates
+		 * Sets the private variable delivered_rates
 		 *
 		 * @param float $delivered_rates
 		 *

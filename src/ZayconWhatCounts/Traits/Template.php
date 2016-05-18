@@ -9,9 +9,24 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class TemplateTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait TemplateTraits
 	{
+		/**
+		 * URL Stub
+		 *
+		 * @var string $template_stub
+		 */
 		private $template_stub = 'templates';
+
+		/**
+		 * Template class name
+		 * 
+		 * @var string $template_class_name
+		 */
 		private $template_class_name = 'ZayconWhatCounts\Template';
 
 		/**

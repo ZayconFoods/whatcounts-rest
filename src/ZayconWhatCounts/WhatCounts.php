@@ -28,10 +28,39 @@
 		use RelationalColumnTraits;
 		use RelationalDataTraits;
 
+		/**
+		 * Time zone to use locally
+		 *
+		 * @var string $time_zone
+		 */
 		private $time_zone;
+
+		/**
+		 * Base URL of WhatCounts API
+		 *
+		 * @var string $url
+		 */
 		private $url;
+
+		/**
+		 * Realm to use with API
+		 *
+		 * @var string $realm
+		 */
 		private $realm;
+
+		/**
+		 * Password to use with API
+		 *
+		 * @var string $password
+		 */
 		private $password;
+
+		/**
+		 * Version of API to use
+		 *
+		 * @var string $version
+		 */
 		private $version;
 
 		/**
@@ -57,87 +86,9 @@
 		}
 
 		/**
-		 * @return mixed
-		 */
-		public function getUrl()
-		{
-			return $this->url;
-		}
-
-		/**
-		 * @param mixed $url
+		 * Gets the private variable time_zone
 		 *
-		 * @return WhatCounts
-		 */
-		public function setUrl($url)
-		{
-			$this->url = $url;
-
-			return $this;
-		}
-
-		/**
-		 * @return mixed
-		 */
-		public function getRealm()
-		{
-			return $this->realm;
-		}
-
-		/**
-		 * @param mixed $realm
-		 *
-		 * @return WhatCounts
-		 */
-		public function setRealm($realm)
-		{
-			$this->realm = $realm;
-
-			return $this;
-		}
-		
-		/**
-		 * @return mixed
-		 */
-		public function getPassword()
-		{
-			return $this->password;
-		}
-
-		/**
-		 * @param mixed $password
-		 *
-		 * @return WhatCounts
-		 */
-		public function setPassword($password)
-		{
-			$this->password = $password;
-
-			return $this;
-		}
-
-		/**
-		 * @return mixed
-		 */
-		public function getVersion()
-		{
-			return $this->version;
-		}
-
-		/**
-		 * @param mixed $version
-		 *
-		 * @return WhatCounts
-		 */
-		public function setVersion($version)
-		{
-			$this->version = $version;
-
-			return $this;
-		}
-
-		/**
-		 * @return mixed
+		 * @return string
 		 */
 		public function getTimeZone()
 		{
@@ -145,19 +96,119 @@
 		}
 
 		/**
-		 * @param mixed $time_zone
+		 * Sets the private variable time_zone
+		 *
+		 * @param string $time_zone
 		 *
 		 * @return WhatCounts
 		 */
 		public function setTimeZone($time_zone)
 		{
-			$this->time_zone =$time_zone;
+			$this->time_zone = (string)$time_zone;
+
+			return $this;
+		}
+
+		/**
+		 * Gets the private variable url
+		 *
+		 * @return string
+		 */
+		public function getUrl()
+		{
+			return $this->url;
+		}
+
+		/**
+		 * Sets the private variable url
+		 *
+		 * @param string $url
+		 *
+		 * @return WhatCounts
+		 */
+		public function setUrl($url)
+		{
+			$this->url = (string)$url;
+
+			return $this;
+		}
+
+		/**
+		 * Gets the private variable realm
+		 *
+		 * @return string
+		 */
+		public function getRealm()
+		{
+			return $this->realm;
+		}
+
+		/**
+		 * Sets the private variable realm
+		 *
+		 * @param string $realm
+		 *
+		 * @return WhatCounts
+		 */
+		public function setRealm($realm)
+		{
+			$this->realm = (string)$realm;
+
+			return $this;
+		}
+
+		/**
+		 * Gets the private variable password
+		 *
+		 * @return string
+		 */
+		public function getPassword()
+		{
+			return $this->password;
+		}
+
+		/**
+		 * Sets the private variable password
+		 *
+		 * @param string $password
+		 *
+		 * @return WhatCounts
+		 */
+		public function setPassword($password)
+		{
+			$this->password = (string)$password;
+
+			return $this;
+		}
+
+		/**
+		 * Gets the private variable version
+		 *
+		 * @return string
+		 */
+		public function getVersion()
+		{
+			return $this->version;
+		}
+
+		/**
+		 * Sets the private variable version
+		 *
+		 * @param string $version
+		 *
+		 * @return WhatCounts
+		 */
+		public function setVersion($version)
+		{
+			$this->version = (string)$version;
+
 			return $this;
 		}
 
 		
-		
 		/**
+		 * Making sure realm and password are set before making calls to WhatCounts API
+		 * 
 		 * @return bool
 		 * @throws \InvalidArgumentException
 		 */
@@ -173,6 +224,8 @@
 		}
 
 		/**
+		 * Method for making actual calls to WhatCounts API
+		 *
 		 * @param $command
 		 * @param $method
 		 * @param null $request_data
@@ -251,7 +304,13 @@
 
 			return FALSE;
 		}
-		
+
+		/**
+		 *
+		 * Exception handler
+		 *
+		 * @param $e
+		 */
 		public function handleException($e)
 		{
 			if (class_exists('Kint')) {
@@ -263,7 +322,12 @@
 				\Rollbar::report_exception($e);
 			}
 		}
-		
+
+		/**
+		 * Dump handler
+		 *
+		 * @param $object
+		 */
 		public function handleDump($object)
 		{
 			if (class_exists('Kint')) {

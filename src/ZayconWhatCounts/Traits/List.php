@@ -9,9 +9,24 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class ListTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait ListTraits
 	{
+		/**
+		 * URL Stub
+		 * 
+		 * @var string $list_stub
+		 */
 		private $list_stub = 'lists';
+
+		/**
+		 * MailingList Class Name
+		 * 
+		 * @var string $list_class_name
+		 */
 		private $list_class_name = '\ZayconWhatCounts\MailingList';
 
 		/**

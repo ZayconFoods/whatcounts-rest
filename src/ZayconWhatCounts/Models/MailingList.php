@@ -16,201 +16,280 @@ namespace ZayconWhatCounts;
 class MailingList
 {
 	/**
+     * listId field from API
      * @var integer $id
      */
     private $id;
 
 	/**
+     * listRealmId field from API
+     *
      * @var integer $realm_id
      */
     private $realm_id;
 
 	/**
+     * listTemplateId field from API
+     *
      * @var integer $template_id
      */
     private $template_id;
 
 	/**
+     * listName field from API
+     *
      * @var string $name
      */
     private $name;
 
 	/**
+     * listFolderId field from API
+     *
      * @var integer $folder_id
      */
     private $folder_id;
 
 	/**
+     * type field from API
+     *
      * @var integer $type
      */
     private $type;
 
 	/**
+     * listFromAddress field from API
+     *
      * @var string $from_address
      */
     private $from_address;
 
 	/**
+     * listReplyToAddress field from API
+     *
      * @var string $reply_to_address
      */
     private $reply_to_address;
 
 	/**
+     * listMailFromAddress field from API
+     *
      * @var string $mail_from_address
      */
     private $mail_from_address;
 
 	/**
+     * listDescription field from API
+     *
      * @var string $description
      */
     private $description;
 
 	/**
+     * listCreatedDate field from API
+     *
      * @var \DateTime $created_date
      */
     private $created_date;
 
 	/**
+     * listUpdatedDate field from API
+     *
      * @var \DateTime $updated_date
      */
     private $updated_date;
 
 	/**
+     * listSubscribeEmailTemplateId field from API
+     *
      * @var integer $subscribe_email_template_id
      */
     private $subscribe_email_template_id;
 
 	/**
+     * listUnsubscribeEmailTemplateId field from API
+     *
      * @var integer $unsubscribe_email_template_id
      */
     private $unsubscribe_email_template_id;
 
 	/**
+     * listConfirmSubs field from API
+     *
      * @var boolean $confirm_subs
      */
     private $confirm_subs;
 
 	/**
+     * listSendCourtesySubsEmail field from API
+     *
      * @var boolean $send_courtesy_subs_email
      */
     private $send_courtesy_subs_email;
 
 	/**
+     * listSendCourtesyUnsubsEmail field from API
+     *
      * @var boolean $send_courtesy_unsubs_email
      */
     private $send_courtesy_unsubs_email;
 
 	/**
+     * listAdminEmail field from API
+     *
      * @var string $admin_email
      */
     private $admin_email;
 
 	/**
+     * listConfirmationSubGoto field from API
+     *
      * @var string $confirmation_sub_goto
      */
     private $confirmation_sub_goto;
 
 	/**
+     * listConfirmationUnsubGoto field from API
+     *
      * @var string $confirmation_unsub_goto
      */
     private $confirmation_unsub_goto;
 
 	/**
+     * listTrackingReadEnabled field from API
+     *
      * @var boolean $tracking_read_enabled
      */
     private $tracking_read_enabled;
 
 	/**
+     * listTrackingClickthroughEnabled field from API
+     *
      * @var boolean $tracking_clickthrough_enabled
      */
     private $tracking_clickthrough_enabled;
 
 	/**
+     * listUseStickyCampaign field from API
+     *
      * @var boolean $use_sticky_campaign
      */
     private $use_sticky_campaign;
 
 	/**
+     * ftafUseListFromAddress field from API
+     *
      * @var boolean $ftaf_use_list_from_address
      */
     private $ftaf_use_list_from_address;
 
 	/**
+     * vmtaId field from API
+     *
      * @var integer $vmta_id
      */
     private $vmta_id;
 
 	/**
+     * baseUrlId field from API
+     *
      * @var integer $base_url_id
      */
     private $base_url_id;
 
 	/**
+     * unsubscribeHeaderEnabled field from API
+     *
      * @var boolean $unsubscribe_header_enabled
      */
     private $unsubscribe_header_enabled;
 
 	/**
+     * parentTemplateId field from API
+     *
      * @var integer $parent_template_id
      */
     private $parent_template_id;
 
 	/**
+     * isTemplate field from API
+     *
      * @var boolean $is_template
      */
     private $is_template;
 
 	/**
+     * defaultLifecycleCampaignId field from API
+     *
      * @var integer $default_lifecycle_campaign_id
      */
     private $default_lifecycle_campaign_id;
 
 	/**
+     * defaultLifecycle field from API
+     *
      * @var boolean $default_lifecycle
      */
     private $default_lifecycle;
 
 	/**
+     * unsubHeaderHttpValue field from API
+     *
      * @var string $unsub_header_http_value
      */
     private $unsub_header_http_value;
 
 	/**
+     * unsubHeaderEmailValue field from API
+     *
      * @var string $unsub_header_email_value
      */
     private $unsub_header_email_value;
 
 	/**
+     * subscriberCountTotal field from API
+     *
      * @var integer $subscriber_count_total 
      */
     private $subscriber_count_total;
 
 	/**
+     * subscriberCountPlain field from API
+     *
      * @var integer $subscriber_count_plain
      */
     private $subscriber_count_plain;
 
 	/**
+     * subscriberCountHtml field from API
+     *
      * @var integer $subscriber_count_html
      */
     private $subscriber_count_html;
 
 	/**
+     * subscriberCountRss field from API
+     *
      * @var integer $subscriber_count_rss
      */
     private $subscriber_count_rss;
 
 	/**
+     * subscriberCountMime field from API
+     *
      * @var integer $subscriber_count_mime
      */
     private $subscriber_count_mime;
 
 	/**
+     * skip field from API
+     *
      * @var integer $skip
      */
     private $skip;
 
 	/**
+     * max field from API
+     * 
      * @var integer $max
      */
     private $max;
@@ -269,7 +348,9 @@ class MailingList
         }
     }
 
-	/**
+    /**
+     * Generates array for API request.
+     *
      * @return array
      */
     public function getRequestArray()
@@ -309,7 +390,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable id
+     * Gets the private variable id
      *
      * @return int
      */
@@ -319,7 +400,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable id
+     * Sets the private variable id
      *
      * @param int $id
      *
@@ -333,7 +414,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable realm_id
+     * Gets the private variable realm_id
      *
      * @return int
      */
@@ -343,7 +424,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable realm_id
+     * Sets the private variable realm_id
      *
      * @param int $realm_id
      *
@@ -357,7 +438,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable template_id
+     * Gets the private variable template_id
      *
      * @return int
      */
@@ -367,7 +448,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable template_id
+     * Sets the private variable template_id
      *
      * @param int $template_id
      *
@@ -381,7 +462,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable name
+     * Gets the private variable name
      *
      * @return string
      */
@@ -391,7 +472,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable name
+     * Sets the private variable name
      *
      * @param string $name
      *
@@ -405,7 +486,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable folder_id
+     * Gets the private variable folder_id
      *
      * @return int
      */
@@ -415,7 +496,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable folder_id
+     * Sets the private variable folder_id
      *
      * @param int $folder_id
      *
@@ -429,7 +510,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable type
+     * Gets the private variable type
      *
      * @return int
      */
@@ -439,7 +520,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable type
+     * Sets the private variable type
      *
      * @param int $type
      *
@@ -453,7 +534,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable from_address
+     * Gets the private variable from_address
      *
      * @return string
      */
@@ -463,7 +544,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable from_address
+     * Sets the private variable from_address
      *
      * @param string $from_address
      *
@@ -477,7 +558,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable reply_to_address
+     * Gets the private variable reply_to_address
      *
      * @return string
      */
@@ -487,7 +568,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable reply_to_address
+     * Sets the private variable reply_to_address
      *
      * @param string $reply_to_address
      *
@@ -501,7 +582,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable mail_from_address
+     * Gets the private variable mail_from_address
      *
      * @return string
      */
@@ -511,7 +592,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable mail_from_address
+     * Sets the private variable mail_from_address
      *
      * @param string $mail_from_address
      *
@@ -525,7 +606,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable description
+     * Gets the private variable description
      *
      * @return string
      */
@@ -535,7 +616,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable description
+     * Sets the private variable description
      *
      * @param string $description
      *
@@ -549,7 +630,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable created_date
+     * Gets the private variable created_date
      *
      * @return \DateTime
      */
@@ -559,7 +640,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable created_date
+     * Sets the private variable created_date
      *
      * @param \DateTime $created_date
      * @param string $format
@@ -575,7 +656,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable updated_date
+     * Gets the private variable updated_date
      *
      * @return \DateTime
      */
@@ -585,7 +666,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable updated_date
+     * Sets the private variable updated_date
      *
      * @param \DateTime $updated_date
      * @param string $format
@@ -601,7 +682,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable subscribe_email_template_id
+     * Gets the private variable subscribe_email_template_id
      *
      * @return int
      */
@@ -611,7 +692,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable subscribe_email_template_id
+     * Sets the private variable subscribe_email_template_id
      *
      * @param int $subscribe_email_template_id
      *
@@ -625,7 +706,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable unsubscribe_email_template_id
+     * Gets the private variable unsubscribe_email_template_id
      *
      * @return int
      */
@@ -635,7 +716,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable unsubscribe_email_template_id
+     * Sets the private variable unsubscribe_email_template_id
      *
      * @param int $unsubscribe_email_template_id
      *
@@ -659,7 +740,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable confirm_subs
+     * Sets the private variable confirm_subs
      *
      * @param boolean $confirm_subs
      *
@@ -683,7 +764,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable send_courtesy_subs_email
+     * Sets the private variable send_courtesy_subs_email
      *
      * @param boolean $send_courtesy_subs_email
      *
@@ -707,7 +788,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable send_courtesy_unsubs_email
+     * Sets the private variable send_courtesy_unsubs_email
      *
      * @param boolean $send_courtesy_unsubs_email
      *
@@ -721,7 +802,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable admin_email
+     * Gets the private variable admin_email
      *
      * @return string
      */
@@ -731,7 +812,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable admin_email
+     * Sets the private variable admin_email
      *
      * @param string $admin_email
      *
@@ -745,7 +826,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable confirmation_sub_goto
+     * Gets the private variable confirmation_sub_goto
      *
      * @return string
      */
@@ -755,7 +836,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable confirmation_sub_goto
+     * Sets the private variable confirmation_sub_goto
      *
      * @param string $confirmation_sub_goto
      *
@@ -769,7 +850,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable confirmation_unsub_goto
+     * Gets the private variable confirmation_unsub_goto
      *
      * @return string
      */
@@ -779,7 +860,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable confirmation_unsub_goto
+     * Sets the private variable confirmation_unsub_goto
      *
      * @param string $confirmation_unsub_goto
      *
@@ -803,7 +884,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable tracking_read_enabled
+     * Sets the private variable tracking_read_enabled
      *
      * @param boolean $tracking_read_enabled
      *
@@ -827,7 +908,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable tracking_clickthrough_enabled
+     * Sets the private variable tracking_clickthrough_enabled
      *
      * @param boolean $tracking_clickthrough_enabled
      *
@@ -851,7 +932,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable use_sticky_campaign
+     * Sets the private variable use_sticky_campaign
      *
      * @param boolean $use_sticky_campaign
      *
@@ -875,7 +956,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable ftaf_use_list_from_address
+     * Sets the private variable ftaf_use_list_from_address
      *
      * @param boolean $ftaf_use_list_from_address
      *
@@ -889,7 +970,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable vmta_id
+     * Gets the private variable vmta_id
      *
      * @return int
      */
@@ -899,7 +980,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable vmta_id
+     * Sets the private variable vmta_id
      *
      * @param int $vmta_id
      *
@@ -913,7 +994,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable base_url_id
+     * Gets the private variable base_url_id
      *
      * @return int
      */
@@ -923,7 +1004,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable base_url_id
+     * Sets the private variable base_url_id
      *
      * @param int $base_url_id
      *
@@ -947,7 +1028,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable unsubscribe_header_enabled
+     * Sets the private variable unsubscribe_header_enabled
      *
      * @param boolean $unsubscribe_header_enabled
      *
@@ -961,7 +1042,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable parent_template_id
+     * Gets the private variable parent_template_id
      *
      * @return int
      */
@@ -971,7 +1052,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable parent_template_id
+     * Sets the private variable parent_template_id
      *
      * @param int $parent_template_id
      *
@@ -995,7 +1076,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable is_template
+     * Sets the private variable is_template
      *
      * @param boolean $is_template
      *
@@ -1009,7 +1090,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable default_lifecycle_campaign_id
+     * Gets the private variable default_lifecycle_campaign_id
      *
      * @return int
      */
@@ -1019,7 +1100,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable default_lifecycle_campaign_id
+     * Sets the private variable default_lifecycle_campaign_id
      *
      * @param int $default_lifecycle_campaign_id
      *
@@ -1043,7 +1124,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable default_lifecycle
+     * Sets the private variable default_lifecycle
      *
      * @param boolean $default_lifecycle
      *
@@ -1057,7 +1138,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable unsub_header_http_value
+     * Gets the private variable unsub_header_http_value
      *
      * @return string
      */
@@ -1067,7 +1148,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable unsub_header_http_value
+     * Sets the private variable unsub_header_http_value
      *
      * @param string $unsub_header_http_value
      *
@@ -1081,7 +1162,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable unsub_header_email_value
+     * Gets the private variable unsub_header_email_value
      *
      * @return string
      */
@@ -1091,7 +1172,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable unsub_header_email_value
+     * Sets the private variable unsub_header_email_value
      *
      * @param string $unsub_header_email_value
      *
@@ -1105,7 +1186,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable subscriber_count_total
+     * Gets the private variable subscriber_count_total
      *
      * @return int
      */
@@ -1115,7 +1196,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable subscriber_count_total
+     * Sets the private variable subscriber_count_total
      *
      * @param int $subscriber_count_total
      *
@@ -1129,7 +1210,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable subscriber_count_plain
+     * Gets the private variable subscriber_count_plain
      *
      * @return int
      */
@@ -1139,7 +1220,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable subscriber_count_plain
+     * Sets the private variable subscriber_count_plain
      *
      * @param int $subscriber_count_plain
      *
@@ -1153,7 +1234,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable subscriber_count_html
+     * Gets the private variable subscriber_count_html
      *
      * @return int
      */
@@ -1163,7 +1244,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable subscriber_count_html
+     * Sets the private variable subscriber_count_html
      *
      * @param int $subscriber_count_html
      *
@@ -1177,7 +1258,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable subscriber_count_rss
+     * Gets the private variable subscriber_count_rss
      *
      * @return int
      */
@@ -1187,7 +1268,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable subscriber_count_rss
+     * Sets the private variable subscriber_count_rss
      *
      * @param int $subscriber_count_rss
      *
@@ -1201,7 +1282,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable subscriber_count_mime
+     * Gets the private variable subscriber_count_mime
      *
      * @return int
      */
@@ -1211,7 +1292,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable subscriber_count_mime
+     * Sets the private variable subscriber_count_mime
      *
      * @param int $subscriber_count_mime
      *
@@ -1225,7 +1306,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable skip
+     * Gets the private variable skip
      *
      * @return int
      */
@@ -1235,7 +1316,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable skip
+     * Sets the private variable skip
      *
      * @param int $skip
      *
@@ -1249,7 +1330,7 @@ class MailingList
     }
 
     /**
-     * Sets the private variable max
+     * Gets the private variable max
      *
      * @return int
      */
@@ -1259,7 +1340,7 @@ class MailingList
     }
 
     /**
-     * Gets the private variable max
+     * Sets the private variable max
      *
      * @param int $max
      *

@@ -9,9 +9,24 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class SubscriberTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait SubscriberTraits
 	{
+		/**
+		 * URL Stub
+		 * 
+		 * @var string $subscriber_stub
+		 */
 		private $subscriber_stub = 'subscribers';
+
+		/**
+		 * Subscriber Class Name
+		 * 
+		 * @var string $subscriber_class_name
+		 */
 		private $subscriber_class_name = '\ZayconWhatCounts\Subscriber';
 
 		/**
@@ -49,6 +64,11 @@
 			return $subscribers;
 		}
 
+		/**
+		 * @param \ZayconWhatCounts\MailingList $list
+		 *
+		 * @return array
+		 */
 		public function getUnsubscribersForList(MailingList $list)
 		{
 			$whatcounts = $this;
@@ -58,6 +78,15 @@
 			return $subscribers;
 		}
 
+		/**
+		 * @param \ZayconWhatCounts\MailingList $list
+		 * @param null                          $customer_key
+		 * @param null                          $email
+		 * @param null                          $first_name
+		 * @param null                          $last_name
+		 *
+		 * @return array
+		 */
 		public function findSubscribersInList(MailingList $list, $customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL)
 		{
 			$query = array();
@@ -81,6 +110,14 @@
 			return $subscribers;
 		}
 
+		/**
+		 * @param null $customer_key
+		 * @param null $email
+		 * @param null $first_name
+		 * @param null $last_name
+		 *
+		 * @return array
+		 */
 		public function findSubscribers($customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL)
 		{
 			$query = array();
@@ -121,16 +158,29 @@
 			return $subscriber;
 		}
 
+		/**
+		 * @param $subscriber
+		 */
 		public function getSubscriberSubscriptions($subscriber)
 		{
 
 		}
 
+		/**
+		 * @param      $subscriber
+		 * @param null $start_date
+		 * @param null $end_date
+		 */
 		public function getSubscribersEventsByCustomerKey($subscriber, $start_date = NULL, $end_date = NULL)
 		{
 
 		}
 
+		/**
+		 * @param      $subscriber
+		 * @param null $start_date
+		 * @param null $end_date
+		 */
 		public function getSubscribersEventsBySubscriberId($subscriber, $start_date = NULL, $end_date = NULL)
 		{
 
@@ -190,6 +240,11 @@
 			return $whatcounts->deleteById($this->subscriber_stub, $subscriber);
 		}
 
+		/**
+		 * @param \ZayconWhatCounts\Subscriber $subscriber
+		 *
+		 * @return bool
+		 */
 		public function deleteSubscriberByCustomerKey(Subscriber $subscriber)
 		{
 			$whatcounts = $this;

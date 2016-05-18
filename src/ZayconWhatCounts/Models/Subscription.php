@@ -9,49 +9,71 @@
     namespace ZayconWhatCounts;
 
 
+    /**
+     * Class Subscription
+     * @package ZayconWhatCounts
+     */
     class Subscription
     {
 	    /**
+         * id field from API
+         *
          * @var integer $id
          */
         private $id;
 
 	    /**
+         * subscriberId field from API
+         *
          * @var integer $subscriber_id
          */
         private $subscriber_id;
 
 	    /**
+         * listId field from API
+         *
          * @var integer $list_id
          */
         private $list_id;
 
 	    /**
+         * formatId field from API
+         *
          * @var integer $format_id
          */
         private $format_id;
 
 	    /**
+         * createdDate field from API
+         *
          * @var \DateTime $created_date
          */
         private $created_date;
 
 	    /**
+         * listName field from API
+         *
          * @var string $list_name
          */
         private $list_name;
 
 	    /**
+         * subscriber object from API
+         *
          * @var Subscriber $subscriber
          */
         private $subscriber;
 
 	    /**
+         * skip field from API
+         *
          * @var integer $skip
          */
         private $skip;
 
 	    /**
+         * max field from API
+         * 
          * @var integer $max
          */
         private $max;
@@ -79,7 +101,9 @@
             }
         }
 
-	    /**
+        /**
+         * Generates array for API request.
+         *
          * @return array
          */
         public function getRequestArray()
@@ -95,7 +119,7 @@
         }
 
         /**
-         * Sets the private variable id
+         * Gets the private variable id
          *
          * @return int
          */
@@ -105,7 +129,7 @@
         }
 
         /**
-         * Gets the private variable id
+         * Sets the private variable id
          *
          * @param int $id
          *
@@ -119,7 +143,7 @@
         }
 
         /**
-         * Sets the private variable subscriber_id
+         * Gets the private variable subscriber_id
          *
          * @return int
          */
@@ -129,7 +153,7 @@
         }
 
         /**
-         * Gets the private variable subscriber_id
+         * Sets the private variable subscriber_id
          *
          * @param int $subscriber_id
          *
@@ -143,7 +167,7 @@
         }
 
         /**
-         * Sets the private variable list_id
+         * Gets the private variable list_id
          *
          * @return int
          */
@@ -153,7 +177,7 @@
         }
 
         /**
-         * Gets the private variable list_id
+         * Sets the private variable list_id
          *
          * @param int $list_id
          *
@@ -167,7 +191,7 @@
         }
 
         /**
-         * Sets the private variable format_id
+         * Gets the private variable format_id
          *
          * @return int
          */
@@ -177,7 +201,7 @@
         }
 
         /**
-         * Gets the private variable format_id
+         * Sets the private variable format_id
          *
          * @param int $format_id
          *
@@ -191,7 +215,7 @@
         }
 
         /**
-         * Sets the private variable created_date
+         * Gets the private variable created_date
          *
          * @return \DateTime
          */
@@ -201,7 +225,7 @@
         }
 
         /**
-         * Gets the private variable created_date
+         * Sets the private variable created_date
          *
          * @param \DateTime $created_date
          * @param string $format
@@ -218,7 +242,7 @@
 
 
         /**
-         * Sets the private variable list_name
+         * Gets the private variable list_name
          *
          * @return string
          */
@@ -228,7 +252,7 @@
         }
 
         /**
-         * Gets the private variable list_name
+         * Sets the private variable list_name
          *
          * @param string $list_name
          *
@@ -242,7 +266,7 @@
         }
 
         /**
-         * Sets the private variable subscriber
+         * Gets the private variable subscriber
          *
          * @return \ZayconWhatCounts\Subscriber
          */
@@ -252,7 +276,7 @@
         }
 
         /**
-         * Gets the private variable subscriber
+         * Sets the private variable subscriber
          *
          * @param \ZayconWhatCounts\Subscriber $subscriber
          *
@@ -266,7 +290,7 @@
         }
 
         /**
-         * Sets the private variable skip
+         * Gets the private variable skip
          *
          * @return int
          */
@@ -276,7 +300,7 @@
         }
 
         /**
-         * Gets the private variable skip
+         * Sets the private variable skip
          *
          * @param int $skip
          *
@@ -290,7 +314,7 @@
         }
 
         /**
-         * Sets the private variable max
+         * Gets the private variable max
          *
          * @return int
          */
@@ -300,7 +324,7 @@
         }
 
         /**
-         * Gets the private variable max
+         * Sets the private variable max
          *
          * @param int $max
          *
