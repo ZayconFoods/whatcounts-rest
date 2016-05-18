@@ -9,10 +9,25 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class RelationalDataTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait RelationalDataTraits
 	{
+		/**
+		 * RelationalData Class Name
+		 * 
+		 * @var string $relational_data_class_name
+		 */
 		private $relational_data_class_name = '\ZayconWhatCounts\RelationalData';
 
+		/**
+		 * @param $relational_table_name
+		 * @param $row_id
+		 *
+		 * @return mixed
+		 */
 		public function getRelationalData($relational_table_name, $row_id)
 		{
 			/** @var WhatCounts $whatcounts */
@@ -24,7 +39,6 @@
 
 		/**
 		 * @param $relational_table_name
-		 * @param $row_id
 		 * @param $data
 		 *
 		 * @return bool|object

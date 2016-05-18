@@ -9,6 +9,10 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class ActionsTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait ActionsTraits
 	{
 		/**

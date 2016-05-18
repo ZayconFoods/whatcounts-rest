@@ -2,3 +2,4 @@
 examples/config.php
 vendor
 phpunit.xml
+**/phpdoc-cache-*

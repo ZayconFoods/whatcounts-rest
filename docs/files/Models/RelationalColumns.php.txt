@@ -16,61 +16,85 @@
 	class RelationalColumns
 	{
 		/**
+		 * id field from API
+		 * 
 		 * @var integer $id
 		 */
 		private $id;
 
 		/**
+		 * realmId field from API
+		 *
 		 * @var integer $realm_id
 		 */
 		private $realm_id;
 
 		/**
+		 * parentTableId field from API
+		 *
 		 * @var integer $parent_table_id
 		 */
 		private $parent_table_id;
 
 		/**
+		 * foreignKey field from API
+		 *
 		 * @var bool $foreign_key
 		 */
 		private $foreign_key;
 
 		/**
+		 * uniqueField field from API
+		 *
 		 * @var bool $unique_field
 		 */
 		private $unique_field;
 
 		/**
+		 * columnLength field from API
+		 *
 		 * @var integer $column_length
 		 */
 		private $column_length;
 
 		/**
+		 * name field from API
+		 *
 		 * @var string $name
 		 */
 		private $name;
 
 		/**
+		 * status field from API
+		 *
 		 * @var string $status
 		 */
 		private $status;
 
 		/**
+		 * storageType field from API
+		 *
 		 * @var string $storage_type
 		 */
 		private $storage_type;
 
 		/**
+		 * type field from API
+		 *
 		 * @var string $type
 		 */
 		private $type;
 
 		/**
+		 * createdDate field from API
+		 *
 		 * @var \DateTime $created_date
 		 */
 		private $created_date;
 
 		/**
+		 * updatedDate field from API
+		 *
 		 * @var \DateTime $updated_date
 		 */
 		private $updated_date;

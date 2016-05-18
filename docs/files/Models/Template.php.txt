@@ -16,136 +16,190 @@ namespace ZayconWhatCounts;
 class Template
 {
 	/**
+     * id field from API
+     *
      * @var integer $id
      */
     private $id;
 
 	/**
+     * realmId field from API
+     *
      * @var integer $realm_id
      */
     private $realm_id;
 
 	/**
+     * name field from API
+     *
      * @var string $name
      */
     private $name;
 
 	/**
+     * description field from API
+     *
      * @var string $description
      */
     private $description;
 
 	/**
+     * subject field from API
+     *
      * @var string $subject
      */
     private $subject;
 
 	/**
+     * createdDate field from API
+     *
      * @var \DateTime $created_date
      */
     private $created_date;
 
 	/**
+     * updatedDate field from API
+     *
      * @var \DateTime $updated_date
      */
     private $updated_date;
 
 	/**
+     * deletedFlag field from API
+     *
      * @var bool $deleted_flag
      */
     private $deleted_flag;
 
 	/**
+     * folderId field from API
+     *
      * @var integer $folder_id
      */
     private $folder_id;
 
 	/**
+     * hasVideo field from API
+     *
      * @var bool $has_video
      */
     private $has_video;
 
 	/**
+     * permissionMask field from API
+     *
      * @var integer $permission_mask
      */
     private $permission_mask;
 
 	/**
+     * templateInherited field from API
+     *
      * @var bool $inherited
      */
     private $inherited;
 
 	/**
+     * templateDataPlaintext field from API
+     *
      * @var string $data_plaintext
      */
     private $data_plaintext;
 
 	/**
+     * templateDataHtml field from API
+     *
      * @var string $data_html
      */
     private $data_html;
 
 	/**
+     * templateDataMobile field from API
+     *
      * @var string $data_mobile
      */
     private $data_mobile;
 
 	/**
+     * templateDataWap field from API
+     *
      * @var string $data_wap
      */
     private $data_wap;
 
 	/**
+     * templateDataAvantgo field from API
+     *
      * @var string $data_avantgo
      */
     private $data_avantgo;
 
 	/**
+     * templateDataAol field from API
+     *
      * @var string $data_aol
      */
     private $data_aol;
 
 	/**
+     * templateDataXml field from API
+     *
      * @var $data_xml
      */
     private $data_xml;
 
 	/**
+     * templateReplaceFields field from API
+     *
      * @var string $replace_fields
      */
     private $replace_fields;
 
 	/**
+     * templateNotes field from API
+     *
      * @var string $notes
      */
     private $notes;
 
 	/**
+     * plainHasRelational field from API
+     *
      * @var bool $plain_has_relational
      */
     private $plain_has_relational;
 
 	/**
+     * htmlHasDirectional field from API
+     *
      * @var bool $html_has_relational
      */
     private $html_has_relational;
 
 	/**
+     * libraryId field from API
+     *
      * @var integer $library_id
      */
     private $library_id;
 
 	/**
+     * layoutId field from API
+     *
      * @var integer $layout_id
      */
     private $layout_id;
 
 	/**
+     * skip field from API
+     *
      * @var integer $skip
      */
     private $skip;
 
 	/**
+     * max field from API
+     *
      * @var integer $max
      */
     private $max;
@@ -181,6 +235,7 @@ class Template
                 ->setDataAol($template_response->templateDataAol)
                 ->setDataXml($template_response->templateDataXml)
                 ->setReplaceFields($template_response->templateReplaceFields)
+                ->setNotes($template_response->templateNotes)
                 ->setPlainHasRelational($template_response->plainHasRelational)
                 ->setHtmlHasRelational($template_response->htmlHasRelational)
                 ->setLibraryId($template_response->templateLibraryId)
@@ -225,7 +280,7 @@ class Template
 
 
     /**
-     * Sets the private variable id
+     * Gets the private variable id
      *
      * @return int
      */
@@ -235,7 +290,7 @@ class Template
     }
 
     /**
-     * Gets the private variable id
+     * Sets the private variable id
      *
      * @param int $id
      *
@@ -249,7 +304,7 @@ class Template
     }
 
     /**
-     * Sets the private variable realm_id
+     * Gets the private variable realm_id
      *
      * @return int
      */
@@ -259,7 +314,7 @@ class Template
     }
 
     /**
-     * Gets the private variable realm_id
+     * Sets the private variable realm_id
      *
      * @param int $realm_id
      *
@@ -273,7 +328,7 @@ class Template
     }
 
     /**
-     * Sets the private variable name
+     * Gets the private variable name
      *
      * @return string
      */
@@ -283,7 +338,7 @@ class Template
     }
 
     /**
-     * Gets the private variable name
+     * Sets the private variable name
      *
      * @param string $name
      *
@@ -297,7 +352,7 @@ class Template
     }
 
     /**
-     * Sets the private variable description
+     * Gets the private variable description
      *
      * @return string
      */
@@ -307,7 +362,7 @@ class Template
     }
 
     /**
-     * Gets the private variable description
+     * Sets the private variable description
      *
      * @param string $description
      *
@@ -321,7 +376,7 @@ class Template
     }
 
     /**
-     * Sets the private variable subject
+     * Gets the private variable subject
      *
      * @return string
      */
@@ -331,7 +386,7 @@ class Template
     }
 
     /**
-     * Gets the private variable subject
+     * Sets the private variable subject
      *
      * @param string $subject
      *
@@ -345,7 +400,7 @@ class Template
     }
 
     /**
-     * Sets the private variable created_date
+     * Gets the private variable created_date
      *
      * @return \DateTime
      */
@@ -355,7 +410,7 @@ class Template
     }
 
     /**
-     * Gets the private variable created_date
+     * Sets the private variable created_date
      *
      * @param \DateTime $created_date
      * @param string $format
@@ -371,7 +426,7 @@ class Template
     }
 
     /**
-     * Sets the private variable updated_date
+     * Gets the private variable updated_date
      *
      * @return \DateTime
      */
@@ -381,7 +436,7 @@ class Template
     }
 
     /**
-     * Gets the private variable updated_date
+     * Sets the private variable updated_date
      *
      * @param \DateTime $updated_date
      * @param string $format
@@ -391,7 +446,7 @@ class Template
      */
     public function setUpdatedDate($updated_date, $format, $time_zone)
     {
-        $this->$updated_date = date_create_from_format($format, $updated_date, $time_zone);
+        $this->updated_date = date_create_from_format($format, $updated_date, $time_zone);
 
         return $this;
     }
@@ -407,7 +462,7 @@ class Template
     }
 
     /**
-     * Gets the private variable deleted_flag
+     * Sets the private variable deleted_flag
      *
      * @param boolean $deleted_flag
      *
@@ -421,7 +476,7 @@ class Template
     }
     
     /**
-     * Sets the private variable folder_id
+     * Gets the private variable folder_id
      *
      * @return int
      */
@@ -431,7 +486,7 @@ class Template
     }
 
     /**
-     * Gets the private variable folder_id
+     * Sets the private variable folder_id
      *
      * @param int $folder_id
      *
@@ -455,7 +510,7 @@ class Template
     }
 
     /**
-     * Gets the private variable has_video
+     * Sets the private variable has_video
      *
      * @param boolean $has_video
      *
@@ -469,7 +524,7 @@ class Template
     }
 
     /**
-     * Sets the private variable permission_mask
+     * Gets the private variable permission_mask
      *
      * @return int
      */
@@ -479,7 +534,7 @@ class Template
     }
 
     /**
-     * Gets the private variable permission_mask
+     * Sets the private variable permission_mask
      *
      * @param int $permission_mask
      *
@@ -503,7 +558,7 @@ class Template
     }
 
     /**
-     * Gets the private variable inherited
+     * Sets the private variable inherited
      *
      * @param boolean $inherited
      *
@@ -517,7 +572,7 @@ class Template
     }
 
     /**
-     * Sets the private variable data_plaintext
+     * Gets the private variable data_plaintext
      *
      * @return string
      */
@@ -527,7 +582,7 @@ class Template
     }
 
     /**
-     * Gets the private variable data_plaintext
+     * Sets the private variable data_plaintext
      *
      * @param string $data_plaintext
      *
@@ -541,7 +596,7 @@ class Template
     }
 
     /**
-     * Sets the private variable data_html
+     * Gets the private variable data_html
      *
      * @return string
      */
@@ -551,7 +606,7 @@ class Template
     }
 
     /**
-     * Gets the private variable data_html
+     * Sets the private variable data_html
      *
      * @param string $data_html
      *
@@ -565,7 +620,7 @@ class Template
     }
 
     /**
-     * Sets the private variable data_mobile
+     * Gets the private variable data_mobile
      *
      * @return string
      */
@@ -575,7 +630,7 @@ class Template
     }
 
     /**
-     * Gets the private variable data_mobile
+     * Sets the private variable data_mobile
      *
      * @param string $data_mobile
      *
@@ -589,7 +644,7 @@ class Template
     }
 
     /**
-     * Sets the private variable data_wap
+     * Gets the private variable data_wap
      *
      * @return string
      */
@@ -599,7 +654,7 @@ class Template
     }
 
     /**
-     * Gets the private variable data_wap
+     * Sets the private variable data_wap
      *
      * @param string $data_wap
      *
@@ -613,7 +668,7 @@ class Template
     }
 
     /**
-     * Sets the private variable data_avantgo
+     * Gets the private variable data_avantgo
      *
      * @return string
      */
@@ -623,7 +678,7 @@ class Template
     }
 
     /**
-     * Gets the private variable data_avantgo
+     * Sets the private variable data_avantgo
      *
      * @param string $data_avantgo
      *
@@ -637,7 +692,7 @@ class Template
     }
 
     /**
-     * Sets the private variable data_aol
+     * Gets the private variable data_aol
      *
      * @return string
      */
@@ -647,7 +702,7 @@ class Template
     }
 
     /**
-     * Gets the private variable data_aol
+     * Sets the private variable data_aol
      *
      * @param string $data_aol
      *
@@ -661,7 +716,7 @@ class Template
     }
 
     /**
-     * Sets the private variable data_xml
+     * Gets the private variable data_xml
      *
      * @return mixed
      */
@@ -671,7 +726,7 @@ class Template
     }
 
     /**
-     * Gets the private variable data_xml
+     * Sets the private variable data_xml
      *
      * @param mixed $data_xml
      *
@@ -693,7 +748,7 @@ class Template
     }
 
     /**
-     * Sets the private variable replace_fields
+     * Gets the private variable replace_fields
      *
      * @return string
      */
@@ -703,7 +758,7 @@ class Template
     }
 
     /**
-     * Gets the private variable replace_fields
+     * Sets the private variable replace_fields
      *
      * @param string $replace_fields
      *
@@ -717,7 +772,7 @@ class Template
     }
 
     /**
-     * Sets the private variable notes
+     * Gets the private variable notes
      *
      * @return string
      */
@@ -727,7 +782,7 @@ class Template
     }
 
     /**
-     * Gets the private variable notes
+     * Sets the private variable notes
      *
      * @param string $notes
      *
@@ -751,7 +806,7 @@ class Template
     }
 
     /**
-     * Gets the private variable plain_has_relational
+     * Sets the private variable plain_has_relational
      *
      * @param boolean $plain_has_relational
      *
@@ -775,7 +830,7 @@ class Template
     }
 
     /**
-     * Gets the private variable html_has_relational
+     * Sets the private variable html_has_relational
      *
      * @param boolean $html_has_relational
      *
@@ -789,7 +844,7 @@ class Template
     }
 
     /**
-     * Sets the private variable library_id
+     * Gets the private variable library_id
      *
      * @return int
      */
@@ -799,7 +854,7 @@ class Template
     }
 
     /**
-     * Gets the private variable library_id
+     * Sets the private variable library_id
      *
      * @param int $library_id
      *
@@ -813,7 +868,7 @@ class Template
     }
 
     /**
-     * Sets the private variable layout_id
+     * Gets the private variable layout_id
      *
      * @return int
      */
@@ -823,7 +878,7 @@ class Template
     }
 
     /**
-     * Gets the private variable layout_id
+     * Sets the private variable layout_id
      *
      * @param int $layout_id
      *
@@ -837,7 +892,7 @@ class Template
     }
 
     /**
-     * Sets the private variable skip
+     * Gets the private variable skip
      *
      * @return int
      */
@@ -847,7 +902,7 @@ class Template
     }
 
     /**
-     * Gets the private variable skip
+     * Sets the private variable skip
      *
      * @param int $skip
      *
@@ -861,7 +916,7 @@ class Template
     }
 
     /**
-     * Sets the private variable max
+     * Gets the private variable max
      *
      * @return int
      */
@@ -871,7 +926,7 @@ class Template
     }
 
     /**
-     * Gets the private variable max
+     * Sets the private variable max
      *
      * @param int $max
      *

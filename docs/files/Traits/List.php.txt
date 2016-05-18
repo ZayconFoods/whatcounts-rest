@@ -9,9 +9,24 @@
 	namespace ZayconWhatCounts;
 
 
+	/**
+	 * Class ListTraits
+	 * @package ZayconWhatCounts
+	 */
 	trait ListTraits
 	{
+		/**
+		 * URL Stub
+		 * 
+		 * @var string $list_stub
+		 */
 		private $list_stub = 'lists';
+
+		/**
+		 * MailingList Class Name
+		 * 
+		 * @var string $list_class_name
+		 */
 		private $list_class_name = '\ZayconWhatCounts\MailingList';
 
 		/**
@@ -79,7 +94,7 @@
 
 			$list
 				->setId($response_data->listId)
-				->setCreatedDate($response_data->listCreatedDate, new \DateTimeZone($whatcounts->getTimeZone()))
+				->setCreatedDate($response_data->listCreatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
 				->setSkip($response_data->skip)
 				->setMax($response_data->max);
 		}
@@ -98,7 +113,7 @@
 			$response_data = $whatcounts->update($this->list_stub, $list);
 
 			$list
-				->setUpdatedDate($response_data->listUpdatedDate, new \DateTimeZone($whatcounts->getTimeZone()));
+				->setUpdatedDate($response_data->listUpdatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
 		}
 
 		/**

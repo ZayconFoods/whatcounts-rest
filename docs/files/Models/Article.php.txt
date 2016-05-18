@@ -16,86 +16,120 @@
 	class Article
 	{
 		/**
+		 * articleId field from API
+		 *
 		 * @var integer $id
 		 */
 		private $id;
 
 		/**
+		 * realmId field from API
+		 *
 		 * @var integer $realm_id
 		 */
 		private $realm_id;
 
 		/**
+		 * name field from API
+		 *
 		 * @var string $name
 		 */
 		private $name;
 
 		/**
+		 * description field from API
+		 *
 		 * @var string $description
 		 */
 		private $description;
 
 		/**
+		 * authorEmail field from API
+		 *
 		 * @var string $author_email
 		 */
 		private $author_email;
 
 		/**
+		 * authorName field from API
+		 *
 		 * @var string $author_name
 		 */
 		private $author_name;
 
 		/**
+		 * authorBio field from API
+		 *
 		 * @var string $author_bio
 		 */
 		private $author_bio;
 
 		/**
+		 * title field from API
+		 *
 		 * @var string $title
 		 */
 		private $title;
 
 		/**
+		 * createdDate field from API
+		 *
 		 * @var \DateTime $created_date
 		 */
 		private $created_date;
 
 		/**
+		 * updatedDate field from API
+		 *
 		 * @var \DateTime $updated_date
 		 */
 		private $updated_date;
 
 		/**
+		 * folderId field from API
+		 *
 		 * @var integer $folder_id
 		 */
 		private $folder_id;
 
 		/**
+		 * dek field from API
+		 *
 		 * @var string $deck
 		 */
 		private $deck;
 
 		/**
+		 * callout field from API
+		 *
 		 * @var string $callout
 		 */
 		private $callout;
 
 		/**
+		 * body field from API
+		 *
 		 * @var string $body
 		 */
 		private $body;
 
 		/**
+		 * parentArticleId field from API
+		 *
 		 * @var integer $parent_article_id
 		 */
 		private $parent_article_id;
 
 		/**
+		 * skip field from API
+		 *
 		 * @var integer $skip
 		 */
 		private $skip;
 
 		/**
+		 * max field from API
+		 *
 		 * @var integer $max
 		 */
 		private $max;
@@ -157,7 +191,7 @@
 		}
 
 		/**
-		 * Sets the private variable id
+		 * Gets the private variable id
 		 *
 		 * @return int
 		 */
@@ -167,7 +201,7 @@
 		}
 
 		/**
-		 * Gets the private variable id
+		 * Sets the private variable id
 		 *
 		 * @param int $id
 		 *
@@ -181,7 +215,7 @@
 		}
 
 		/**
-		 * Sets the private variable realm_id
+		 * Gets the private variable realm_id
 		 *
 		 * @return int
 		 */
@@ -191,7 +225,7 @@
 		}
 
 		/**
-		 * Gets the private variable realm_id
+		 * Sets the private variable realm_id
 		 *
 		 * @param int $realm_id
 		 *
@@ -205,7 +239,7 @@
 		}
 
 		/**
-		 * Sets the private variable name
+		 * Gets the private variable name
 		 *
 		 * @return string
 		 */
@@ -215,7 +249,7 @@
 		}
 
 		/**
-		 * Gets the private variable name
+		 * Sets the private variable name
 		 *
 		 * @param string $name
 		 *
@@ -229,7 +263,7 @@
 		}
 
 		/**
-		 * Sets the private variable description
+		 * Gets the private variable description
 		 *
 		 * @return string
 		 */
@@ -239,7 +273,7 @@
 		}
 
 		/**
-		 * Gets the private variable description
+		 * Sets the private variable description
 		 *
 		 * @param string $description
 		 *
@@ -253,7 +287,7 @@
 		}
 
 		/**
-		 * Sets the private variable author_email
+		 * Gets the private variable author_email
 		 *
 		 * @return string
 		 */
@@ -263,7 +297,7 @@
 		}
 
 		/**
-		 * Gets the private variable author_email
+		 * Sets the private variable author_email
 		 *
 		 * @param string $author_email
 		 *
@@ -277,7 +311,7 @@
 		}
 
 		/**
-		 * Sets the private variable author_name
+		 * Gets the private variable author_name
 		 *
 		 * @return string
 		 */
@@ -287,7 +321,7 @@
 		}
 
 		/**
-		 * Gets the private variable author_name
+		 * Sets the private variable author_name
 		 *
 		 * @param string $author_name
 		 *
@@ -301,7 +335,7 @@
 		}
 
 		/**
-		 * Sets the private variable author_bio
+		 * Gets the private variable author_bio
 		 *
 		 * @return string
 		 */
@@ -311,7 +345,7 @@
 		}
 
 		/**
-		 * Gets the private variable author_bio
+		 * Sets the private variable author_bio
 		 *
 		 * @param string $author_bio
 		 *
@@ -325,7 +359,7 @@
 		}
 
 		/**
-		 * Sets the private variable title
+		 * Gets the private variable title
 		 *
 		 * @return string
 		 */
@@ -335,7 +369,7 @@
 		}
 
 		/**
-		 * Gets the private variable title
+		 * Sets the private variable title
 		 *
 		 * @param string $title
 		 *
@@ -349,7 +383,7 @@
 		}
 
 		/**
-		 * Sets the private variable created_date
+		 * Gets the private variable created_date
 		 *
 		 * @return \DateTime
 		 */
@@ -359,7 +393,7 @@
 		}
 
 		/**
-		 * Gets the private variable created_date
+		 * Sets the private variable created_date
 		 *
 		 * @param \DateTime $created_date
 		 * @param string $format
@@ -375,7 +409,7 @@
 		}
 
 		/**
-		 * Sets the private variable updated_date
+		 * Gets the private variable updated_date
 		 *
 		 * @return \DateTime
 		 */
@@ -385,7 +419,7 @@
 		}
 
 		/**
-		 * Gets the private variable updated_date
+		 * Sets the private variable updated_date
 		 *
 		 * @param \DateTime $updated_date
 		 * @param string $format
@@ -401,7 +435,7 @@
 		}
 
 		/**
-		 * Sets the private variable folder_id
+		 * Gets the private variable folder_id
 		 *
 		 * @return int
 		 */
@@ -411,7 +445,7 @@
 		}
 
 		/**
-		 * Gets the private variable folder_id
+		 * Sets the private variable folder_id
 		 *
 		 * @param int $folder_id
 		 *
@@ -425,7 +459,7 @@
 		}
 
 		/**
-		 * Sets the private variable deck
+		 * Gets the private variable deck
 		 *
 		 * @return string
 		 */
@@ -435,7 +469,7 @@
 		}
 
 		/**
-		 * Gets the private variable deck
+		 * Sets the private variable deck
 		 *
 		 * @param string $deck
 		 *
@@ -449,7 +483,7 @@
 		}
 
 		/**
-		 * Sets the private variable callout
+		 * Gets the private variable callout
 		 *
 		 * @return string
 		 */
@@ -459,7 +493,7 @@
 		}
 
 		/**
-		 * Gets the private variable callout
+		 * Sets the private variable callout
 		 *
 		 * @param string $callout
 		 *
@@ -473,7 +507,7 @@
 		}
 
 		/**
-		 * Sets the private variable body
+		 * Gets the private variable body
 		 *
 		 * @return string
 		 */
@@ -483,7 +517,7 @@
 		}
 
 		/**
-		 * Gets the private variable body
+		 * Sets the private variable body
 		 *
 		 * @param string $body
 		 *
@@ -497,7 +531,7 @@
 		}
 
 		/**
-		 * Sets the private variable parent_article_id
+		 * Gets the private variable parent_article_id
 		 *
 		 * @return int
 		 */
@@ -507,7 +541,7 @@
 		}
 
 		/**
-		 * Gets the private variable parent_article_id
+		 * Sets the private variable parent_article_id
 		 *
 		 * @param int $parent_article_id
 		 *
@@ -521,7 +555,7 @@
 		}
 
 		/**
-		 * Sets the private variable skip
+		 * Gets the private variable skip
 		 *
 		 * @return int
 		 */
@@ -531,7 +565,7 @@
 		}
 
 		/**
-		 * Gets the private variable skip
+		 * Sets the private variable skip
 		 *
 		 * @param int $skip
 		 *
@@ -545,7 +579,7 @@
 		}
 
 		/**
-		 * Sets the private variable max
+		 * Gets the private variable max
 		 *
 		 * @return int
 		 */
@@ -555,7 +589,7 @@
 		}
 
 		/**
-		 * Gets the private variable max
+		 * Sets the private variable max
 		 *
 		 * @param int $max
 		 *
