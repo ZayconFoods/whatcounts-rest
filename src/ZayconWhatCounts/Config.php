@@ -98,16 +98,20 @@
 
 		/**
 		 * Config constructor.
+		 * Preventing overrides.
 		 */
 		protected function __construct() {}
 
 		/**
+		 * Config cloner.
+		 * Preventing overrides.
 		 *
 		 */
 		protected function __clone() {}
 
 		/**
-		 *
+		 * Config wakeup.
+		 * Preventing overrides.
 		 */
 		protected function __wakeup() {}
 	}

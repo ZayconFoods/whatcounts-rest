@@ -30,6 +30,8 @@
 		private $template_class_name = 'ZayconWhatCounts\Template';
 
 		/**
+		 * Get all templates from the API.
+		 *
 		 * @return array
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
@@ -45,6 +47,10 @@
 		}
 
 		/**
+		 * Get a template from the API.
+		 * Must pass a template id to method.
+		 * Passes template id to API.
+		 *
 		 * @param $template_id
 		 *
 		 * @return Template
@@ -62,6 +68,10 @@
 		}
 
 		/**
+		 * Get a template from the  API.
+		 * Must pass a template name to method.
+		 * Passes template name to API.
+		 *
 		 * @param $template_name
 		 *
 		 * @return array
@@ -79,6 +89,10 @@
 		}
 
 		/**
+		 * Create a Template in API.
+		 * Must pass a Template object to method.
+		 * Passes Template object to API.
+		 *
 		 * @param Template $template
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
@@ -99,6 +113,10 @@
 		}
 
 		/**
+		 * Update a Subscription in API.
+		 * Must pass a Template object to method.
+		 * Passes Template object to API.
+		 *
 		 * @param Template $template
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
@@ -115,6 +133,10 @@
 		}
 
 		/**
+		 * Delete a Subscription in API.
+		 * Must pass a Template object to method.
+		 * Passes Template object to API.
+		 * 
 		 * @param Template $template
 		 *
 		 * @return bool

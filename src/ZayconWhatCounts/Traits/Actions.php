@@ -31,33 +31,24 @@
 			/** @var WhatCounts $this */
 			$response_data = $this->call($stub . '/' . $skipParameter, 'GET');
 
-			$objects = array();
-
-			foreach ($response_data as $item) {
-				if (is_array($item))
+			if (is_array($response_data))
+			{
+				$objects = array();
+				foreach ($response_data as $item)
 				{
-					foreach ($item as $arrayItem)
-					{
-						$object = new $class_name($arrayItem, new \DateTimeZone($this->getTimeZone()));
-						$objects[] = $object;
-					}
+					$object = new $class_name($item, new \DateTimeZone($this->getTimeZone()));
+					$objects[] = $object;
 				}
-				else
+				return $objects;
+			}
+			else
+			{
+				if (is_object($response_data))
 				{
-					if (is_object($item))
-					{
-						$object = new $class_name($item, new \DateTimeZone($this->getTimeZone()));
-						$objects[] = $object;
-					}
-					else
-					{
-						//var_dump($item);
-							
-					}
+					$object = new $class_name($response_data, new \DateTimeZone($this->getTimeZone()));
+					return $object;
 				}
 			}
-
-			return $objects;
 		}
 
 		/**

@@ -30,6 +30,10 @@
 		private $subscriber_class_name = '\ZayconWhatCounts\Subscriber';
 
 		/**
+		 * Get all subscribers from API.
+		 * Optionally pass a skip value to method (for paging).
+		 * Passes skip value to API, if present.
+		 *
 		 * @param null $skip
 		 *
 		 * @return array
@@ -37,7 +41,6 @@
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-
 		public function getSubscribers($skip = NULL)
 		{
 			$whatcounts = $this;
@@ -159,31 +162,45 @@
 		}
 
 		/**
-		 * @param $subscriber
+		 * @param integer $subscriber_id
+		 *
+		 * @return \ZayconWhatCounts\Subscriber
 		 */
-		public function getSubscriberSubscriptions($subscriber)
+		public function getSubscriberAndSubscriptions($subscriber_id)
 		{
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this;
 
+			/** @var Subscriber $subscriber */
+			$subscriber = $whatcounts->getAll($this->subscriber_stub . '/' . $subscriber_id . '/subscriptions', $this->subscriber_class_name);
+
+			return $subscriber;
 		}
 
 		/**
-		 * @param      $subscriber
-		 * @param null $start_date
-		 * @param null $end_date
+		 * @param  integer $subscriber_id
+		 * @param  \DateTime  $start_date
+		 * @param  \DateTime  $end_date
+		 *
+		 * @return \ZayconWhatCounts\Subscriber
 		 */
-		public function getSubscribersEventsByCustomerKey($subscriber, $start_date = NULL, $end_date = NULL)
+		public function getSubscriberAndEvents($subscriber_id, $start_date = NULL, $end_date = NULL)
 		{
+			/** @var WhatCounts $whatcounts */
+			$whatcounts = $this;
 
-		}
+			$query = array();
+			if (isset($start_date)) {
+				$query['start'] = date_format($start_date, 'YY-MM-DD');
+			}
+			if (isset($end_date)) {
+				$query['end'] = date_format($end_date, 'YY-MM-DD');
+			}
 
-		/**
-		 * @param      $subscriber
-		 * @param null $start_date
-		 * @param null $end_date
-		 */
-		public function getSubscribersEventsBySubscriberId($subscriber, $start_date = NULL, $end_date = NULL)
-		{
+			/** @var Subscriber $subscriber */
+			$subscriber = $whatcounts->getAll($this->subscriber_stub . '/' . $subscriber_id . '/events' . http_build_query($query) , $this->subscriber_class_name);
 
+			return $subscriber;
 		}
 
 		/**
