@@ -69,16 +69,28 @@
 
 		/**
 		 * @param \ZayconWhatCounts\MailingList $list
+		 * @param null                          $start_date
+		 * @param null                          $end_date
+		 * @param null                          $skip
 		 *
 		 * @return array
 		 */
-		public function getUnsubscribersForList(MailingList $list)
+		public function getUnsubscribersForList(MailingList $list, $start_date = NULL, $end_date = NULL, $skip = NULL)
 		{
-			$whatcounts = $this;
 			/** @var WhatCounts $whatcounts */
-			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/unsubscribes', $this->subscriber_class_name);
+			$whatcounts = $this;
 
-			return $subscribers;
+			$query = array();
+			if (isset($start_date)) {
+				$query['start'] = date_format($start_date, 'm-d-y');
+			}
+			if (isset($end_date)) {
+				$query['end'] = date_format($end_date, 'm-d-y');
+			}
+
+			$unubscribes = $whatcounts->getAll($this->list_stub . '/' . $list->getId() . '/unsubscribes?' . http_build_query($query) , '\ZayconWhatCounts\Unsubscribes', $skip);
+
+			return $unubscribes;
 		}
 
 		/**
@@ -191,14 +203,14 @@
 
 			$query = array();
 			if (isset($start_date)) {
-				$query['start'] = date_format($start_date, 'YY-MM-DD');
+				$query['start'] = date_format($start_date, 'm-d-y');
 			}
 			if (isset($end_date)) {
-				$query['end'] = date_format($end_date, 'YY-MM-DD');
+				$query['end'] = date_format($end_date, 'm-d-y');
 			}
 
 			/** @var Subscriber $subscriber */
-			$subscriber = $whatcounts->getAll($this->subscriber_stub . '/' . $subscriber_id . '/events' . http_build_query($query) , $this->subscriber_class_name);
+			$subscriber = $whatcounts->getAll($this->subscriber_stub . '/' . $subscriber_id . '/events?' . http_build_query($query) , $this->subscriber_class_name);
 
 			return $subscriber;
 		}
