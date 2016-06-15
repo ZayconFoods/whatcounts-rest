@@ -34,7 +34,8 @@
 				->setDataAvantgo("AvantGo? Really?")
 				->setDataWap("Maybe my grandpa will see this")
 				->setDataXml("<unicode>0</unicode><encode_base64>0</encode_base64><utf_charset></utf_charset><encode_quoted>0</encode_quoted>")
-				->setReplaceFields("");
+				->setReplaceFields("")
+				->setNotes("Some notes.");
 
 			$whatcounts->createTemplate($this->template);
 		}

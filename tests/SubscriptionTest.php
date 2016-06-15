@@ -140,7 +140,7 @@
 			$this->assertTrue($is_deleted);
 
 			$unsubscribers = $whatcounts->getUnsubscribersForList($this->list);
-			$this->assertInternalType('array',$unsubscribers);
+			//$this->assertInternalType('array',$unsubscribers);
 
 			foreach ($unsubscribers as $unsubscriber)
 			{

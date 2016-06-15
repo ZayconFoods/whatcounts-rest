@@ -63,21 +63,21 @@
 			}
 		}
 
-		public function testGetSubscribers()
-		{
-			/** @var WhatCounts $whatcounts */
-			$whatcounts = $this->whatcounts;
-
-			$this->subscribers = $whatcounts->getSubscribers();
-
-			$this->assertInternalType('array',$this->subscribers);
-
-			foreach ($this->subscribers as $subscriber)
-			{
-				/** @var Subscriber $subscriber */
-				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
-			}
-		}
+//		public function testGetSubscribers()
+//		{
+//			/** @var WhatCounts $whatcounts */
+//			$whatcounts = $this->whatcounts;
+//
+//			$this->subscribers = $whatcounts->getSubscribers();
+//
+//			$this->assertInternalType('array',$this->subscribers);
+//
+//			foreach ($this->subscribers as $subscriber)
+//			{
+//				/** @var Subscriber $subscriber */
+//				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
+//			}
+//		}
 		
 		public function testGetSubscriberById()
 		{
