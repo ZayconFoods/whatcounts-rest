@@ -6,14 +6,15 @@
 	 * Time: 1:11 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Traits;
 
-
+	use Zaycon\Whatcounts_Rest\Models;
+	
 	/**
-	 * Class CampaignTraits
-	 * @package ZayconWhatCounts
+	 * Class Campaign
+	 * @package Whatcounts_Rest
 	 */
-	trait CampaignTraits
+	trait Campaign
 	{
 		/**
 		 * URL Stub
@@ -27,7 +28,7 @@
 		 * 
 		 * @var string $campaign_class_name
 		 */
-		private $campaign_class_name = 'ZayconWhatCounts\Campaign';
+		private $campaign_class_name = 'Zaycon\Whatcounts_Rest\Models\Campaign';
 
 		/**
 		 * @return array
@@ -38,7 +39,7 @@
 		public function getCampaigns()
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$campaigns = $whatcounts->getAll($this->campaign_stub, $this->campaign_class_name);
 			
 			return $campaigns;
@@ -47,7 +48,7 @@
 		/**
 		 * @param $campaign_id
 		 *
-		 * @return Campaign
+		 * @return Models\Campaign
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
@@ -55,7 +56,7 @@
 		public function getCampaignById($campaign_id)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$campaign = $whatcounts->getById($this->campaign_stub, $this->campaign_class_name, $campaign_id);
 
 			return $campaign;

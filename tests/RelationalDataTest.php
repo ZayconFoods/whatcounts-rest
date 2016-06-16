@@ -7,7 +7,7 @@
 	 * Time: 10:26 AM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 
 	
 	class RelationalDataTest extends WhatCountsTest
@@ -24,7 +24,7 @@
 
 			$relational_tables = $whatcounts->getRelationalTables();
 
-			/** @var RelationalTable $relational_table */
+			/** @var Models\RelationalTable $relational_table */
 			$relational_table = $relational_tables[0];
 			$this->relational_table_name = $relational_table->getName();
 
@@ -44,7 +44,7 @@
 				'zip' => 12345
 			);
 
-			$this->relational_data = new RelationalData;
+			$this->relational_data = new Models\RelationalData;
 			$this->relational_data->setData($data);
 
 			$whatcounts->createRelationalData($this->relational_table_name, $this->relational_data);
@@ -76,12 +76,12 @@
 
 			$this->relational_data = $whatcounts->getRelationalData($this->relational_table_name, 2);
 
-			$this->assertInstanceOf('ZayconWhatCounts\RelationalData', $this->relational_data);
+			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\RelationalData', $this->relational_data);
 		}
 
 		public function testCreateRelationalData()
 		{
-			$this->assertInstanceOf('ZayconWhatCounts\RelationalData', $this->relational_data);
+			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\RelationalData', $this->relational_data);
 		}
 
 		public function testUpdateRelationalData()
@@ -93,14 +93,14 @@
 				'zip' => '99999'
 			);
 
-			$relational_data = new RelationalData;
+			$relational_data = new Models\RelationalData;
 			$relational_data->setData($data);
 
 			$this->relational_data = $whatcounts->updateRelationalData($this->relational_table_name, 2, $relational_data);
 
-			$response_data = new RelationalData($this->relational_data);
+			$response_data = new Models\RelationalData($this->relational_data);
 
-			$this->assertInstanceOf('ZayconWhatCounts\RelationalData', $response_data);
+			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\RelationalData', $response_data);
 		}
 
 		public function testDeleteRelationalData()

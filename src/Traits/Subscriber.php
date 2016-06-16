@@ -6,14 +6,15 @@
 	 * Time: 8:48 AM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Traits;
 
-
+	use \Zaycon\Whatcounts_Rest\Models;
+	
 	/**
-	 * Class SubscriberTraits
-	 * @package ZayconWhatCounts
+	 * Class Subscriber
+	 * @package Whatcounts_Rest
 	 */
-	trait SubscriberTraits
+	trait Subscriber
 	{
 		/**
 		 * URL Stub
@@ -27,7 +28,7 @@
 		 * 
 		 * @var string $subscriber_class_name
 		 */
-		private $subscriber_class_name = '\ZayconWhatCounts\Subscriber';
+		private $subscriber_class_name = '\Zaycon\Whatcounts_Rest\Models\Subscriber';
 
 		/**
 		 * Get all subscribers from API.
@@ -44,40 +45,41 @@
 		public function getSubscribers($skip = NULL)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$subscribers = $whatcounts->getAll($this->subscriber_stub, $this->subscriber_class_name, $skip);
 
 			return $subscribers;
 		}
 
 		/**
-		 * @param MailingList $list
+		 * @param Models\MailingList $list
+		 * @param $skip
 		 *
 		 * @return array
 		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getSubscribersForList(MailingList $list, $skip = NULL)
+		public function getSubscribersForList(Models\MailingList $list, $skip = NULL)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub, $this->subscriber_class_name, $skip);
 			
 			return $subscribers;
 		}
 
 		/**
-		 * @param \ZayconWhatCounts\MailingList $list
+		 * @param Models\MailingList $list
 		 * @param null                          $start_date
 		 * @param null                          $end_date
 		 * @param null                          $skip
 		 *
 		 * @return array
 		 */
-		public function getUnsubscribersForList(MailingList $list, $start_date = NULL, $end_date = NULL, $skip = NULL)
+		public function getUnsubscribersForList(Models\MailingList $list, $start_date = NULL, $end_date = NULL, $skip = NULL)
 		{
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 
 			$query = array();
@@ -88,13 +90,13 @@
 				$query['end'] = date_format($end_date, 'm-d-y');
 			}
 
-			$unubscribes = $whatcounts->getAll($this->list_stub . '/' . $list->getId() . '/unsubscribes?' . http_build_query($query) , '\ZayconWhatCounts\Unsubscribes', $skip);
+			$unubscribes = $whatcounts->getAll($this->list_stub . '/' . $list->getId() . '/unsubscribes?' . http_build_query($query) , '\Zaycon\Whatcounts_Rest\Models\Unsubscribes', $skip);
 
 			return $unubscribes;
 		}
 
 		/**
-		 * @param \ZayconWhatCounts\MailingList $list
+		 * @param Models\MailingList $list
 		 * @param null                          $customer_key
 		 * @param null                          $email
 		 * @param null                          $first_name
@@ -102,7 +104,7 @@
 		 *
 		 * @return array
 		 */
-		public function findSubscribersInList(MailingList $list, $customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL)
+		public function findSubscribersInList(Models\MailingList $list, $customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL)
 		{
 			$query = array();
 			if (isset($customer_key)) {
@@ -119,7 +121,7 @@
 			}
 
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub . '?' . http_build_query($query), $this->subscriber_class_name);
 
 			return $subscribers;
@@ -150,7 +152,7 @@
 			}
 
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$subscribers = $whatcounts->getAll($whatcounts->subscriber_stub . '?' . http_build_query($query), $this->subscriber_class_name);
 
 			return $subscribers;
@@ -167,7 +169,7 @@
 		public function getSubscriberById($subscriber_id)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$subscriber = $whatcounts->getById($this->subscriber_stub, $this->subscriber_class_name, $subscriber_id);
 
 			return $subscriber;
@@ -176,11 +178,11 @@
 		/**
 		 * @param integer $subscriber_id
 		 *
-		 * @return \ZayconWhatCounts\Subscriber
+		 * @return Models\Subscriber
 		 */
 		public function getSubscriberAndSubscriptions($subscriber_id)
 		{
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 
 			/** @var Subscriber $subscriber */
@@ -194,11 +196,11 @@
 		 * @param  \DateTime  $start_date
 		 * @param  \DateTime  $end_date
 		 *
-		 * @return \ZayconWhatCounts\Subscriber
+		 * @return Models\Subscriber
 		 */
 		public function getSubscriberAndEvents($subscriber_id, $start_date = NULL, $end_date = NULL)
 		{
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 
 			$query = array();
@@ -216,15 +218,15 @@
 		}
 
 		/**
-		 * @param Subscriber $subscriber
+		 * @param Models\Subscriber $subscriber
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function createSubscriber(Subscriber &$subscriber)
+		public function createSubscriber(Models\Subscriber &$subscriber)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$response_data = $whatcounts->create($this->subscriber_stub, $subscriber);
 
 			$subscriber
@@ -239,15 +241,15 @@
 		}
 
 		/**
-		 * @param Subscriber $subscriber
+		 * @param Models\Subscriber $subscriber
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function updateSubscriber(Subscriber &$subscriber)
+		public function updateSubscriber(Models\Subscriber &$subscriber)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$response_data = $whatcounts->update($this->subscriber_stub, $subscriber);
 
 			$subscriber
@@ -255,29 +257,29 @@
 		}
 
 		/**
-		 * @param Subscriber $subscriber
+		 * @param Models\Subscriber $subscriber
 		 *
 		 * @return boolean
 		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteSubscriberById(Subscriber $subscriber)
+		public function deleteSubscriberById(Models\Subscriber $subscriber)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			return $whatcounts->deleteById($this->subscriber_stub, $subscriber);
 		}
 
 		/**
-		 * @param \ZayconWhatCounts\Subscriber $subscriber
+		 * @param Models\Subscriber $subscriber
 		 *
 		 * @return bool
 		 */
-		public function deleteSubscriberByCustomerKey(Subscriber $subscriber)
+		public function deleteSubscriberByCustomerKey(Models\Subscriber $subscriber)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			return $whatcounts->deleteByCustomerKey($this->subscriber_stub, $subscriber);
 		}
 

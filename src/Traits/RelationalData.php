@@ -6,21 +6,21 @@
 	 * Time: 10:24 AM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Traits;
 
-
+	use Zaycon\Whatcounts_Rest\Models;
 	/**
-	 * Class RelationalDataTraits
-	 * @package ZayconWhatCounts
+	 * Class RelationalData
+	 * @package Whatcounts_Rest
 	 */
-	trait RelationalDataTraits
+	trait RelationalData
 	{
 		/**
 		 * RelationalData Class Name
 		 * 
 		 * @var string $relational_data_class_name
 		 */
-		private $relational_data_class_name = '\ZayconWhatCounts\RelationalData';
+		private $relational_data_class_name = '\Zaycon\Whatcounts_Rest\Models\RelationalData';
 
 		/**
 		 * @param $relational_table_name
@@ -30,7 +30,7 @@
 		 */
 		public function getRelationalData($relational_table_name, $row_id)
 		{
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 			$relational_data = $whatcounts->getById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $this->relational_data_class_name, $row_id);
 
@@ -49,10 +49,10 @@
 
 		public function createRelationalData($relational_table_name, $data)
 		{
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 			
-			/** @var RelationalData $data */
+			/** @var Models\RelationalData $data */
 			$request_data = $data->getData();
 			$response_data = $whatcounts->create($this->relational_table_stub . '/' . $relational_table_name, $request_data);
 
@@ -71,9 +71,9 @@
 		 */
 		public function updateRelationalData($relational_table_name, $row_id, $data)
 		{
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
-			/** @var RelationalData $data */
+			/** @var Models\RelationalData $data */
 			$request_data = $data->getData();
 			$response_data = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data);
 
@@ -92,7 +92,7 @@
 		public function deleteRelationalData($relational_table_name, $row_id)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			return $whatcounts->deleteById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $row_id);
 		}
 	}

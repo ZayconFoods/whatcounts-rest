@@ -8,12 +8,12 @@
 	 * Copyright of Zaycon Fresh, LLC.
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Models;
 
 
 	/**
 	 * Class Subscriber
-	 * @package ZayconWhatCounts
+	 * @package Whatcounts_Rest
 	 */
 	class Unsubscribes
 	{

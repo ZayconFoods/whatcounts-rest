@@ -6,12 +6,12 @@
 	 * Time: 1:09 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Models;
 
 
 	/**
 	 * Class Campaign
-	 * @package ZayconWhatCounts
+	 * @package Whatcounts_Rest
 	 */
 	class Campaign
 	{
@@ -805,7 +805,7 @@
 
 	/**
 	 * Class CampaignSummary
-	 * @package ZayconWhatCounts
+	 * @package Whatcounts_Rest
 	 */
 	class CampaignSummary
 	{

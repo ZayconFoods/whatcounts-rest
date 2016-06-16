@@ -6,7 +6,7 @@
 	 * Time: 10:51 AM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 
 
 	class RelationalColumnsTest extends WhatCountsTest
@@ -25,11 +25,11 @@
 
 			$relational_tables = $whatcounts->getRelationalTables();
 
-			/** @var RelationalTable $relational_table */
+			/** @var Models\RelationalTable $relational_table */
 			$relational_table = $relational_tables[0];
 			$this->relational_table_name = $relational_table->getName();
 
-			$this->relational_column = new RelationalColumns();
+			$this->relational_column = new Models\RelationalColumns();
 		}
 
 		public function tearDown()
@@ -57,8 +57,8 @@
 
 			foreach ($this->relational_columns as $relational_column)
 			{
-				/** @var RelationalColumns $relational_column */
-				$this->assertInstanceOf('ZayconWhatCounts\RelationalColumns', $relational_column);
+				/** @var Models\RelationalColumns $relational_column */
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\RelationalColumns', $relational_column);
 			}
 		}
 	}

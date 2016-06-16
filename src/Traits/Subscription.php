@@ -6,14 +6,15 @@
 	 * Time: 4:16 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Traits;
 
+	use Zaycon\Whatcounts_Rest\Models;
 
 	/**
-	 * Class SubscriptionTraits
-	 * @package ZayconWhatCounts
+	 * Class Subscription
+	 * @package Whatcounts_Rest
 	 */
-	trait SubscriptionTraits
+	trait Subscription
 	{
 		/**
 		 * URL Stub
@@ -27,22 +28,22 @@
 		 * 
 		 * @var string $subscription_class_name
 		 */
-		private $subscription_class_name = 'ZayconWhatCounts\Subscription';
+		private $subscription_class_name = 'Zaycon\Whatcounts_Rest\Models\Subscription';
 
 		/**
 		 * Create a Subscription in API.
 		 * Must pass a Subscription object to method.
 		 * Passes Subscription object to API.
 		 *
-		 * @param Subscription $subscription
+		 * @param Models\Subscription $subscription
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function createSubscription(Subscription $subscription)
+		public function createSubscription(Models\Subscription $subscription)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$response_data = $whatcounts->create($this->subscription_stub, $subscription);
 			
 			$subscription
@@ -57,17 +58,17 @@
 		 * Must pass a Subscription object to method.
 		 * Passes Subscription object to API.
 		 *
-		 * @param Subscription $subscription
+		 * @param Models\Subscription $subscription
 		 *
 		 * @return mixed
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteSubscription(Subscription $subscription)
+		public function deleteSubscription(Models\Subscription $subscription)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $this */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
 			return $whatcounts->delete($this->subscription_stub, $subscription);
 		}
 
@@ -86,7 +87,7 @@
 		public function deleteSubscriptionById(Subscription $subscription)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $this */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
 			return $whatcounts->deleteById($this->subscription_stub, $subscription);
 		}
 	}

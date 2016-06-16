@@ -6,14 +6,15 @@
 	 * Time: 2:44 PM
 	 */
 
-	namespace ZayconWhatCounts;
-
-
+	namespace Zaycon\Whatcounts_Rest\Traits;
+	
+	use Zaycon\Whatcounts_Rest\Models;
+	
 	/**
-	 * Class ActionsTraits
-	 * @package ZayconWhatCounts
+	 * Class Traits\ActionsTraits
+	 * @package Whatcounts_Rest
 	 */
-	trait ActionsTraits
+	trait Actions
 	{
 		/**
 		 * @param $stub
@@ -28,7 +29,7 @@
 		public function getAll($stub, $class_name, $skip = NULL)
 		{
 			$skipParameter = (!is_null($skip) ? '?skip=' . $skip : '');
-			/** @var WhatCounts $this */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
 			$response_data = $this->call($stub . '/' . $skipParameter, 'GET');
 
 			if (is_array($response_data))
@@ -110,8 +111,8 @@
 		 */
 		public function create($stub, $object)
 		{
-			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template|RelationalData $object */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
+			/** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
 			if (is_a($object, 'stdClass')) {
 				$request_data = $object;
 			} else {
@@ -134,8 +135,8 @@
 		 */
 		public function update($stub, $object)
 		{
-			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template|RelationalData $object */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
+			/** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
 			if (is_a($object, 'stdClass')) {
 				$request_data = $object;
 				$id = '';
@@ -159,8 +160,8 @@
 		 */
 		public function delete($stub, $object)
 		{
-			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template|RelationalData $object */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
+			/** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
 
 			if (is_a($object, 'stdClass')) {
 				$request_data = $object;
@@ -186,8 +187,8 @@
 		 */
 		public function deleteById($stub, $object)
 		{
-			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
+			/** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template $object */
 			if (is_int($object)) {
 				$id = $object;
 			} else {
@@ -210,8 +211,8 @@
 		 */
 		public function deleteByCustomerKey($stub, $object)
 		{
-			/** @var WhatCounts $this */
-			/** @var Article|Campaign|MailingList|Subscriber|Subscription|Template $object */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
+			/** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template $object */
 			$id = $object->getCustomerKey();
 			$this->call($stub . '/' . $id, 'DELETE');
 

@@ -6,14 +6,15 @@
 	 * Time: 1:09 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Traits;
 
+	use Zaycon\Whatcounts_Rest\Models;
 
 	/**
-	 * Class ArticleTraits
-	 * @package ZayconWhatCounts
+	 * Class Article
+	 * @package Whatcounts_Rest
 	 */
-	trait ArticleTraits
+	trait Article
 	{
 		/**
 		 * URL Stub
@@ -27,7 +28,7 @@
 		 *
 		 * @var string $article_class_name
 		 */
-		private $article_class_name = 'ZayconWhatCounts\Article';
+		private $article_class_name = 'Zaycon\Whatcounts_Rest\Models\Article';
 
 		/**
 		 * @return array
@@ -38,7 +39,7 @@
 		public function getArticles()
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$articles = $whatcounts->getAll($this->article_stub, $this->article_class_name);
 
 			return $articles;
@@ -55,7 +56,7 @@
 		public function getArticleById($article_id)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$article = $whatcounts->getById($this->article_stub, $this->article_class_name, $article_id);
 
 			return $article;
@@ -72,22 +73,22 @@
 		public function getArticleByName($article_name)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$article = $whatcounts->getByName($this->article_stub, $this->article_class_name, $article_name);
 
 			return $article;
 		}
 
 		/**
-		 * @param Article $article
+		 * @param Models\Article $article
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function createArticle(Article &$article)
+		public function createArticle(Models\Article &$article)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$response_data = $whatcounts->create($this->article_stub, $article);
 
 			$article
@@ -99,15 +100,15 @@
 		}
 
 		/**
-		 * @param Article $article
+		 * @param Models\Article $article
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function updateArticle(Article &$article)
+		public function updateArticle(Models\Article &$article)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$response_data = $whatcounts->update($this->article_stub, $article);
 
 			$article
@@ -115,17 +116,17 @@
 		}
 
 		/**
-		 * @param Article $article
+		 * @param Models\Article $article
 		 *
 		 * @return bool
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteArticle(Article $article)
+		public function deleteArticle(Models\Article $article)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			return $whatcounts->deleteById($this->article_stub, $article);
 		}
 	}

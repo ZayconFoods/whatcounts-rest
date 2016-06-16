@@ -6,12 +6,12 @@
  * Time: 1:35 PM
  */
 
-namespace ZayconWhatCounts;
+namespace Zaycon\Whatcounts_Rest\Models;
 
 
 /**
  * Class MailingList
- * @package ZayconWhatCounts
+ * @package Whatcounts_Rest
  */
 class MailingList
 {
