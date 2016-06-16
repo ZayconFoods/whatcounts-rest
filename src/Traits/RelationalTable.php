@@ -6,14 +6,14 @@
 	 * Time: 8:27 AM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Traits;
 
 
 	/**
-	 * Class RelationalTableTraits
-	 * @package ZayconWhatCounts
+	 * Class RelationalTable
+	 * @package Whatcounts_Rest
 	 */
-	trait RelationalTableTraits
+	trait RelationalTable
 	{
 		/**
 		 * URL Stub
@@ -27,14 +27,14 @@
 		 * 
 		 * @var string $relational_table_class_name
 		 */
-		private $relational_table_class_name = '\ZayconWhatCounts\RelationalTable';
+		private $relational_table_class_name = '\Zaycon\Whatcounts_Rest\Models\RelationalTable';
 
 		/**
 		 * @return array
 		 */
 		public function getRelationalTables()
 		{
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 			$relational_tables = $whatcounts->getAll($this->relational_table_stub, $this->relational_table_class_name);
 			

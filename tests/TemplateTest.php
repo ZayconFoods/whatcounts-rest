@@ -7,7 +7,9 @@
 	 * Time: 3:21 PM
 	 */
 	
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
+
+	use Zaycon\Whatcounts_Rest\Models;
 
 	class TemplateTest extends WhatCountsTest
 	{
@@ -21,7 +23,7 @@
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 
-			$this->template = new Template;
+			$this->template = new Models\Template;
 			$this->template
 				->setName("Unit Test Template")
 				->setSubject("Unit Test from WhatCounts")
@@ -67,7 +69,7 @@
 
 			foreach ($this->templates as $template)
 			{
-				$this->assertInstanceOf('ZayconWhatCounts\Template', $template);
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Template', $template);
 			}
 		}
 
@@ -75,19 +77,19 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Template $template */
+			/** @var Models\Template $template */
 			$template = $this->template;
 
 			$template = $whatcounts->getTemplateById($template->getId());
 
-			$this->assertInstanceOf('ZayconWhatCounts\Template', $template);
+			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Template', $template);
 		}
 
 		public function testGetTemplateByName()
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Template $template */
+			/** @var Models\Template $template */
 			$template = $this->template;
 
 			$this->templates = $whatcounts->getTemplateByName($template->getName());
@@ -96,13 +98,13 @@
 
 			foreach ($this->templates as $template)
 			{
-				$this->assertInstanceOf('ZayconWhatCounts\Template', $template);
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Template', $template);
 			}
 		}
 
 		public function testCreateTemplate()
 		{
-			/** @var Template $template */
+			/** @var Models\Template $template */
 			$template = $this->template;
 			
 			$this->assertObjectHasAttribute('id', $this->template);
@@ -122,7 +124,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Template $template */
+			/** @var Models\Template $template */
 			$template = $this->template;
 			
 			$template = $whatcounts->getTemplateById($template->getId());
@@ -145,7 +147,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Template $template */
+			/** @var Models\Template $template */
 			$template = $this->template;
 
 			$template = $whatcounts->getTemplateById($template->getId());

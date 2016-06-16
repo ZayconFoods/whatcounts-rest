@@ -7,7 +7,9 @@
 	 * Time: 3:01 PM
 	 */
 	
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
+
+	use Zaycon\Whatcounts_Rest\Models;
 	
 	class ArticleTest extends WhatCountsTest
 	{
@@ -21,7 +23,7 @@
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 
-			$this->article = new Article;
+			$this->article = new Models\Article;
 			$this->article
 				->setName("Unit Test Article")
 				->setTitle("Unit Test from WhatCounts")
@@ -63,8 +65,8 @@
 
 			foreach ($this->articles as $article)
 			{
-				/** @var Article $article */
-				$this->assertInstanceOf('ZayconWhatCounts\Article', $article);
+				/** @var Models\Article $article */
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Article', $article);
 			}
 		}
 
@@ -72,19 +74,19 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Article $article */
+			/** @var Models\Article $article */
 			$article = $this->article;
 
 			$article = $whatcounts->getArticleById($article->getId());
 
-			$this->assertInstanceOf('ZayconWhatCounts\Article', $article);
+			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Article', $article);
 		}
 
 		public function testGetArticleByName()
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Article $article */
+			/** @var Models\Article $article */
 			$article = $this->article;
 
 			$this->articles = $whatcounts->getArticleByName($article->getName());
@@ -93,13 +95,13 @@
 
 			foreach ($this->articles as $article)
 			{
-				$this->assertInstanceOf('ZayconWhatCounts\Article', $article);
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Article', $article);
 			}
 		}
 
 		public function testCreateArticle()
 		{
-			/** @var Article $article */
+			/** @var Models\Article $article */
 			$article = $this->article;
 
 			$this->assertObjectHasAttribute('id', $article);
@@ -117,9 +119,9 @@
 
 		public function testUpdateArticle()
 		{
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Article $article */
+			/** @var Models\Article $article */
 			$article = $this->article;
 
 			$article = $whatcounts->getArticleById($article->getId());
@@ -142,7 +144,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Article $article */
+			/** @var Models\Article $article */
 			$article = $this->article;
 
 			$article = $whatcounts->getArticleById($article->getId());

@@ -7,7 +7,7 @@
 	 * Time: 11:39 AM
 	 */
 	
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 
 	use Faker;
 	
@@ -29,7 +29,7 @@
 			$company = new Faker\Provider\en_US\Company($faker);
 			$phone = new Faker\Provider\en_US\PhoneNumber($faker);
 
-			$this->subscriber = new Subscriber();
+			$this->subscriber = new Models\Subscriber();
 			$this->subscriber
 				->setEmail(uniqid() . "@example.com")
 				->setFirstName($person->firstName())
@@ -83,12 +83,12 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Subscriber $subscriber */
+			/** @var Models\Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 
 			$subscriber = $whatcounts->getSubscriberById($subscriber->getId());
 
-			$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
+			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Subscriber', $subscriber);
 		}
 		
 		public function testGetSubscriberByEmail()
@@ -98,7 +98,7 @@
 
 		public function testCreateSubscriber()
 		{
-			/** @var Subscriber $subscriber */
+			/** @var Models\Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 
 			$this->assertObjectHasAttribute('id', $subscriber);
@@ -118,7 +118,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Subscriber $subscriber */
+			/** @var Models\Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 
 			$subscriber = $whatcounts->getSubscriberById($subscriber->getId());
@@ -141,7 +141,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Subscriber $subscriber */
+			/** @var Models\Subscriber $subscriber */
 			$subscriber = &$this->subscriber;
 
 			$subscriber = $whatcounts->getSubscriberById($subscriber->getId());
@@ -157,7 +157,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Subscriber $subscriber */
+			/** @var Models\Subscriber $subscriber */
 			//$subscriber = &$this->subscriber;
 			$faker = $this->faker;
 			
@@ -171,7 +171,7 @@
 				$company = new Faker\Provider\en_US\Company($faker);
 				$phone = new Faker\Provider\en_US\PhoneNumber($faker);
 
-				$subscriber = new Subscriber();
+				$subscriber = new Models\Subscriber();
 				$subscriber
 					->setEmail(uniqid() . "@example.com")
 					->setFirstName($person->firstName())

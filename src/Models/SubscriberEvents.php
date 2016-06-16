@@ -8,12 +8,12 @@
 	 * Copyright of Zaycon Fresh, LLC.
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Models;
 
 
 	/**
 	 * Class SubscriberEvents
-	 * @package ZayconWhatCounts\Models
+	 * @package Whatcounts_Rest\Models
 	 */
 	class SubscriberEvents
 	{

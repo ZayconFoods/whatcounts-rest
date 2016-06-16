@@ -8,12 +8,12 @@
 	 * Copyright of Zaycon Fresh, LLC.
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Models;
 
 
 	/**
 	 * Class Subscription
-	 * @package ZayconWhatCounts
+	 * @package Whatcounts_Rest
 	 */
 	class Subscription
 	{
@@ -269,7 +269,7 @@
 		/**
 		 * Gets the private variable subscriber
 		 *
-		 * @return \ZayconWhatCounts\Subscriber
+		 * @return \Zaycon\Whatcounts_Rest\Models\Subscriber
 		 */
 		public function getSubscriber()
 		{
@@ -279,7 +279,7 @@
 		/**
 		 * Sets the private variable subscriber
 		 *
-		 * @param \ZayconWhatCounts\Subscriber $subscriber
+		 * @param \Zaycon\Whatcounts_Rest\Models\\Subscriber $subscriber
 		 *
 		 * @return Subscription
 		 */

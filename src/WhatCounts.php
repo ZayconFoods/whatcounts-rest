@@ -6,27 +6,27 @@
 	 * Time: 1:48 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 
 	use GuzzleHttp;
 
 	/**
 	 * Class WhatCounts
-	 * @package ZayconWhatCounts
+	 * @package Whatcounts_Rest
 	 */
 	class WhatCounts
 	{
 
-		use ActionsTraits;
-		use ListTraits;
-		use SubscriberTraits;
-		use SubscriptionTraits;
-		use TemplateTraits;
-		use ArticleTraits;
-		use CampaignTraits;
-		use RelationalTableTraits;
-		use RelationalColumnTraits;
-		use RelationalDataTraits;
+		use Traits\Actions;
+		use Traits\MailingList;
+		use Traits\Subscriber;
+		use Traits\Subscription;
+		use Traits\Template;
+		use Traits\Article;
+		use Traits\Campaign;
+		use Traits\RelationalTable;
+		use Traits\RelationalColumn;
+		use Traits\RelationalData;
 
 		/**
 		 * Time zone to use locally

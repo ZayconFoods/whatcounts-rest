@@ -7,7 +7,7 @@
 	 * Time: 3:21 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 	
 	use Faker;
 	

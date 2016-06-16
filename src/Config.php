@@ -6,11 +6,11 @@
 	 * Time: 1:14 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 
 	/**
 	 * Class Config
-	 * @package ZayconWhatCounts
+	 * @package Whatcounts_Rest
 	 */
 	class Config
 	{
@@ -26,7 +26,7 @@
 				self::$config = [
 					'production'  => [
 						'version'   => 'v1',
-						'url'       => 'http://wcqa.us/rest',
+						'url'       => 'https://api.whatcounts.net/rest',
 						'time_zone' => 'America/Los_Angeles',
 						'realm'     => 'your_production_realm',
 						'password'  => 'your_password'

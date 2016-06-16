@@ -6,14 +6,15 @@
 	 * Time: 9:07 AM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Traits;
 
+	use Zaycon\Whatcounts_Rest\Models;
 
 	/**
-	 * Class TemplateTraits
-	 * @package ZayconWhatCounts
+	 * Class Template
+	 * @package Zaycon\Whatcounts_Rest
 	 */
-	trait TemplateTraits
+	trait Template
 	{
 		/**
 		 * URL Stub
@@ -27,7 +28,7 @@
 		 * 
 		 * @var string $template_class_name
 		 */
-		private $template_class_name = 'ZayconWhatCounts\Template';
+		private $template_class_name = 'Zaycon\Whatcounts_Rest\Models\Template';
 
 		/**
 		 * Get all templates from the API.
@@ -40,7 +41,7 @@
 		public function getTemplates()
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$templates = $whatcounts->getAll($this->template_stub, $this->template_class_name);
 
 			return $templates;
@@ -53,7 +54,7 @@
 		 *
 		 * @param $template_id
 		 *
-		 * @return Template
+		 * @return Models\Template
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
@@ -61,7 +62,7 @@
 		public function getTemplateById($template_id)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$template = $whatcounts->getById($this->template_stub, $this->template_class_name, $template_id);
 
 			return $template;
@@ -82,7 +83,7 @@
 		public function getTemplateByName($template_name)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$templates = $whatcounts->getByName($this->template_stub, $this->template_class_name, $template_name);
 
 			return $templates;
@@ -93,15 +94,15 @@
 		 * Must pass a Template object to method.
 		 * Passes Template object to API.
 		 *
-		 * @param Template $template
+		 * @param Models\Template $template
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function createTemplate(Template &$template)
+		public function createTemplate(Models\Template &$template)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$response_data = $whatcounts->create($this->template_stub, $template);
 
 			$template
@@ -117,15 +118,15 @@
 		 * Must pass a Template object to method.
 		 * Passes Template object to API.
 		 *
-		 * @param Template $template
+		 * @param Models\Template $template
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function updateTemplate(Template &$template)
+		public function updateTemplate(Models\Template &$template)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$response_data = $whatcounts->update($this->template_stub, $template);
 
 			$template
@@ -137,17 +138,17 @@
 		 * Must pass a Template object to method.
 		 * Passes Template object to API.
 		 * 
-		 * @param Template $template
+		 * @param Models\Template $template
 		 *
 		 * @return bool
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteTemplate(Template $template)
+		public function deleteTemplate(Models\Template $template)
 		{
 			$whatcounts = $this;
-			/** @var WhatCounts $whatcounts */
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			return $whatcounts->deleteById($this->template_stub, $template);
 		}
 	}

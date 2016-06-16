@@ -6,12 +6,12 @@
  * Time: 8:52 AM
  */
 
-namespace ZayconWhatCounts;
+namespace Zaycon\Whatcounts_Rest\Models;
 
 
 /**
  * Class Template
- * @package ZayconWhatCounts
+ * @package Whatcounts_Rest
  */
 class Template
 {

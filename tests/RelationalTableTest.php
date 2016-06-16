@@ -6,7 +6,7 @@
 	 * Time: 8:30 AM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 
 
 	class RelationalTableTest extends WhatCountsTest
@@ -18,7 +18,7 @@
 		{
 			parent::setUp();
 
-			$this->relational_table = new RelationalTable();
+			$this->relational_table = new Models\RelationalTable();
 		}
 
 		public function tearDown()
@@ -42,8 +42,8 @@
 
 			foreach ($this->relational_tables as $relational_table)
 			{
-				/** @var RelationalTable $relational_table */
-				$this->assertInstanceOf('ZayconWhatCounts\RelationalTable', $relational_table);
+				/** @var Models\RelationalTable $relational_table */
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\RelationalTable', $relational_table);
 			}
 		}
 		

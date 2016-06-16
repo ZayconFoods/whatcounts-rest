@@ -1,7 +1,7 @@
 {
   "name": "zaycon/whatcounts-rest",
   "description": "PHP API Wrapper for the WhatCounts REST API",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "homepage": "https://github.com/ZayconFoods/whatcounts-rest",
   "license": "MIT",
   "keywords": ["Whatcounts", "whatcounts", "WhatCounts"],
@@ -26,8 +26,11 @@
     }
   ],
   "autoload": {
-    "psr-0": {
-      "ZayconWhatCounts\\": "src/"
+    "psr-4": {
+      "Zaycon\\Whatcounts_Rest\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": { "Zaycon\\Whatcounts_Rest\\": "tests/" }
   }
 }

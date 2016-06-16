@@ -6,7 +6,7 @@
 	 * Time: 4:22 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 	
 	class ListTest extends WhatCountsTest
 	{
@@ -20,7 +20,7 @@
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 			
-			$this->list = new MailingList();
+			$this->list = new Models\MailingList();
 			$this->list
 				->setName('Unit Test List ' . uniqid())
 				->setFromAddress('test-from@example.com')
@@ -82,8 +82,8 @@
 
 			foreach ($this->lists as $list)
 			{
-				/** @var MailingList $list */
-				$this->assertInstanceOf('ZayconWhatCounts\MailingList', $list);
+				/** @var Models\MailingList $list */
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\MailingList', $list);
 			}
 		}
 
@@ -91,19 +91,19 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var MailingList $list */
+			/** @var Models\MailingList $list */
 			$list = $this->list;
 
 			$list = $whatcounts->getListById($list->getId());
 
-			$this->assertInstanceOf('ZayconWhatCounts\MailingList', $list);
+			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\MailingList', $list);
 		}
 
 		public function testGetListByName()
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var MailingList $list */
+			/** @var Models\MailingList $list */
 			$list = $this->list;
 
 			$this->lists = $whatcounts->getListByName($list->getName());
@@ -112,13 +112,13 @@
 
 			foreach ($this->lists as $list)
 			{
-				$this->assertInstanceOf('ZayconWhatCounts\MailingList', $list);
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\MailingList', $list);
 			}
 		}
 
 		public function testCreateList()
 		{
-			/** @var MailingList $list */
+			/** @var Models\MailingList $list */
 			$list = $this->list;
 
 			$this->assertObjectHasAttribute('id', $list);
@@ -138,7 +138,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var MailingList $list */
+			/** @var Models\MailingList $list */
 			$list = $this->list;
 
 			$list = $whatcounts->getListById($list->getId());
@@ -161,7 +161,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var MailingList $list */
+			/** @var Models\MailingList $list */
 			$list = $this->list;
 
 			$list = $whatcounts->getListById($list->getId());

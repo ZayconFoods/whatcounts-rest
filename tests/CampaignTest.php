@@ -7,7 +7,7 @@
 	 * Time: 10:27 AM
 	 */
 	
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 	
 	class CampaignTest extends WhatCountsTest
 	{
@@ -58,8 +58,8 @@
 
 			foreach ($this->campaigns as $campaign)
 			{
-				/** @var Campaign $campaign */
-				$this->assertInstanceOf('ZayconWhatCounts\Campaign', $campaign);
+				/** @var Models\Campaign $campaign */
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Campaign', $campaign);
 			}
 		}
 
@@ -67,7 +67,7 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Campaign $campaign */
+			/** @var Models\Campaign $campaign */
 			$campaign = $this->campaign;
 
 			//$campaign = $whatcounts->getCampaignById($campaign->getId());

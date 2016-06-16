@@ -7,7 +7,7 @@
 	 * Time: 1:31 PM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest;
 
 	class SubscriptionTest extends WhatCountsTest
 	{
@@ -22,7 +22,7 @@
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 
-			$this->list = new MailingList();
+			$this->list = new Models\MailingList();
 			$this->list
 				->setName('Unit Test List ' . uniqid())
 				->setFromAddress('test-from@example.com')
@@ -56,7 +56,7 @@
 
 			$whatcounts->createList($this->list);
 
-			$this->subscriber = new Subscriber();
+			$this->subscriber = new Models\Subscriber();
 			$this->subscriber
 				->setEmail(uniqid() . "@example.com")
 				->setFirstName("Test")
@@ -74,7 +74,7 @@
 			$whatcounts->createSubscriber($this->subscriber);
 
 
-			$this->subscription = new Subscription();
+			$this->subscription = new Models\Subscription();
 			$this->subscription
 				->setListId($this->list->getId())
 				->setSubscriberId($this->subscriber->getId());
@@ -110,7 +110,7 @@
 
 		public function testCreateSubscription()
 		{
-			/** @var Subscription $subscription */
+			/** @var Models\Subscription $subscription */
 			$subscription = $this->subscription;
 
 			$this->assertObjectHasAttribute('id', $subscription);
@@ -130,9 +130,9 @@
 		{
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
-			/** @var Subscription $subscription */
+			/** @var Models\Subscription $subscription */
 			$subscription = $this->subscription;
-			/** @var Subscriber $subscriber */
+			/** @var Models\Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 
 			$is_deleted = $whatcounts->deleteSubscription($subscription);
@@ -144,7 +144,7 @@
 
 			foreach ($unsubscribers as $unsubscriber)
 			{
-				/** @var Subscriber $unsubscriber $list */
+				/** @var Models\Subscriber $unsubscriber $list */
 				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $unsubscriber);
 				if ($unsubscriber->getId() == $subscriber->getId())
 				{
@@ -167,8 +167,8 @@
 
 			foreach ($subscribers as $subscriber)
 			{
-				/** @var MailingList $list */
-				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
+				/** @var Models\MailingList $list */
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Subscriber', $subscriber);
 			}
 
 		}
@@ -178,9 +178,9 @@
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 
-			/** @var MailingList $list */
+			/** @var Models\MailingList $list */
 			$list = $this->list;
-			/** @var Subscriber $subscriber */
+			/** @var Models\Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 			
 			$email = $subscriber->getEmail();
@@ -192,8 +192,8 @@
 
 			foreach ($subscribers as $subscriber)
 			{
-				/** @var MailingList $list */
-				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
+				/** @var Models\MailingList $list */
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Subscriber', $subscriber);
 			}	
 		}
 
@@ -202,7 +202,7 @@
 			/** @var WhatCounts $whatcounts */
 			$whatcounts = $this->whatcounts;
 
-			/** @var Subscriber $subscriber */
+			/** @var Models\Subscriber $subscriber */
 			$subscriber = $this->subscriber;
 
 			$email = $subscriber->getEmail();
@@ -214,8 +214,8 @@
 
 			foreach ($subscribers as $subscriber)
 			{
-				/** @var MailingList $list */
-				$this->assertInstanceOf('ZayconWhatCounts\Subscriber', $subscriber);
+				/** @var Models\MailingList $list */
+				$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Subscriber', $subscriber);
 			}
 		}
 

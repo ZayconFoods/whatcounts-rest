@@ -6,12 +6,12 @@
 	 * Time: 10:19 AM
 	 */
 
-	namespace ZayconWhatCounts;
+	namespace Zaycon\Whatcounts_Rest\Models;
 
 
 	/**
 	 * Class RelationalData
-	 * @package ZayconWhatCounts
+	 * @package Whatcounts_Rest
 	 */
 	class RelationalData
 	{
