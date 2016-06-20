@@ -44,9 +44,15 @@
 		 */
 		public function getSubscribers($skip = NULL)
 		{
-			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$subscribers = $whatcounts->getAll($this->subscriber_stub, $this->subscriber_class_name, $skip);
+			$whatcounts = $this;
+
+			$query = array();
+			if (isset($skip)) {
+				$query['skip'] = $skip;
+			}
+
+			$subscribers = $whatcounts->getAll($this->subscriber_stub . http_build_query($query), $this->subscriber_class_name);
 
 			return $subscribers;
 		}
@@ -62,9 +68,15 @@
 		 */
 		public function getSubscribersForList(Models\MailingList $list, $skip = NULL)
 		{
-			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub, $this->subscriber_class_name, $skip);
+			$whatcounts = $this;
+
+			$query = array();
+			if (isset($skip)) {
+				$query['skip'] = $skip;
+			}
+
+			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub . http_build_query($query), $this->subscriber_class_name);
 			
 			return $subscribers;
 		}
@@ -84,13 +96,16 @@
 
 			$query = array();
 			if (isset($start_date)) {
-				$query['start'] = date_format($start_date, 'm-d-y');
+				$query['start'] = date_format($start_date, 'Y-m-d');
 			}
 			if (isset($end_date)) {
-				$query['end'] = date_format($end_date, 'm-d-y');
+				$query['end'] = date_format($end_date, 'Y-m-d');
+			}
+			if (isset($skip)) {
+				$query['skip'] = $skip;
 			}
 
-			$unubscribes = $whatcounts->getAll($this->list_stub . '/' . $list->getId() . '/unsubscribes?' . http_build_query($query) , '\Zaycon\Whatcounts_Rest\Models\Unsubscribes', $skip);
+			$unubscribes = $whatcounts->getAll($this->list_stub . '/' . $list->getId() . '/unsubscribes?' . http_build_query($query) , '\Zaycon\Whatcounts_Rest\Models\Unsubscribes');
 
 			return $unubscribes;
 		}
@@ -205,10 +220,10 @@
 
 			$query = array();
 			if (isset($start_date)) {
-				$query['start'] = date_format($start_date, 'm-d-y');
+				$query['start'] = date_format($start_date, 'Y-m-d');
 			}
 			if (isset($end_date)) {
-				$query['end'] = date_format($end_date, 'm-d-y');
+				$query['end'] = date_format($end_date, 'Y-m-d');
 			}
 
 			/** @var Subscriber $subscriber */

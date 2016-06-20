@@ -19,18 +19,16 @@
 		/**
 		 * @param $stub
 		 * @param $class_name
-		 * @param null $skip
 		 *
 		 * @return array
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getAll($stub, $class_name, $skip = NULL)
+		public function getAll($stub, $class_name)
 		{
-			$skipParameter = (!is_null($skip) ? '?skip=' . $skip : '');
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
-			$response_data = $this->call($stub . '/' . $skipParameter, 'GET');
+			$response_data = $this->call($stub, 'GET');
 
 			if (is_array($response_data))
 			{
