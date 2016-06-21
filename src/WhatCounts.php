@@ -241,6 +241,15 @@
 
 				$params = '';
 
+				// Servers with cURL using NSS have issues making secure HTTP connections using TLS 1.2. We detect it and fall back to TLS 1.1.
+				// https://serverfault.com/questions/537495/centos-php-curl-nss-error-5938/
+				$tls_version = CURL_SSLVERSION_TLSv1_2;
+				$curl_info = curl_version();
+				if (strpos($curl_info['ssl_version'], 'NSS') === 0)
+				{
+					$tls_version = CURL_SSLVERSION_TLSv1_1;
+				}
+
 				$request = array(
 					'auth' => [
 						$this->realm,
@@ -249,8 +258,10 @@
 					'headers' => [
 						'Accept' => 'application/vnd.whatcounts-' . $this->version . '+json'
 					],
-					'json' => $request_data
-
+					'json' => $request_data,
+					'curl' => array(
+						CURLOPT_SSLVERSION => $tls_version
+					)
 				);
 
 				if (strtolower($method) == 'get' && is_array($request_data))
