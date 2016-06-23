@@ -38,6 +38,31 @@
 		}
 
 		/**
+		 * @param      $relational_table_name
+		 * @param      $wql
+		 * @param      $fields
+		 * @param null $skip
+		 *
+		 * @return array
+		 */
+		public function searchRelationalData($relational_table_name, $wql, $fields, $skip=NULL)
+		{
+			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
+			$whatcounts = $this;
+
+			$query = array();
+			$query['wql'] = $wql;
+			$query['fields'] = $fields;
+			if (isset($skip)) {
+				$query['skip'] = $skip;
+			}
+
+			$relational_data = $whatcounts->getAll($this->relational_table_stub . '/' . $relational_table_name . '/rows?' . http_build_query($query), $this->relational_data_class_name);
+
+			return $relational_data;
+		}
+
+		/**
 		 * @param $relational_table_name
 		 * @param $data
 		 *

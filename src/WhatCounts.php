@@ -9,6 +9,7 @@
 	namespace Zaycon\Whatcounts_Rest;
 
 	use GuzzleHttp;
+	use GuzzleHttp\TransferStats;
 
 	/**
 	 * Class WhatCounts
@@ -62,6 +63,8 @@
 		 * @var string $version
 		 */
 		private $version;
+
+		private $transfer_stats;
 
 		/**
 		 * WhatCounts constructor.
@@ -205,6 +208,30 @@
 			return $this;
 		}
 
+		/**
+		 * Gets the private variable transfer_stats
+		 *
+		 * @return mixed
+		 */
+		public function getTransferStats()
+		{
+			return $this->transfer_stats;
+		}
+
+		/**
+		 * Sets the private variable transfer_stats
+		 *
+		 * @param mixed $transfer_stats
+		 *
+		 * @return WhatCounts
+		 */
+		public function setTransferStats($transfer_stats)
+		{
+			$this->transfer_stats = $transfer_stats;
+            return $this;
+		}
+
+
 		
 		/**
 		 * Making sure realm and password are set before making calls to WhatCounts API
@@ -261,7 +288,10 @@
 					'json' => $request_data,
 					'curl' => array(
 						CURLOPT_SSLVERSION => $tls_version
-					)
+					),
+					'on_stats' => function (TransferStats $stats) {
+						$this->setTransferStats($stats);
+					}
 				);
 
 				if (strtolower($method) == 'get' && is_array($request_data))
@@ -272,7 +302,11 @@
 
 				try
 				{
-					$guzzle = new GuzzleHttp\Client;
+					$handlerStack = GuzzleHttp\HandlerStack::create( new GuzzleHttp\Handler\CurlHandler() );
+					$handlerStack->push( GuzzleHttp\Middleware::retry( $this->retryDecider(), $this->retryDelay() ) );
+
+					$guzzle = new GuzzleHttp\Client( array( 'handler' => $handlerStack ));
+
 					$response = $guzzle->request(
 						$method,
 						$this->url . '/' . $command . $params,
@@ -347,6 +381,53 @@
 				var_dump($object);
 			}
 
+		}
+
+		public function retryDecider() {
+			return function (
+				$retries,
+				GuzzleHttp\Psr7\Request $request,
+				GuzzleHttp\Psr7\Response $response = null,
+				GuzzleHttp\Exception\RequestException $exception = null
+			)
+			{
+				// Limit the number of retries to 5
+				if ($retries >= 5)
+				{
+					return false;
+				}
+
+				// Retry connection exceptions
+				if ($exception instanceof GuzzleHttp\Exception\ConnectException)
+				{
+					return true;
+				}
+
+				if ($response)
+				{
+					// Retry on server errors
+					if ($response->getStatusCode() >= 500)
+					{
+						return true;
+					}
+					if ($response->getStatusCode() >= 404)
+					{
+						return true;
+					}
+				}
+				else
+				{
+					return TRUE;
+				}
+
+				return false;
+			};
+		}
+
+		public function retryDelay() {
+			return function( $numberOfRetries ) {
+				return 1000 * $numberOfRetries;
+			};
 		}
 	}
 
