@@ -410,7 +410,7 @@
 					{
 						return true;
 					}
-					if ($response->getStatusCode() >= 404)
+					if ($response->getStatusCode() >= 404 && $request->getMethod() != 'GET')
 					{
 						return true;
 					}
