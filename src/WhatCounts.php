@@ -429,5 +429,10 @@
 				return 1000 * $numberOfRetries;
 			};
 		}
+
+		public static function isSetOrNull($object, $attribute = NULL)
+		{
+			return isset($object) ? $object : NULL;
+		}
 	}
 

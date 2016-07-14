@@ -1,7 +1,7 @@
 {
   "name": "zaycon/whatcounts-rest",
   "description": "PHP API Wrapper for the WhatCounts REST API",
-  "version": "0.9.6",
+  "version": "0.9.8",
   "homepage": "https://github.com/ZayconFoods/whatcounts-rest",
   "license": "MIT",
   "keywords": ["Whatcounts", "whatcounts", "WhatCounts"],

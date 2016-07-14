@@ -7,6 +7,7 @@
 	 */
 
 	namespace Zaycon\Whatcounts_Rest\Models;
+	use Zaycon\Whatcounts_Rest\WhatCounts;
 
 
 	/**
@@ -198,17 +199,17 @@
 	                ->setId($subscriber_response->subscriberId)
 	                ->setRealmId($subscriber_response->realmId)
 	                ->setEmail($subscriber_response->email)
-	                ->setFirstName($subscriber_response->firstName)
-	                ->setLastName($subscriber_response->lastName)
-	                ->setCompany(isset($subscriber_response->company) ? $subscriber_response->company : NULL)
-	                ->setAddress1($subscriber_response->address1)
-	                ->setAddress2(isset($subscriber_response->address2) ? $subscriber_response->address2 : NULL)
-	                ->setCity($subscriber_response->city)
-	                ->setState($subscriber_response->state)
-	                ->setZip($subscriber_response->zip)
-	                ->setCountry($subscriber_response->country)
-	                ->setPhone($subscriber_response->phone)
-		            ->setFax(isset($subscriber_response->fax) ? $subscriber_response->fax : NULL)
+	                ->setFirstName(WhatCounts::isSetOrNull($subscriber_response->firstName))
+	                ->setLastName(WhatCounts::isSetOrNull($subscriber_response->lastName))
+	                ->setCompany(WhatCounts::isSetOrNull($subscriber_response->company))
+	                ->setAddress1(WhatCounts::isSetOrNull($subscriber_response->address1))
+	                ->setAddress2(WhatCounts::isSetOrNull($subscriber_response->address2))
+	                ->setCity(WhatCounts::isSetOrNull($subscriber_response->city))
+	                ->setState(WhatCounts::isSetOrNull($subscriber_response->state))
+	                ->setZip(WhatCounts::isSetOrNull($subscriber_response->zip))
+	                ->setCountry(WhatCounts::isSetOrNull($subscriber_response->country))
+	                ->setPhone(WhatCounts::isSetOrNull($subscriber_response->phone))
+		            ->setFax(WhatCounts::isSetOrNull($subscriber_response->fax))
 	                ->setCreatedDate($subscriber_response->createdDate, 'M j, Y g:i:s A', $time_zone)
 	                ->setMd5Encryption($subscriber_response->md5Encryption)
 	                ->setSha1Encryption($subscriber_response->sha1Encryption)

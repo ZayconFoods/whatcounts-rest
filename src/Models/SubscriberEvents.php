@@ -9,7 +9,7 @@
 	 */
 
 	namespace Zaycon\Whatcounts_Rest\Models;
-
+	use Zaycon\Whatcounts_Rest\WhatCounts;
 
 	/**
 	 * Class SubscriberEvents
@@ -120,7 +120,7 @@
 					->setTrackingEventType($event_response->trackingEventType)
 					->setEventType($event_response->eventType)
 					->setClickthroughId($event_response->trackingClickthroughId)
-					->setMetaData(isset($event_response->trackingMetaData) ? $event_response->trackingMetaData : NULL)
+					->setMetaData(WhatCounts::isSetOrNull($event_response->trackingMetaData))
 					->setSkip($event_response->skip)
 					->setMax($event_response->max);
 			}

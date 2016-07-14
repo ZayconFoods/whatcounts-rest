@@ -9,7 +9,7 @@
 	 */
 
 	namespace Zaycon\Whatcounts_Rest\Models;
-
+	use Zaycon\Whatcounts_Rest\WhatCounts;
 
 	/**
 	 * Class RelationalColumns
@@ -117,7 +117,7 @@
 					->setParentTableId($relational_columns_response->parentTableId)
 					->setForeignKey($relational_columns_response->foreignKey)
 					->setUniqueField($relational_columns_response->uniqueField)
-					->setColumnLength(isset($relational_columns_response->columnLength) ? $relational_columns_response->columnLength : NULL)
+					->setColumnLength(WhatCounts::isSetOrNull($relational_columns_response->columnLength))
 					->setName($relational_columns_response->name)
 					->setStatus($relational_columns_response->status)
 					->setStorageType($relational_columns_response->storageType)

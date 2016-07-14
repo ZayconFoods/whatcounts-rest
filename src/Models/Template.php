@@ -7,7 +7,7 @@
  */
 
 namespace Zaycon\Whatcounts_Rest\Models;
-
+use Zaycon\Whatcounts_Rest\WhatCounts;
 
 /**
  * Class Template
@@ -221,7 +221,7 @@ class Template
                 ->setDescription($template_response->description)
                 ->setSubject($template_response->subject)
                 ->setCreatedDate($template_response->createdDate, 'M j, Y g:i:s A', $time_zone)
-                ->setUpdatedDate(isset($template_response->updatedDate) ? $template_response->updatedDate : NULL, 'M j, Y g:i:s A', $time_zone)
+                ->setUpdatedDate(WhatCounts::isSetOrNull($template_response->updatedDate), 'M j, Y g:i:s A', $time_zone)
                 ->setDeletedFlag($template_response->deletedFlag)
                 ->setFolderId($template_response->templateFolderId)
                 ->setHasVideo($template_response->hasVideo)
