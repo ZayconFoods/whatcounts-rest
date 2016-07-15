@@ -277,7 +277,7 @@
 				)
 				{
 					$curl_info = curl_version();
-					handleDump($curl_info);
+					$this->handleDump($curl_info);
 					if (strpos($curl_info['ssl_version'], 'NSS') === 0)
 					{
 						$tls_version = CURL_SSLVERSION_TLSv1_1;
