@@ -430,9 +430,9 @@
 			};
 		}
 
-		public static function isSetOrNull($object, $attribute = NULL)
+		public static function existsOrNull($object, $attribute)
 		{
-			return isset($object) ? $object : NULL;
+			return property_exists(get_class($object), $attribute) ? $object->{$attribute} : NULL;
 		}
 	}
 

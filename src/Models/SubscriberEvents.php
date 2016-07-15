@@ -120,7 +120,7 @@
 					->setTrackingEventType($event_response->trackingEventType)
 					->setEventType($event_response->eventType)
 					->setClickthroughId($event_response->trackingClickthroughId)
-					->setMetaData(WhatCounts::isSetOrNull($event_response->trackingMetaData))
+		            ->setMetaData(WhatCounts::existsOrNull($event_response, 'trackingMetaData'))
 					->setSkip($event_response->skip)
 					->setMax($event_response->max);
 			}

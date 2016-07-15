@@ -7,7 +7,7 @@
  */
 
 namespace Zaycon\Whatcounts_Rest\Models;
-
+use Zaycon\Whatcounts_Rest\WhatCounts;
 
 /**
  * Class MailingList
@@ -338,11 +338,11 @@ class MailingList
                 ->setDefaultLifecycle($list_response->defaultLifecycle)
                 ->setUnsubHeaderHttpValue($list_response->unsubHeaderHttpValue)
                 ->setUnsubHeaderEmailValue($list_response->unsubHeaderEmailValue)
-                ->setSubscriberCountTotal($list_response->subscriberCountTotal)
-                ->setSubscriberCountPlain($list_response->subscriberCountPlain)
-                ->setSubscriberCountHtml($list_response->subscriberCountHtml)
-                ->setSubscriberCountRss($list_response->subscriberCountRss)
-                ->setSubscriberCountMime($list_response->subscriberCountMime)
+                ->setSubscriberCountTotal(WhatCounts::existsOrNull($list_response, 'subscriberCountTotal'))
+                ->setSubscriberCountPlain(WhatCounts::existsOrNull($list_response, 'subscriberCountPlain'))
+                ->setSubscriberCountHtml(WhatCounts::existsOrNull($list_response, 'subscriberCountHtml'))
+                ->setSubscriberCountRss(WhatCounts::existsOrNull($list_response, 'subscriberCountRss'))
+                ->setSubscriberCountMime(WhatCounts::existsOrNull($list_response, 'subscriberCountMime'))
                 ->setSkip($list_response->skip)
                 ->setMax($list_response->max);
         }

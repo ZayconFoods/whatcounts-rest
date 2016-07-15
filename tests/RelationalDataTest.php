@@ -90,7 +90,7 @@
 			$whatcounts = $this->whatcounts;
 
 			$data = (object) array(
-				'zip' => '99999'
+				'zip' => 99999
 			);
 
 			$relational_data = new Models\RelationalData;

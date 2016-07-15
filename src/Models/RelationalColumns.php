@@ -117,7 +117,7 @@
 					->setParentTableId($relational_columns_response->parentTableId)
 					->setForeignKey($relational_columns_response->foreignKey)
 					->setUniqueField($relational_columns_response->uniqueField)
-					->setColumnLength(WhatCounts::isSetOrNull($relational_columns_response->columnLength))
+					->setColumnLength(WhatCounts::existsOrNull($relational_columns_response, 'columnLength'))
 					->setName($relational_columns_response->name)
 					->setStatus($relational_columns_response->status)
 					->setStorageType($relational_columns_response->storageType)

@@ -221,7 +221,7 @@ class Template
                 ->setDescription($template_response->description)
                 ->setSubject($template_response->subject)
                 ->setCreatedDate($template_response->createdDate, 'M j, Y g:i:s A', $time_zone)
-                ->setUpdatedDate(WhatCounts::isSetOrNull($template_response->updatedDate), 'M j, Y g:i:s A', $time_zone)
+                ->setUpdatedDate(WhatCounts::existsOrNull($template_response, 'updatedDate'), 'M j, Y g:i:s A', $time_zone)
                 ->setDeletedFlag($template_response->deletedFlag)
                 ->setFolderId($template_response->templateFolderId)
                 ->setHasVideo($template_response->hasVideo)
@@ -235,7 +235,7 @@ class Template
                 ->setDataAol($template_response->templateDataAol)
                 ->setDataXml($template_response->templateDataXml)
                 ->setReplaceFields($template_response->templateReplaceFields)
-                ->setNotes($template_response->templateNotes)
+                ->setNotes(WhatCounts::existsOrNull($template_response, 'templateNotes'))
                 ->setPlainHasRelational($template_response->plainHasRelational)
                 ->setHtmlHasRelational($template_response->htmlHasRelational)
                 ->setLibraryId($template_response->templateLibraryId)
@@ -270,10 +270,11 @@ class Template
             //'templateDataXml' => $this->getDataXml()->asXML(),
             'templateDataXml' => $this->getDataXml(),
             'templateReplaceFields' => $this->getReplaceFields(),
+	        'templateNotes' => $this->getNotes(),
             'plainHasRelational' => $this->isPlainHasRelational(),
             'htmlHasRelational' => $this->isHtmlHasRelational(),
             'templateLibraryId' => $this->getLibraryId(),
-            'templateLayoutId)' => $this->getLayoutId()
+            'templateLayoutId' => $this->getLayoutId()
         );
         return $request_array;
     }
