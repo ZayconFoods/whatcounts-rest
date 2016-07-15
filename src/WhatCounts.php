@@ -270,12 +270,14 @@
 
 				// Servers with cURL using NSS have issues making secure HTTP connections using TLS 1.2. We detect it and fall back to TLS 1.1.
 				// https://serverfault.com/questions/537495/centos-php-curl-nss-error-5938/
+				//PHP Notice:  Use of undefined constant CURL_SSLVERSION_TLSv1_2 - assumed 'CURL_SSLVERSION_TLSv1_2' in /home/travis/build/ZayconFoods/whatcounts-rest/src/WhatCounts.php on line 285
 				if ((PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION == 5 && PHP_RELEASE_VERSION >= 19)
 					|| (PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION == 6 && PHP_RELEASE_VERSION >= 3)
 					|| (PHP_MAJOR_VERSION >= 7)
 				)
 				{
 					$curl_info = curl_version();
+					echo $curl_info;
 					if (strpos($curl_info['ssl_version'], 'NSS') === 0)
 					{
 						$tls_version = CURL_SSLVERSION_TLSv1_1;
