@@ -270,14 +270,24 @@
 
 				// Servers with cURL using NSS have issues making secure HTTP connections using TLS 1.2. We detect it and fall back to TLS 1.1.
 				// https://serverfault.com/questions/537495/centos-php-curl-nss-error-5938/
-				$curl_info = curl_version();
-				if (strpos($curl_info['ssl_version'], 'NSS') === 0)
+				if ((PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION == 5 && PHP_RELEASE_VERSION >= 19)
+					|| (PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION == 6 && PHP_RELEASE_VERSION >= 3)
+					|| (PHP_MAJOR_VERSION >= 7)
+				)
 				{
-					$tls_version = CURL_SSLVERSION_TLSv1_1;
+					$curl_info = curl_version();
+					if (strpos($curl_info['ssl_version'], 'NSS') === 0)
+					{
+						$tls_version = CURL_SSLVERSION_TLSv1_1;
+					}
+					else
+					{
+						$tls_version = CURL_SSLVERSION_TLSv1_2;
+					}
 				}
 				else
 				{
-					$tls_version = CURL_SSLVERSION_TLSv1_2;
+					$tls_version = CURL_SSLVERSION_DEFAULT;
 				}
 
 				$request = array(
