@@ -41,7 +41,7 @@
 				'starts_at' => '2016-06-01 16:00:00',
 				'state' => 'WA',
 				'title' => 'The Other Big Event',
-				'zip' => 12345
+				'zip' => '12345'
 			);
 
 			$this->relational_data = new Models\RelationalData;
@@ -90,7 +90,7 @@
 			$whatcounts = $this->whatcounts;
 
 			$data = (object) array(
-				'zip' => 99999
+				'zip' => '99999'
 			);
 
 			$relational_data = new Models\RelationalData;

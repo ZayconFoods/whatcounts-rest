@@ -111,7 +111,7 @@
 
 			$created_date = $subscriber->getCreatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testUpdateSubscriber()
@@ -134,7 +134,7 @@
 
 			$updated_date = $subscriber->getUpdatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testDeleteSubscriber()

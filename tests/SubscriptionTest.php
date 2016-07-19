@@ -123,7 +123,7 @@
 
 			$created_date = $subscription->getCreatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testDeleteSubscription()

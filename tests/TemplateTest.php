@@ -117,7 +117,7 @@
 
 			$created_date = $template->getCreatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testUpdateTemplate()
@@ -140,7 +140,7 @@
 
 			$updated_date = $template->getUpdatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testDeleteTemplate()

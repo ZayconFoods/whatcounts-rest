@@ -17,6 +17,7 @@
 		public $whatcounts;
 		public $time_zone;
 		public $faker;
+		public $api_timeout_seconds = "10.0";
 
 		public function setUp()
 		{

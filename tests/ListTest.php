@@ -131,7 +131,7 @@
 
 			$created_date = $list->getCreatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testUpdateList()
@@ -154,7 +154,7 @@
 
 			$updated_date = $list->getUpdatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testDeleteList()

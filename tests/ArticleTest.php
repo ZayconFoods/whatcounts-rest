@@ -114,7 +114,7 @@
 
 			$created_date = $article->getCreatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $created_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testUpdateArticle()
@@ -137,7 +137,7 @@
 
 			$updated_date = $article->getUpdatedDate();
 
-			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', 5.0);
+			$this->assertEquals($now->getTimestamp(), $updated_date->getTimestamp(), '', $this->api_timeout_seconds);
 		}
 
 		public function testDeleteArticle()
