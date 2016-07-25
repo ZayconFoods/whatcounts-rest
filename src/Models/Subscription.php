@@ -103,7 +103,6 @@
 					->setListId($subscription_response->listId)
 					->setCreatedDate($subscription_response->createdDate, 'M j, Y g:i:s A', $time_zone)
 					->setFormatId($subscription_response->formatId)
-					->setForceSubscribe($subscription_response->forceSubscribe)
 					->setListName($subscription_response->listName)
 					->setSkip($subscription_response->skip)
 					->setMax($subscription_response->max);
