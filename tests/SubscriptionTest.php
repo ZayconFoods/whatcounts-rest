@@ -77,7 +77,8 @@
 			$this->subscription = new Models\Subscription();
 			$this->subscription
 				->setListId($this->list->getId())
-				->setSubscriberId($this->subscriber->getId());
+				->setSubscriberId($this->subscriber->getId())
+				->setForceSubscribe(TRUE);
 
 			$whatcounts->createSubscription($this->subscription);
 		}

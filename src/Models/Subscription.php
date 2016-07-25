@@ -60,6 +60,13 @@
 		private $list_name;
 
 		/**
+		 * forceSubscribe field from API
+		 *
+		 * @var bool $force_subscribe
+		 */
+		private $force_subscribe;
+
+		/**
 		 * subscriber object from API
 		 *
 		 * @var Subscriber $subscriber
@@ -96,6 +103,7 @@
 					->setListId($subscription_response->listId)
 					->setCreatedDate($subscription_response->createdDate, 'M j, Y g:i:s A', $time_zone)
 					->setFormatId($subscription_response->formatId)
+					->setForceSubscribe($subscription_response->forceSubscribe)
 					->setListName($subscription_response->listName)
 					->setSkip($subscription_response->skip)
 					->setMax($subscription_response->max);
@@ -114,6 +122,7 @@
 				'subscriberId' => $this->getSubscriberId(),
 				'listId' => $this->getListId(),
 				'formatId' => $this->getFormatId(),
+				'forceSubscribe' => $this->isForceSubscribe(),
 				'subscriber' => $this->getSubscriber(),
 			);
 			return $request_array;
@@ -241,7 +250,6 @@
 			return $this;
 		}
 
-
 		/**
 		 * Gets the private variable list_name
 		 *
@@ -262,6 +270,30 @@
 		public function setListName($list_name)
 		{
 			$this->list_name = (string)$list_name;
+
+			return $this;
+		}
+
+		/**
+		 * Gets the private variable force_subscribe
+		 *
+		 * @return boolean
+		 */
+		public function isForceSubscribe()
+		{
+			return $this->force_subscribe;
+		}
+
+		/**
+		 * Sets the private variable force_subscribe
+		 *
+		 * @param boolean $force_subscribe
+		 *
+		 * @return Subscription
+		 */
+		public function setForceSubscribe($force_subscribe)
+		{
+			$this->force_subscribe = (boolean)($force_subscribe === TRUE || $force_subscribe == 1);
 
 			return $this;
 		}
