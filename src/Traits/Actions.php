@@ -142,7 +142,7 @@
 				$request_data = $object->getRequestArray();
 				$id = $object->getId();
 			}
-			$response_data = $this->call($stub . '/' . $id, 'PUT', $request_data);
+			$response_data = $this->call($stub . '/' . $id, 'PATCH', $request_data);
 			
 			return $response_data;
 		}
