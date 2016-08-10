@@ -125,13 +125,14 @@
 		/**
 		 * @param $stub
 		 * @param $object
+         * @param string $method
 		 *
 		 * @return bool|object
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function update($stub, $object)
+        public function update($stub, $object, $method = 'PUT')
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
 			/** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
@@ -142,7 +143,7 @@
 				$request_data = $object->getRequestArray();
 				$id = $object->getId();
 			}
-			$response_data = $this->call($stub . '/' . $id, 'PATCH', $request_data);
+			$response_data = $this->call($stub . '/' . $id, $method, $request_data);
 			
 			return $response_data;
 		}

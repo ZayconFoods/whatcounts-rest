@@ -100,7 +100,7 @@
 			$whatcounts = $this;
 			/** @var Models\RelationalData $data */
 			$request_data = $data->getData();
-			$response_data = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data);
+			$response_data = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, 'PATCH');
 
 			return $response_data;
 		}
