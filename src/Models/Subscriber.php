@@ -211,8 +211,8 @@
 	                ->setPhone(WhatCounts::existsOrNull($subscriber_response, 'phone'))
 		            ->setFax(WhatCounts::existsOrNull($subscriber_response, 'fax'))
 	                ->setCreatedDate($subscriber_response->createdDate, 'M j, Y g:i:s A', $time_zone)
-	                ->setMd5Encryption($subscriber_response->md5Encryption)
-	                ->setSha1Encryption($subscriber_response->sha1Encryption)
+	                ->setMd5Encryption(WhatCounts::existsOrNull($subscriber_response, 'md5Encryption'))
+	                ->setSha1Encryption(WhatCounts::existsOrNull($subscriber_response, 'sha1Encryption'))
 	                ->setSkip($subscriber_response->skip)
 	                ->setMax($subscriber_response->max);
 		        if (isset($subscriber_response->updatedDate))
