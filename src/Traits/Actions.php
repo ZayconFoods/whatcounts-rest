@@ -138,13 +138,14 @@
         /**
          * @param $stub
          * @param $object
+         * @param bool $retry
          *
          * @return bool|object
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function create($stub, $object)
+        public function create($stub, $object, $retry = TRUE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
@@ -158,7 +159,7 @@
 
             try
             {
-                $response_data = $this->call($stub . '/', 'POST', $request_data);
+                $response_data = $this->call($stub . '/', 'POST', $request_data, $retry);
             }
             catch (Exception\ServerException $e)
             {
@@ -176,13 +177,14 @@
          * @param $stub
          * @param $object
          * @param string $method
+         * @param bool $retry
          *
          * @return bool|object
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function update($stub, $object, $method = 'PUT')
+        public function update($stub, $object, $method = 'PUT', $retry = TRUE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
@@ -198,7 +200,7 @@
 
             try
             {
-                $response_data = $this->call($stub . '/' . $id, $method, $request_data);
+                $response_data = $this->call($stub . '/' . $id, $method, $request_data, $retry);
             }
             catch (Exception\ServerException $e)
             {
