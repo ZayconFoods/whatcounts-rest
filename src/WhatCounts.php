@@ -256,13 +256,14 @@
 		 * @param $command
 		 * @param $method
 		 * @param null $request_data
+         * @param bool $retry
 		 *
 		 * @return bool|object
 		 * 
 		 * @throws GuzzleHttp\Exception\ServerException
 		 * @throws GuzzleHttp\Exception\RequestException
 		 */
-		public function call($command, $method, $request_data = NULL)
+		public function call($command, $method, $request_data = NULL, $retry = TRUE)
 		{
 			if ($this->checkStatus()) {
 
@@ -323,10 +324,16 @@
 
 				try
 				{
-					$handlerStack = GuzzleHttp\HandlerStack::create( new GuzzleHttp\Handler\CurlHandler() );
-					$handlerStack->push( GuzzleHttp\Middleware::retry( $this->retryDecider(), $this->retryDelay() ) );
-
-					$guzzle = new GuzzleHttp\Client( array( 'handler' => $handlerStack ));
+                    if ($retry)
+                    {
+                        $handlerStack = GuzzleHttp\HandlerStack::create( new GuzzleHttp\Handler\CurlHandler() );
+                        $handlerStack->push( GuzzleHttp\Middleware::retry( $this->retryDecider(), $this->retryDelay() ) );
+                        $guzzle = new GuzzleHttp\Client( array( 'handler' => $handlerStack ));
+                    }
+                    else
+                    {
+                        $guzzle = new GuzzleHttp\Client();
+                    }
 
 					$response = $guzzle->request(
 						$method,

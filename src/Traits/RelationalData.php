@@ -89,6 +89,7 @@
 		/**
 		 * @param $relational_table_name
 		 * @param $data
+         * @param bool $retry
 		 *
 		 * @return bool|object
 		 *
@@ -96,7 +97,7 @@
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
 
-		public function createRelationalData($relational_table_name, $data)
+		public function createRelationalData($relational_table_name, $data, $retry = TRUE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
@@ -106,7 +107,7 @@
 
             try
             {
-                $response_data = $whatcounts->create($this->relational_table_stub . '/' . $relational_table_name, $request_data);
+                $response_data = $whatcounts->create($this->relational_table_stub . '/' . $relational_table_name, $request_data, $retry);
             }
             catch (Exception\ServerException $e)
             {
