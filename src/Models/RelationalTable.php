@@ -307,7 +307,7 @@
 		 * @param string $format
 		 * @param string $time_zone
 		 *
-		 * @return Article
+		 * @return RelationalTable
 		 */
 		public function setCreatedDate($created_date, $format, $time_zone)
 		{
@@ -333,7 +333,7 @@
 		 * @param string $format
 		 * @param string $time_zone
 		 *
-		 * @return Article
+		 * @return RelationalTable
 		 */
 		public function setUpdatedDate($updated_date, $format, $time_zone)
 		{

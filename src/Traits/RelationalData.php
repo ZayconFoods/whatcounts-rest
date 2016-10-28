@@ -8,6 +8,7 @@
 
 	namespace Zaycon\Whatcounts_Rest\Traits;
 
+    use GuzzleHttp\Exception;
 	use Zaycon\Whatcounts_Rest\Models;
 	/**
 	 * Class RelationalData
@@ -32,7 +33,19 @@
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
-			$relational_data = $whatcounts->getById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $this->relational_data_class_name, $row_id);
+
+            try
+            {
+                $relational_data = $whatcounts->getById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $this->relational_data_class_name, $row_id);
+            }
+            catch (Exception\ServerException $e)
+            {
+                throw $e;
+            }
+            catch (Exception\RequestException $e)
+            {
+                throw $e;
+            }
 
 			return $relational_data;
 		}
@@ -57,7 +70,18 @@
 				$query['skip'] = $skip;
 			}
 
-			$relational_data = $whatcounts->getAll($this->relational_table_stub . '/' . $relational_table_name . '/rows?' . http_build_query($query), $this->relational_data_class_name);
+            try
+            {
+                $relational_data = $whatcounts->getAll($this->relational_table_stub . '/' . $relational_table_name . '/rows?' . http_build_query($query), $this->relational_data_class_name);
+            }
+            catch (Exception\ServerException $e)
+            {
+                throw $e;
+            }
+            catch (Exception\RequestException $e)
+            {
+                throw $e;
+            }
 
 			return $relational_data;
 		}
@@ -79,7 +103,19 @@
 			
 			/** @var Models\RelationalData $data */
 			$request_data = $data->getData();
-			$response_data = $whatcounts->create($this->relational_table_stub . '/' . $relational_table_name, $request_data);
+
+            try
+            {
+                $response_data = $whatcounts->create($this->relational_table_stub . '/' . $relational_table_name, $request_data);
+            }
+            catch (Exception\ServerException $e)
+            {
+                throw $e;
+            }
+            catch (Exception\RequestException $e)
+            {
+                throw $e;
+            }
 
 			return $response_data;
 		}
@@ -100,7 +136,19 @@
 			$whatcounts = $this;
 			/** @var Models\RelationalData $data */
 			$request_data = $data->getData();
-			$response_data = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, 'PATCH');
+
+            try
+            {
+                $response_data = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, 'PATCH');
+            }
+            catch (Exception\ServerException $e)
+            {
+                throw $e;
+            }
+            catch (Exception\RequestException $e)
+            {
+                throw $e;
+            }
 
 			return $response_data;
 		}
@@ -118,6 +166,20 @@
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			return $whatcounts->deleteById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $row_id);
+
+            try
+            {
+                $response = $whatcounts->deleteById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $row_id);
+            }
+            catch (Exception\ServerException $e)
+            {
+                throw $e;
+            }
+            catch (Exception\RequestException $e)
+            {
+                throw $e;
+            }
+
+			return $response;
 		}
 	}
