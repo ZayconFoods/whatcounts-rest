@@ -141,7 +141,7 @@
 
             try
             {
-                $response_data = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, 'PATCH', $retry);
+                $response_data = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, 'PUT', $retry);
             }
             catch (Exception\ServerException $e)
             {
