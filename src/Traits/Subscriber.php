@@ -267,8 +267,11 @@
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$response_data = $whatcounts->update($this->subscriber_stub, $subscriber);
 
-			$subscriber
-				->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
+            if (isset($response_data->updatedDate))
+            {
+                $subscriber
+                    ->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
+            }
 		}
 
 		/**
