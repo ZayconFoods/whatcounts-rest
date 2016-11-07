@@ -26,17 +26,18 @@
 		/**
 		 * @param $relational_table_name
 		 * @param $row_id
+         * @param bool $do_async
 		 *
 		 * @return mixed
 		 */
-		public function getRelationalData($relational_table_name, $row_id)
+		public function getRelationalData($relational_table_name, $row_id, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 
             try
             {
-                $relational_data = $whatcounts->getById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $this->relational_data_class_name, $row_id);
+                return $whatcounts->getById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $this->relational_data_class_name, $row_id, $do_async);
             }
             catch (Exception\ServerException $e)
             {
@@ -46,8 +47,6 @@
             {
                 throw $e;
             }
-
-			return $relational_data;
 		}
 
 		/**
@@ -90,6 +89,7 @@
 		 * @param $relational_table_name
 		 * @param $data
          * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return bool|object
 		 *
@@ -97,7 +97,7 @@
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
 
-		public function createRelationalData($relational_table_name, $data, $retry = TRUE)
+		public function createRelationalData($relational_table_name, $data, $retry = TRUE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
@@ -107,7 +107,8 @@
 
             try
             {
-                $response_data = $whatcounts->create($this->relational_table_stub . '/' . $relational_table_name, $request_data, $retry);
+                $promise = $whatcounts->create($this->relational_table_stub . '/' . $relational_table_name, $request_data, $retry, $do_async);
+                return $promise;
             }
             catch (Exception\ServerException $e)
             {
@@ -117,8 +118,6 @@
             {
                 throw $e;
             }
-
-			return $response_data;
 		}
 
 		/**
@@ -126,13 +125,14 @@
 		 * @param $row_id
 		 * @param $data
          * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return bool|object
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function updateRelationalData($relational_table_name, $row_id, $data, $retry = TRUE)
+		public function updateRelationalData($relational_table_name, $row_id, $data, $retry = TRUE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
@@ -141,7 +141,8 @@
 
             try
             {
-                $response_data = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, 'PUT', $retry);
+                $promise = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, 'PUT', $retry, $do_async);
+                return $promise;
             }
             catch (Exception\ServerException $e)
             {
@@ -151,8 +152,6 @@
             {
                 throw $e;
             }
-
-			return $response_data;
 		}
 
 		/**

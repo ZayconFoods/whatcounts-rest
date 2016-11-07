@@ -234,25 +234,35 @@
 
 		/**
 		 * @param Models\Subscriber $subscriber
+         * @param bool $do_async
+         * @return bool|object
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function createSubscriber(Models\Subscriber &$subscriber)
+		public function createSubscriber(Models\Subscriber &$subscriber, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$response_data = $whatcounts->create($this->subscriber_stub, $subscriber);
 
-			$subscriber
-				->setId($response_data->subscriberId)
-				->setRealmId($response_data->realmId)
-				->setCreatedDate($response_data->createdDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
-				->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
-				->setMd5Encryption($response_data->md5Encryption)
-				->setSha1Encryption($response_data->sha1Encryption)
-				->setSkip($response_data->skip)
-				->setMax($response_data->max);
+            if ($do_async)
+            {
+                return $whatcounts->create($this->subscriber_stub, $subscriber, $do_async);
+            }
+            else
+            {
+                $response_data = $whatcounts->create($this->subscriber_stub, $subscriber);
+
+                $subscriber
+                    ->setId($response_data->subscriberId)
+                    ->setRealmId($response_data->realmId)
+                    ->setCreatedDate($response_data->createdDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
+                    ->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
+                    ->setMd5Encryption($response_data->md5Encryption)
+                    ->setSha1Encryption($response_data->sha1Encryption)
+                    ->setSkip($response_data->skip)
+                    ->setMax($response_data->max);
+            }
 		}
 
 		/**

@@ -9,6 +9,7 @@
 	namespace Zaycon\Whatcounts_Rest;
 
 	use GuzzleHttp;
+    use GuzzleHttp\Psr7\Request;
 	use GuzzleHttp\TransferStats;
 
 	/**
@@ -257,13 +258,14 @@
 		 * @param $method
 		 * @param null $request_data
          * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return bool|object
 		 * 
 		 * @throws GuzzleHttp\Exception\ServerException
 		 * @throws GuzzleHttp\Exception\RequestException
 		 */
-		public function call($command, $method, $request_data = NULL, $retry = TRUE)
+		public function call($command, $method, $request_data = NULL, $retry = TRUE, $do_async = FALSE)
 		{
 			if ($this->checkStatus()) {
 
@@ -335,13 +337,26 @@
                         $guzzle = new GuzzleHttp\Client();
                     }
 
-					$response = $guzzle->request(
-						$method,
-						$this->url . '/' . $command . $params,
-						$request
-					);
+                    $uri = $this->url . '/' . $command . $params;
 
-					return json_decode($response->getBody()->getContents());
+                    if ($do_async)
+                    {
+                        // requestAsync($method, $uri = '', array $options = [])
+                        return $guzzle->requestAsync(
+                            $method,
+                            $uri,
+                            $request
+                        );
+                    }
+                    else
+                    {
+                        $response = $guzzle->request(
+                            $method,
+                            $uri,
+                            $request
+                        );
+                        return json_decode($response->getBody()->getContents());
+                    }
 
 				}
 				catch (GuzzleHttp\Exception\ServerException $e)
@@ -352,26 +367,6 @@
 				{
 					throw $e;
 				}
-
-//				if (empty($body)) {
-//					throw new Exception("No results");
-//				}
-//
-//				if ($body == 'Invalid credentials') {
-//					throw new Exception('Invalid Credentials');
-//				}
-//
-//				if ((int)substr_compare($body, "FAILURE", 0, 7) == 0) {
-//					$result = explode(":", $body);
-//					throw new Exception(trim($result[1]));
-//				}
-//
-//				if ((int)substr_compare($body, "SUCCESS", 0, 7) == 0) {
-//					$result = explode(":", $body);
-//
-//					return $result;
-//				}
-
 
 			}
 
@@ -458,7 +453,17 @@
 			};
 		}
 
-		public static function existsOrNull($object, $attribute)
+        public function generateObject($class_name, $data, $timezone = NULL)
+        {
+            if ($timezone === NULL)
+            {
+                $timezone = new \DateTimeZone($this->getTimeZone());
+            }
+            $object = new $class_name($data, $timezone);
+            return $object;
+        }
+
+        public static function existsOrNull($object, $attribute)
 		{
 			return property_exists(get_class($object), $attribute) ? $object->{$attribute} : NULL;
 		}

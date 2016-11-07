@@ -18,18 +18,19 @@
 		public $time_zone;
 		public $faker;
 		public $api_timeout_seconds = "10.0";
+        public $use_async = TRUE;
 
 		public function setUp()
 		{
-			if (isset($_SERVER['realm']) && isset($_SERVER['password']))
-			{
-				$this->whatcounts = new WhatCounts(self::ENV, $_SERVER['realm'], $_SERVER['password']);
-			}
-			else
-			{
-				$this->whatcounts = new WhatCounts(self::ENV);
-			}
-			
+            if (isset($_SERVER['realm']) && isset($_SERVER['password']))
+            {
+                $this->whatcounts = new WhatCounts(self::ENV, $_SERVER['realm'], $_SERVER['password']);
+            }
+            else
+            {
+                $this->whatcounts = new WhatCounts(self::ENV);
+            }
+
 			\PHPUnit_Framework_Error_Notice::$enabled = FALSE;
 
 			$this->time_zone = new \DateTimeZone($this->whatcounts->getTimeZone());

@@ -20,13 +20,14 @@
         /**
          * @param $stub
          * @param $class_name
+         * @param bool $do_async
          *
          * @return array
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function getAll($stub, $class_name)
+        public function getAll($stub, $class_name, $do_async = FALSE)
         {
             try
             {
@@ -47,7 +48,7 @@
                 $objects = array();
                 foreach ($response_data as $item)
                 {
-                    $object = new $class_name($item, new \DateTimeZone($this->getTimeZone()));
+                    $object = $this->generateObject($class_name, $item);
                     $objects[] = $object;
                 }
 
@@ -56,8 +57,7 @@
             {
                 if (is_object($response_data))
                 {
-                    $object = new $class_name($response_data, new \DateTimeZone($this->getTimeZone()));
-
+                    $object = $this->generateObject($class_name, $response_data);
                     return $object;
                 }
             }
@@ -67,17 +67,27 @@
          * @param $stub
          * @param $class_name
          * @param $id
+         * @param bool $do_async
          *
          * @return mixed
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function getById($stub, $class_name, $id)
+        public function getById($stub, $class_name, $id, $do_async = FALSE)
         {
             try
             {
-                $response_data = $this->call($stub . '/' . $id, 'GET');
+                if ($do_async)
+                {
+                    return $this->call($stub . '/' . $id, 'GET', $do_async);
+                }
+                else
+                {
+                    $response_data = $this->call($stub . '/' . $id, 'GET');
+                    $object = $this->generateObject($class_name, $response_data);
+                    return $object;
+                }
             }
             catch (Exception\ServerException $e)
             {
@@ -88,22 +98,20 @@
                 throw $e;
             }
 
-            $object = new $class_name($response_data, new \DateTimeZone($this->getTimeZone()));
-
-            return $object;
         }
 
         /**
          * @param $stub
          * @param $class_name
          * @param $name
+         * @param bool $do_async
          *
          * @return array
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function getByName($stub, $class_name, $name)
+        public function getByName($stub, $class_name, $name, $do_async = FALSE)
         {
             try
             {
@@ -139,13 +147,14 @@
          * @param $stub
          * @param $object
          * @param bool $retry
+         * @param bool $do_async
          *
          * @return bool|object
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function create($stub, $object, $retry = TRUE)
+        public function create($stub, $object, $retry = TRUE, $do_async = FALSE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
@@ -159,7 +168,7 @@
 
             try
             {
-                $response_data = $this->call($stub . '/', 'POST', $request_data, $retry);
+                return $this->call($stub . '/', 'POST', $request_data, $retry, $do_async);
             }
             catch (Exception\ServerException $e)
             {
@@ -169,8 +178,6 @@
             {
                 throw $e;
             }
-
-            return $response_data;
         }
 
         /**
@@ -178,13 +185,14 @@
          * @param $object
          * @param string $method
          * @param bool $retry
+         * @param bool $do_async
          *
          * @return bool|object
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function update($stub, $object, $method = 'PUT', $retry = TRUE)
+        public function update($stub, $object, $method = 'PUT', $retry = TRUE, $do_async = FALSE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
@@ -200,7 +208,15 @@
 
             try
             {
-                $response_data = $this->call($stub . '/' . $id, $method, $request_data, $retry);
+                if ($do_async)
+                {
+                    return $this->call($stub . '/' . $id, $method, $request_data, $retry, $do_async);
+                }
+                else
+                {
+                    $response_data = $this->call($stub . '/' . $id, $method, $request_data, $retry);
+                    return $response_data;
+                }
             }
             catch (Exception\ServerException $e)
             {
@@ -210,20 +226,19 @@
             {
                 throw $e;
             }
-
-            return $response_data;
         }
 
         /**
          * @param $stub
          * @param $object
+         * @param bool $do_async
          *
          * @return bool
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function delete($stub, $object)
+        public function delete($stub, $object, $do_async = FALSE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
@@ -257,13 +272,14 @@
         /**
          * @param $stub
          * @param $object
+         * @param bool $do_async
          *
          * @return bool
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function deleteById($stub, $object)
+        public function deleteById($stub, $object, $do_async = FALSE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template $object */
@@ -294,13 +310,14 @@
         /**
          * @param $stub
          * @param $object
+         * @param bool $do_async
          *
          * @return bool
          *
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function deleteByCustomerKey($stub, $object)
+        public function deleteByCustomerKey($stub, $object, $do_async = FALSE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template $object */
