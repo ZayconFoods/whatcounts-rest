@@ -81,7 +81,7 @@
             {
                 if ($do_async)
                 {
-                    return $this->call($stub . '/' . $id, 'GET', $retry, $do_async);
+                    return $this->call($stub . '/' . $id, 'GET', NULL, $retry, $do_async);
                 }
                 else
                 {
