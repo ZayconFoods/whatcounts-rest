@@ -26,18 +26,19 @@
 		/**
 		 * @param $relational_table_name
 		 * @param $row_id
+         * @param bool $retry
          * @param bool $do_async
 		 *
 		 * @return mixed
 		 */
-		public function getRelationalData($relational_table_name, $row_id, $do_async = FALSE)
+		public function getRelationalData($relational_table_name, $row_id, $retry = FALSE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 
             try
             {
-                return $whatcounts->getById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $this->relational_data_class_name, $row_id, $do_async);
+                return $whatcounts->getById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $this->relational_data_class_name, $row_id, $retry, $do_async);
             }
             catch (Exception\ServerException $e)
             {

@@ -67,6 +67,7 @@
          * @param $stub
          * @param $class_name
          * @param $id
+         * @param bool $retry
          * @param bool $do_async
          *
          * @return mixed
@@ -74,13 +75,13 @@
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function getById($stub, $class_name, $id, $do_async = FALSE)
+        public function getById($stub, $class_name, $id, $retry = FALSE, $do_async = FALSE)
         {
             try
             {
                 if ($do_async)
                 {
-                    return $this->call($stub . '/' . $id, 'GET', $do_async);
+                    return $this->call($stub . '/' . $id, 'GET', $retry, $do_async);
                 }
                 else
                 {
