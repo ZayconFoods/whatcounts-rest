@@ -313,6 +313,7 @@
 					'curl' => array(
 						CURLOPT_SSLVERSION => $tls_version
 					),
+                    'stream' => TRUE,
 					'on_stats' => function (TransferStats $stats) {
 						$this->setTransferStats($stats);
 					}

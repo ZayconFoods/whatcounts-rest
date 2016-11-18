@@ -187,19 +187,18 @@
 			if (isset($campaign_response))
 			{
 				$this
-					->setId($campaign_response->campaignId)
+					->setId(isset($campaign_response->campaignId) ? $campaign_response->campaignId : NULL)
 					->setName($campaign_response->campaignName)
-					->setRealmId($campaign_response->campaignRealmId)
+					->setRealmId(isset($campaign_response->campaignRealmId) ? $campaign_response->campaignRealmId : NULL)
 					->setListId($campaign_response->campaignListId)
 					->setTemplateId($campaign_response->campaignTemplateId)
-					->setStartDate($campaign_response->campaignStartDate, 'M j, Y g:i:s A', $time_zone)
-					->setSubject($campaign_response->campaignSubject)
-					->setAlias($campaign_response->campaignAlias)
-					->setDeliverability($campaign_response->campaignDeliverability)
+                    ->setSubject(isset($campaign_response->campaignSubject) ? $campaign_response->campaignSubject : NULL)
+					->setAlias(isset($campaign_response->campaignAlias) ? $campaign_response->campaignAlias : NULL)
+					->setDeliverability(isset($campaign_response->campaignDeliverability) ? $campaign_response->campaignDeliverability : NULL)
 					->setForcedFormat($campaign_response->campaignForcedFormat)
-					->setSegmentationId($campaign_response->campaignSegmentationId)
-					->setSuppressionList($campaign_response->campaignSuppressionList)
-					->setSegmentType($campaign_response->segmentType)
+					->setSegmentationId(isset($campaign_response->campaignSegmentationId) ? $campaign_response->campaignSegmentationId : NULL)
+					->setSuppressionList(isset($campaign_response->campaignSuppressionList) ? $campaign_response->campaignSuppressionList : NULL)
+					->setSegmentType(isset($campaign_response->segmentType) ? $campaign_response->segmentType : NULL)
 					->setIsSaas($campaign_response->isSAAS)
 					->setSnaEnabled($campaign_response->snaEnabled)
 					->setContentHtml($campaign_response->campaignContentHtml)
@@ -208,41 +207,44 @@
 					->setDataXml($campaign_response->campaignDataXml)
 					->setSkip($campaign_response->skip)
 					->setMax($campaign_response->max);
+                if (isset($campaign_response->campaignStartDate)) $this->setStartDate($campaign_response->campaignStartDate, 'M j, Y g:i:s A', $time_zone);
+                if (isset($campaign_response->campaignSummary))
+                {
+                    $campaignSummaryItem = $campaign_response->campaignSummary;
+                    $campaign_summary = new CampaignSummary();
+                    $campaign_summary
+                        ->setTotalSent($campaignSummaryItem->totalSent)
+                        ->setTotalDelivered($campaignSummaryItem->totalDelivered)
+                        ->setTotalOpen($campaignSummaryItem->totalOpen)
+                        ->setTotalClickthroughs($campaignSummaryItem->totalClickthroughs)
+                        ->setTotalBounced($campaignSummaryItem->totalBounced)
+                        ->setTotalHardBounces($campaignSummaryItem->totalHardBounces)
+                        ->setTotalSoftBounces($campaignSummaryItem->totalSoftBounces)
+                        ->setTotalBlocked($campaignSummaryItem->totalBlocked)
+                        ->setTotalComplaints($campaignSummaryItem->totalComplaints)
+                        ->setTotalUnsubscribes($campaignSummaryItem->totalUnsubscribes)
+                        ->setTotalResponders($campaignSummaryItem->totalResponders)
+                        ->setUniqueOpen($campaignSummaryItem->uniqueOpen)
+                        ->setUniqueClickthroughs($campaignSummaryItem->uniqueClickthroughs)
+                        ->setUniqueUnsubscribes($campaignSummaryItem->uniqueUnsubscribes)
+                        ->setUniqueComplaints($campaignSummaryItem->uniqueComplaints)
+                        ->setUniqueBounced($campaignSummaryItem->uniqueBounced)
+                        ->setUniqueSoftBounces($campaignSummaryItem->uniqueSoftBounces)
+                        ->setUniqueHardBounces($campaignSummaryItem->uniqueHardBounces)
+                        ->setUniqueBlocked($campaignSummaryItem->uniqueBlocked)
+                        ->setClickToOpenRate($campaignSummaryItem->clickToOpenRate)
+                        ->setTotalOpenRate($campaignSummaryItem->totalOpenRate)
+                        ->setUniqueOpenRates($campaignSummaryItem->uniqueOpenRates)
+                        ->setResponderRates($campaignSummaryItem->responderRates)
+                        ->setUniqueUnsubscribeRates($campaignSummaryItem->uniqueUnsubscribeRates)
+                        ->setClickRates($campaignSummaryItem->clickRates)
+                        ->setUniqueComplaintRates($campaignSummaryItem->uniqueComplaintRates)
+                        ->setUniqueClickRates($campaignSummaryItem->uniqueClickRates)
+                        ->setBounceRates($campaignSummaryItem->bounceRates)
+                        ->setDeliveredRates($campaignSummaryItem->deliveredRates);
 
-				$campaignSummaryItem = $campaign_response->campaignSummary;
-				$campaign_summary = new CampaignSummary();
-				$campaign_summary
-					->setTotalSent($campaignSummaryItem->totalSent)
-					->setTotalDelivered($campaignSummaryItem->totalDelivered)
-					->setTotalOpen($campaignSummaryItem->totalOpen)
-					->setTotalClickthroughs($campaignSummaryItem->totalClickthroughs)
-					->setTotalBounced($campaignSummaryItem->totalBounced)
-					->setTotalHardBounces($campaignSummaryItem->totalHardBounces)
-					->setTotalSoftBounces($campaignSummaryItem->totalSoftBounces)
-					->setTotalBlocked($campaignSummaryItem->totalBlocked)
-					->setTotalComplaints($campaignSummaryItem->totalComplaints)
-					->setTotalUnsubscribes($campaignSummaryItem->totalUnsubscribes)
-					->setTotalResponders($campaignSummaryItem->totalResponders)
-					->setUniqueOpen($campaignSummaryItem->uniqueOpen)
-					->setUniqueClickthroughs($campaignSummaryItem->uniqueClickthroughs)
-					->setUniqueUnsubscribes($campaignSummaryItem->uniqueUnsubscribes)
-					->setUniqueComplaints($campaignSummaryItem->uniqueComplaints)
-					->setUniqueBounced($campaignSummaryItem->uniqueBounced)
-					->setUniqueSoftBounces($campaignSummaryItem->uniqueSoftBounces)
-					->setUniqueHardBounces($campaignSummaryItem->uniqueHardBounces)
-					->setUniqueBlocked($campaignSummaryItem->uniqueBlocked)
-					->setClickToOpenRate($campaignSummaryItem->clickToOpenRate)
-					->setTotalOpenRate($campaignSummaryItem->totalOpenRate)
-					->setUniqueOpenRates($campaignSummaryItem->uniqueOpenRates)
-					->setResponderRates($campaignSummaryItem->responderRates)
-					->setUniqueUnsubscribeRates($campaignSummaryItem->uniqueUnsubscribeRates)
-					->setClickRates($campaignSummaryItem->clickRates)
-					->setUniqueComplaintRates($campaignSummaryItem->uniqueComplaintRates)
-					->setUniqueClickRates($campaignSummaryItem->uniqueClickRates)
-					->setBounceRates($campaignSummaryItem->bounceRates)
-					->setDeliveredRates($campaignSummaryItem->deliveredRates);
-
-				$this->setCampaignSummary($campaign_summary);
+                    $this->setCampaignSummary($campaign_summary);
+                }
 
 			}
 		}

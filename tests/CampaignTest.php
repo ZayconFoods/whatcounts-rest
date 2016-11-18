@@ -9,40 +9,27 @@
 	
 	namespace Zaycon\Whatcounts_Rest;
 	
-	class CampaignTest extends WhatCountsTest
+	use Zaycon\Whatcounts_Rest\Models\Campaign;
+    use Zaycon\Whatcounts_Rest\Models\MailingList;
+
+    class CampaignTest extends WhatCountsTest
 	{
 		private $campaign;
 		private $campaigns;
 
 		public function setUp()
 		{
-			
 			parent::setUp();
-
-			/** @var WhatCounts $whatcounts */
-			$whatcounts = $this->whatcounts;
-			
-//			$this->campaign = new Campaign;
-//			$this->campaign
-//				->setName("Test Campaign")
-//				->setTitle("Test from API")
-//				->setDescription("This is the description");
-//
-//			$whatcounts->createCampaign($this->campaign);
 		}
 
 		public function tearDown()
 		{
 			parent::tearDown();
 
-			/** @var WhatCounts $whatcounts */
-			$whatcounts = $this->whatcounts;
-
 			unset($this->campaigns);
 
 			if (isset($this->campaign))
 			{
-				//$whatcounts->deleteCampaign($this->campaign);
 				unset($this->campaign);
 			}
 		}
@@ -70,8 +57,41 @@
 			/** @var Models\Campaign $campaign */
 			$campaign = $this->campaign;
 
-			//$campaign = $whatcounts->getCampaignById($campaign->getId());
+			$campaign = $whatcounts->getCampaignById($campaign->getId());
 
-			//$this->assertInstanceOf('ZayconWhatCounts\Campaign', $campaign);
+			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Campaign', $campaign);
 		}
+
+		public function testSendSingleCampaign()
+        {
+            /** @var WhatCounts $whatcounts */
+            $whatcounts = $this->whatcounts;
+
+            $campaign = new Campaign();
+            $campaign
+                ->setName('Single Campaign Test')
+                ->setForcedFormat(99);
+
+            $list = $whatcounts->getListById(34);
+            $subscriber = $whatcounts->findSubscribers(NULL, 'mark@zayconfresh.com');
+            $subscriber = $subscriber[0];
+            $template = $whatcounts->getTemplateById(75);
+
+            $sendSingleCampaign = new Campaign($sendSingleCampaign = $whatcounts->sendSingleCampaign($campaign, $list, $subscriber, $template));
+            $this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Campaign', $sendSingleCampaign);
+        }
+
+        public function testQuickSendSingleCampaign()
+        {
+            /** @var WhatCounts $whatcounts */
+            $whatcounts = $this->whatcounts;
+
+            $campaign_name = 'Quick Single Campaign Test';
+            $list_id = 34;
+            $template_id = 75;
+            $to_email = 'mark@zayconfresh.com';
+
+            $quickSendSingleCampaign = new Campaign($whatcounts->quickSendSingleCampaign($campaign_name, $list_id, $template_id, $to_email));
+            $this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Campaign', $quickSendSingleCampaign);
+        }
 	}

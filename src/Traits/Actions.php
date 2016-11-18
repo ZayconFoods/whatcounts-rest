@@ -27,7 +27,7 @@
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function getAll($stub, $class_name, $do_async = FALSE)
+        public function getAll($stub, $class_name, $retry = FALSE, $do_async = FALSE)
         {
             try
             {
@@ -161,7 +161,7 @@
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
             if (is_a($object, 'stdClass'))
             {
-                $request_data = $object;
+                $request_data = $this->objectToArray($object);
             } else
             {
                 $request_data = $object->getRequestArray();
@@ -339,6 +339,16 @@
 
             return TRUE;
 
+        }
+
+        private function objectToArray($object) {
+            if (is_object($object)) {
+                return array_map(array(__CLASS__, __FUNCTION__), get_object_vars($object));
+            } else if (is_array($object)) {
+                return array_map(array(__CLASS__, __FUNCTION__), $object);
+            } else {
+                return $object;
+            }
         }
 
     }
