@@ -36,6 +36,8 @@
 		 * Passes Subscription object to API.
 		 *
 		 * @param Models\Subscription $subscription
+         *
+         * @return Models\Subscription $subscription
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
@@ -51,6 +53,8 @@
 				->setCreatedDate($response_data->createdDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
 				->setSkip($response_data->skip)
 				->setMax($response_data->max);
+
+			return $subscription;
 		}
 
 		/**

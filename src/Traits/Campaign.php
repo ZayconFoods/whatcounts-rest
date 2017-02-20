@@ -136,4 +136,11 @@
 
         }
 
+        public function getOpenActivity($campaign_id, $retry = TRUE, $do_async = FALSE)
+        {
+            $whatcounts = $this;
+            /** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
+            return $whatcounts->getById($this->campaign_stub, $this->campaign_class_name, $campaign_id, $retry, $do_async);
+        }
+
 	}

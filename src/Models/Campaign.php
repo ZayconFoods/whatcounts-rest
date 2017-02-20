@@ -162,6 +162,20 @@
 		 */
 		private $suppression_list;
 
+        /**
+         * campaignTemplateName field from API
+         *
+         * @var string $template_name
+         */
+		private $template_name;
+
+        /**
+         * accountProfileId field from API
+         *
+         * @var int $account_profile_id
+         */
+		private $account_profile_id;
+
 		/**
 		 * skip field from API
 		 *
@@ -205,6 +219,8 @@
 					->setContentMobile($campaign_response->campaignContentMobile)
 					->setContentText($campaign_response->campaignContentText)
 					->setDataXml($campaign_response->campaignDataXml)
+                    ->setTemplateName($campaign_response->campaignTemplateName)
+                    ->setAccountProfileId($campaign_response->accountProfileId)
 					->setSkip($campaign_response->skip)
 					->setMax($campaign_response->max);
                 if (isset($campaign_response->campaignStartDate)) $this->setStartDate($campaign_response->campaignStartDate, 'M j, Y g:i:s A', $time_zone);
@@ -753,6 +769,54 @@
 
 			return $this;
 		}
+
+        /**
+         * Gets the private variable template_name
+         *
+         * @return string
+         */
+        public function getTemplateName()
+        {
+            return $this->template_name;
+        }
+
+        /**
+         * Sets the private variable template_name
+         *
+         * @param string $template_name
+         *
+         * @return Campaign
+         */
+        public function setTemplateName( $template_name )
+        {
+            $this->template_name = (string) $template_name;
+
+            return $this;
+        }
+
+        /**
+         * Gets the private variable account_profile_id
+         *
+         * @return string
+         */
+        public function getAccountProfileId()
+        {
+            return $this->account_profile_id;
+        }
+
+        /**
+         * Sets the private variable account_profile_id
+         *
+         * @param string $account_profile_id
+         *
+         * @return Campaign
+         */
+        public function setAccountProfileId( $account_profile_id )
+        {
+            $this->account_profile_id = (int) $account_profile_id;
+
+            return $this;
+        }
 
 		/**
 		 * Gets the private variable skip
