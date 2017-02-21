@@ -7,7 +7,7 @@
 	 */
 
 	namespace Zaycon\Whatcounts_Rest\Models;
-
+    use Zaycon\Whatcounts_Rest\WhatCounts;
 
 	/**
 	 * Class Article
@@ -154,7 +154,7 @@
 					->setAuthorBio($article_response->authorBio)
 					->setTitle($article_response->title)
 					->setCreatedDate($article_response->createdDate, 'M j, Y g:i:s A', $time_zone)
-					->setUpdatedDate($article_response->updatedDate, 'M j, Y g:i:s A', $time_zone)
+                    ->setUpdatedDate(WhatCounts::existsOrNull($article_response, 'updatedDate'), 'M j, Y g:i:s A', $time_zone)
 					->setFolderId($article_response->folderId)
 					->setDeck($article_response->dek)
 					->setCallout($article_response->callout)

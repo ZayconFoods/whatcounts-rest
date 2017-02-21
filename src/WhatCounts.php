@@ -9,7 +9,6 @@
 	namespace Zaycon\Whatcounts_Rest;
 
 	use GuzzleHttp;
-    use GuzzleHttp\Psr7\Request;
 	use GuzzleHttp\TransferStats;
 
 	/**
@@ -262,8 +261,7 @@
 		 *
 		 * @return bool|object
 		 * 
-		 * @throws GuzzleHttp\Exception\ServerException
-		 * @throws GuzzleHttp\Exception\RequestException
+		 * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
 		 */
 		public function call($command, $method, $request_data = NULL, $retry = TRUE, $do_async = FALSE)
 		{
@@ -362,34 +360,16 @@
 				}
 				catch (GuzzleHttp\Exception\ServerException $e)
 				{
-					throw $e;
+					throw new WhatCountsException($e->getMessage(), $e->getCode(), $e);
 				}
 				catch (GuzzleHttp\Exception\RequestException $e)
 				{
-					throw $e;
+                    throw new WhatCountsException($e->getMessage(), $e->getCode(), $e);
 				}
 
 			}
 
 			return FALSE;
-		}
-
-		/**
-		 *
-		 * Exception handler
-		 *
-		 * @param $e
-		 */
-		public function handleException($e)
-		{
-			if (class_exists('Kint')) {
-				\Kint::dump($e);
-			} else {
-				var_dump($e);
-			}
-			if (class_exists('Rollbar')) {
-				\Rollbar::report_exception($e);
-			}
 		}
 
 		/**

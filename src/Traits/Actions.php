@@ -8,8 +8,10 @@
 
     namespace Zaycon\Whatcounts_Rest\Traits;
 
-    use GuzzleHttp\Exception;
-    use Zaycon\Whatcounts_Rest\Models;
+    use GuzzleHttp\Exception,
+        Zaycon\Whatcounts_Rest\Models,
+        Zaycon\Whatcounts_Rest\WhatCountsException;
+
 
     /**
      * Class Traits\ActionsTraits
@@ -20,25 +22,21 @@
         /**
          * @param $stub
          * @param $class_name
+         * @param bool $retry
          * @param bool $do_async
          *
          * @return array
          *
-         * @throws \GuzzleHttp\Exception\ServerException
-         * @throws \GuzzleHttp\Exception\RequestException
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
         public function getAll($stub, $class_name, $retry = FALSE, $do_async = FALSE)
         {
             try
             {
                 /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
-                $response_data = $this->call($stub, 'GET');
+                $response_data = $this->call($stub, 'GET', $retry, $do_async);
             }
-            catch (Exception\ServerException $e)
-            {
-                throw $e;
-            }
-            catch (Exception\RequestException $e)
+            catch (WhatCountsException $e)
             {
                 throw $e;
             }
@@ -72,8 +70,7 @@
          *
          * @return mixed
          *
-         * @throws \GuzzleHttp\Exception\ServerException
-         * @throws \GuzzleHttp\Exception\RequestException
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
         public function getById($stub, $class_name, $id, $retry = FALSE, $do_async = FALSE)
         {
@@ -90,11 +87,7 @@
                     return $object;
                 }
             }
-            catch (Exception\ServerException $e)
-            {
-                throw $e;
-            }
-            catch (Exception\RequestException $e)
+            catch (WhatCountsException $e)
             {
                 throw $e;
             }
@@ -105,24 +98,20 @@
          * @param $stub
          * @param $class_name
          * @param $name
+         * @param bool $retry
          * @param bool $do_async
          *
          * @return array
          *
-         * @throws \GuzzleHttp\Exception\ServerException
-         * @throws \GuzzleHttp\Exception\RequestException
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
-        public function getByName($stub, $class_name, $name, $do_async = FALSE)
+        public function getByName($stub, $class_name, $name, $retry = FALSE, $do_async = FALSE)
         {
             try
             {
-                $response_data = $this->call($stub . '?name=' . $name, 'GET');
+                $response_data = $this->call($stub . '?name=' . $name, 'GET', $retry, $do_async);
             }
-            catch (Exception\ServerException $e)
-            {
-                throw $e;
-            }
-            catch (Exception\RequestException $e)
+            catch (WhatCountsException $e)
             {
                 throw $e;
             }
@@ -152,8 +141,7 @@
          *
          * @return bool|object
          *
-         * @throws \GuzzleHttp\Exception\ServerException
-         * @throws \GuzzleHttp\Exception\RequestException
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
         public function create($stub, $object, $retry = TRUE, $do_async = FALSE)
         {
@@ -171,11 +159,7 @@
             {
                 return $this->call($stub . '/', 'POST', $request_data, $retry, $do_async);
             }
-            catch (Exception\ServerException $e)
-            {
-                throw $e;
-            }
-            catch (Exception\RequestException $e)
+            catch (WhatCountsException $e)
             {
                 throw $e;
             }
@@ -190,8 +174,7 @@
          *
          * @return bool|object
          *
-         * @throws \GuzzleHttp\Exception\ServerException
-         * @throws \GuzzleHttp\Exception\RequestException
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
         public function update($stub, $object, $method = 'PUT', $retry = TRUE, $do_async = FALSE)
         {
@@ -209,21 +192,9 @@
 
             try
             {
-                if ($do_async)
-                {
-                    return $this->call($stub . '/' . $id, $method, $request_data, $retry, $do_async);
-                }
-                else
-                {
-                    $response_data = $this->call($stub . '/' . $id, $method, $request_data, $retry);
-                    return $response_data;
-                }
+                return $this->call($stub . '/' . $id, $method, $request_data, $retry, $do_async);
             }
-            catch (Exception\ServerException $e)
-            {
-                throw $e;
-            }
-            catch (Exception\RequestException $e)
+            catch (WhatCountsException $e)
             {
                 throw $e;
             }
@@ -232,14 +203,14 @@
         /**
          * @param $stub
          * @param $object
+         * @param bool $retry
          * @param bool $do_async
          *
          * @return bool
          *
-         * @throws \GuzzleHttp\Exception\ServerException
-         * @throws \GuzzleHttp\Exception\RequestException
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
-        public function delete($stub, $object, $do_async = FALSE)
+        public function delete($stub, $object, $retry = FALSE, $do_async = FALSE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */
@@ -256,13 +227,9 @@
 
             try
             {
-                $this->call($stub . '/' . $id, 'DELETE', $request_data);
+                $this->call($stub . '/' . $id, 'DELETE', $request_data, $retry, $do_async);
             }
-            catch (Exception\ServerException $e)
-            {
-                throw $e;
-            }
-            catch (Exception\RequestException $e)
+            catch (WhatCountsException $e)
             {
                 throw $e;
             }
@@ -273,14 +240,14 @@
         /**
          * @param $stub
          * @param $object
+         * @param bool $retry
          * @param bool $do_async
          *
          * @return bool
          *
-         * @throws \GuzzleHttp\Exception\ServerException
-         * @throws \GuzzleHttp\Exception\RequestException
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
-        public function deleteById($stub, $object, $do_async = FALSE)
+        public function deleteById($stub, $object, $retry = FALSE, $do_async = FALSE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template $object */
@@ -294,13 +261,9 @@
 
             try
             {
-                $this->call($stub . '/' . $id, 'DELETE');
+                $this->call($stub . '/' . $id, 'DELETE', $retry, $do_async);
             }
-            catch (Exception\ServerException $e)
-            {
-                throw $e;
-            }
-            catch (Exception\RequestException $e)
+            catch (WhatCountsException $e)
             {
                 throw $e;
             }
@@ -311,14 +274,14 @@
         /**
          * @param $stub
          * @param $object
+         * @param bool $retry
          * @param bool $do_async
          *
          * @return bool
          *
-         * @throws \GuzzleHttp\Exception\ServerException
-         * @throws \GuzzleHttp\Exception\RequestException
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
-        public function deleteByCustomerKey($stub, $object, $do_async = FALSE)
+        public function deleteByCustomerKey($stub, $object, $retry = FALSE, $do_async = FALSE)
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template $object */
@@ -326,13 +289,9 @@
 
             try
             {
-                $this->call($stub . '/' . $id, 'DELETE');
+                $this->call($stub . '/' . $id, 'DELETE', $retry, $do_async);
             }
-            catch (Exception\ServerException $e)
-            {
-                throw $e;
-            }
-            catch (Exception\RequestException $e)
+            catch (WhatCountsException $e)
             {
                 throw $e;
             }

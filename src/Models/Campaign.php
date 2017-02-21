@@ -219,10 +219,10 @@
 					->setContentMobile($campaign_response->campaignContentMobile)
 					->setContentText($campaign_response->campaignContentText)
 					->setDataXml($campaign_response->campaignDataXml)
-                    ->setTemplateName($campaign_response->campaignTemplateName)
                     ->setAccountProfileId($campaign_response->accountProfileId)
 					->setSkip($campaign_response->skip)
 					->setMax($campaign_response->max);
+                if (isset($campaign_response->campaignTemplateName)) $this->setTemplateName($campaign_response->campaignTemplateName);
                 if (isset($campaign_response->campaignStartDate)) $this->setStartDate($campaign_response->campaignStartDate, 'M j, Y g:i:s A', $time_zone);
                 if (isset($campaign_response->campaignSummary))
                 {
