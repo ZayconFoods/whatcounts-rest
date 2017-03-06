@@ -64,6 +64,33 @@
 		}
 
         /**
+         * Get Campaigns with a start date between two dates. Dates passed in must be strings in format Y-m-d.
+         * @param string $start_date
+         * @param string $end_date
+         * @param bool $retry
+         * @param bool $do_async
+         *
+         * @return mixed
+         *
+         * @throws \GuzzleHttp\Exception\ServerException
+         * @throws \GuzzleHttp\Exception\RequestException
+         */
+        public function getCampaignsByDateRange($start_date, $end_date, $retry = TRUE, $do_async = FALSE)
+        {
+            $whatcounts = $this;
+
+            if ( is_null($end_date) )
+            {
+                $end_date = date('Y-m-d');
+            }
+
+            $campaign_stub = $this->campaign_stub . "?start=$start_date&end=$end_date";
+
+            /** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
+            return $whatcounts->getAll($campaign_stub, $this->campaign_class_name, $retry, $do_async);
+        }
+
+        /**
          * @param Models\Campaign $campaign
          * @param Models\MailingList $list
          * @param Models\Subscriber $subscriber

@@ -62,6 +62,25 @@
 			$this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Campaign', $campaign);
 		}
 
+		public function testGetCampaignByDateRange()
+        {
+            /** @var WhatCounts $whatcounts */
+            $whatcounts = $this->whatcounts;
+
+            $start_date = '2016-03-01';
+            $end_date = '2016-04-01';
+
+            $this->campaigns = $whatcounts->getCampaignsByDateRange($start_date, $end_date);
+
+            $this->assertInternalType('array',$this->campaigns);
+
+            foreach ($this->campaigns as $campaign)
+            {
+                /** @var Models\Campaign $campaign */
+                $this->assertInstanceOf('Zaycon\Whatcounts_Rest\Models\Campaign', $campaign);
+            }
+        }
+
 		public function testSendSingleCampaign()
         {
             /** @var WhatCounts $whatcounts */
