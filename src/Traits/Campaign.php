@@ -75,7 +75,7 @@
          * @throws \GuzzleHttp\Exception\ServerException
          * @throws \GuzzleHttp\Exception\RequestException
          */
-        public function getCampaignsByDateRange($start_date, $end_date, $retry = TRUE, $do_async = FALSE)
+        public function getCampaignsByDateRange($start_date, $end_date = NULL, $retry = TRUE, $do_async = FALSE)
         {
             $whatcounts = $this;
 
