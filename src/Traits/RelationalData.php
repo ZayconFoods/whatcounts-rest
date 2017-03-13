@@ -158,20 +158,22 @@
 		/**
 		 * @param $relational_table_name
 		 * @param $row_id
-		 *
+         * @param bool $retry
+         * @param bool $do_async
+         *
 		 * @return bool
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteRelationalData($relational_table_name, $row_id)
+		public function deleteRelationalData($relational_table_name, $row_id, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 
             try
             {
-                $response = $whatcounts->deleteById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $row_id);
+                $response = $whatcounts->deleteById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $row_id, $retry, $do_async);
             }
             catch (Exception\ServerException $e)
             {
