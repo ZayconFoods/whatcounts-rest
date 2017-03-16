@@ -251,9 +251,9 @@
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template $object */
-            if (is_int($object))
+            if (!is_a($object, 'stdClass'))
             {
-                $id = $object;
+                $id = intval($object);
             } else
             {
                 $id = $object->getId();
