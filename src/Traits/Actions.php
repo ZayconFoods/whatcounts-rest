@@ -82,7 +82,7 @@
                 }
                 else
                 {
-                    $response_data = $this->call($stub . '/' . $id, 'GET');
+                    $response_data = $this->call($stub . '/' . $id, 'GET', $retry, $do_async);
                     $object = $this->generateObject($class_name, $response_data);
                     return $object;
                 }
