@@ -113,6 +113,7 @@
 			{
 				$this
 					->setId($event_response->trackingId)
+                    ->setCampaignId($event_response->trackingCampaignId)
 					->setRealmId($event_response->trackingRealmId)
 					->setEventDate($event_response->trackingEventDate, 'M j, Y g:i:s A', $time_zone)
 					->setListId($event_response->trackingListId)
