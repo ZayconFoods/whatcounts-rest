@@ -10,7 +10,9 @@
 
     use GuzzleHttp\Exception;
 	use Zaycon\Whatcounts_Rest\Models;
-	/**
+    use Zaycon\Whatcounts_Rest\WhatCountsException;
+
+    /**
 	 * Class RelationalData
 	 * @package Whatcounts_Rest
 	 */
@@ -30,8 +32,10 @@
          * @param bool $do_async
 		 *
 		 * @return mixed
+         *
+         * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
 		 */
-		public function getRelationalData($relational_table_name, $row_id, $retry = FALSE, $do_async = FALSE)
+        public function getRelationalData($relational_table_name, $row_id, $retry = FALSE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
@@ -39,6 +43,10 @@
             try
             {
                 return $whatcounts->getById($this->relational_table_stub . '/' . $relational_table_name . '/rows', $this->relational_data_class_name, $row_id, $retry, $do_async);
+            }
+            catch (WhatCountsException $e)
+            {
+                throw $e;
             }
             catch (Exception\ServerException $e)
             {
@@ -142,7 +150,7 @@
 
             try
             {
-                $promise = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, 'PUT', $retry, $do_async);
+                $promise = $whatcounts->update($this->relational_table_stub . '/' . $relational_table_name . '/rows/' . $row_id, $request_data, $retry, $do_async);
                 return $promise;
             }
             catch (Exception\ServerException $e)

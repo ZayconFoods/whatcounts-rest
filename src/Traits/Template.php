@@ -32,13 +32,16 @@
 
 		/**
 		 * Get all templates from the API.
+         *
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return array
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getTemplates()
+		public function getTemplates($retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
@@ -59,7 +62,7 @@
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getTemplateById($template_id)
+		public function getTemplateById($template_id, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
@@ -73,18 +76,20 @@
 		 * Must pass a template name to method.
 		 * Passes template name to API.
 		 *
-		 * @param $template_name
+		 * @param string $template_name
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return array
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getTemplateByName($template_name)
+		public function getTemplateByName($template_name, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$templates = $whatcounts->getByName($this->template_stub, $this->template_class_name, $template_name);
+			$templates = $whatcounts->getByName($this->template_stub, $this->template_class_name, $template_name, $retry, $do_async);
 
 			return $templates;
 		}
@@ -99,11 +104,11 @@
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function createTemplate(Models\Template &$template)
+		public function createTemplate(Models\Template &$template, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$response_data = $whatcounts->create($this->template_stub, $template);
+			$response_data = $whatcounts->create($this->template_stub, $template, $retry, $do_async);
 
 			$template
 				->setId($response_data->id)
@@ -123,11 +128,11 @@
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function updateTemplate(Models\Template &$template)
+		public function updateTemplate(Models\Template &$template, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$response_data = $whatcounts->update($this->template_stub, $template);
+			$response_data = $whatcounts->update($this->template_stub, $template, $retry, $do_async);
 
 			$template
 				->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
@@ -145,10 +150,10 @@
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteTemplate(Models\Template $template)
+		public function deleteTemplate(Models\Template $template, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			return $whatcounts->deleteById($this->template_stub, $template);
+			return $whatcounts->deleteById($this->template_stub, $template, $retry, $do_async);
 		}
 	}

@@ -8,16 +8,20 @@
 
 	require_once('../config.php');
 
+	Zaycon\Whatcounts_Rest\Config::realm('zaycon_qa', 'development');
+	Zaycon\Whatcounts_Rest\Config::password('axterref30324', 'development');
+
+	/* initialize whatcounts */
+	$whatcounts = new Zaycon\Whatcounts_Rest\WhatCounts('mydevelopment');
+
 	try
 	{
-		/* initialize whatcounts */
-		$whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
+		$subscriber_id = 3473;
+		$subscriberSubscriptions = $whatcounts->getSubscriberAndSubscriptions($subscriber_id);
+		$whatcounts->handleDump($subscriberSubscriptions);
 
-		$subscriber_id = 1;
-
-		$subscriber = $whatcounts->getSubscriberById($subscriber_id);
-
-		$whatcounts->handleDump($subscriber);
+		$subscriberEvents = $whatcounts->getSubscriberAndEvents($subscriber_id);
+		$whatcounts->handleDump($subscriberEvents);
 	}
 	catch (Exception $e)
 	{

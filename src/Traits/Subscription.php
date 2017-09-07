@@ -36,25 +36,35 @@
 		 * Passes Subscription object to API.
 		 *
 		 * @param Models\Subscription $subscription
+         * @param bool $retry
+         * @param bool $do_async
          *
-         * @return Models\Subscription $subscription
+         * @return bool|Models\Subscription $subscription
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function createSubscription(Models\Subscription $subscription)
+		public function createSubscription(Models\Subscription $subscription, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$response_data = $whatcounts->create($this->subscription_stub, $subscription);
-			
-			$subscription
-				->setId($response_data->subscriptionId)
-				->setCreatedDate($response_data->createdDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
-				->setSkip($response_data->skip)
-				->setMax($response_data->max);
 
-			return $subscription;
+            if ($do_async)
+            {
+                return $whatcounts->create($this->subscription_stub, $subscription, $retry, $do_async);
+            }
+            else
+            {
+                $response_data = $whatcounts->create($this->subscription_stub, $subscription, $retry, $do_async);
+
+                $subscription
+                    ->setId($response_data->subscriptionId)
+                    ->setCreatedDate($response_data->createdDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()))
+                    ->setSkip($response_data->skip)
+                    ->setMax($response_data->max);
+
+                return $subscription;
+            }
 		}
 
 		/**
@@ -63,17 +73,19 @@
 		 * Passes Subscription object to API.
 		 *
 		 * @param Models\Subscription $subscription
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return mixed
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteSubscription(Models\Subscription $subscription)
+		public function deleteSubscription(Models\Subscription $subscription, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
-			return $whatcounts->delete($this->subscription_stub, $subscription);
+			return $whatcounts->delete($this->subscription_stub, $subscription, $retry, $do_async);
 		}
 
 		/**
@@ -82,16 +94,18 @@
 		 * Passes Subscription id to API.
 		 *
 		 * @param Subscription $subscription
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return mixed
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteSubscriptionById(Subscription $subscription)
+		public function deleteSubscriptionById(Subscription $subscription, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
-			return $whatcounts->deleteById($this->subscription_stub, $subscription);
+			return $whatcounts->deleteById($this->subscription_stub, $subscription, $retry, $do_async);
 		}
 	}

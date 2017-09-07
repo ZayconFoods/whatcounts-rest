@@ -7,14 +7,16 @@
  */
 
 	require_once('../config.php');
-	
+
+	Zaycon\Whatcounts_Rest\Config::realm('zaycon_qa', 'development');
+	Zaycon\Whatcounts_Rest\Config::password('axterref30324', 'development');
+
+	/* initialize whatcounts */
+	$whatcounts = new Zaycon\Whatcounts_Rest\WhatCounts('development');
+
 	try
 	{
-	    /* initialize whatcounts */
-	    $whatcounts = new ZayconWhatCounts\WhatCounts( WC_REALM, WC_PASSWORD );
-	
-	    $lists = $whatcounts->getLists();
-
+		$lists = $whatcounts->getLists();
 		$whatcounts->handleDump($lists);
 	}
 	catch (Exception $e)

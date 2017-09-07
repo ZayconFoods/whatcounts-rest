@@ -36,13 +36,15 @@
 		 * Passes skip value to API, if present.
 		 *
 		 * @param null $skip
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return array
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getSubscribers($skip = NULL)
+		public function getSubscribers($skip = NULL, $retry = TRUE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
@@ -52,7 +54,7 @@
 				$query['skip'] = $skip;
 			}
 
-			$subscribers = $whatcounts->getAll($this->subscriber_stub . http_build_query($query), $this->subscriber_class_name);
+			$subscribers = $whatcounts->getAll($this->subscriber_stub . http_build_query($query), $this->subscriber_class_name, $retry, $do_async);
 
 			return $subscribers;
 		}
@@ -60,13 +62,15 @@
 		/**
 		 * @param Models\MailingList $list
 		 * @param $skip
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return array
 		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getSubscribersForList(Models\MailingList $list, $skip = NULL)
+		public function getSubscribersForList(Models\MailingList $list, $skip = NULL, $retry = TRUE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
@@ -76,20 +80,22 @@
 				$query['skip'] = $skip;
 			}
 
-			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub . http_build_query($query), $this->subscriber_class_name);
+			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub . http_build_query($query), $this->subscriber_class_name, $retry, $do_async);
 			
 			return $subscribers;
 		}
 
 		/**
 		 * @param Models\MailingList $list
-		 * @param null                          $start_date
-		 * @param null                          $end_date
-		 * @param null                          $skip
+		 * @param null $start_date
+		 * @param null $end_date
+		 * @param null $skip
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return array
 		 */
-		public function getUnsubscribersForList(Models\MailingList $list, $start_date = NULL, $end_date = NULL, $skip = NULL)
+		public function getUnsubscribersForList(Models\MailingList $list, $start_date = NULL, $end_date = NULL, $skip = NULL, $retry = TRUE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
@@ -105,21 +111,23 @@
 				$query['skip'] = $skip;
 			}
 
-			$unubscribes = $whatcounts->getAll($this->list_stub . '/' . $list->getId() . '/unsubscribes?' . http_build_query($query) , '\Zaycon\Whatcounts_Rest\Models\Unsubscribes');
+			$unubscribes = $whatcounts->getAll($this->list_stub . '/' . $list->getId() . '/unsubscribes?' . http_build_query($query) , '\Zaycon\Whatcounts_Rest\Models\Unsubscribes', $retry, $do_async);
 
 			return $unubscribes;
 		}
 
 		/**
 		 * @param Models\MailingList $list
-		 * @param null                          $customer_key
-		 * @param null                          $email
-		 * @param null                          $first_name
-		 * @param null                          $last_name
+		 * @param null $customer_key
+		 * @param null $email
+		 * @param null $first_name
+		 * @param null $last_name
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return array
 		 */
-		public function findSubscribersInList(Models\MailingList $list, $customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL)
+		public function findSubscribersInList(Models\MailingList $list, $customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL, $retry = TRUE, $do_async = FALSE)
 		{
 			$query = array();
 			if (isset($customer_key)) {
@@ -137,7 +145,7 @@
 
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub . '?' . http_build_query($query), $this->subscriber_class_name);
+			$subscribers = $whatcounts->getAll('lists/' . $list->getId() . '/' . $whatcounts->subscriber_stub . '?' . http_build_query($query), $this->subscriber_class_name, $retry, $do_async);
 
 			return $subscribers;
 		}
@@ -147,10 +155,12 @@
 		 * @param null $email
 		 * @param null $first_name
 		 * @param null $last_name
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return array
 		 */
-		public function findSubscribers($customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL)
+		public function findSubscribers($customer_key = NULL, $email = NULL, $first_name = NULL, $last_name = NULL, $retry = TRUE, $do_async = FALSE)
 		{
 			$query = array();
 			if (isset($customer_key)) {
@@ -168,40 +178,43 @@
 
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$subscribers = $whatcounts->getAll($whatcounts->subscriber_stub . '?' . http_build_query($query), $this->subscriber_class_name);
+			$subscribers = $whatcounts->getAll($whatcounts->subscriber_stub . '?' . http_build_query($query), $this->subscriber_class_name, $retry, $do_async);
 
 			return $subscribers;
 		}
 
 		/**
 		 * @param $subscriber_id
+         * @param bool $retry
+         * @param bool $do_async
 		 *
-		 * @return Subscriber
+		 * @return Models\Subscriber
 		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function getSubscriberById($subscriber_id)
+		public function getSubscriberById($subscriber_id, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$subscriber = $whatcounts->getById($this->subscriber_stub, $this->subscriber_class_name, $subscriber_id);
+			$subscriber = $whatcounts->getById($this->subscriber_stub, $this->subscriber_class_name, $subscriber_id, $retry, $do_async);
 
 			return $subscriber;
 		}
 
 		/**
 		 * @param integer $subscriber_id
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return Models\Subscriber
 		 */
-		public function getSubscriberAndSubscriptions($subscriber_id)
+		public function getSubscriberAndSubscriptions($subscriber_id, $retry = TRUE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
 
-			/** @var Subscriber $subscriber */
-			$subscriber = $whatcounts->getAll($this->subscriber_stub . '/' . $subscriber_id . '/subscriptions', $this->subscriber_class_name);
+			$subscriber = $whatcounts->getAll($this->subscriber_stub . '/' . $subscriber_id . '/subscriptions', $this->subscriber_class_name, $retry, $do_async);
 
 			return $subscriber;
 		}
@@ -210,10 +223,12 @@
 		 * @param  integer $subscriber_id
 		 * @param  \DateTime  $start_date
 		 * @param  \DateTime  $end_date
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return Models\Subscriber
 		 */
-		public function getSubscriberAndEvents($subscriber_id, $start_date = NULL, $end_date = NULL)
+		public function getSubscriberAndEvents($subscriber_id, $start_date = NULL, $end_date = NULL, $retry = TRUE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
@@ -226,32 +241,33 @@
 				$query['end'] = date_format($end_date, 'Y-m-d');
 			}
 
-			/** @var Subscriber $subscriber */
-			$subscriber = $whatcounts->getAll($this->subscriber_stub . '/' . $subscriber_id . '/events?' . http_build_query($query) , $this->subscriber_class_name);
+			$subscriber = $whatcounts->getAll($this->subscriber_stub . '/' . $subscriber_id . '/events?' . http_build_query($query) , $this->subscriber_class_name, $retry, $do_async);
 
 			return $subscriber;
 		}
 
 		/**
 		 * @param Models\Subscriber $subscriber
+         * @param bool $retry
          * @param bool $do_async
-         * @return bool|object
+         *
+         * @return bool|Models\Subscriber
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function createSubscriber(Models\Subscriber &$subscriber, $do_async = FALSE)
+		public function createSubscriber(Models\Subscriber &$subscriber, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 
             if ($do_async)
             {
-                return $whatcounts->create($this->subscriber_stub, $subscriber, $do_async);
+                return $whatcounts->create($this->subscriber_stub, $subscriber, $retry, $do_async);
             }
             else
             {
-                $response_data = $whatcounts->create($this->subscriber_stub, $subscriber);
+                $response_data = $whatcounts->create($this->subscriber_stub, $subscriber, $retry, $do_async);
 
                 $subscriber
                     ->setId($response_data->subscriberId)
@@ -267,48 +283,65 @@
 
 		/**
 		 * @param Models\Subscriber $subscriber
+         * @param bool $retry
+         * @param bool $do_async
+         *
+         * @return bool|Models\Subscriber
 		 *
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function updateSubscriber(Models\Subscriber &$subscriber)
+		public function updateSubscriber(Models\Subscriber &$subscriber, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			$response_data = $whatcounts->update($this->subscriber_stub, $subscriber);
 
-            if (isset($response_data->updatedDate))
+            if ($do_async)
             {
-                $subscriber
-                    ->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
+                return $whatcounts->update($this->subscriber_stub, $subscriber, $retry, $do_async);
+            }
+            else
+            {
+                $response_data = $whatcounts->update($this->subscriber_stub, $subscriber, $retry, $do_async);
+
+                if (isset($response_data->updatedDate))
+                {
+                    $subscriber
+                        ->setUpdatedDate($response_data->updatedDate, 'M j, Y g:i:s A', new \DateTimeZone($whatcounts->getTimeZone()));
+                }
             }
 		}
 
 		/**
 		 * @param Models\Subscriber $subscriber
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return boolean
 		 * 
 		 * @throws \GuzzleHttp\Exception\ServerException
 		 * @throws \GuzzleHttp\Exception\RequestException
 		 */
-		public function deleteSubscriberById(Models\Subscriber $subscriber)
+		public function deleteSubscriberById(Models\Subscriber $subscriber, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			return $whatcounts->deleteById($this->subscriber_stub, $subscriber);
+
+			return $whatcounts->deleteById($this->subscriber_stub, $subscriber, $retry, $do_async);
 		}
 
 		/**
 		 * @param Models\Subscriber $subscriber
+         * @param bool $retry
+         * @param bool $do_async
 		 *
 		 * @return bool
 		 */
-		public function deleteSubscriberByCustomerKey(Models\Subscriber $subscriber)
+		public function deleteSubscriberByCustomerKey(Models\Subscriber $subscriber, $retry = TRUE, $do_async = FALSE)
 		{
 			$whatcounts = $this;
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
-			return $whatcounts->deleteByCustomerKey($this->subscriber_stub, $subscriber);
+			return $whatcounts->deleteByCustomerKey($this->subscriber_stub, $subscriber, $retry, $do_async);
 		}
 
 	}

@@ -168,15 +168,15 @@
         /**
          * @param $stub
          * @param $object
-         * @param string $method
          * @param bool $retry
          * @param bool $do_async
+         * @param string $method
          *
          * @return bool|object
          *
          * @throws \Zaycon\Whatcounts_Rest\WhatCountsException
          */
-        public function update($stub, $object, $method = 'PUT', $retry = TRUE, $do_async = FALSE)
+        public function update($stub, $object, $retry = TRUE, $do_async = FALSE, $method = 'PUT')
         {
             /** @var \Zaycon\Whatcounts_Rest\WhatCounts $this */
             /** @var Models\Article|Models\Campaign|Models\MailingList|Models\Subscriber|Models\Subscription|Models\Template|Models\RelationalData $object */

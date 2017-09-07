@@ -29,16 +29,26 @@
 		 */
 		private $relational_table_class_name = '\Zaycon\Whatcounts_Rest\Models\RelationalTable';
 
-		/**
-		 * @return array
-		 */
-		public function getRelationalTables()
+        /**
+         * @param bool $retry
+         * @param bool $do_async
+         *
+         * @return array
+         */
+		public function getRelationalTables($retry = TRUE, $do_async = FALSE)
 		{
 			/** @var \Zaycon\Whatcounts_Rest\WhatCounts $whatcounts */
 			$whatcounts = $this;
-			$relational_tables = $whatcounts->getAll($this->relational_table_stub, $this->relational_table_class_name);
-			
-			return $relational_tables;
+
+			if ($do_async)
+            {
+                return $whatcounts->getAll($this->relational_table_stub, $this->relational_table_class_name, $retry, $do_async);
+            }
+            else
+            {
+                $relational_tables = $whatcounts->getAll($this->relational_table_stub, $this->relational_table_class_name, $retry, $do_async);
+                return $relational_tables;
+            }
 		}
 		
 	}
