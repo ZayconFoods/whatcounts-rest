@@ -14,8 +14,6 @@
   "require-dev": {
     "phpunit/phpunit": "4.8.*",
     "satooshi/php-coveralls": "^1.0",
-    "raveren/kint": "^1.0",
-    "rollbar/rollbar": "~1.0",
     "fzaninotto/faker": "1.6.x-dev"
   },
   "type": "library",

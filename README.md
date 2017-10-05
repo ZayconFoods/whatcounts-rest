@@ -27,15 +27,6 @@ Add ZayconWhatCounts to your `composer.json` file. If you are not using [Compose
 ```
 
 ----
-## <a name="documentation"></a>Documentation
-
-
-
-----
-## <a name="todo"></a>@todo
-
-
-----
 ## <a name="about"></a>About
 Developed by [Zaycon Fresh](https://www.zayconfresh.com)
 

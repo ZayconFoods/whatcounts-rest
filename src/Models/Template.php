@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marksimonds
- * Date: 1/27/16
- * Time: 8:52 AM
- */
 
 namespace Zaycon\Whatcounts_Rest\Models;
+
 use Zaycon\Whatcounts_Rest\WhatCounts;
 
 /**
@@ -939,6 +934,4 @@ class Template
 
         return $this;
     }
-
-
 }

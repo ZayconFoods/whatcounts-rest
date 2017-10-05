@@ -1,117 +1,111 @@
 <?php
-	/**
-	 * Created by PhpStorm.
-	 * User: Mark Simonds
-	 * Date: 4/22/16
-	 * Time: 1:14 PM
-	 */
 
-	namespace Zaycon\Whatcounts_Rest;
+namespace Zaycon\Whatcounts_Rest;
 
-	/**
-	 * Class Config
-	 * @package Whatcounts_Rest
-	 */
-	class Config
-	{
-		
-		private static $config;
+/**
+ * Class Config
+ * @package Whatcounts_Rest
+ */
+class Config
+{
 
-		/**
-		 * @return array
-		 */
-		public static function getInstance()
-		{
-			if (NULL === self::$config) {
-				self::$config = [
-					'production'  => [
-						'version'   => 'v1',
-						'url'       => 'https://api.whatcounts.net/rest',
-						'time_zone' => 'America/Los_Angeles',
-						'realm'     => 'your_production_realm',
-						'password'  => 'your_password'
-					],
-					'development' => [
-						'version'   => 'v1',
-						'url'       => 'http://wcqa.us/rest',
-						'time_zone' => 'America/Los_Angeles',
-						'realm'     => 'your_development_realm',
-						'password'  => 'your_password'
-					]
-				];
-			}
+    private static $config;
 
-			return self::$config;
-		}
+    /**
+     * @return array
+     */
+    public static function getInstance()
+    {
+        if (NULL === self::$config) {
+            self::$config = [
+                'production'  => [
+                    'version'   => 'v1',
+                    'url'       => 'https://api.whatcounts.net/rest',
+                    'time_zone' => 'America/Los_Angeles',
+                    'realm'     => 'your_production_realm',
+                    'password'  => 'your_password'
+                ],
+                'development' => [
+                    'version'   => 'v1',
+                    'url'       => 'http://wcqa.us/rest',
+                    'time_zone' => 'America/Los_Angeles',
+                    'realm'     => 'your_development_realm',
+                    'password'  => 'your_password'
+                ]
+            ];
+        }
 
-		/**
-		 * @param $value
-		 *
-		 * @return string
-		 */
-		public static function get($value)
-		{
-			$cfg = self::getInstance();
-			$value = explode('.', $value);
+        return self::$config;
+    }
 
-			if (count($value) == 2)
-			{
-				if (array_key_exists($value[0], $cfg))
-				{
-					if (array_key_exists($value[1], $cfg[$value[0]]))
-					{
-						return $cfg[$value[0]][$value[1]];
-					}
-				}
-			}
+    /**
+     * @param $value
+     *
+     * @return string
+     */
+    public static function get($value)
+    {
+        $cfg = self::getInstance();
+        $value = explode('.', $value);
 
-			return '';
-		}
+        if (count($value) == 2)
+        {
+            if (array_key_exists($value[0], $cfg))
+            {
+                if (array_key_exists($value[1], $cfg[$value[0]]))
+                {
+                    return $cfg[$value[0]][$value[1]];
+                }
+            }
+        }
 
-		/**
-		 * @param $value
-		 */
-		public static function append($value)
-		{
-			$cfg = self::getInstance();
-			self::$config = array_merge($cfg, $value);
-		}
+        return '';
+    }
 
-		/**
-		 * @param $value
-		 * @param string $env
-		 */
-		public static function realm($value, $env = 'production')
-		{
-			self::getInstance();
-			self::$config[$env]['realm'] = $value;
-		}
+    /**
+     * @param $value
+     */
+    public static function append($value)
+    {
+        $cfg = self::getInstance();
+        self::$config = array_merge($cfg, $value);
+    }
 
-		/**
-		 * @param $value
-		 * @param string $env
-		 */
-		public static function password($value, $env = 'production')
-		{
-			self::$config[$env]['password'] = $value;
-		}
+    /**
+     * @param $value
+     * @param string $env
+     */
+    public static function realm($value, $env = 'production')
+    {
+        self::getInstance();
+        self::$config[$env]['realm'] = $value;
+    }
 
-		/**
-		 * Config constructor.
-		 * Preventing overrides.
-		 */
-		protected function __construct() {}
+    /**
+     * @param $value
+     * @param string $env
+     */
+    public static function password($value, $env = 'production')
+    {
+        self::$config[$env]['password'] = $value;
+    }
 
-		/**
-		 * Config cloner.
-		 * Preventing overrides.
-		 *
-		 */
-		protected function __clone() {}
+    /**
+     * Config constructor.
+     * Preventing overrides.
+     */
+    protected function __construct() {}
 
-		/**
-		 * Config wakeup.
-		 * Preventing overrides.
-		 */
-		protected function __wakeup() {}
-	}
+    /**
+     * Config cloner.
+     * Preventing overrides.
+     *
+     */
+    protected function __clone() {}
+
+    /**
+     * Config wakeup.
+     * Preventing overrides.
+     */
+    protected function __wakeup() {}
+}

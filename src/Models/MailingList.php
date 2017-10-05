@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mark Simonds
- * Date: 4/15/16
- * Time: 1:35 PM
- */
 
 namespace Zaycon\Whatcounts_Rest\Models;
+
 use Zaycon\Whatcounts_Rest\WhatCounts;
 
 /**
@@ -1352,5 +1347,4 @@ class MailingList
 
         return $this;
     }
-
 }
